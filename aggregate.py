@@ -1,0 +1,143 @@
+#!/usr/bin/env python3
+import pprint
+import yaml
+import json
+import numpy as np
+import pandas as pd
+pd.set_option('display.max_columns', None)
+pd.set_option('display.expand_frame_repr', None)
+
+PREFIX='hms-nhs-the-nautical-health-service'
+DIR='doctored'
+KEYS = ['subject_id', 'task']
+DROP_T = {
+  'type': 'dropdown',
+  'name': 'data.value',
+}
+TEXT_T = {
+  'type': 'text',
+  'name': 'data.consensus_text',
+}
+workflow = {
+  18109: {
+    'ztype': TEXT_T,
+    'nptype': pd.Int64Dtype(),
+    'name': 'admission number',
+  },
+  18110: {
+    'ztype': TEXT_T,
+    'nptype': str,
+    'name': 'date admitted',
+  },
+  18111: {
+    'ztype': TEXT_T,
+    'nptype': str,
+    'name': 'name',
+  },
+  18112: {
+    'ztype': DROP_T,
+    'nptype': str,
+    'name': 'rank/rating',
+    'major': 5,
+    'minor': 8,
+  },
+  18113: {
+    'ztype': TEXT_T,
+    'nptype': pd.Int64Dtype(),
+    'name': 'age',
+  },
+  18114: {
+    'ztype': TEXT_T,
+    'nptype': str,
+    'name': 'place of birth',
+  },
+  18115: {
+    'ztype': TEXT_T,
+    'nptype': str,
+    'name': 'port sailed out of'
+  },
+  18116: {
+    'ztype': TEXT_T,
+    'nptype': pd.Int64Dtype(),
+    'name': 'years at sea',
+  },
+  18117: {
+    'ztype': TEXT_T,
+    'nptype': str,
+    'name': 'last ship',
+  },
+  #18118: {
+  #  'ztype': TEXT_T,
+  #  'nptype': str,
+  #  'name': admission circumstances',
+  #},
+  18119: {
+    'ztype': TEXT_T,
+    'nptype': str,
+    'name': 'date discharged',
+  },
+  18120: {
+    'ztype': DROP_T,
+    'nptype': str,
+    'name': 'how disposed',
+    'major': 1,
+    'minor': 1,
+  },
+  18121: {
+    'ztype': TEXT_T,
+    'nptype': pd.Int64Dtype(),
+    'name': 'days victualled/in hospital',
+  },
+}
+
+#Read in the reduced data.
+columns = []
+for wid, data in workflow.items():
+  datacol = data['ztype']['name']
+  #print(f'aggregation/{data["ztype"]["type"]}_reducer_{wid}.csv')
+  df = pd.read_csv(f'{DIR}/{data["ztype"]["type"]}_reducer_{wid}.csv',
+                   index_col = KEYS,
+                   usecols   = KEYS + [datacol],
+                   converters = {'task': lambda x: x[1:]}, #Could replace this with something that returns 1 through 25 over and over
+                   dtype     = {datacol: data['nptype']})
+  df.rename(columns={datacol: data['name']}, inplace = True)
+  columns.append(df)
+  #print(df.loc[[44398487]])
+
+
+#TODO: Deal with conflicts
+
+
+#Combine the separate workflows into a single dataframe
+#Assumption: Task numbers always refer to the same row in each workflow
+#            If this assumption does not hold, we can perform a mapping
+#            on the dataframes at the point that we read them in, above.
+#Quick test shows that this assumption does hold for now.
+first = columns.pop(0)
+joined = first.join(columns, how='outer')
+
+
+#Translate subjects ids into original filenames
+#Assumption: the metadata is invariant across all of the entries for each subject_id
+subjects = pd.read_csv(f'{PREFIX}-subjects.csv',
+                       usecols   = ['subject_id', 'metadata'])
+joined.insert(0, 'filename', '')
+for sid in joined.index.get_level_values('subject_id').unique():
+  metadata = subjects.query(f'subject_id == {sid}').iloc[0]['metadata']
+  fnam = json.loads(metadata)['Filename']
+  joined.loc[[sid], 'filename'] = [fnam] * 25
+
+#Translate dropdowns into meaningful text values
+for wid, data in workflow.items():
+  if(data['ztype'] != DROP_T):
+    continue
+  print(data)
+  with open(f'{DIR}/Task_labels_workflow_{wid}_V{data["major"]}.{data["minor"]}.yaml') as f:
+    labels = yaml.full_load(f)
+    #pprint.pprint(labels)
+#TODO: Stopped here for now. This might be the 'old' style of dropdown anyway. Need some data with the new dropdown.
+    joined[[data.name == labels['T1.selects.0.options.*.0.label'].values()[0]
+
+#Dump output
+#print(joined)
+joined.to_csv(path_or_buf = f'{DIR}/joined.csv')
