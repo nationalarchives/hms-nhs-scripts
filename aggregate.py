@@ -128,7 +128,7 @@ joined.insert(1, 'page', '')
 for sid in joined.index.get_level_values('subject_id').unique():
   metadata = subjects.query(f'subject_id == {sid}').iloc[0]['metadata']
   fnam = json.loads(metadata)['Filename']
-  match = re.fullmatch('.*_(\d+)-(\d+)\.jpg', fnam)
+  match = re.fullmatch('.*_(\d+)-(\d+)(?: \d)?\.jpg', fnam)
   if match:
     (vol, page) = map(lambda x: int(x), match.groups())
     if   vol == 1: page -= 21
