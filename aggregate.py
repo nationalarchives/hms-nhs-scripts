@@ -2,6 +2,8 @@
 import pprint
 import yaml
 import json
+import re
+import sys
 import numpy as np
 import pandas as pd
 pd.set_option('display.max_columns', None)
@@ -121,11 +123,25 @@ joined = first.join(columns, how='outer')
 #Assumption: the metadata is invariant across all of the entries for each subject_id
 subjects = pd.read_csv(f'{PREFIX}-subjects.csv',
                        usecols   = ['subject_id', 'metadata'])
-joined.insert(0, 'filename', '')
+joined.insert(0, 'volume', '')
+joined.insert(1, 'page', '')
 for sid in joined.index.get_level_values('subject_id').unique():
   metadata = subjects.query(f'subject_id == {sid}').iloc[0]['metadata']
   fnam = json.loads(metadata)['Filename']
-  joined.loc[[sid], 'filename'] = [fnam] * 25
+  match = re.fullmatch('.*_(\d+)-(\d+)\.jpg', fnam)
+  if match:
+    (vol, page) = map(lambda x: int(x), match.groups())
+    if   vol == 1: page -= 21
+    elif vol == 2: page -= 28
+    elif vol == 6:
+      print('Surprisingly met volume 6', file = sys.stderr)
+      (vol, page) = ('6', '?')
+    else: page -= 3
+  else:
+    print(f'"{fnam}" does not match regular expression', file = sys.stderr)
+    (vol, page) = '?', '?'
+  joined.loc[[sid], 'volume'] = [vol]  * 25
+  joined.loc[[sid], 'page']   = [page] * 25
 
 #Translate dropdowns into meaningful text values
 for wid, data in workflow.items():
