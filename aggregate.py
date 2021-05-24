@@ -103,9 +103,21 @@ for wid, data in workflow.items():
                    converters = {'task': lambda x: x[1:]}, #Could replace this with something that returns 1 through 25 over and over
                    dtype     = {datacol: data['nptype']})
   df.rename(columns={datacol: data['name']}, inplace = True)
-  columns.append(df)
-  #print(df.loc[[44398487]])
 
+  if(data['ztype'] == DROP_T):
+    def decode_dropdown(selection_json):
+      with open(f'{DIR}/Task_labels_workflow_{wid}_V{data["major"]}.{data["minor"]}.yaml') as f:
+        labels = yaml.full_load(f)
+        selections = yaml.load(selection_json)
+        result = []
+        for pair in selections:
+          for selection, count in pair.items(): #Guessing that the value is the count of users making that selection
+            if selection != 'None':
+              result.append({list(labels[f'T1.selects.0.options.*.{selection}.label'].values())[0]: count})
+        return json.dumps(result)
+    df[data['name']] = df[data['name']].map(decode_dropdown)
+
+  columns.append(df)
 
 #TODO: Deal with conflicts
 
@@ -142,17 +154,6 @@ for sid in joined.index.get_level_values('subject_id').unique():
     (vol, page) = '?', '?'
   joined.loc[[sid], 'volume'] = [vol]  * 25
   joined.loc[[sid], 'page']   = [page] * 25
-
-#Translate dropdowns into meaningful text values
-for wid, data in workflow.items():
-  if(data['ztype'] != DROP_T):
-    continue
-  print(data)
-  with open(f'{DIR}/Task_labels_workflow_{wid}_V{data["major"]}.{data["minor"]}.yaml') as f:
-    labels = yaml.full_load(f)
-    #pprint.pprint(labels)
-#TODO: Stopped here for now. This might be the 'old' style of dropdown anyway. Need some data with the new dropdown.
-    joined[[data.name == labels['T1.selects.0.options.*.0.label'].values()[0]
 
 #Dump output
 #print(joined)
