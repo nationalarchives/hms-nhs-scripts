@@ -2,6 +2,7 @@
 import pprint
 import yaml
 import json
+import ast
 import re
 import sys
 import numpy as np
@@ -107,17 +108,21 @@ for wid, data in workflow.items():
                    dtype     = {datacol: data['nptype']})
   df.rename(columns={datacol: data['name']}, inplace = True)
 
+  #Convert dropdowns to their values
   if(data['ztype'] == DROP_T):
     def decode_dropdown(selection_json):
       with open(f'{DIR}/Task_labels_workflow_{wid}_V{data["major"]}.{data["minor"]}.yaml') as f:
         labels = yaml.full_load(f)
-        selections = yaml.load(selection_json)
-        result = []
-        for pair in selections:
-          for selection, count in pair.items(): #Guessing that the value is the count of users making that selection
-            if selection != 'None':
-              result.append({list(labels[f'T1.selects.0.options.*.{selection}.label'].values())[0]: count})
-        return json.dumps(result)
+        selections = ast.literal_eval(selection_json)
+        if len(selections) != 1: raise Exception()
+        selections = selections[0]
+        result = {}
+        for selection, votes in selections.items():
+          if selection == 'None': result[None] = votes
+          else: result[list(labels[f'T1.selects.0.options.*.{selection}.label'].values())[0]] = votes
+        if len(result) == 1:
+          return list(result.keys())[0]
+        else: return str(result)
     df[data['name']] = df[data['name']].map(decode_dropdown)
 
   columns.append(df)
