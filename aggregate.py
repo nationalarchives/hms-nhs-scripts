@@ -16,6 +16,7 @@ import pandas as pd
 PREFIX='hms-nhs-the-nautical-health-service'
 DIR='doctored'
 KEYS = ['subject_id', 'task']
+TEXT_CONSENSUS_THRESHOLD = 0.9
 DROP_T = {
   'type': 'dropdown',
   'name': 'data.value',
@@ -101,12 +102,28 @@ columns = []
 for wid, data in workflow.items():
   datacol = data['ztype']['name']
   #print(f'aggregation/{data["ztype"]["type"]}_reducer_{wid}.csv')
+  conflict_keys = []
+  if data['ztype'] == TEXT_T:
+    conflict_keys = ['data.aligned_text', 'data.number_views', 'data.consensus_score']
   df = pd.read_csv(f'{DIR}/{data["ztype"]["type"]}_reducer_{wid}.csv',
                    index_col = KEYS,
-                   usecols   = KEYS + [datacol],
+                   usecols   = KEYS + [datacol] + conflict_keys,
                    converters = {'task': lambda x: x[1:]}, #Could replace this with something that returns 1 through 25 over and over
                    dtype     = {datacol: data['nptype']})
-  df.rename(columns={datacol: data['name']}, inplace = True)
+
+  #Handle conflicts
+  if(data['ztype'] == TEXT_T):
+    #Levenshtein distance approach, IIRC
+    def resolver(x):
+      if x['data.consensus_score'] / x['data.number_views'] < TEXT_CONSENSUS_THRESHOLD:
+        return x['data.aligned_text']
+      else: return x[datacol]
+    df[datacol] = df.apply(resolver, axis = 'columns')
+    #TODO: For these kinds of strings, may well be better to treat them like dropdowns and just take two thirds identical as permitting auto-resolve
+
+  #Tidy up columns
+  df.drop(conflict_keys, axis = 'columns', inplace = True) #Drop columns that we just brought in for conflict handling
+  df.rename(columns={datacol: data['name']}, inplace = True) #Rename the data column to something meaninful
 
   #Convert dropdowns to their values
   if(data['ztype'] == DROP_T):
@@ -165,4 +182,4 @@ for sid in joined.index.get_level_values('subject_id').unique():
 
 #Dump output
 #print(joined)
-joined.to_csv(path_or_buf = f'{DIR}/joined.csv')
+joined.to_csv(path_or_buf = f'{DIR}/joined.csv', float_format = '%.0f')
