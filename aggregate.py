@@ -103,7 +103,6 @@ columns = []
 bad = {}
 for wid, data in workflow.items():
   datacol = data['ztype']['name']
-  #print(f'aggregation/{data["ztype"]["type"]}_reducer_{wid}.csv')
   conflict_keys = []
   if data['ztype'] == TEXT_T:
     conflict_keys = ['data.aligned_text', 'data.number_views', 'data.consensus_score']
@@ -162,8 +161,6 @@ for wid, data in workflow.items():
 
   columns.append(df)
 
-#TODO: Deal with conflicts
-
 
 #Combine the separate workflows into a single dataframe
 #Assumption: Task numbers always refer to the same row in each workflow
@@ -212,5 +209,4 @@ for sid in joined.index.get_level_values('subject_id').unique():
   joined.loc[[sid], 'page']   = [page] * 25
 
 #Dump output
-#print(joined)
 joined.to_csv(path_or_buf = f'{DIR}/joined.csv', float_format = '%.0f')
