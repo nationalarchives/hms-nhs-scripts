@@ -100,6 +100,7 @@ workflow = {
 
 #Read in the reduced data.
 columns = []
+bad = {}
 for wid, data in workflow.items():
   datacol = data['ztype']['name']
   #print(f'aggregation/{data["ztype"]["type"]}_reducer_{wid}.csv')
@@ -117,6 +118,7 @@ for wid, data in workflow.items():
     #Levenshtein distance approach, IIRC
     def resolver(x):
       if x['data.consensus_score'] / x['data.number_views'] < TEXT_CONSENSUS_THRESHOLD:
+        bad[x.name] = '*'
         return x['data.aligned_text']
       else: return x[datacol]
     df[datacol] = df.apply(resolver, axis = 'columns')
@@ -132,6 +134,7 @@ for wid, data in workflow.items():
       for selection, votes in selections.items():
         if votes / total_votes >= DROPDOWN_CONSENSUS_THRESHOLD:
           return str([{selection: votes}])
+      bad[x.name] = '*'
       return x
     df[datacol] = df.apply(resolver, axis = 'columns')
   else: raise Exception()
@@ -169,6 +172,19 @@ for wid, data in workflow.items():
 #Quick test shows that this assumption does hold for now.
 first = columns.pop(0)
 joined = first.join(columns, how='outer')
+
+
+#Tag the rows with badness
+joined.insert(0, 'Problems', '')
+joined['Problems'] = joined.apply(lambda x: 'Blank(s)' if x.isnull().values.any() else '', axis = 'columns')
+
+#TODO This part does not feel like the Pandas way
+for b in bad.keys():
+  x = joined.at[b, 'Problems']
+  if len(x):
+    joined.at[b, 'Problems'] = f'{x} & disagreements'
+  else:
+    joined.at[b, 'Problems'] = 'Disagreements'
 
 
 #Translate subjects ids into original filenames
