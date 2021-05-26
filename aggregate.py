@@ -74,11 +74,11 @@ workflow = {
     'nptype': str,
     'name': 'last ship',
   },
-  #18118: {
-  #  'ztype': TEXT_T,
-  #  'nptype': str,
-  #  'name': admission circumstances',
-  #},
+  18118: {
+    'ztype': TEXT_T,
+    'nptype': str,
+    'name': 'admission circumstances',
+  },
   18119: {
     'ztype': TEXT_T,
     'nptype': str,
