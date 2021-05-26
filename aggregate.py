@@ -17,6 +17,7 @@ PREFIX='hms-nhs-the-nautical-health-service'
 DIR='doctored'
 KEYS = ['subject_id', 'task']
 TEXT_CONSENSUS_THRESHOLD = 0.9
+DROPDOWN_CONSENSUS_THRESHOLD = 0.66
 DROP_T = {
   'type': 'dropdown',
   'name': 'data.value',
@@ -120,6 +121,20 @@ for wid, data in workflow.items():
       else: return x[datacol]
     df[datacol] = df.apply(resolver, axis = 'columns')
     #TODO: For these kinds of strings, may well be better to treat them like dropdowns and just take two thirds identical as permitting auto-resolve
+  elif(data['ztype'] == DROP_T):
+    def resolver(x):
+      #x is a single-element array, containing one dictionary
+      selections = ast.literal_eval(x[datacol])
+      if len(selections) != 1: raise Exception()
+      selections = selections[0]
+
+      total_votes = sum(selections.values())
+      for selection, votes in selections.items():
+        if votes / total_votes >= DROPDOWN_CONSENSUS_THRESHOLD:
+          return str([{selection: votes}])
+      return x
+    df[datacol] = df.apply(resolver, axis = 'columns')
+  else: raise Exception()
 
   #Tidy up columns
   df.drop(conflict_keys, axis = 'columns', inplace = True) #Drop columns that we just brought in for conflict handling
