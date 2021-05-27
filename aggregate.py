@@ -101,6 +101,7 @@ workflow = {
 #Read in the reduced data.
 columns = []
 bad = {}
+autoresolved = {}
 for wid, data in workflow.items():
   datacol = data['ztype']['name']
   conflict_keys = []
@@ -116,10 +117,16 @@ for wid, data in workflow.items():
   if(data['ztype'] == TEXT_T):
     #Levenshtein distance approach, IIRC
     def resolver(x):
+      if pd.isnull(x['data.consensus_score']) or pd.isnull(x['data.number_views']): return ''
+
       if x['data.consensus_score'] / x['data.number_views'] < TEXT_CONSENSUS_THRESHOLD:
         bad[x.name] = '*'
         return x['data.aligned_text']
-      else: return x[datacol]
+      else:
+        if x['data.consensus_score'] != x['data.number_views']: #data has been autoresolved
+          if x.name in autoresolved: autoresolved[x.name].append(data['name'])
+          else: autoresolved[x.name] = [data['name']]
+        return x[datacol]
     df[datacol] = df.apply(resolver, axis = 'columns')
     #TODO: For these kinds of strings, may well be better to treat them like dropdowns and just take two thirds identical as permitting auto-resolve
   elif(data['ztype'] == DROP_T):
@@ -131,7 +138,11 @@ for wid, data in workflow.items():
 
       total_votes = sum(selections.values())
       for selection, votes in selections.items():
-        if votes / total_votes >= DROPDOWN_CONSENSUS_THRESHOLD:
+        if votes == total_votes:
+          return str([{selection: votes}])
+        if votes / total_votes >= DROPDOWN_CONSENSUS_THRESHOLD: #data has been autoresolved
+          if x.name in autoresolved: autoresolved[x.name].append(data['name'])
+          else: autoresolved[x.name] = [data['name']]
           return str([{selection: votes}])
       bad[x.name] = '*'
       return x
@@ -182,6 +193,12 @@ for b in bad.keys():
     joined.at[b, 'Problems'] = f'{x} & disagreements'
   else:
     joined.at[b, 'Problems'] = 'Disagreements'
+
+#Record where there was autoresolution
+joined.insert(0, 'Autoresolved', '')
+#TODO: Again, doesn't feel like Pandas
+for index, value in autoresolved.items():
+  joined.at[index, 'Autoresolved'] = '; '.join(value)
 
 
 #Translate subjects ids into original filenames
