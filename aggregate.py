@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
-import pprint
 import yaml
 import json
 import ast
 import re
 import sys
-import numpy as np
 import pandas as pd
 
 #For debugging
