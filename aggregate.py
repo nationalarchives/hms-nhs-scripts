@@ -224,4 +224,4 @@ for sid in joined.index.get_level_values('subject_id').unique():
   joined.loc[[sid], 'page']   = [page] * 25
 
 #Dump output
-joined.to_csv(path_or_buf = f'{DIR}/joined.csv', float_format = '%.0f')
+joined.to_csv(path_or_buf = f'output/joined.csv', float_format = '%.0f')
