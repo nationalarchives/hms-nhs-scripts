@@ -2,7 +2,7 @@
 import os
 import pandas as pd
 
-df = pd.read_csv('data/joined.csv', index_col = ['subject_id', 'task', 'volume', 'page', 'Autoresolved', 'Problems'], na_filter = False)
+df = pd.read_csv('output/joined.csv', index_col = ['subject_id', 'task', 'volume', 'page', 'Autoresolved', 'Problems'], na_filter = False)
 
 #Assumption: each subject id maps 1:1 to a (volume, page) pair
 for volume in df.index.unique(level = 'volume'):
