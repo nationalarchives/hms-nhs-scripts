@@ -24,77 +24,9 @@ TEXT_T = {
   'type': 'text',
   'name': 'data.consensus_text',
 }
-workflow = {
-  18109: {
-    'ztype': TEXT_T,
-    'nptype': pd.Int64Dtype(),
-    'name': 'admission number',
-  },
-  18110: {
-    'ztype': TEXT_T,
-    'nptype': str,
-    'name': 'date admitted',
-  },
-  18111: {
-    'ztype': TEXT_T,
-    'nptype': str,
-    'name': 'name',
-  },
-  18112: {
-    'ztype': DROP_T,
-    'nptype': str,
-    'name': 'rank/rating',
-    'major': 5,
-    'minor': 8,
-  },
-  18113: {
-    'ztype': TEXT_T,
-    'nptype': pd.Int64Dtype(),
-    'name': 'age',
-  },
-  18114: {
-    'ztype': TEXT_T,
-    'nptype': str,
-    'name': 'place of birth',
-  },
-  18115: {
-    'ztype': TEXT_T,
-    'nptype': str,
-    'name': 'port sailed out of'
-  },
-  18116: {
-    'ztype': TEXT_T,
-    'nptype': pd.Int64Dtype(),
-    'name': 'years at sea',
-  },
-  18117: {
-    'ztype': TEXT_T,
-    'nptype': str,
-    'name': 'last ship',
-  },
-  18118: {
-    'ztype': TEXT_T,
-    'nptype': str,
-    'name': 'admission circumstances',
-  },
-  18119: {
-    'ztype': TEXT_T,
-    'nptype': str,
-    'name': 'date discharged',
-  },
-  18120: {
-    'ztype': DROP_T,
-    'nptype': str,
-    'name': 'how disposed',
-    'major': 1,
-    'minor': 1,
-  },
-  18121: {
-    'ztype': TEXT_T,
-    'nptype': pd.Int64Dtype(),
-    'name': 'days victualled/in hospital',
-  },
-}
+
+with open('workflow.yaml') as f:
+  workflow = yaml.load(f, Loader = yaml.Loader)
 
 #Read in the reduced data.
 columns = []
