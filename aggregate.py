@@ -85,9 +85,9 @@ for wid, data in workflow.items():
 
   #Convert dropdowns to their values
   if(data['ztype'] == DROP_T):
+    with open(f'{DIR}/Task_labels_workflow_{wid}_V{data["major"]}.{data["minor"]}.yaml') as f:
+      labels = yaml.full_load(f)
     def decode_dropdown(selection_json):
-      with open(f'{DIR}/Task_labels_workflow_{wid}_V{data["major"]}.{data["minor"]}.yaml') as f:
-        labels = yaml.full_load(f)
         selections = ast.literal_eval(selection_json)
         if len(selections) != 1: raise Exception()
         selections = selections[0]
