@@ -155,5 +155,9 @@ for sid in joined.index.get_level_values('subject_id').unique():
   joined.loc[[sid], 'volume'] = [vol]  * 25
   joined.loc[[sid], 'page']   = [page] * 25
 
+
+#This feels ridiculous, but works in conjunction with maxcolwidth.sh to check for columns too wide for Excel
+joined.to_csv(path_or_buf = f'output/lenchecker.csv', float_format = '%.0f', sep = '@')
+
 #Dump output
 joined.to_csv(path_or_buf = f'output/joined.csv', float_format = '%.0f')
