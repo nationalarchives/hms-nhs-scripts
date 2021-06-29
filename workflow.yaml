@@ -66,3 +66,83 @@ development_workflows:
     name: days victualled/in hospital
     nptype: *INT64
     ztype: *TEXT_T
+
+launch_workflows:
+  18611:
+    major: 3
+    minor: 1
+    name: admission number
+    nptype: *INT64
+    ztype: *TEXT_T
+  18612:
+    major: 3
+    minor: 1
+    name: date of entry
+    nptype: *STR
+    ztype: *TEXT_T
+  18613:
+    major: 3
+    minor: 1
+    name: name
+    nptype: *STR
+    ztype: *TEXT_T
+  18614:
+    major: 3
+    minor: 1
+    name: quality
+    nptype: *STR
+    ztype: *DROP_T
+  18616:
+    major: 3
+    minor: 1
+    name: age
+    nptype: *INT64
+    ztype: *TEXT_T
+  18617:
+    major: 3
+    minor: 1
+    name: place of birth
+    nptype: *STR
+    ztype: *TEXT_T
+  18618:
+    major: 3
+    minor: 1
+    name: port sailed out of
+    nptype: *STR
+    ztype: *TEXT_T
+  18619:
+    major: 3
+    minor: 1
+    name: years at sea
+    nptype: *INT64
+    ztype: *TEXT_T
+  18621:
+    major: 3
+    minor: 1
+    name: last services
+    nptype: *STR
+    ztype: *TEXT_T
+  18622:
+    major: 3
+    minor: 1
+    name: under what circumstances admitted (or nature of complaint)
+    nptype: *STR
+    ztype: *TEXT_T
+  18623:
+    major: 3
+    minor: 1
+    name: date of discharge
+    nptype: *STR
+    ztype: *TEXT_T
+  18624:
+    major: 3
+    minor: 1
+    name: how disposed of
+    nptype: *STR
+    ztype: *DROP_T
+  18625:
+    major: 3
+    minor: 1
+    name: number of days victualled
+    nptype: *INT64
+    ztype: *TEXT_T
