@@ -54,7 +54,7 @@ for wid, data in workflow[args.workflows].items():
                      index_col = KEYS,
                      usecols   = KEYS + [datacol] + conflict_keys,
                      converters = {'task': lambda x: x[1:]}, #Could replace this with something that returns 1 through 25 over and over
-                     dtype     = {datacol: data['nptype']})
+                     dtype     = {datacol: str})
   except:
     print(f'Error while reading {reduced_file}')
     raise
