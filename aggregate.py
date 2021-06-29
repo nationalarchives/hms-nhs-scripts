@@ -45,9 +45,10 @@ DROP_T = workflow['definitions']['DROP_T']
 for wid, data in workflow[args.workflows].items():
   datacol = data['ztype']['name']
   conflict_keys = []
+  reduced_file = f'{args.dir}/{data["ztype"]["type"]}_reducer_{wid}.csv'
   if data['ztype'] == TEXT_T:
     conflict_keys = ['data.aligned_text', 'data.number_views', 'data.consensus_score']
-  df = pd.read_csv(f'{args.dir}/{data["ztype"]["type"]}_reducer_{wid}.csv',
+  df = pd.read_csv(reduced_file,
                    index_col = KEYS,
                    usecols   = KEYS + [datacol] + conflict_keys,
                    converters = {'task': lambda x: x[1:]}, #Could replace this with something that returns 1 through 25 over and over
@@ -95,7 +96,8 @@ for wid, data in workflow[args.workflows].items():
 
   #Convert dropdowns to their values
   if(data['ztype'] == DROP_T):
-    with open(f'{args.dir}/Task_labels_workflow_{wid}_V{data["major"]}.{data["minor"]}.yaml') as f:
+    labelfile = f'{args.dir}/Task_labels_workflow_{wid}_V{data["major"]}.{data["minor"]}.yaml'
+    with open(labelfile) as f:
       labels = yaml.full_load(f)
     def decode_dropdown(selection_json):
         selections = ast.literal_eval(selection_json)
