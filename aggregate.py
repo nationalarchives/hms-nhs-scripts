@@ -111,7 +111,10 @@ for wid, data in workflow[args.workflows].items():
         result = {}
         for selection, votes in selections.items():
           if selection == 'None': result[None] = votes
-          else: result[list(labels[f'T1.selects.0.options.*.{selection}.label'].values())[0]] = votes
+          else:
+            label = list(labels[f'T1.selects.0.options.*.{selection}.label'].values())[0]
+            label = label[label.find('=') + 1:].strip()
+            result[label] = votes
         if len(result) == 1:
           return list(result.keys())[0]
         else: return str(result)
