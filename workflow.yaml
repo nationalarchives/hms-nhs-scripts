@@ -1,60 +1,68 @@
-18109:
-  name: admission number
-  nptype: !!python/object:pandas.core.arrays.integer.Int64Dtype {}
-  ztype: &id001
+---
+definitions:
+  TEXT_T: &TEXT_T
     name: data.consensus_text
     type: text
-18110:
-  name: date admitted
-  nptype: &id002 !!python/name:builtins.str ''
-  ztype: *id001
-18111:
-  name: name
-  nptype: *id002
-  ztype: *id001
-18112:
-  major: 5
-  minor: 8
-  name: rank/rating
-  nptype: *id002
-  ztype: &id003
+  DROP_T: &DROP_T
     name: data.value
     type: dropdown
-18113:
-  name: age
-  nptype: !!python/object:pandas.core.arrays.integer.Int64Dtype {}
-  ztype: *id001
-18114:
-  name: place of birth
-  nptype: *id002
-  ztype: *id001
-18115:
-  name: port sailed out of
-  nptype: *id002
-  ztype: *id001
-18116:
-  name: years at sea
-  nptype: !!python/object:pandas.core.arrays.integer.Int64Dtype {}
-  ztype: *id001
-18117:
-  name: last ship
-  nptype: *id002
-  ztype: *id001
-18118:
-  name: admission circumstances
-  nptype: *id002
-  ztype: *id001
-18119:
-  name: date discharged
-  nptype: *id002
-  ztype: *id001
-18120:
-  major: 1
-  minor: 1
-  name: how disposed
-  nptype: *id002
-  ztype: *id003
-18121:
-  name: days victualled/in hospital
-  nptype: !!python/object:pandas.core.arrays.integer.Int64Dtype {}
-  ztype: *id001
+  STR: &STR !!python/name:builtins.str ''
+  INT64: &INT64 !!python/object:pandas.core.arrays.integer.Int64Dtype {}
+
+development_workflows:
+  18109:
+    name: admission number
+    nptype: *INT64
+    ztype: *TEXT_T
+  18110:
+    name: date admitted
+    nptype: *STR
+    ztype: *TEXT_T
+  18111:
+    name: name
+    nptype: *STR
+    ztype: *TEXT_T
+  18112:
+    major: 5
+    minor: 8
+    name: rank/rating
+    nptype: *STR
+    ztype: *DROP_T
+  18113:
+    name: age
+    nptype: *INT64
+    ztype: *TEXT_T
+  18114:
+    name: place of birth
+    nptype: *STR
+    ztype: *TEXT_T
+  18115:
+    name: port sailed out of
+    nptype: *STR
+    ztype: *TEXT_T
+  18116:
+    name: years at sea
+    nptype: *INT64
+    ztype: *TEXT_T
+  18117:
+    name: last ship
+    nptype: *STR
+    ztype: *TEXT_T
+  18118:
+    name: admission circumstances
+    nptype: *STR
+    ztype: *TEXT_T
+  18119:
+    name: date discharged
+    nptype: *STR
+    ztype: *TEXT_T
+  18120:
+    major: 1
+    minor: 1
+    name: how disposed
+    nptype: *STR
+    ztype: *DROP_T
+  18121:
+    name: days victualled/in hospital
+    nptype: *INT64
+    ztype: *TEXT_T

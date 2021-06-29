@@ -16,14 +16,6 @@ DIR='doctored'
 KEYS = ['subject_id', 'task']
 TEXT_CONSENSUS_THRESHOLD = 0.9
 DROPDOWN_CONSENSUS_THRESHOLD = 0.66
-DROP_T = {
-  'type': 'dropdown',
-  'name': 'data.value',
-}
-TEXT_T = {
-  'type': 'text',
-  'name': 'data.consensus_text',
-}
 
 with open('workflow.yaml') as f:
   workflow = yaml.load(f, Loader = yaml.Loader)
@@ -32,7 +24,9 @@ with open('workflow.yaml') as f:
 columns = []
 bad = {}
 autoresolved = {}
-for wid, data in workflow.items():
+TEXT_T = workflow['definitions']['TEXT_T']
+DROP_T = workflow['definitions']['DROP_T']
+for wid, data in workflow['development_workflows'].items():
   datacol = data['ztype']['name']
   conflict_keys = []
   if data['ztype'] == TEXT_T:
