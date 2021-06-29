@@ -3,24 +3,49 @@
 drop_t='dropdown'
 text_t='text'
 outdir=aggregation
-name=(1-admission-number-workflow-classifications.csv
-      2-date-of-entry-workflow-classifications.csv
-      3-name-workflow-classifications.csv
-      4-quality-workflow-classifications.csv
-      5-age-workflow-classifications.csv
-      6-place-of-birth-or-nationality-workflow-classifications.csv
-      7-port-sailed-out-of-workflow-classifications.csv
-      8-years-at-sea-workflow-classifications.csv
-      9-last-services-or-ship-or-last-ship-workflow-classifications.csv
-      10-under-what-circumstances-admitted-or-nature-of-complaint-workflow-classifications.csv
-      11-date-of-discharge-workflow-classifications.csv
-      12-how-disposed-of-workflow-classifications.csv
-      13-number-of-days-victualled-or-in-hospital-workflow-classifications.csv
-) 
-      id=(  18109   18110   18111   18112   18113   18114   18115   18116   18117   18118   18119   18120   18121)
- version=(      1       1       1       5       1       1       1       1       1      11       1       1       3)
-   minor=(      1       1       1       8       1       1       1       1       1      12       1       1       1)
+
+#TODO: The following duplicates the information in workflow.yaml
+#      workflow.yaml should be the single source of truth.
+
+#launch workflows
+name=(1-admission-number-classifications.csv
+      2-date-of-entry-classifications.csv
+      3-name-classifications.csv
+      4-quality-classifications.csv
+      5-age-classifications.csv
+      6-place-of-birth-classifications.csv
+      7-port-sailed-out-of-classifications.csv
+      8-years-at-sea-classifications.csv
+      9-last-services-classifications.csv
+      10-under-what-circumstances-admitted-or-nature-of-complaint-classifications.csv
+      11-date-of-discharge-classifications.csv
+      12-how-disposed-of-classifications.csv
+      13-number-of-days-victualled-classifications.csv
+)
+      id=(  18611   18612   18613   18614   18616   18617   18618   18619   18621   18622   18623   18624   18625)
+ version=(      3       3       3       3       3       3       3       3       3       3       3       3       3)
+   minor=(      1       1       1       1       1       1       1       1       1       1       1       1       1)
 datatype=($text_t $text_t $text_t $drop_t $text_t $text_t $text_t $text_t $text_t $text_t $text_t $drop_t $text_t)
+
+#development workflows (matches name in YAML file)
+#name=(1-admission-number-workflow-classifications.csv
+#      2-date-of-entry-workflow-classifications.csv
+#      3-name-workflow-classifications.csv
+#      4-quality-workflow-classifications.csv
+#      5-age-workflow-classifications.csv
+#      6-place-of-birth-or-nationality-workflow-classifications.csv
+#      7-port-sailed-out-of-workflow-classifications.csv
+#      8-years-at-sea-workflow-classifications.csv
+#      9-last-services-or-ship-or-last-ship-workflow-classifications.csv
+#      10-under-what-circumstances-admitted-or-nature-of-complaint-workflow-classifications.csv
+#      11-date-of-discharge-workflow-classifications.csv
+#      12-how-disposed-of-workflow-classifications.csv
+#      13-number-of-days-victualled-or-in-hospital-workflow-classifications.csv
+#)
+#      id=(  18109   18110   18111   18112   18113   18114   18115   18116   18117   18118   18119   18120   18121)
+# version=(      1       1       1       5       1       1       1       1       1      11       1       1       3)
+#   minor=(      1       1       1       8       1       1       1       1       1      12       1       1       1)
+#datatype=($text_t $text_t $text_t $drop_t $text_t $text_t $text_t $text_t $text_t $text_t $text_t $drop_t $text_t)
 
 #Highest available versions at time of writing
 #version=(    3     3     3     5     3     3     3     3     3    11     3    35     3)
