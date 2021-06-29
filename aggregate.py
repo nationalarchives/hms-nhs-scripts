@@ -5,6 +5,7 @@ import ast
 import re
 import sys
 import pandas as pd
+import argparse
 
 #For debugging
 #pd.set_option('display.max_columns', None)
@@ -12,10 +13,25 @@ import pandas as pd
 #pd.set_option('display.expand_frame_repr', None)
 
 PREFIX='hms-nhs-the-nautical-health-service'
-DIR='doctored'
 KEYS = ['subject_id', 'task']
-TEXT_CONSENSUS_THRESHOLD = 0.9
-DROPDOWN_CONSENSUS_THRESHOLD = 0.66
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--reduced', '-r',
+                    default = 'aggregation',
+                    dest = 'dir',
+                    help = 'Directory containing data reduced by Panoptes scripts.\nShould be "doctored" for basic testing.\nShould be "aggregation" for real processing.')
+parser.add_argument('--workflows', '-w',
+                    default = 'launch_workflows',
+                    help = 'Label for workflows to process (see workflows.yaml). Set to "development_workflows" for basic testing.')
+parser.add_argument('--text_threshold', '-t',
+                    type = float,
+                    default = 0.9,
+                    help = 'Text consensus threshold')
+parser.add_argument('--dropdown_threshold', '-d',
+                    type = float,
+                    default = 0.66,
+                    help = 'Dropdown consensus threshold')
+args = parser.parse_args()
 
 with open('workflow.yaml') as f:
   workflow = yaml.load(f, Loader = yaml.Loader)
@@ -26,12 +42,12 @@ bad = {}
 autoresolved = {}
 TEXT_T = workflow['definitions']['TEXT_T']
 DROP_T = workflow['definitions']['DROP_T']
-for wid, data in workflow['development_workflows'].items():
+for wid, data in workflow[args.workflows].items():
   datacol = data['ztype']['name']
   conflict_keys = []
   if data['ztype'] == TEXT_T:
     conflict_keys = ['data.aligned_text', 'data.number_views', 'data.consensus_score']
-  df = pd.read_csv(f'{DIR}/{data["ztype"]["type"]}_reducer_{wid}.csv',
+  df = pd.read_csv(f'{args.dir}/{data["ztype"]["type"]}_reducer_{wid}.csv',
                    index_col = KEYS,
                    usecols   = KEYS + [datacol] + conflict_keys,
                    converters = {'task': lambda x: x[1:]}, #Could replace this with something that returns 1 through 25 over and over
@@ -43,7 +59,7 @@ for wid, data in workflow['development_workflows'].items():
     def resolver(x):
       if pd.isnull(x['data.consensus_score']) or pd.isnull(x['data.number_views']): return ''
 
-      if x['data.consensus_score'] / x['data.number_views'] < TEXT_CONSENSUS_THRESHOLD:
+      if x['data.consensus_score'] / x['data.number_views'] < args.text_threshold:
         bad[x.name] = '*'
         return x['data.aligned_text']
       else:
@@ -64,7 +80,7 @@ for wid, data in workflow['development_workflows'].items():
       for selection, votes in selections.items():
         if votes == total_votes:
           return str([{selection: votes}])
-        if votes / total_votes >= DROPDOWN_CONSENSUS_THRESHOLD: #data has been autoresolved
+        if votes / total_votes >= args.dropdown_threshold: #data has been autoresolved
           if x.name in autoresolved: autoresolved[x.name].append(data['name'])
           else: autoresolved[x.name] = [data['name']]
           return str([{selection: votes}])
@@ -79,7 +95,7 @@ for wid, data in workflow['development_workflows'].items():
 
   #Convert dropdowns to their values
   if(data['ztype'] == DROP_T):
-    with open(f'{DIR}/Task_labels_workflow_{wid}_V{data["major"]}.{data["minor"]}.yaml') as f:
+    with open(f'{args.dir}/Task_labels_workflow_{wid}_V{data["major"]}.{data["minor"]}.yaml') as f:
       labels = yaml.full_load(f)
     def decode_dropdown(selection_json):
         selections = ast.literal_eval(selection_json)
