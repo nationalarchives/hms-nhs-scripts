@@ -91,7 +91,7 @@ for wid, data in workflow[args.workflows].items():
           else: autoresolved[x.name] = [data['name']]
           return str([{selection: votes}])
       bad[x.name] = '*'
-      return x
+      return str([selections])
     df[datacol] = df.apply(resolver, axis = 'columns')
   else: raise Exception()
 
