@@ -15,13 +15,10 @@ import argparse
 KEYS = ['subject_id', 'task']
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--reduced', '-r',
-                    default = 'aggregation',
-                    dest = 'dir',
-                    help = 'Directory containing data reduced by Panoptes scripts.\nShould be "doctored" for basic testing.\nShould be "aggregation" for real processing.')
-parser.add_argument('--workflows', '-w',
-                    default = 'launch_workflows',
-                    help = 'Label for workflows to process (see workflows.yaml). Set to "development_workflows" for basic testing.')
+parser.add_argument('workflows',
+                    nargs = '?',
+                    default = 'development_workflows',
+                    help = 'Label for workflows to process (see workflows.yaml).')
 parser.add_argument('--text_threshold', '-t',
                     type = float,
                     default = 0.9,
@@ -33,7 +30,14 @@ parser.add_argument('--dropdown_threshold', '-d',
 parser.add_argument('--exports', '-e',
                     default = 'exports',
                     help = 'Directory of exports from the Zooniverse project')
+parser.add_argument('--reduced', '-r',
+                    default = 'aggregation',
+                    dest = 'dir',
+                    help = 'Directory containing data reduced by Panoptes scripts.')
 args = parser.parse_args()
+if args.workflows == 'development_workflows':
+  print('*** TEST MODE')
+  args.dir = 'doctored'
 PREFIX=f'{args.exports}/hms-nhs-the-nautical-health-service'
 
 with open('workflow.yaml') as f:
