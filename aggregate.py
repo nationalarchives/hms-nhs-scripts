@@ -6,6 +6,7 @@ import re
 import sys
 import pandas as pd
 import argparse
+import collections
 
 #For debugging
 #pd.set_option('display.max_columns', None)
@@ -116,18 +117,36 @@ for wid, data in workflow[args.workflows].items():
         if args.verbose >= 2 and not undercount.empty: print(undercount)
 
     #Process data for output
-    #Levenshtein distance approach, IIRC
+    #Strings use Levenshtein distance approach, IIRC
+    #Take a different approach for non-string data
     def resolver(x):
       if pd.isnull(x['data.consensus_score']) or pd.isnull(x['data.number_views']): return ''
 
-      if x['data.consensus_score'] / x['data.number_views'] < args.text_threshold:
-        bad[x.name] = '*'
-        return x['data.aligned_text']
-      else:
-        if x['data.consensus_score'] != x['data.number_views']: #data has been autoresolved
-          if x.name in autoresolved: autoresolved[x.name].append(data['name'])
-          else: autoresolved[x.name] = [data['name']]
-        return x[datacol]
+      if data['nptype'] == str:
+        if x['data.consensus_score'] / x['data.number_views'] < args.text_threshold:
+          bad[x.name] = '*'
+          return x['data.aligned_text']
+        else:
+          if x['data.consensus_score'] != x['data.number_views']: #data has been autoresolved
+            if x.name in autoresolved: autoresolved[x.name].append(data['name'])
+            else: autoresolved[x.name] = [data['name']]
+          return x[datacol]
+      elif data['nptype'] == pd.Int64Dtype():
+        candidates = ast.literal_eval(x['data.aligned_text'])
+
+        if(len(candidates) != 1): #Not a conventional case, resolve manually
+          return x['data.aligned_text']
+
+        candidates = candidates[0]
+
+        #If there are any non-numerals in the input, just return it to resolve manually
+        if any(map(lambda x: not x.isdigit(), candidates)):
+          return x['data.aligned_text']
+        candidates = map(lambda x: int(x), candidates)
+        candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, x.name, data['name'])
+        if len(candidates) == 1: return next(iter(candidates)) #First key, efficiently (see https://www.geeksforgeeks.org/python-get-the-first-key-in-dictionary/)
+        else: return x['data.aligned_text']
+      else: raise Exception()
     df[datacol] = df.apply(resolver, axis = 'columns')
     #TODO: For these kinds of strings, may well be better to treat them like dropdowns and just take two thirds identical as permitting auto-resolve
   elif(data['ztype'] == DROP_T):
