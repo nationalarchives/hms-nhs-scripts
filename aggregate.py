@@ -58,6 +58,31 @@ bad = {}
 autoresolved = {}
 TEXT_T = workflow['definitions']['TEXT_T']
 DROP_T = workflow['definitions']['DROP_T']
+
+
+#Recieve:
+#'candidates': A dict of category names and votes for that category
+#'threshold': A threshold for winning
+#'subject_task': Key for logging
+#'workflow_name': Value for logging
+#If there is a winner, return the winning category and its number of votes as a single-entry dict
+#If the winner was not unanimous, also log this in 'autoresolved'
+#If there is not a winner, return the input dict and log this in 'bad'
+#The way this is written, the reference we return will be the same as the first parameter iff there is no winner.
+#We can also detect success by checking that the length of the returned dict is 1 (if the original input contained only 1 key, then that key is by definition the winner; otherwise, the dict of the winner is a single-entry dict)
+def category_resolver(candidates, threshold, subject_task, workflow_name):
+  total_votes = sum(candidates.values())
+  for selection, votes in candidates.items():
+    if votes == total_votes:
+      return {selection: votes}
+    if votes / total_votes >= threshold: #data has been autoresolved
+      if subject_task in autoresolved: autoresolved[subject_task].append(workflow_name)
+      else: autoresolved[subject_task] = [workflow_name]
+      return {selection: votes}
+  bad[subject_task] = '*'
+  return candidates
+
+
 for wid, data in workflow[args.workflows].items():
   datacol = data['ztype']['name']
   conflict_keys = []
@@ -128,18 +153,7 @@ for wid, data in workflow[args.workflows].items():
       #x is a single-element array, containing one dictionary
       selections = ast.literal_eval(x[datacol])
       if len(selections) != 1: raise Exception()
-      selections = selections[0]
-
-      total_votes = sum(selections.values())
-      for selection, votes in selections.items():
-        if votes == total_votes:
-          return str([{selection: votes}])
-        if votes / total_votes >= args.dropdown_threshold: #data has been autoresolved
-          if x.name in autoresolved: autoresolved[x.name].append(data['name'])
-          else: autoresolved[x.name] = [data['name']]
-          return str([{selection: votes}])
-      bad[x.name] = '*'
-      return str([selections])
+      return str([category_resolver(selections[0], args.dropdown_threshold, x.name, data['name'])])
     df[datacol] = df.apply(resolver, axis = 'columns')
   else: raise Exception()
 
