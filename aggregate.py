@@ -13,6 +13,7 @@ import argparse
 #pd.set_option('display.expand_frame_repr', None)
 
 KEYS = ['subject_id', 'task']
+RETIREMENT_COUNT = 3 #I believe that this is the same for all workflows at all times. Can be parameterised in workflows.yaml if need be.
 
 parser = argparse.ArgumentParser()
 parser.add_argument('workflows',
@@ -68,6 +69,10 @@ for wid, data in workflow[args.workflows].items():
 
   #Handle conflicts
   if(data['ztype'] == TEXT_T):
+    #Drop all classifications that are based on an insufficient number of views
+    df.drop(df[df['data.number_views'] < RETIREMENT_COUNT].index)
+
+    #Process data for output
     #Levenshtein distance approach, IIRC
     def resolver(x):
       if pd.isnull(x['data.consensus_score']) or pd.isnull(x['data.number_views']): return ''
@@ -83,6 +88,14 @@ for wid, data in workflow[args.workflows].items():
     df[datacol] = df.apply(resolver, axis = 'columns')
     #TODO: For these kinds of strings, may well be better to treat them like dropdowns and just take two thirds identical as permitting auto-resolve
   elif(data['ztype'] == DROP_T):
+    #Drop all classifications that are based on an insufficient number of views
+    def votecounter(x):
+      selections = ast.literal_eval(x)
+      if len(selections) != 1: raise Exception()
+      return(sum(selections[0].values()))
+    df = df[df[datacol].apply(votecounter) >= RETIREMENT_COUNT]
+
+    #Process classifications for output
     def resolver(x):
       #x is a single-element array, containing one dictionary
       selections = ast.literal_eval(x[datacol])
