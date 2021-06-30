@@ -3,6 +3,7 @@
 drop_t='dropdown'
 text_t='text'
 outdir=aggregation
+indir=exports
 
 #TODO: The following duplicates the information in workflow.yaml
 #      workflow.yaml should be the single source of truth.
@@ -56,13 +57,13 @@ mkdir  "${outdir}"
 
 #Configuration
 for i in {0..12}; do
-  panoptes_aggregation config hms-nhs-the-nautical-health-service-workflows.csv ${id[$i]} -v ${version[$i]} -m ${minor[$i]} -d "${outdir}" &
+  panoptes_aggregation config "${indir}"/hms-nhs-the-nautical-health-service-workflows.csv ${id[$i]} -v ${version[$i]} -m ${minor[$i]} -d "${outdir}" &
 done
 wait
 
 #Extraction
 for i in {0..12}; do
-  panoptes_aggregation extract "${name[$i]}" "${outdir}"/Extractor_config_workflow_${id[$i]}_V${version[$i]}.${minor[$i]}.yaml -d "${outdir}" -o ${id[$i]} &
+  panoptes_aggregation extract "${indir}/${name[$i]}" "${outdir}"/Extractor_config_workflow_${id[$i]}_V${version[$i]}.${minor[$i]}.yaml -d "${outdir}" -o ${id[$i]} &
 done
 wait
 

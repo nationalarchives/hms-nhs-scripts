@@ -12,7 +12,6 @@ import argparse
 #pd.set_option('display.max_rows', None)
 #pd.set_option('display.expand_frame_repr', None)
 
-PREFIX='hms-nhs-the-nautical-health-service'
 KEYS = ['subject_id', 'task']
 
 parser = argparse.ArgumentParser()
@@ -31,7 +30,11 @@ parser.add_argument('--dropdown_threshold', '-d',
                     type = float,
                     default = 0.66,
                     help = 'Dropdown consensus threshold')
+parser.add_argument('--exports', '-e',
+                    default = 'exports',
+                    help = 'Directory of exports from the Zooniverse project')
 args = parser.parse_args()
+PREFIX=f'{args.exports}/hms-nhs-the-nautical-health-service'
 
 with open('workflow.yaml') as f:
   workflow = yaml.load(f, Loader = yaml.Loader)
