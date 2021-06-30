@@ -28,6 +28,10 @@ parser.add_argument('--dropdown_threshold', '-d',
                     type = float,
                     default = 0.66,
                     help = 'Dropdown consensus threshold')
+parser.add_argument('--verbose', '-v',
+                    type = int,
+                    default = 0,
+                    help = 'Set to higher numbers for increasing verbosity')
 parser.add_argument('--exports', '-e',
                     default = 'exports',
                     help = 'Directory of exports from the Zooniverse project')
@@ -72,6 +76,15 @@ for wid, data in workflow[args.workflows].items():
     #Drop all classifications that are based on an insufficient number of views
     df.drop(df[df['data.number_views'] < RETIREMENT_COUNT].index)
 
+    #Report on rows with different counts
+    if args.verbose >= 1:
+      overcount = df[df['data.number_views'] > RETIREMENT_COUNT]
+      print(f'  Completed rows: {len(df.index)} (of which {len(overcount.index)} overcounted)')
+      if args.verbose >= 2 and not overcount.empty: print(overcount)
+      undercount = df[df['data.number_views'] < RETIREMENT_COUNT]
+      print(f'  Undercounted rows: {len(undercount.index)}')
+      if args.verbose >= 2 and not undercount.empty: print(undercount)
+
     #Process data for output
     #Levenshtein distance approach, IIRC
     def resolver(x):
@@ -94,6 +107,15 @@ for wid, data in workflow[args.workflows].items():
       if len(selections) != 1: raise Exception()
       return(sum(selections[0].values()))
     df = df[df[datacol].apply(votecounter) >= RETIREMENT_COUNT]
+
+    #Report on rows with different counts
+    if args.verbose >= 1:
+      overcount = df[df[datacol].apply(votecounter) > RETIREMENT_COUNT]
+      print(f'  Completed rows: {len(df.index)} (of which {len(overcount.index)} overcounted)')
+      if args.verbose >= 2 and not overcount.empty: print(overcount)
+      undercount = df[df[datacol].apply(votecounter) < RETIREMENT_COUNT]
+      print(f'  Undercounted rows: {len(undercount.index)}')
+      if args.verbose >= 2 and not undercount.empty: print(undercount)
 
     #Process classifications for output
     def resolver(x):
