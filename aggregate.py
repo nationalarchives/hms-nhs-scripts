@@ -38,6 +38,9 @@ parser.add_argument('--verbose', '-v',
                     type = int,
                     default = 0,
                     help = 'Set to higher numbers for increasing verbosity')
+parser.add_argument('--output', '-o',
+                    default = 'joined.csv',
+                    help = 'Set name of output file (will always go in output/ dir)')
 parser.add_argument('--exports', '-e',
                     default = 'exports',
                     help = 'Directory of exports from the Zooniverse project')
@@ -281,4 +284,4 @@ for sid in joined.index.get_level_values('subject_id').unique():
 joined.to_csv(path_or_buf = f'output/lenchecker.csv', float_format = '%.0f', sep = '@')
 
 #Dump output
-joined.to_csv(path_or_buf = f'output/joined.csv', float_format = '%.0f')
+joined.to_csv(path_or_buf = f'output/{args.output}', float_format = '%.0f')
