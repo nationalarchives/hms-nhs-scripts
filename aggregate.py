@@ -90,7 +90,7 @@ for wid, data in workflow[args.workflows].items():
   datacol = data['ztype']['name']
   conflict_keys = []
   reduced_file = f'{args.dir}/{data["ztype"]["type"]}_reducer_{wid}.csv'
-  print(f'*** Processing {reduced_file}')
+  if args.verbose >= 0: print(f'*** Processing {reduced_file}')
   if data['ztype'] == TEXT_T:
     conflict_keys = ['data.aligned_text', 'data.number_views', 'data.consensus_score']
   try:
@@ -223,7 +223,7 @@ for wid, data in workflow[args.workflows].items():
 
   columns.append(df)
 
-print('*** Generating output')
+if args.verbose >= 0: print('*** Generating output')
 #Combine the separate workflows into a single dataframe
 #Assumption: Task numbers always refer to the same row in each workflow
 #            If this assumption does not hold, we can perform a mapping
