@@ -7,6 +7,8 @@ import sys
 import pandas as pd
 import argparse
 import collections
+import datetime
+import dateutil
 
 #For debugging
 #pd.set_option('display.max_columns', None)
@@ -145,6 +147,24 @@ for wid, data in workflow[args.workflows].items():
         candidates = map(lambda x: int(x), candidates)
         candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, x.name, data['name'])
         if len(candidates) == 1: return next(iter(candidates)) #First key, efficiently (see https://www.geeksforgeeks.org/python-get-the-first-key-in-dictionary/)
+        else: return x['data.aligned_text']
+      elif data['nptype'] == datetime.date:
+        candidates = ast.literal_eval(x['data.aligned_text'])
+
+        if(len(candidates) != 1): #Not a conventional case, resolve manually
+          return x['data.aligned_text']
+
+        candidates = candidates[0]
+        #https://stackoverflow.com/a/18029112 has a trick for reading arbitrary date formats while rejecting ambiguous cases
+        #We just need to use the documented format, but we can be a bit forgiving
+        try:
+          candidates = [dateutil.parser.parse(d, dayfirst = True) for d in candidates] #yearfirst defaults to False
+        except (TypeError, ValueError): #Something is wrong, resolve manually
+          return x['data.aligned_text']
+        candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, x.name, data['name'])
+        if len(candidates) == 1:
+          date = next(iter(candidates))
+          return date.strftime('%d-%m-%Y')
         else: return x['data.aligned_text']
       else: raise Exception()
     df[datacol] = df.apply(resolver, axis = 'columns')
