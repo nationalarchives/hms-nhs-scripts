@@ -28,6 +28,9 @@ parser.add_argument('--dropdown_threshold', '-d',
                     type = float,
                     default = 0.66,
                     help = 'Dropdown consensus threshold')
+parser.add_argument('--unfinished', '-u',
+                    action = 'store_true',
+                    help = 'Include cases with insufficient number of classifications')
 parser.add_argument('--verbose', '-v',
                     type = int,
                     default = 0,
@@ -43,6 +46,7 @@ args = parser.parse_args()
 if args.workflows == 'development_workflows':
   print('*** TEST MODE')
   args.dir = 'doctored'
+  args.unfinished = True
 PREFIX=f'{args.exports}/hms-nhs-the-nautical-health-service'
 
 with open('workflow.yaml') as f:
@@ -73,17 +77,18 @@ for wid, data in workflow[args.workflows].items():
 
   #Handle conflicts
   if(data['ztype'] == TEXT_T):
-    #Drop all classifications that are based on an insufficient number of views
-    df.drop(df[df['data.number_views'] < RETIREMENT_COUNT].index)
+    if not args.unfinished:
+      #Drop all classifications that are based on an insufficient number of views
+      df.drop(df[df['data.number_views'] < RETIREMENT_COUNT].index)
 
-    #Report on rows with different counts
-    if args.verbose >= 1:
-      overcount = df[df['data.number_views'] > RETIREMENT_COUNT]
-      print(f'  Completed rows: {len(df.index)} (of which {len(overcount.index)} overcounted)')
-      if args.verbose >= 2 and not overcount.empty: print(overcount)
-      undercount = df[df['data.number_views'] < RETIREMENT_COUNT]
-      print(f'  Undercounted rows: {len(undercount.index)}')
-      if args.verbose >= 2 and not undercount.empty: print(undercount)
+      #Report on rows with different counts
+      if args.verbose >= 1:
+        overcount = df[df['data.number_views'] > RETIREMENT_COUNT]
+        print(f'  Completed rows: {len(df.index)} (of which {len(overcount.index)} overcounted)')
+        if args.verbose >= 2 and not overcount.empty: print(overcount)
+        undercount = df[df['data.number_views'] < RETIREMENT_COUNT]
+        print(f'  Undercounted rows: {len(undercount.index)}')
+        if args.verbose >= 2 and not undercount.empty: print(undercount)
 
     #Process data for output
     #Levenshtein distance approach, IIRC
@@ -102,20 +107,21 @@ for wid, data in workflow[args.workflows].items():
     #TODO: For these kinds of strings, may well be better to treat them like dropdowns and just take two thirds identical as permitting auto-resolve
   elif(data['ztype'] == DROP_T):
     #Drop all classifications that are based on an insufficient number of views
-    def votecounter(x):
-      selections = ast.literal_eval(x)
-      if len(selections) != 1: raise Exception()
-      return(sum(selections[0].values()))
-    df = df[df[datacol].apply(votecounter) >= RETIREMENT_COUNT]
+    if not args.unfinished:
+      def votecounter(x):
+        selections = ast.literal_eval(x)
+        if len(selections) != 1: raise Exception()
+        return(sum(selections[0].values()))
+      df = df[df[datacol].apply(votecounter) >= RETIREMENT_COUNT]
 
-    #Report on rows with different counts
-    if args.verbose >= 1:
-      overcount = df[df[datacol].apply(votecounter) > RETIREMENT_COUNT]
-      print(f'  Completed rows: {len(df.index)} (of which {len(overcount.index)} overcounted)')
-      if args.verbose >= 2 and not overcount.empty: print(overcount)
-      undercount = df[df[datacol].apply(votecounter) < RETIREMENT_COUNT]
-      print(f'  Undercounted rows: {len(undercount.index)}')
-      if args.verbose >= 2 and not undercount.empty: print(undercount)
+      #Report on rows with different counts
+      if args.verbose >= 1:
+        overcount = df[df[datacol].apply(votecounter) > RETIREMENT_COUNT]
+        print(f'  Completed rows: {len(df.index)} (of which {len(overcount.index)} overcounted)')
+        if args.verbose >= 2 and not overcount.empty: print(overcount)
+        undercount = df[df[datacol].apply(votecounter) < RETIREMENT_COUNT]
+        print(f'  Undercounted rows: {len(undercount.index)}')
+        if args.verbose >= 2 and not undercount.empty: print(undercount)
 
     #Process classifications for output
     def resolver(x):
