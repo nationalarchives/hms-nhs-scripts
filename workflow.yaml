@@ -7,7 +7,7 @@ definitions:
     name: data.value
     type: dropdown
   STR: &STR !!python/name:builtins.str ''
-  INT64: &INT64 !!python/object:pandas.core.arrays.integer.Int64Dtype {}
+  INT64: &INT64 !!python/name:pandas.core.arrays.integer.Int64Dtype
 
 development_workflows:
   18109:

@@ -131,7 +131,7 @@ for wid, data in workflow[args.workflows].items():
             if x.name in autoresolved: autoresolved[x.name].append(data['name'])
             else: autoresolved[x.name] = [data['name']]
           return x[datacol]
-      elif data['nptype'] == pd.Int64Dtype():
+      elif data['nptype'] == pd.Int64Dtype:
         candidates = ast.literal_eval(x['data.aligned_text'])
 
         if(len(candidates) != 1): #Not a conventional case, resolve manually
