@@ -64,8 +64,8 @@ with open('workflow.yaml') as f:
 
 #Read in the reduced data.
 columns = []
-bad = {}
-autoresolved = {}
+bad = {} #Keys of bad are indices of rows in the final dataframe
+autoresolved = {} #Keys of autoresolved are indices of rows in the final dataframe
 TEXT_T = workflow['definitions']['TEXT_T']
 DROP_T = workflow['definitions']['DROP_T']
 
@@ -251,6 +251,7 @@ if not args.blanks:
     autoresolved.pop(key, None)
   joined = joined.query(f'subject_id not in @incomplete_subjects')
 
+#Tag unresolved disagreements
 #TODO This part does not feel like the Pandas way
 for b in bad.keys():
   x = joined.at[b, 'Problems']
