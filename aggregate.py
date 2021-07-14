@@ -48,11 +48,15 @@ parser.add_argument('--reduced', '-r',
                     default = 'aggregation',
                     dest = 'dir',
                     help = 'Directory containing data reduced by Panoptes scripts.')
+parser.add_argument('--blanks', '-b',
+                    action = 'store_true',
+                    help = 'Include pages with missing values')
 args = parser.parse_args()
 if args.workflows == 'development_workflows':
   print('*** TEST MODE')
   args.dir = 'doctored'
   args.unfinished = True
+  args.blanks = True
 PREFIX=f'{args.exports}/hms-nhs-the-nautical-health-service'
 
 with open('workflow.yaml') as f:
@@ -236,9 +240,16 @@ first = columns.pop(0)
 joined = first.join(columns, how='outer')
 
 
-#Tag the rows with badness
+#Tag or remove the rows with badness
 joined.insert(0, 'Problems', '')
 joined['Problems'] = joined.apply(lambda x: 'Blank(s)' if x.isnull().values.any() else '', axis = 'columns')
+if not args.blanks:
+  incomplete_subjects = list(joined[joined.Problems != ''].index.get_level_values('subject_id').unique())
+  removed = joined.query(f'subject_id in @incomplete_subjects')
+  for key in removed.index.to_numpy():
+    bad.pop(key, None)
+    autoresolved.pop(key, None)
+  joined = joined.query(f'subject_id not in @incomplete_subjects')
 
 #TODO This part does not feel like the Pandas way
 for b in bad.keys():
