@@ -1,7 +1,7 @@
 #!/bin/bash
 
 for x in 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9; do
-  ./aggregate.py launch_workflows -v -1 -o joined_${x}.csv -t $x &
+  ./aggregate.py launch_workflows -v -1 -o joined_${x}.csv -t $x "$@" &
 done
 
 wait
