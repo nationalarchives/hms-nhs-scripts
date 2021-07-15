@@ -10,6 +10,7 @@ import collections
 import datetime
 import dateutil
 import subprocess
+from collections import defaultdict
 
 #For debugging
 #pd.set_option('display.max_columns', None)
@@ -69,7 +70,7 @@ with open('workflow.yaml') as f:
 
 #Read in the reduced data.
 columns = []
-bad = {} #Keys of bad are indices of rows in the final dataframe
+bad = defaultdict(int) #Keys of bad are indices of rows in the final dataframe
 autoresolved = {} #Keys of autoresolved are indices of rows in the final dataframe
 TEXT_T = workflow['definitions']['TEXT_T']
 DROP_T = workflow['definitions']['DROP_T']
@@ -137,7 +138,7 @@ for wid, data in workflow[args.workflows].items():
 
       if data['nptype'] == str:
         if x['data.consensus_score'] / x['data.number_views'] < args.text_threshold:
-          bad[x.name] = '*'
+          bad[x.name] += 1
           return x['data.aligned_text']
         else:
           if x['data.consensus_score'] != x['data.number_views']: #data has been autoresolved
@@ -157,12 +158,12 @@ for wid, data in workflow[args.workflows].items():
           merchants = []
           for numbers in [x.split(';') for x in originals]:
             if len(numbers) != 2:
-              bad[x.name] = '*'
+              bad[x.name] += 1
               return originals
             try:
               (navy, merchant) = [float(x) for x in numbers]
             except ValueError:
-              bad[x.name] = '*'
+              bad[x.name] += 1
               return originals
             navies.append(navy)
             merchants.append(merchant)
@@ -173,11 +174,11 @@ for wid, data in workflow[args.workflows].items():
             merchant_result = next(iter(merchant_results))
             return f'{navy_result}; {merchant_result}'
           else:
-            bad[x.name] = '*'
+            bad[x.name] += 1
             return originals
         else:
           if(len(candidates) != 1): #Not a conventional case, resolve manually
-            bad[x.name] = '*'
+            bad[x.name] += 1
             return x['data.aligned_text']
 
           candidates = candidates[0]
@@ -186,22 +187,22 @@ for wid, data in workflow[args.workflows].items():
           try:
             candidates = [float(x) for x in candidates]
           except ValueError:
-            bad[x.name] = '*'
+            bad[x.name] += 1
             return x['data.aligned_text']
           if not all([x.is_integer() for x in candidates]):
-            bad[x.name] = '*'
+            bad[x.name] += 1
             return x['data.aligned_text']
           candidates = [int(x) for x in candidates]
           candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, x.name, data['name'])
           if len(candidates) == 1: return next(iter(candidates)) #First key, efficiently (see https://www.geeksforgeeks.org/python-get-the-first-key-in-dictionary/)
           else:
-            bad[x.name] = '*'
+            bad[x.name] += 1
             return x['data.aligned_text']
       elif data['nptype'] == datetime.date:
         candidates = ast.literal_eval(x['data.aligned_text'])
 
         if(len(candidates) != 1): #Not a conventional case, resolve manually
-          bad[x.name] = '*'
+          bad[x.name] += 1
           return x['data.aligned_text']
 
         candidates = candidates[0]
@@ -210,14 +211,14 @@ for wid, data in workflow[args.workflows].items():
         try:
           candidates = [dateutil.parser.parse(d, dayfirst = True) for d in candidates] #yearfirst defaults to False
         except (TypeError, ValueError): #Something is wrong, resolve manually
-          bad[x.name] = '*'
+          bad[x.name] += 1
           return x['data.aligned_text']
         candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, x.name, data['name'])
         if len(candidates) == 1:
           date = next(iter(candidates))
           return date.strftime('%d-%m-%Y')
         else:
-          bad[x.name] = '*'
+          bad[x.name] += 1
           return x['data.aligned_text']
       else: raise Exception()
     df[datacol] = df.apply(resolver, axis = 'columns')
@@ -246,7 +247,7 @@ for wid, data in workflow[args.workflows].items():
       selections = ast.literal_eval(x[datacol])
       if len(selections) != 1: raise Exception()
       result = category_resolver(selections[0], args.dropdown_threshold, x.name, data['name'])
-      if len(result) != 1: bad[x.name] = '*'
+      if len(result) != 1: bad[x.name] += 1
       return str([result])
     df[datacol] = df.apply(resolver, axis = 'columns')
   else: raise Exception()
@@ -304,9 +305,9 @@ if not args.blanks:
 for b in bad.keys():
   x = joined.at[b, 'Problems']
   if len(x):
-    joined.at[b, 'Problems'] = f'{x} & disagreements'
+    joined.at[b, 'Problems'] = f'{x} & {bad[b]} disagreements'
   else:
-    joined.at[b, 'Problems'] = 'Disagreements'
+    joined.at[b, 'Problems'] = f'{bad[b]} disagreements'
 
 #Record where there was autoresolution
 joined.insert(0, 'Autoresolved', '')
