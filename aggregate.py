@@ -9,6 +9,7 @@ import argparse
 import collections
 import datetime
 import dateutil
+import subprocess
 
 #For debugging
 #pd.set_option('display.max_columns', None)
@@ -339,4 +340,8 @@ for sid in joined.index.get_level_values('subject_id').unique():
 joined.to_csv(path_or_buf = f'output/lenchecker.csv', float_format = '%.0f', sep = '@')
 
 #Dump output
+remote = subprocess.run(['git', 'remote', '-v'], capture_output = True, check = True).stdout
+joined['Repo'] = [remote] * len(joined.index)
+commit = subprocess.run(['git', 'rev-parse', 'HEAD'], capture_output = True, check = True).stdout
+joined['Commit'] =[commit] * len(joined.index)
 joined.to_csv(path_or_buf = f'output/{args.output}', float_format = '%.0f')
