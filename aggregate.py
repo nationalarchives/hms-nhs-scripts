@@ -166,7 +166,7 @@ for wid, data in workflow[args.workflows].items():
           if len(navy_results) == 1 and len(merchant_results) == 1:
             navy_result = next(iter(navy_results))
             merchant_result = next(iter(merchant_results))
-            return f'{navy_result:02.9g}; {merchant_result:02.9g}'
+            return f'{navy_result}; {merchant_result}'
           else:
             bad[x.name] = '*'
             return originals
