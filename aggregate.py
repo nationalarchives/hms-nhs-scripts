@@ -52,12 +52,16 @@ parser.add_argument('--reduced', '-r',
 parser.add_argument('--blanks', '-b',
                     action = 'store_true',
                     help = 'Include pages with missing values')
+parser.add_argument('--no_stamp', '-S',
+                    action = 'store_true',
+                    help = 'Do not stamp the output with information about the script used to generate it')
 args = parser.parse_args()
 if args.workflows == 'development_workflows':
   print('*** TEST MODE')
   args.dir = 'doctored'
   args.unfinished = True
   args.blanks = True
+  args.no_stamp = True
 PREFIX=f'{args.exports}/hms-nhs-the-nautical-health-service'
 
 with open('workflow.yaml') as f:
@@ -340,8 +344,9 @@ for sid in joined.index.get_level_values('subject_id').unique():
 joined.to_csv(path_or_buf = f'output/lenchecker.csv', float_format = '%.0f', sep = '@')
 
 #Dump output
-remote = subprocess.run(['git', 'remote', '-v'], capture_output = True, check = True).stdout
-joined['Repo'] = [remote] * len(joined.index)
-commit = subprocess.run(['git', 'rev-parse', 'HEAD'], capture_output = True, check = True).stdout
-joined['Commit'] =[commit] * len(joined.index)
+if not args.no_stamp:
+  remote = subprocess.run(['git', 'remote', '-v'], capture_output = True, check = True).stdout
+  joined['Repo'] = [remote] * len(joined.index)
+  commit = subprocess.run(['git', 'rev-parse', 'HEAD'], capture_output = True, check = True).stdout
+  joined['Commit'] =[commit] * len(joined.index)
 joined.to_csv(path_or_buf = f'output/{args.output}', float_format = '%.0f')
