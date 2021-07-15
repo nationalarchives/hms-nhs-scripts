@@ -152,15 +152,15 @@ for wid, data in workflow[args.workflows].items():
         #we can improve autoresolution by normalising these and comparing them individually
         if data['name'] == 'years at sea':
           #Reconsitute the original transcriptions
-          originals = list(map(lambda x: ''.join(x), zip(*candidates)))
+          originals = [''.join(x) for x in zip(*candidates)]
           navies = []
           merchants = []
-          for numbers in map(lambda x: x.split(';'), originals):
+          for numbers in [x.split(';') for x in originals]:
             if len(numbers) != 2:
               bad[x.name] = '*'
               return originals
             try:
-              (navy, merchant) = map(lambda x: float(x), numbers)
+              (navy, merchant) = [float(x) for x in numbers]
             except ValueError:
               bad[x.name] = '*'
               return originals
@@ -188,7 +188,7 @@ for wid, data in workflow[args.workflows].items():
           except ValueError:
             bad[x.name] = '*'
             return x['data.aligned_text']
-          if not all(map(lambda x: x.is_integer(), candidates)):
+          if not all([x.is_integer() for x in candidates]):
             bad[x.name] = '*'
             return x['data.aligned_text']
           candidates = [int(x) for x in candidates]
@@ -326,7 +326,7 @@ for sid in joined.index.get_level_values('subject_id').unique():
   fnam = json.loads(metadata)['Filename']
   match = re.fullmatch('.*_(\d+)-(\d+)(?: \d)?\.jpg', fnam)
   if match:
-    (vol, page) = map(lambda x: int(x), match.groups())
+    (vol, page) = [int(x) for x in match.groups()]
     if   vol == 1: page -= 21
     elif vol == 2: page -= 28
     elif vol == 6:
