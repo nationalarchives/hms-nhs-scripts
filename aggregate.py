@@ -144,6 +144,7 @@ for wid, data in workflow[args.workflows].items():
         candidates = ast.literal_eval(x['data.aligned_text'])
 
         if(len(candidates) != 1): #Not a conventional case, resolve manually
+          bad[x.name] = '*'
           return x['data.aligned_text']
 
         candidates = candidates[0]
@@ -152,8 +153,10 @@ for wid, data in workflow[args.workflows].items():
         try:
           candidates = [float(x) for x in candidates]
         except ValueError:
+          bad[x.name] = '*'
           return x['data.aligned_text']
         if not all(map(lambda x: x.is_integer(), candidates)):
+          bad[x.name] = '*'
           return x['data.aligned_text']
         candidates = [int(x) for x in candidates]
         candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, x.name, data['name'])
@@ -163,6 +166,7 @@ for wid, data in workflow[args.workflows].items():
         candidates = ast.literal_eval(x['data.aligned_text'])
 
         if(len(candidates) != 1): #Not a conventional case, resolve manually
+          bad[x.name] = '*'
           return x['data.aligned_text']
 
         candidates = candidates[0]
@@ -171,6 +175,7 @@ for wid, data in workflow[args.workflows].items():
         try:
           candidates = [dateutil.parser.parse(d, dayfirst = True) for d in candidates] #yearfirst defaults to False
         except (TypeError, ValueError): #Something is wrong, resolve manually
+          bad[x.name] = '*'
           return x['data.aligned_text']
         candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, x.name, data['name'])
         if len(candidates) == 1:
