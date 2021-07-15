@@ -77,7 +77,7 @@ DROP_T = workflow['definitions']['DROP_T']
 #'workflow_name': Value for logging
 #If there is a winner, return the winning category and its number of votes as a single-entry dict
 #If the winner was not unanimous, also log this in 'autoresolved'
-#If there is not a winner, return the input dict and log this in 'bad'
+#If there is not a winner, return the input dict
 #The way this is written, the reference we return will be the same as the first parameter iff there is no winner.
 #We can also detect success by checking that the length of the returned dict is 1 (if the original input contained only 1 key, then that key is by definition the winner; otherwise, the dict of the winner is a single-entry dict)
 def category_resolver(candidates, threshold, subject_task, workflow_name):
@@ -89,7 +89,6 @@ def category_resolver(candidates, threshold, subject_task, workflow_name):
       if subject_task in autoresolved: autoresolved[subject_task].append(workflow_name)
       else: autoresolved[subject_task] = [workflow_name]
       return {selection: votes}
-  bad[subject_task] = '*'
   return candidates
 
 
@@ -161,7 +160,9 @@ for wid, data in workflow[args.workflows].items():
         candidates = [int(x) for x in candidates]
         candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, x.name, data['name'])
         if len(candidates) == 1: return next(iter(candidates)) #First key, efficiently (see https://www.geeksforgeeks.org/python-get-the-first-key-in-dictionary/)
-        else: return x['data.aligned_text']
+        else:
+          bad[x.name] = '*'
+          return x['data.aligned_text']
       elif data['nptype'] == datetime.date:
         candidates = ast.literal_eval(x['data.aligned_text'])
 
@@ -181,7 +182,9 @@ for wid, data in workflow[args.workflows].items():
         if len(candidates) == 1:
           date = next(iter(candidates))
           return date.strftime('%d-%m-%Y')
-        else: return x['data.aligned_text']
+        else:
+          bad[x.name] = '*'
+          return x['data.aligned_text']
       else: raise Exception()
     df[datacol] = df.apply(resolver, axis = 'columns')
     #TODO: For these kinds of strings, may well be better to treat them like dropdowns and just take two thirds identical as permitting auto-resolve
@@ -208,7 +211,9 @@ for wid, data in workflow[args.workflows].items():
       #x is a single-element array, containing one dictionary
       selections = ast.literal_eval(x[datacol])
       if len(selections) != 1: raise Exception()
-      return str([category_resolver(selections[0], args.dropdown_threshold, x.name, data['name'])])
+      result = category_resolver(selections[0], args.dropdown_threshold, x.name, data['name'])
+      if len(result) != 1: bad[x.name] = '*'
+      return str([result])
     df[datacol] = df.apply(resolver, axis = 'columns')
   else: raise Exception()
 
