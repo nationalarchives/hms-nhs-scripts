@@ -142,27 +142,56 @@ for wid, data in workflow[args.workflows].items():
       elif data['nptype'] == pd.Int64Dtype:
         candidates = ast.literal_eval(x['data.aligned_text'])
 
-        if(len(candidates) != 1): #Not a conventional case, resolve manually
-          bad[x.name] = '*'
-          return x['data.aligned_text']
-
-        candidates = candidates[0]
-
-        #If there are any non-numerals in the input, just return it to resolve manually
-        try:
-          candidates = [float(x) for x in candidates]
-        except ValueError:
-          bad[x.name] = '*'
-          return x['data.aligned_text']
-        if not all(map(lambda x: x.is_integer(), candidates)):
-          bad[x.name] = '*'
-          return x['data.aligned_text']
-        candidates = [int(x) for x in candidates]
-        candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, x.name, data['name'])
-        if len(candidates) == 1: return next(iter(candidates)) #First key, efficiently (see https://www.geeksforgeeks.org/python-get-the-first-key-in-dictionary/)
+        #years at sea needs some special handling
+        #it contains two floating point numbers, separated by a semicolon
+        #we can improve autoresolution by normalising these and comparing them individually
+        if data['name'] == 'years at sea':
+          #Reconsitute the original transcriptions
+          originals = list(map(lambda x: ''.join(x), zip(*candidates)))
+          navies = []
+          merchants = []
+          for numbers in map(lambda x: x.split(';'), originals):
+            if len(numbers) != 2:
+              bad[x.name] = '*'
+              return originals
+            try:
+              (navy, merchant) = map(lambda x: float(x), numbers)
+            except ValueError:
+              bad[x.name] = '*'
+              return originals
+            navies.append(navy)
+            merchants.append(merchant)
+          navy_results     = category_resolver(collections.Counter(navies),    args.dropdown_threshold, x.name, data['name'])
+          merchant_results = category_resolver(collections.Counter(merchants), args.dropdown_threshold, x.name, data['name'])
+          if len(navy_results) == 1 and len(merchant_results) == 1:
+            navy_result = next(iter(navy_results))
+            merchant_result = next(iter(merchant_results))
+            return f'{navy_result:02.9g}; {merchant_result:02.9g}'
+          else:
+            bad[x.name] = '*'
+            return originals
         else:
-          bad[x.name] = '*'
-          return x['data.aligned_text']
+          if(len(candidates) != 1): #Not a conventional case, resolve manually
+            bad[x.name] = '*'
+            return x['data.aligned_text']
+
+          candidates = candidates[0]
+
+          #If there are any non-numerals in the input, just return it to resolve manually
+          try:
+            candidates = [float(x) for x in candidates]
+          except ValueError:
+            bad[x.name] = '*'
+            return x['data.aligned_text']
+          if not all(map(lambda x: x.is_integer(), candidates)):
+            bad[x.name] = '*'
+            return x['data.aligned_text']
+          candidates = [int(x) for x in candidates]
+          candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, x.name, data['name'])
+          if len(candidates) == 1: return next(iter(candidates)) #First key, efficiently (see https://www.geeksforgeeks.org/python-get-the-first-key-in-dictionary/)
+          else:
+            bad[x.name] = '*'
+            return x['data.aligned_text']
       elif data['nptype'] == datetime.date:
         candidates = ast.literal_eval(x['data.aligned_text'])
 
