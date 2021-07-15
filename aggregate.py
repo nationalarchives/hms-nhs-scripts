@@ -149,9 +149,13 @@ for wid, data in workflow[args.workflows].items():
         candidates = candidates[0]
 
         #If there are any non-numerals in the input, just return it to resolve manually
-        if any(map(lambda x: not x.isdigit(), candidates)):
+        try:
+          candidates = [float(x) for x in candidates]
+        except ValueError:
           return x['data.aligned_text']
-        candidates = map(lambda x: int(x), candidates)
+        if not all(map(lambda x: x.is_integer(), candidates)):
+          return x['data.aligned_text']
+        candidates = [int(x) for x in candidates]
         candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, x.name, data['name'])
         if len(candidates) == 1: return next(iter(candidates)) #First key, efficiently (see https://www.geeksforgeeks.org/python-get-the-first-key-in-dictionary/)
         else: return x['data.aligned_text']
