@@ -116,7 +116,7 @@ def years_at_sea_resolver(candidates, row, data, datacol):
 #Process data for output
 #Strings use Levenshtein distance approach, IIRC
 #Take a different approach for non-string data
-def string_resolver(row, **kwargs):
+def text_resolver(row, **kwargs):
   global args, bad, autoresolved #Just being explicit that these are global
   data = kwargs['data']
   datacol = kwargs['datacol']
@@ -233,7 +233,7 @@ def main():
           print(f'  Undercounted rows: {len(undercount.index)}')
           if args.verbose >= 2 and not undercount.empty: print(undercount)
 
-      df[datacol] = df.apply(string_resolver, axis = 'columns', data = data, datacol = datacol)
+      df[datacol] = df.apply(text_resolver, axis = 'columns', data = data, datacol = datacol)
       #TODO: For these kinds of strings, may well be better to treat them like dropdowns and just take two thirds identical as permitting auto-resolve
     elif(data['ztype'] == DROP_T):
       #Drop all classifications that are based on an insufficient number of views
