@@ -98,6 +98,100 @@ def category_resolver(candidates, threshold, subject_task, workflow_name):
   return candidates
 
 
+#Process data for output
+#Strings use Levenshtein distance approach, IIRC
+#Take a different approach for non-string data
+def string_resolver(row):
+  if pd.isnull(row['data.consensus_score']) or pd.isnull(row['data.number_views']): return ''
+
+  global data #Just being explicit that this is a global
+  if data['nptype'] == str:
+    if row['data.consensus_score'] / row['data.number_views'] < args.text_threshold:
+      bad[row.name] += 1
+      return row['data.aligned_text']
+    else:
+      if row['data.consensus_score'] != row['data.number_views']: #data has been autoresolved
+        if row.name in autoresolved: autoresolved[row.name].append(data['name'])
+        else: autoresolved[row.name] = [data['name']]
+      return row[datacol]
+  elif data['nptype'] == pd.Int64Dtype:
+    candidates = ast.literal_eval(row['data.aligned_text'])
+
+    #years at sea needs some special handling
+    #it contains two floating point numbers, separated by a semicolon
+    #we can improve autoresolution by normalising these and comparing them individually
+    if data['name'] == 'years at sea':
+      #Reconsitute the original transcriptions
+      originals = [''.join(x) for x in zip(*candidates)]
+      navies = []
+      merchants = []
+      for numbers in [x.split(';') for x in originals]:
+        if len(numbers) != 2:
+          bad[row.name] += 1
+          return originals
+        try:
+          (navy, merchant) = [float(x) for x in numbers]
+        except ValueError:
+          bad[row.name] += 1
+          return originals
+        navies.append(navy)
+        merchants.append(merchant)
+      navy_results     = category_resolver(collections.Counter(navies),    args.dropdown_threshold, row.name, data['name'])
+      merchant_results = category_resolver(collections.Counter(merchants), args.dropdown_threshold, row.name, data['name'])
+      if len(navy_results) == 1 and len(merchant_results) == 1:
+        navy_result = next(iter(navy_results))
+        merchant_result = next(iter(merchant_results))
+        return f'{navy_result}; {merchant_result}'
+      else:
+        bad[row.name] += 1
+        return originals
+    else:
+      if(len(candidates) != 1): #Not a conventional case, resolve manually
+        bad[row.name] += 1
+        return row['data.aligned_text']
+
+      candidates = candidates[0]
+
+      #If there are any non-numerals in the input, just return it to resolve manually
+      try:
+        candidates = [float(x) for x in candidates]
+      except ValueError:
+        bad[row.name] += 1
+        return row['data.aligned_text']
+      if not all([x.is_integer() for x in candidates]):
+        bad[row.name] += 1
+        return row['data.aligned_text']
+      candidates = [int(x) for x in candidates]
+      candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, row.name, data['name'])
+      if len(candidates) == 1: return next(iter(candidates)) #First key, efficiently (see https://www.geeksforgeeks.org/python-get-the-first-key-in-dictionary/)
+      else:
+        bad[row.name] += 1
+        return row['data.aligned_text']
+  elif data['nptype'] == datetime.date:
+    candidates = ast.literal_eval(row['data.aligned_text'])
+
+    if(len(candidates) != 1): #Not a conventional case, resolve manually
+      bad[row.name] += 1
+      return row['data.aligned_text']
+
+    candidates = candidates[0]
+    #https://stackoverflow.com/a/18029112 has a trick for reading arbitrary date formats while rejecting ambiguous cases
+    #We just need to use the documented format, but we can be a bit forgiving
+    try:
+      candidates = [dateutil.parser.parse(d, dayfirst = True) for d in candidates] #yearfirst defaults to False
+    except (TypeError, ValueError): #Something is wrong, resolve manually
+      bad[row.name] += 1
+      return row['data.aligned_text']
+    candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, row.name, data['name'])
+    if len(candidates) == 1:
+      date = next(iter(candidates))
+      return date.strftime('%d-%m-%Y')
+    else:
+      bad[row.name] += 1
+      return row['data.aligned_text']
+  else: raise Exception()
+
+
 for wid, data in workflow[args.workflows].items():
   datacol = data['ztype']['name']
   conflict_keys = []
@@ -130,98 +224,7 @@ for wid, data in workflow[args.workflows].items():
         print(f'  Undercounted rows: {len(undercount.index)}')
         if args.verbose >= 2 and not undercount.empty: print(undercount)
 
-    #Process data for output
-    #Strings use Levenshtein distance approach, IIRC
-    #Take a different approach for non-string data
-    def resolver(row):
-      if pd.isnull(row['data.consensus_score']) or pd.isnull(row['data.number_views']): return ''
-
-      if data['nptype'] == str:
-        if row['data.consensus_score'] / row['data.number_views'] < args.text_threshold:
-          bad[row.name] += 1
-          return row['data.aligned_text']
-        else:
-          if row['data.consensus_score'] != row['data.number_views']: #data has been autoresolved
-            if row.name in autoresolved: autoresolved[row.name].append(data['name'])
-            else: autoresolved[row.name] = [data['name']]
-          return row[datacol]
-      elif data['nptype'] == pd.Int64Dtype:
-        candidates = ast.literal_eval(row['data.aligned_text'])
-
-        #years at sea needs some special handling
-        #it contains two floating point numbers, separated by a semicolon
-        #we can improve autoresolution by normalising these and comparing them individually
-        if data['name'] == 'years at sea':
-          #Reconsitute the original transcriptions
-          originals = [''.join(x) for x in zip(*candidates)]
-          navies = []
-          merchants = []
-          for numbers in [x.split(';') for x in originals]:
-            if len(numbers) != 2:
-              bad[row.name] += 1
-              return originals
-            try:
-              (navy, merchant) = [float(x) for x in numbers]
-            except ValueError:
-              bad[row.name] += 1
-              return originals
-            navies.append(navy)
-            merchants.append(merchant)
-          navy_results     = category_resolver(collections.Counter(navies),    args.dropdown_threshold, row.name, data['name'])
-          merchant_results = category_resolver(collections.Counter(merchants), args.dropdown_threshold, row.name, data['name'])
-          if len(navy_results) == 1 and len(merchant_results) == 1:
-            navy_result = next(iter(navy_results))
-            merchant_result = next(iter(merchant_results))
-            return f'{navy_result}; {merchant_result}'
-          else:
-            bad[row.name] += 1
-            return originals
-        else:
-          if(len(candidates) != 1): #Not a conventional case, resolve manually
-            bad[row.name] += 1
-            return row['data.aligned_text']
-
-          candidates = candidates[0]
-
-          #If there are any non-numerals in the input, just return it to resolve manually
-          try:
-            candidates = [float(x) for x in candidates]
-          except ValueError:
-            bad[row.name] += 1
-            return row['data.aligned_text']
-          if not all([x.is_integer() for x in candidates]):
-            bad[row.name] += 1
-            return row['data.aligned_text']
-          candidates = [int(x) for x in candidates]
-          candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, row.name, data['name'])
-          if len(candidates) == 1: return next(iter(candidates)) #First key, efficiently (see https://www.geeksforgeeks.org/python-get-the-first-key-in-dictionary/)
-          else:
-            bad[row.name] += 1
-            return row['data.aligned_text']
-      elif data['nptype'] == datetime.date:
-        candidates = ast.literal_eval(row['data.aligned_text'])
-
-        if(len(candidates) != 1): #Not a conventional case, resolve manually
-          bad[row.name] += 1
-          return row['data.aligned_text']
-
-        candidates = candidates[0]
-        #https://stackoverflow.com/a/18029112 has a trick for reading arbitrary date formats while rejecting ambiguous cases
-        #We just need to use the documented format, but we can be a bit forgiving
-        try:
-          candidates = [dateutil.parser.parse(d, dayfirst = True) for d in candidates] #yearfirst defaults to False
-        except (TypeError, ValueError): #Something is wrong, resolve manually
-          bad[row.name] += 1
-          return row['data.aligned_text']
-        candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, row.name, data['name'])
-        if len(candidates) == 1:
-          date = next(iter(candidates))
-          return date.strftime('%d-%m-%Y')
-        else:
-          bad[row.name] += 1
-          return row['data.aligned_text']
-      else: raise Exception()
-    df[datacol] = df.apply(resolver, axis = 'columns')
+    df[datacol] = df.apply(string_resolver, axis = 'columns')
     #TODO: For these kinds of strings, may well be better to treat them like dropdowns and just take two thirds identical as permitting auto-resolve
   elif(data['ztype'] == DROP_T):
     #Drop all classifications that are based on an insufficient number of views
