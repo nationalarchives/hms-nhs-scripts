@@ -133,20 +133,20 @@ for wid, data in workflow[args.workflows].items():
     #Process data for output
     #Strings use Levenshtein distance approach, IIRC
     #Take a different approach for non-string data
-    def resolver(x):
-      if pd.isnull(x['data.consensus_score']) or pd.isnull(x['data.number_views']): return ''
+    def resolver(row):
+      if pd.isnull(row['data.consensus_score']) or pd.isnull(row['data.number_views']): return ''
 
       if data['nptype'] == str:
-        if x['data.consensus_score'] / x['data.number_views'] < args.text_threshold:
-          bad[x.name] += 1
-          return x['data.aligned_text']
+        if row['data.consensus_score'] / row['data.number_views'] < args.text_threshold:
+          bad[row.name] += 1
+          return row['data.aligned_text']
         else:
-          if x['data.consensus_score'] != x['data.number_views']: #data has been autoresolved
-            if x.name in autoresolved: autoresolved[x.name].append(data['name'])
-            else: autoresolved[x.name] = [data['name']]
-          return x[datacol]
+          if row['data.consensus_score'] != row['data.number_views']: #data has been autoresolved
+            if row.name in autoresolved: autoresolved[row.name].append(data['name'])
+            else: autoresolved[row.name] = [data['name']]
+          return row[datacol]
       elif data['nptype'] == pd.Int64Dtype:
-        candidates = ast.literal_eval(x['data.aligned_text'])
+        candidates = ast.literal_eval(row['data.aligned_text'])
 
         #years at sea needs some special handling
         #it contains two floating point numbers, separated by a semicolon
@@ -158,28 +158,28 @@ for wid, data in workflow[args.workflows].items():
           merchants = []
           for numbers in [x.split(';') for x in originals]:
             if len(numbers) != 2:
-              bad[x.name] += 1
+              bad[row.name] += 1
               return originals
             try:
               (navy, merchant) = [float(x) for x in numbers]
             except ValueError:
-              bad[x.name] += 1
+              bad[row.name] += 1
               return originals
             navies.append(navy)
             merchants.append(merchant)
-          navy_results     = category_resolver(collections.Counter(navies),    args.dropdown_threshold, x.name, data['name'])
-          merchant_results = category_resolver(collections.Counter(merchants), args.dropdown_threshold, x.name, data['name'])
+          navy_results     = category_resolver(collections.Counter(navies),    args.dropdown_threshold, row.name, data['name'])
+          merchant_results = category_resolver(collections.Counter(merchants), args.dropdown_threshold, row.name, data['name'])
           if len(navy_results) == 1 and len(merchant_results) == 1:
             navy_result = next(iter(navy_results))
             merchant_result = next(iter(merchant_results))
             return f'{navy_result}; {merchant_result}'
           else:
-            bad[x.name] += 1
+            bad[row.name] += 1
             return originals
         else:
           if(len(candidates) != 1): #Not a conventional case, resolve manually
-            bad[x.name] += 1
-            return x['data.aligned_text']
+            bad[row.name] += 1
+            return row['data.aligned_text']
 
           candidates = candidates[0]
 
@@ -187,23 +187,23 @@ for wid, data in workflow[args.workflows].items():
           try:
             candidates = [float(x) for x in candidates]
           except ValueError:
-            bad[x.name] += 1
-            return x['data.aligned_text']
+            bad[row.name] += 1
+            return row['data.aligned_text']
           if not all([x.is_integer() for x in candidates]):
-            bad[x.name] += 1
-            return x['data.aligned_text']
+            bad[row.name] += 1
+            return row['data.aligned_text']
           candidates = [int(x) for x in candidates]
-          candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, x.name, data['name'])
+          candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, row.name, data['name'])
           if len(candidates) == 1: return next(iter(candidates)) #First key, efficiently (see https://www.geeksforgeeks.org/python-get-the-first-key-in-dictionary/)
           else:
-            bad[x.name] += 1
-            return x['data.aligned_text']
+            bad[row.name] += 1
+            return row['data.aligned_text']
       elif data['nptype'] == datetime.date:
-        candidates = ast.literal_eval(x['data.aligned_text'])
+        candidates = ast.literal_eval(row['data.aligned_text'])
 
         if(len(candidates) != 1): #Not a conventional case, resolve manually
-          bad[x.name] += 1
-          return x['data.aligned_text']
+          bad[row.name] += 1
+          return row['data.aligned_text']
 
         candidates = candidates[0]
         #https://stackoverflow.com/a/18029112 has a trick for reading arbitrary date formats while rejecting ambiguous cases
@@ -211,23 +211,23 @@ for wid, data in workflow[args.workflows].items():
         try:
           candidates = [dateutil.parser.parse(d, dayfirst = True) for d in candidates] #yearfirst defaults to False
         except (TypeError, ValueError): #Something is wrong, resolve manually
-          bad[x.name] += 1
-          return x['data.aligned_text']
-        candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, x.name, data['name'])
+          bad[row.name] += 1
+          return row['data.aligned_text']
+        candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, row.name, data['name'])
         if len(candidates) == 1:
           date = next(iter(candidates))
           return date.strftime('%d-%m-%Y')
         else:
-          bad[x.name] += 1
-          return x['data.aligned_text']
+          bad[row.name] += 1
+          return row['data.aligned_text']
       else: raise Exception()
     df[datacol] = df.apply(resolver, axis = 'columns')
     #TODO: For these kinds of strings, may well be better to treat them like dropdowns and just take two thirds identical as permitting auto-resolve
   elif(data['ztype'] == DROP_T):
     #Drop all classifications that are based on an insufficient number of views
     if not args.unfinished:
-      def votecounter(x):
-        selections = ast.literal_eval(x)
+      def votecounter(votes):
+        selections = ast.literal_eval(votes)
         if len(selections) != 1: raise Exception()
         return(sum(selections[0].values()))
       df = df[df[datacol].apply(votecounter) >= RETIREMENT_COUNT]
@@ -242,12 +242,12 @@ for wid, data in workflow[args.workflows].items():
         if args.verbose >= 2 and not undercount.empty: print(undercount)
 
     #Process classifications for output
-    def resolver(x):
-      #x is a single-element array, containing one dictionary
-      selections = ast.literal_eval(x[datacol])
+    def resolver(row):
+      #row is a single-element array, containing one dictionary
+      selections = ast.literal_eval(row[datacol])
       if len(selections) != 1: raise Exception()
-      result = category_resolver(selections[0], args.dropdown_threshold, x.name, data['name'])
-      if len(result) != 1: bad[x.name] += 1
+      result = category_resolver(selections[0], args.dropdown_threshold, row.name, data['name'])
+      if len(result) != 1: bad[row.name] += 1
       return str([result])
     df[datacol] = df.apply(resolver, axis = 'columns')
   else: raise Exception()
@@ -303,9 +303,9 @@ if not args.blanks:
 #Tag unresolved disagreements
 #TODO This part does not feel like the Pandas way
 for b in bad.keys():
-  x = joined.at[b, 'Problems']
-  if len(x):
-    joined.at[b, 'Problems'] = f'{x} & {bad[b]} disagreements'
+  problems = joined.at[b, 'Problems']
+  if len(problems):
+    joined.at[b, 'Problems'] = f'{problems} & {bad[b]} disagreements'
   else:
     joined.at[b, 'Problems'] = f'{bad[b]} disagreements'
 
