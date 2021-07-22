@@ -122,6 +122,29 @@ def string_resolver(row, data, datacol):
       else: autoresolved[row.name] = [data['name']]
     return row[datacol]
 
+def date_resolver(row, data):
+    candidates = ast.literal_eval(row['data.aligned_text'])
+
+    if(len(candidates) != 1): #Not a conventional case, resolve manually
+      bad[row.name] += 1
+      return row['data.aligned_text']
+
+    candidates = candidates[0]
+    #https://stackoverflow.com/a/18029112 has a trick for reading arbitrary date formats while rejecting ambiguous cases
+    #We just need to use the documented format, but we can be a bit forgiving
+    try:
+      candidates = [dateutil.parser.parse(d, dayfirst = True) for d in candidates] #yearfirst defaults to False
+    except (TypeError, ValueError): #Something is wrong, resolve manually
+      bad[row.name] += 1
+      return row['data.aligned_text']
+    candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, row.name, data['name'])
+    if len(candidates) == 1:
+      date = next(iter(candidates))
+      return date.strftime('%d-%m-%Y')
+    else:
+      bad[row.name] += 1
+      return row['data.aligned_text']
+
 def number_resolver(row, data, datacol):
   candidates = ast.literal_eval(row['data.aligned_text'])
 
@@ -165,28 +188,7 @@ def text_resolver(row, **kwargs):
 
   if data['nptype'] == str: return string_resolver(row, data, datacol)
   elif data['nptype'] == pd.Int64Dtype: return number_resolver(row, data, datacol)
-  elif data['nptype'] == datetime.date:
-    candidates = ast.literal_eval(row['data.aligned_text'])
-
-    if(len(candidates) != 1): #Not a conventional case, resolve manually
-      bad[row.name] += 1
-      return row['data.aligned_text']
-
-    candidates = candidates[0]
-    #https://stackoverflow.com/a/18029112 has a trick for reading arbitrary date formats while rejecting ambiguous cases
-    #We just need to use the documented format, but we can be a bit forgiving
-    try:
-      candidates = [dateutil.parser.parse(d, dayfirst = True) for d in candidates] #yearfirst defaults to False
-    except (TypeError, ValueError): #Something is wrong, resolve manually
-      bad[row.name] += 1
-      return row['data.aligned_text']
-    candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, row.name, data['name'])
-    if len(candidates) == 1:
-      date = next(iter(candidates))
-      return date.strftime('%d-%m-%Y')
-    else:
-      bad[row.name] += 1
-      return row['data.aligned_text']
+  elif data['nptype'] == datetime.date: return date_resolver(row, data)
   else: raise Exception()
 
 def main():
