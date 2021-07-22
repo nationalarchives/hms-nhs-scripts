@@ -199,7 +199,7 @@ subject_id,task,volume,page,Autoresolved,Problems,admission number,date admitted
 44290294,27,2,153,,Blank(s),,04-06-1829,,,,,,,,,,,
 44290294,28,2,153,,Blank(s),,04-06-1829,,,,,,,,,,,
 44290294,29,2,153,,Blank(s),,04-06-1829,,,,,,,,,,,
-44290314,1,2,173,,Blank(s) & disagreements,,,,"{'Ordinary Seaman': 1, 'Master': 1, 'Mate': 1}",,,,,,,,,
+44290314,1,2,173,,Blank(s) & 1 disagreements,,,,"{'Ordinary Seaman': 1, 'Master': 1, 'Mate': 1}",,,,,,,,,
 44290314,2,2,173,rank/rating,Blank(s),,,,Boy,,,,,,,,,
 44290314,3,2,173,,Blank(s),,,,,,,,,,,,,
 44290314,4,2,173,,Blank(s),,,,,,,,,,,,,
@@ -674,7 +674,7 @@ subject_id,task,volume,page,Autoresolved,Problems,admission number,date admitted
 44398356,27,5,46,,Blank(s),,,,,,,,,Antionette F,,,,
 44398356,28,5,46,,Blank(s),,,,,,,,,HMS Shartiate paid off September 1835,,,,
 44398356,29,5,46,,Blank(s),,,,,,,,,William Fawcett steam vessel passenger,,,,
-44398371,1,5,61,,Blank(s) & disagreements,,"[['28-11-1835', '28-11-1836', '28-11-1837']]",,,,,,,,,,,
+44398371,1,5,61,,Blank(s) & 1 disagreements,,"[['28-11-1835', '28-11-1836', '28-11-1837']]",,,,,,,,,,,
 44398371,2,5,61,date admitted,Blank(s),,30-11-1835,,,,,,,,,,,
 44398371,3,5,61,date admitted,Blank(s),,30-11-1835,,,,,,,,,,,
 44398371,4,5,61,,Blank(s),,30-11-1835,,,,,,,,,,,
@@ -799,31 +799,31 @@ subject_id,task,volume,page,Autoresolved,Problems,admission number,date admitted
 44398466,27,5,156,,Blank(s),,,William Lock,,,,,,,,,,
 44398466,28,5,156,,Blank(s),,,William Fowler,,,,,,,,,,
 44398466,29,5,156,,Blank(s),,,Thomas Duance Ambrose Orbell James Oats William Davis Oliver wilkinson William Payne,,,,,,,,,,
-44398487,1,5,177,,Disagreements,15476,29-05-1829,William Finley,"{'Ordinary Seaman': 1, 'Master': 1, 'Mate': 1}",14,Liverpool,Southampton,['1'],Stapler,fakestring,30-12-1826,Request Convalescent,26
-44398487,2,5,177,rank/rating,Disagreements,15476,30-05-1829,John Brown,Boy,15,Liverpool,Southampton,['2'],Coldstream,fakestring,30-12-1826,Seven Day Order,81
-44398487,3,5,177,,Blank(s) & disagreements,15477,30-05-1829,George Raby,,16,Liverpool,Southampton,['3'],Escape,fakestring,30-12-1826,,13
-44398487,4,5,177,,Blank(s) & disagreements,15478,30-05-1829,Thomas Brooks,,17,Liverpool,Southampton,['4'],Caroline,fakestring,30-12-1826,,43
-44398487,5,5,177,,Blank(s) & disagreements,15479,30-05-1829,Edward Shipley,,18,Liverpool,Southampton,['5'],HCS Balcarras,fakestring,30-12-1826,,22
-44398487,7,5,177,,Blank(s) & disagreements,15480,30-05-1829,Benjamin Clark,,19,Liverpool,Southampton,['6'],Trinity Lighter no 5,fakestring,30-12-1826,,8
-44398487,8,5,177,,Blank(s) & disagreements,15481,30-05-1829,Robert Goran,,21,Liverpool,Southampton,['7'],HMS Blanche paid off November 1827,fakestring,30-12-1826,Request Fit for Duty,35
-44398487,9,5,177,,Blank(s) & disagreements,15482,01-06-1829,John Smith,,22,Liverpool,Southampton,['8'],Prospect,fakestring,30-12-1826,,9
-44398487,10,5,177,,Blank(s) & disagreements,15483,01-06-1829,John Rofs,,23,Liverpool,Southampton,['9'],Demerara,fakestring,30-12-1826,,12
-44398487,11,5,177,,Blank(s) & disagreements,15484,01-06-1829,William Maddocks,,24,Liverpool,Southampton,['10'],William Harris,fakestring,30-12-1826,,39
-44398487,13,5,177,,Blank(s) & disagreements,15485,01-06-1829,William Liddell,,25,Liverpool,Southampton,['11'],Alkmaar,,,,79
-44398487,14,5,177,,Blank(s) & disagreements,15486,01-06-1829,In Robinson,,26,Liverpool,Southampton,['12'],Union,fakestring,30-12-1826,,2
-44398487,15,5,177,,Blank(s) & disagreements,15487,02-06-1829,John King,,27,Liverpool,Southampton,['13'],Midas F,fakestring,30-12-1826,,34
-44398487,16,5,177,,Blank(s) & disagreements,15488,02-06-1829,George Shepherd,,28,Liverpool,Southampton,['14'],Midas F,fakestring,30-12-1826,,16
-44398487,17,5,177,,Blank(s) & disagreements,15489,02-06-1829,James Emes,,29,Liverpool,Southampton,['15'],HCS William Fairlie,fakestring,30-12-1826,,16
-44398487,19,5,177,,Blank(s) & disagreements,15490,02-06-1829,Anthony Hodge,,30,Liverpool,Southampton,['16'],Wanderer,fakestring,30-12-1826,,63
-44398487,20,5,177,,Blank(s) & disagreements,15491,02-06-1829,In Watson,,31,Liverpool,Southampton,['17'],Sarah,fakestring,30-12-1826,,18
-44398487,21,5,177,,Blank(s) & disagreements,15492,03-06-1829,Pom Sugsuckins,,32,Liverpool,Southampton,['18'],Egyptian,fakestring,30-12-1826,,4
-44398487,22,5,177,,Blank(s) & disagreements,15493,03-06-1829,Stephen Hall,,33,Liverpool,Southampton,['19'],Lavinia,fakestring,30-12-1826,To a Ship Cured,28
-44398487,23,5,177,,Blank(s) & disagreements,15494,03-06-1829,David Millir,,34,Liverpool,Southampton,['20'],Friends,fakestring,30-12-1826,,47
-44398487,25,5,177,,Blank(s) & disagreements,15495,03-06-1829,James Newman,,35,Liverpool,Southampton,['21'],Borodino,fakestring,30-12-1826,,35
-44398487,26,5,177,,Blank(s) & disagreements,15496,04-06-1829,William Snowden,,36,Liverpool,Southampton,['22'],Eclipse,fakestring,30-12-1826,,4
-44398487,27,5,177,,Blank(s) & disagreements,15497,04-06-1829,Henry Richards,,37,Liverpool,Southampton,['23'],HMS Victory invalided September 1827,fakestring,30-12-1826,,11
-44398487,28,5,177,,Blank(s) & disagreements,15498,04-06-1829,In Brown,,38,Liverpool,Southampton,['24'],Belfast,fakestring,30-12-1826,,6
-44398487,29,5,177,,Blank(s) & disagreements,15499,04-06-1829,Thomas Sutter,,39,Liverpool,Southampton,['25'],Kent,fakestring,30-12-1826,,15
+44398487,1,5,177,,2 disagreements,15476,29-05-1829,William Finley,"{'Ordinary Seaman': 1, 'Master': 1, 'Mate': 1}",14,Liverpool,Southampton,['1'],Stapler,fakestring,30-12-1826,Request Convalescent,26
+44398487,2,5,177,rank/rating,1 disagreements,15476,30-05-1829,John Brown,Boy,15,Liverpool,Southampton,['2'],Coldstream,fakestring,30-12-1826,Seven Day Order,81
+44398487,3,5,177,,Blank(s) & 1 disagreements,15477,30-05-1829,George Raby,,16,Liverpool,Southampton,['3'],Escape,fakestring,30-12-1826,,13
+44398487,4,5,177,,Blank(s) & 1 disagreements,15478,30-05-1829,Thomas Brooks,,17,Liverpool,Southampton,['4'],Caroline,fakestring,30-12-1826,,43
+44398487,5,5,177,,Blank(s) & 1 disagreements,15479,30-05-1829,Edward Shipley,,18,Liverpool,Southampton,['5'],HCS Balcarras,fakestring,30-12-1826,,22
+44398487,7,5,177,,Blank(s) & 1 disagreements,15480,30-05-1829,Benjamin Clark,,19,Liverpool,Southampton,['6'],Trinity Lighter no 5,fakestring,30-12-1826,,8
+44398487,8,5,177,,Blank(s) & 1 disagreements,15481,30-05-1829,Robert Goran,,21,Liverpool,Southampton,['7'],HMS Blanche paid off November 1827,fakestring,30-12-1826,Request Fit for Duty,35
+44398487,9,5,177,,Blank(s) & 1 disagreements,15482,01-06-1829,John Smith,,22,Liverpool,Southampton,['8'],Prospect,fakestring,30-12-1826,,9
+44398487,10,5,177,,Blank(s) & 1 disagreements,15483,01-06-1829,John Rofs,,23,Liverpool,Southampton,['9'],Demerara,fakestring,30-12-1826,,12
+44398487,11,5,177,,Blank(s) & 1 disagreements,15484,01-06-1829,William Maddocks,,24,Liverpool,Southampton,['10'],William Harris,fakestring,30-12-1826,,39
+44398487,13,5,177,,Blank(s) & 1 disagreements,15485,01-06-1829,William Liddell,,25,Liverpool,Southampton,['11'],Alkmaar,,,,79
+44398487,14,5,177,,Blank(s) & 1 disagreements,15486,01-06-1829,In Robinson,,26,Liverpool,Southampton,['12'],Union,fakestring,30-12-1826,,2
+44398487,15,5,177,,Blank(s) & 1 disagreements,15487,02-06-1829,John King,,27,Liverpool,Southampton,['13'],Midas F,fakestring,30-12-1826,,34
+44398487,16,5,177,,Blank(s) & 1 disagreements,15488,02-06-1829,George Shepherd,,28,Liverpool,Southampton,['14'],Midas F,fakestring,30-12-1826,,16
+44398487,17,5,177,,Blank(s) & 1 disagreements,15489,02-06-1829,James Emes,,29,Liverpool,Southampton,['15'],HCS William Fairlie,fakestring,30-12-1826,,16
+44398487,19,5,177,,Blank(s) & 1 disagreements,15490,02-06-1829,Anthony Hodge,,30,Liverpool,Southampton,['16'],Wanderer,fakestring,30-12-1826,,63
+44398487,20,5,177,,Blank(s) & 1 disagreements,15491,02-06-1829,In Watson,,31,Liverpool,Southampton,['17'],Sarah,fakestring,30-12-1826,,18
+44398487,21,5,177,,Blank(s) & 1 disagreements,15492,03-06-1829,Pom Sugsuckins,,32,Liverpool,Southampton,['18'],Egyptian,fakestring,30-12-1826,,4
+44398487,22,5,177,,Blank(s) & 1 disagreements,15493,03-06-1829,Stephen Hall,,33,Liverpool,Southampton,['19'],Lavinia,fakestring,30-12-1826,To a Ship Cured,28
+44398487,23,5,177,,Blank(s) & 1 disagreements,15494,03-06-1829,David Millir,,34,Liverpool,Southampton,['20'],Friends,fakestring,30-12-1826,,47
+44398487,25,5,177,,Blank(s) & 1 disagreements,15495,03-06-1829,James Newman,,35,Liverpool,Southampton,['21'],Borodino,fakestring,30-12-1826,,35
+44398487,26,5,177,,Blank(s) & 1 disagreements,15496,04-06-1829,William Snowden,,36,Liverpool,Southampton,['22'],Eclipse,fakestring,30-12-1826,,4
+44398487,27,5,177,,Blank(s) & 1 disagreements,15497,04-06-1829,Henry Richards,,37,Liverpool,Southampton,['23'],HMS Victory invalided September 1827,fakestring,30-12-1826,,11
+44398487,28,5,177,,Blank(s) & 1 disagreements,15498,04-06-1829,In Brown,,38,Liverpool,Southampton,['24'],Belfast,fakestring,30-12-1826,,6
+44398487,29,5,177,,Blank(s) & 1 disagreements,15499,04-06-1829,Thomas Sutter,,39,Liverpool,Southampton,['25'],Kent,fakestring,30-12-1826,,15
 44398502,1,5,192,,Blank(s),,,,,,,,,Ethelbert,,,,
 44398502,2,5,192,,Blank(s),,,,,,,,,Maria Brandt F,,,,
 44398502,3,5,192,,Blank(s),,,,,,,,,Londond Packet,,,,
