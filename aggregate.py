@@ -122,6 +122,36 @@ def string_resolver(row, data, datacol):
       else: autoresolved[row.name] = [data['name']]
     return row[datacol]
 
+def number_resolver(row, data, datacol):
+  candidates = ast.literal_eval(row['data.aligned_text'])
+
+  #years at sea needs some special handling
+  #it contains two floating point numbers, separated by a semicolon
+  #we can improve autoresolution by normalising these and comparing them individually
+  if data['name'] == 'years at sea':
+    return years_at_sea_resolver(candidates, row, data, datacol)
+
+  if(len(candidates) != 1): #Not a conventional case, resolve manually
+    bad[row.name] += 1
+    return row['data.aligned_text']
+
+  candidates = candidates[0]
+
+  #If there are any non-numerals in the input, just return it to resolve manually
+  try:
+    candidates = [float(x) for x in candidates]
+  except ValueError:
+    bad[row.name] += 1
+    return row['data.aligned_text']
+  if not all([x.is_integer() for x in candidates]):
+    bad[row.name] += 1
+    return row['data.aligned_text']
+  candidates = [int(x) for x in candidates]
+  candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, row.name, data['name'])
+  if len(candidates) == 1: return next(iter(candidates)) #First key, efficiently (see https://www.geeksforgeeks.org/python-get-the-first-key-in-dictionary/)
+  else:
+    bad[row.name] += 1
+    return row['data.aligned_text']
 
 #Process data for output
 #Strings use Levenshtein distance approach, IIRC
@@ -134,36 +164,7 @@ def text_resolver(row, **kwargs):
   if pd.isnull(row['data.consensus_score']) or pd.isnull(row['data.number_views']): return ''
 
   if data['nptype'] == str: return string_resolver(row, data, datacol)
-  elif data['nptype'] == pd.Int64Dtype:
-    candidates = ast.literal_eval(row['data.aligned_text'])
-
-    #years at sea needs some special handling
-    #it contains two floating point numbers, separated by a semicolon
-    #we can improve autoresolution by normalising these and comparing them individually
-    if data['name'] == 'years at sea':
-      return years_at_sea_resolver(candidates, row, data, datacol)
-
-    if(len(candidates) != 1): #Not a conventional case, resolve manually
-      bad[row.name] += 1
-      return row['data.aligned_text']
-
-    candidates = candidates[0]
-
-    #If there are any non-numerals in the input, just return it to resolve manually
-    try:
-      candidates = [float(x) for x in candidates]
-    except ValueError:
-      bad[row.name] += 1
-      return row['data.aligned_text']
-    if not all([x.is_integer() for x in candidates]):
-      bad[row.name] += 1
-      return row['data.aligned_text']
-    candidates = [int(x) for x in candidates]
-    candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, row.name, data['name'])
-    if len(candidates) == 1: return next(iter(candidates)) #First key, efficiently (see https://www.geeksforgeeks.org/python-get-the-first-key-in-dictionary/)
-    else:
-      bad[row.name] += 1
-      return row['data.aligned_text']
+  elif data['nptype'] == pd.Int64Dtype: return number_resolver(row, data, datacol)
   elif data['nptype'] == datetime.date:
     candidates = ast.literal_eval(row['data.aligned_text'])
 
