@@ -86,6 +86,33 @@ def category_resolver(candidates, threshold, subject_task, workflow_name):
   return candidates
 
 
+def years_at_sea_resolver(candidates, row, data, datacol):
+  #Reconsitute the original transcriptions
+  originals = [''.join(x) for x in zip(*candidates)]
+  navies = []
+  merchants = []
+  for numbers in [x.split(';') for x in originals]:
+    if len(numbers) != 2:
+      bad[row.name] += 1
+      return originals
+    try:
+      (navy, merchant) = [float(x) for x in numbers]
+    except ValueError:
+      bad[row.name] += 1
+      return originals
+    navies.append(navy)
+    merchants.append(merchant)
+  navy_results     = category_resolver(collections.Counter(navies),    args.dropdown_threshold, row.name, data['name'])
+  merchant_results = category_resolver(collections.Counter(merchants), args.dropdown_threshold, row.name, data['name'])
+  if len(navy_results) == 1 and len(merchant_results) == 1:
+    navy_result = next(iter(navy_results))
+    merchant_result = next(iter(merchant_results))
+    return f'{navy_result}; {merchant_result}'
+  else:
+    bad[row.name] += 1
+    return originals
+
+
 #Process data for output
 #Strings use Levenshtein distance approach, IIRC
 #Take a different approach for non-string data
@@ -112,52 +139,29 @@ def string_resolver(row, **kwargs):
     #it contains two floating point numbers, separated by a semicolon
     #we can improve autoresolution by normalising these and comparing them individually
     if data['name'] == 'years at sea':
-      #Reconsitute the original transcriptions
-      originals = [''.join(x) for x in zip(*candidates)]
-      navies = []
-      merchants = []
-      for numbers in [x.split(';') for x in originals]:
-        if len(numbers) != 2:
-          bad[row.name] += 1
-          return originals
-        try:
-          (navy, merchant) = [float(x) for x in numbers]
-        except ValueError:
-          bad[row.name] += 1
-          return originals
-        navies.append(navy)
-        merchants.append(merchant)
-      navy_results     = category_resolver(collections.Counter(navies),    args.dropdown_threshold, row.name, data['name'])
-      merchant_results = category_resolver(collections.Counter(merchants), args.dropdown_threshold, row.name, data['name'])
-      if len(navy_results) == 1 and len(merchant_results) == 1:
-        navy_result = next(iter(navy_results))
-        merchant_result = next(iter(merchant_results))
-        return f'{navy_result}; {merchant_result}'
-      else:
-        bad[row.name] += 1
-        return originals
+      return years_at_sea_resolver(candidates, row, data, datacol)
+
+    if(len(candidates) != 1): #Not a conventional case, resolve manually
+      bad[row.name] += 1
+      return row['data.aligned_text']
+
+    candidates = candidates[0]
+
+    #If there are any non-numerals in the input, just return it to resolve manually
+    try:
+      candidates = [float(x) for x in candidates]
+    except ValueError:
+      bad[row.name] += 1
+      return row['data.aligned_text']
+    if not all([x.is_integer() for x in candidates]):
+      bad[row.name] += 1
+      return row['data.aligned_text']
+    candidates = [int(x) for x in candidates]
+    candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, row.name, data['name'])
+    if len(candidates) == 1: return next(iter(candidates)) #First key, efficiently (see https://www.geeksforgeeks.org/python-get-the-first-key-in-dictionary/)
     else:
-      if(len(candidates) != 1): #Not a conventional case, resolve manually
-        bad[row.name] += 1
-        return row['data.aligned_text']
-
-      candidates = candidates[0]
-
-      #If there are any non-numerals in the input, just return it to resolve manually
-      try:
-        candidates = [float(x) for x in candidates]
-      except ValueError:
-        bad[row.name] += 1
-        return row['data.aligned_text']
-      if not all([x.is_integer() for x in candidates]):
-        bad[row.name] += 1
-        return row['data.aligned_text']
-      candidates = [int(x) for x in candidates]
-      candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, row.name, data['name'])
-      if len(candidates) == 1: return next(iter(candidates)) #First key, efficiently (see https://www.geeksforgeeks.org/python-get-the-first-key-in-dictionary/)
-      else:
-        bad[row.name] += 1
-        return row['data.aligned_text']
+      bad[row.name] += 1
+      return row['data.aligned_text']
   elif data['nptype'] == datetime.date:
     candidates = ast.literal_eval(row['data.aligned_text'])
 
