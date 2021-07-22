@@ -112,6 +112,16 @@ def years_at_sea_resolver(candidates, row, data, datacol):
     bad[row.name] += 1
     return originals
 
+def string_resolver(row, data, datacol):
+  if row['data.consensus_score'] / row['data.number_views'] < args.text_threshold:
+    bad[row.name] += 1
+    return row['data.aligned_text']
+  else:
+    if row['data.consensus_score'] != row['data.number_views']: #data has been autoresolved
+      if row.name in autoresolved: autoresolved[row.name].append(data['name'])
+      else: autoresolved[row.name] = [data['name']]
+    return row[datacol]
+
 
 #Process data for output
 #Strings use Levenshtein distance approach, IIRC
@@ -123,15 +133,7 @@ def text_resolver(row, **kwargs):
 
   if pd.isnull(row['data.consensus_score']) or pd.isnull(row['data.number_views']): return ''
 
-  if data['nptype'] == str:
-    if row['data.consensus_score'] / row['data.number_views'] < args.text_threshold:
-      bad[row.name] += 1
-      return row['data.aligned_text']
-    else:
-      if row['data.consensus_score'] != row['data.number_views']: #data has been autoresolved
-        if row.name in autoresolved: autoresolved[row.name].append(data['name'])
-        else: autoresolved[row.name] = [data['name']]
-      return row[datacol]
+  if data['nptype'] == str: return string_resolver(row, data, datacol)
   elif data['nptype'] == pd.Int64Dtype:
     candidates = ast.literal_eval(row['data.aligned_text'])
 
