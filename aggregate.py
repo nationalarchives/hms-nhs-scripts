@@ -278,21 +278,21 @@ def main():
       labelfile = f'{args.dir}/Task_labels_workflow_{wid}_V{data["major"]}.{data["minor"]}.yaml'
       with open(labelfile) as f:
         labels = yaml.full_load(f)
-      def decode_dropdown(selection_json):
-          selections = ast.literal_eval(selection_json)
+      def decode_dropdown(row):
+          selections = ast.literal_eval(row[data['name']])
           if len(selections) != 1: raise Exception()
           selections = selections[0]
           result = {}
           for selection, votes in selections.items():
             if selection == 'None': result[None] = votes
             else:
-              label = list(labels[f'T1.selects.0.options.*.{selection}.label'].values())[0]
+              label = list(labels[f'T{row.name[1]}.selects.0.options.*.{selection}.label'].values())[0]
               label = label[label.find('=') + 1:].strip()
               result[label] = votes
           if len(result) == 1:
             return list(result.keys())[0]
           else: return str(result)
-      df[data['name']] = df[data['name']].map(decode_dropdown)
+      df[data['name']] = df.apply(decode_dropdown, axis = 'columns')
 
     columns.append(df)
 
