@@ -279,14 +279,14 @@ def main():
         #Drop all classifications that are based on an insufficient number of views
         df.drop(df[df['data.number_views'] < RETIREMENT_COUNT].index, inplace = True)
 
-        #Report on rows with different counts
-        if args.verbose >= 1:
-          overcount = df[df['data.number_views'] > RETIREMENT_COUNT]
-          print(f'  Completed rows: {len(df.index)} (of which {len(overcount.index)} overcounted)')
-          if args.verbose >= 3 and not overcount.empty: print(overcount)
-          undercount = df[df['data.number_views'] < RETIREMENT_COUNT]
-          print(f'  Undercounted rows: {len(undercount.index)}')
-          if args.verbose >= 3 and not undercount.empty: print(undercount)
+      #Report on rows with different counts
+      if args.verbose >= 1:
+        overcount = df[df['data.number_views'] > RETIREMENT_COUNT]
+        print(f'  Completed rows: {len(df.index)} (of which {len(overcount.index)} overcounted)')
+        if args.verbose >= 3 and not overcount.empty: print(overcount)
+        undercount = df[df['data.number_views'] < RETIREMENT_COUNT]
+        print(f'  Undercounted rows: {len(undercount.index)}')
+        if args.verbose >= 3 and not undercount.empty: print(undercount)
 
       df[datacol] = df.apply(text_resolver, axis = 'columns', data = data, datacol = datacol)
       #TODO: For these kinds of strings, may well be better to treat them like dropdowns and just take two thirds identical as permitting auto-resolve
@@ -299,14 +299,14 @@ def main():
           return(sum(selections[0].values()))
         df = df[df[datacol].apply(votecounter) >= RETIREMENT_COUNT]
 
-        #Report on rows with different counts
-        if args.verbose >= 1:
-          overcount = df[df[datacol].apply(votecounter) > RETIREMENT_COUNT]
-          print(f'  Completed rows: {len(df.index)} (of which {len(overcount.index)} overcounted)')
-          if args.verbose >= 3 and not overcount.empty: print(overcount)
-          undercount = df[df[datacol].apply(votecounter) < RETIREMENT_COUNT]
-          print(f'  Undercounted rows: {len(undercount.index)}')
-          if args.verbose >= 3 and not undercount.empty: print(undercount)
+      #Report on rows with different counts
+      if args.verbose >= 1:
+        overcount = df[df[datacol].apply(votecounter) > RETIREMENT_COUNT]
+        print(f'  Completed rows: {len(df.index)} (of which {len(overcount.index)} overcounted)')
+        if args.verbose >= 3 and not overcount.empty: print(overcount)
+        undercount = df[df[datacol].apply(votecounter) < RETIREMENT_COUNT]
+        print(f'  Undercounted rows: {len(undercount.index)}')
+        if args.verbose >= 3 and not undercount.empty: print(undercount)
 
       #Process classifications for output
       def drop_resolver(row):
