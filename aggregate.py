@@ -277,7 +277,7 @@ def main():
     if(data['ztype'] == TEXT_T):
       if not args.unfinished:
         #Drop all classifications that are based on an insufficient number of views
-        df.drop(df[df['data.number_views'] < RETIREMENT_COUNT].index)
+        df.drop(df[df['data.number_views'] < RETIREMENT_COUNT].index, inplace = True)
 
         #Report on rows with different counts
         if args.verbose >= 1:
