@@ -134,6 +134,10 @@ def years_at_sea_resolver(candidates, row, data, datacol):
     merchant_result = next(iter(merchant_results))
     return f'{navy_result}; {merchant_result}'
   else:
+    #Because we resolve the two sides independently, we might both autoresolve and fail for the field.
+    #This is a bit confusing, so if we failed for either side, remove the autoresolved.
+    if row.name in autoresolved and data['name'] in autoresolved[row.name]: autoresolved[row.name].remove(data['name'])
+
     if len(navy_results) != 1 and len(merchant_results) != 1: flow_report('Unresolvable (both sides)', row.name, originals)
     elif len(navy_results) != 1: flow_report('Unresolvable (navy side)', row.name, originals)
     else: flow_report('Unresolvable (merchant side)', row.name, originals)
