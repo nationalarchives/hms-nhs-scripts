@@ -101,8 +101,8 @@ def category_resolver(candidates, threshold, subject_task, workflow_name):
     if votes == total_votes:
       return {selection: votes}
     if votes / total_votes >= threshold: #data has been autoresolved
-      if subject_task in autoresolved: autoresolved[subject_task].append(workflow_name)
-      else: autoresolved[subject_task] = [workflow_name]
+      if subject_task in autoresolved: autoresolved[subject_task][workflow_name] = None
+      else: autoresolved[subject_task] = { workflow_name: None }
       return {selection: votes}
   return candidates
 
@@ -136,7 +136,7 @@ def years_at_sea_resolver(candidates, row, data, datacol):
   else:
     #Because we resolve the two sides independently, we might both autoresolve and fail for the field.
     #This is a bit confusing, so if we failed for either side, remove the autoresolved.
-    if row.name in autoresolved and data['name'] in autoresolved[row.name]: autoresolved[row.name].remove(data['name'])
+    if row.name in autoresolved and data['name'] in autoresolved[row.name]: del autoresolved[row.name][data['name']]
 
     if len(navy_results) != 1 and len(merchant_results) != 1: flow_report('Unresolvable (both sides)', row.name, originals)
     elif len(navy_results) != 1: flow_report('Unresolvable (navy side)', row.name, originals)
@@ -153,10 +153,10 @@ def string_resolver(row, data, datacol):
     if row['data.consensus_score'] != row['data.number_views']: #data has been autoresolved
       if row.name in autoresolved:
         flow_report('Later autoresolve', row.name, row['data.aligned_text'])
-        autoresolved[row.name].append(data['name'])
+        autoresolved[row.name][data['name']] = None
       else:
         flow_report('First autoresolve', row.name, row['data.aligned_text'])
-        autoresolved[row.name] = [data['name']]
+        autoresolved[row.name] = { data['name']: None }
     else: flow_report('Unambiguous', row.name, row['data.aligned_text'])
     return row[datacol]
 
@@ -386,7 +386,7 @@ def main():
   joined.insert(0, 'Autoresolved', '')
   #TODO: Again, doesn't feel like Pandas
   for index, value in autoresolved.items():
-    joined.at[index, 'Autoresolved'] = '; '.join(value)
+    joined.at[index, 'Autoresolved'] = '; '.join(value.keys())
 
 
   #Translate subjects ids into original filenames
