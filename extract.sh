@@ -55,24 +55,23 @@ datatype=($text_t $text_t $text_t $drop_t $text_t $text_t $text_t $text_t $text_
 rm -rf "${outdir}"
 mkdir  "${outdir}"
 
-#Configuration
+errcode=0
 for i in {0..12}; do
-  panoptes_aggregation config "${indir}"/hms-nhs-the-nautical-health-service-workflows.csv ${id[$i]} -v ${version[$i]} -m ${minor[$i]} -d "${outdir}" &
+  {
+    { panoptes_aggregation config "${indir}"/hms-nhs-the-nautical-health-service-workflows.csv ${id[$i]} -v ${version[$i]} -m ${minor[$i]} -d "${outdir}"               2>&1 | tee "${outdir}/config_${id[$i]}.log";  } &&
+    { panoptes_aggregation extract "${indir}/${name[$i]}" "${outdir}"/Extractor_config_workflow_${id[$i]}_V${version[$i]}.${minor[$i]}.yaml -d "${outdir}" -o ${id[$i]} 2>&1 | tee "${outdir}/extract_${id[$i]}.log"; } &&
+    { panoptes_aggregation reduce \
+        -F last \
+        -d "${outdir}" -o ${id[$i]} \
+        "${outdir}"/${datatype[$i]}_extractor_${id[$i]}.csv \
+        "${outdir}"/Reducer_config_workflow_${id[$i]}_V${version[$i]}.${minor[$i]}_${datatype[$i]}_extractor.yaml 2>&1 | tee "${outdir}/reduce_${id[$i]}.log";
+    } || { echo "*** Workflow $id[$i] failed"; errcode=1; }
+  }&
 done
 wait
-
-#Extraction
-for i in {0..12}; do
-  panoptes_aggregation extract "${indir}/${name[$i]}" "${outdir}"/Extractor_config_workflow_${id[$i]}_V${version[$i]}.${minor[$i]}.yaml -d "${outdir}" -o ${id[$i]} &
-done
-wait
-
-#Reduce
-for i in {0..12}; do
-  panoptes_aggregation reduce \
-    -F last \
-    -d "${outdir}" -o ${id[$i]} \
-    "${outdir}"/${datatype[$i]}_extractor_${id[$i]}.csv \
-    "${outdir}"/Reducer_config_workflow_${id[$i]}_V${version[$i]}.${minor[$i]}_${datatype[$i]}_extractor.yaml &
-done
-wait
+if [ $errcode -eq 0 ]; then
+  echo "All done, no errors"
+else
+  echo "Errors: look for *** above"
+fi
+exit $errcode
