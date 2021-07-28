@@ -1,0 +1,79 @@
+data.text
+""
+"London,No 10"
+"London,No. 21"
+"London,no 32"
+"London,no. 43"
+"London,o 54"
+"London,no, 65"
+LondonNo 76
+London87
+"London,98"
+London.101
+"London,England"
+London;England
+",England"
+"London, No 10"
+"London, No. 21"
+"London, no 32"
+"London, no. 43"
+"London, o 54"
+"London, no, 65"
+London No 76
+London 87
+"London, 98"
+London. 101
+"London, England"
+London; England
+", England"
+"London,England"
+London;England
+",England"
+London
+Test one two
+test One tWo
+test a b
+test A B
+test A. b
+test a. b
+test of
+test Of
+test on
+test On
+test de
+test De
+test At
+test at
+test The
+test the
+test us
+test usa
+test ss
+test sb
+test ns
+test nb
+test na
+test ab
+test nj
+test Upon
+test upon
+test ...abc
+test ...ABC
+...abc
+...ABC
+test [A
+test ]A
+test {A
+test }A
+test 'A
+test l'orleans
+test L'orleans
+test ''orleans
+test b'orleans
+test c-b
+test C-B
+test
+'test
+%test
+''test
+%%test
