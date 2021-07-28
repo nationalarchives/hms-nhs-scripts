@@ -55,9 +55,10 @@ datatype=($text_t $text_t $text_t $drop_t $text_t $text_t $text_t $text_t $text_
 rm -rf "${outdir}"
 mkdir  "${outdir}"
 
-errcode=0
+processes=()
 for i in {0..12}; do
   {
+    set -o pipefail
     { panoptes_aggregation config "${indir}"/hms-nhs-the-nautical-health-service-workflows.csv ${id[$i]} -v ${version[$i]} -m ${minor[$i]} -d "${outdir}"               2>&1 | tee "${outdir}/config_${id[$i]}.log";  } &&
     { panoptes_aggregation extract "${indir}/${name[$i]}" "${outdir}"/Extractor_config_workflow_${id[$i]}_V${version[$i]}.${minor[$i]}.yaml -d "${outdir}" -o ${id[$i]} 2>&1 | tee "${outdir}/extract_${id[$i]}.log"; } &&
     { panoptes_aggregation reduce \
@@ -65,13 +66,20 @@ for i in {0..12}; do
         -d "${outdir}" -o ${id[$i]} \
         "${outdir}"/${datatype[$i]}_extractor_${id[$i]}.csv \
         "${outdir}"/Reducer_config_workflow_${id[$i]}_V${version[$i]}.${minor[$i]}_${datatype[$i]}_extractor.yaml 2>&1 | tee "${outdir}/reduce_${id[$i]}.log";
-    } || { echo "*** Workflow $id[$i] failed"; errcode=1; }
+    } || { echo "*** Workflow $id[$i] failed"; false; }
   }&
+  processes+=($!)
 done
-wait
-if [ $errcode -eq 0 ]; then
+
+final_errcode=0
+for p in ${processes[@]}; do
+  wait $p
+  proc_errcode=$?
+  if [ $proc_errcode -ne 0 ]; then final_errcode=1; fi
+done
+if [ $final_errcode -eq 0 ]; then
   echo "All done, no errors"
 else
   echo "Errors: look for *** above"
 fi
-exit $errcode
+exit $final_errcode
