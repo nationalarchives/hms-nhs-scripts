@@ -59,13 +59,13 @@ processes=()
 for i in {0..12}; do
   {
     set -o pipefail
-    { panoptes_aggregation config "${indir}"/hms-nhs-the-nautical-health-service-workflows.csv ${id[$i]} -v ${version[$i]} -m ${minor[$i]} -d "${outdir}"               2>&1 | tee "${outdir}/config_${id[$i]}.log";  } &&
-    { panoptes_aggregation extract "${indir}/${name[$i]}" "${outdir}"/Extractor_config_workflow_${id[$i]}_V${version[$i]}.${minor[$i]}.yaml -d "${outdir}" -o ${id[$i]} 2>&1 | tee "${outdir}/extract_${id[$i]}.log"; } &&
+    { panoptes_aggregation config "${indir}"/hms-nhs-the-nautical-health-service-workflows.csv ${id[$i]} -v ${version[$i]} -m ${minor[$i]} -d "${outdir}"               > "${outdir}/config_${id[$i]}.log"  2>&1;  } &&
+    { panoptes_aggregation extract "${indir}/${name[$i]}" "${outdir}"/Extractor_config_workflow_${id[$i]}_V${version[$i]}.${minor[$i]}.yaml -d "${outdir}" -o ${id[$i]} > "${outdir}/extract_${id[$i]}.log" 2>&1; } &&
     { panoptes_aggregation reduce \
         -F last \
         -d "${outdir}" -o ${id[$i]} \
         "${outdir}"/${datatype[$i]}_extractor_${id[$i]}.csv \
-        "${outdir}"/Reducer_config_workflow_${id[$i]}_V${version[$i]}.${minor[$i]}_${datatype[$i]}_extractor.yaml 2>&1 | tee "${outdir}/reduce_${id[$i]}.log";
+        "${outdir}"/Reducer_config_workflow_${id[$i]}_V${version[$i]}.${minor[$i]}_${datatype[$i]}_extractor.yaml > "${outdir}/reduce_${id[$i]}.log" 2>&1;
     } || { echo "*** Workflow ${id[$i]} failed" >&2; false; }
   }&
   processes+=($!)
