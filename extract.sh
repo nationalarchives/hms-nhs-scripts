@@ -66,7 +66,7 @@ for i in {0..12}; do
         -d "${outdir}" -o ${id[$i]} \
         "${outdir}"/${datatype[$i]}_extractor_${id[$i]}.csv \
         "${outdir}"/Reducer_config_workflow_${id[$i]}_V${version[$i]}.${minor[$i]}_${datatype[$i]}_extractor.yaml 2>&1 | tee "${outdir}/reduce_${id[$i]}.log";
-    } || { echo "*** Workflow ${id[$i]} failed"; false; }
+    } || { echo "*** Workflow ${id[$i]} failed" >&2; false; }
   }&
   processes+=($!)
 done
@@ -80,6 +80,6 @@ done
 if [ $final_errcode -eq 0 ]; then
   echo "All done, no errors"
 else
-  echo "Errors: look for *** above"
+  echo "Errors: look for *** above" >&2
 fi
 exit $final_errcode
