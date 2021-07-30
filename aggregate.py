@@ -110,7 +110,7 @@ def has_blanks(row):
   return ''
 
 
-#We can find these by looking for square brackets and for '00'
+#We can find these by looking for square brackets and for misplaced zeros
 #But square brackets will show up in every cell that was already flagged as bad
 #So we give up on counting the bad cells, and just make sure that we flag all
 #rows that contain at least one of them
@@ -119,7 +119,7 @@ def has_transcriptionisms(row):
   if row.str.contains('[\[\]]').any():
     bad[row.name] = 1
   #TODO: Should use the info in workflows.yaml to drop the number columns, rather than listing them all by name:
-  if row.drop(['admission number', 'age', 'years at sea', 'number of days victualled']).str.contains('00').any():
+  if row.drop(['admission number', 'age', 'years at sea', 'number of days victualled']).str.contains('^0+$').any():
     bad[row.name] += 1
 
 
