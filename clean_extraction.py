@@ -69,9 +69,15 @@ def clean_18617(text):
   return result
 
 def main():
-  df = pd.read_csv(sys.argv[1], keep_default_na = False)
-  df['data.text'] = df['data.text'].map(clean_18617)
-  df.to_csv(path_or_buf = f'{sys.argv[1]}.cleaned', index = False)
+  funcmap = {
+    '18617': clean_18617,
+  }
+
+  for infile, cleanfunc in zip(sys.argv[1::2], sys.argv[2::2]):
+    df = pd.read_csv(infile, keep_default_na = False)
+    df['data.text'] = df['data.text'].map(funcmap[cleanfunc])
+    df.to_csv(path_or_buf = f'{infile}.cleaned', index = False)
+
   print('Possible crossrefs:', sorted(adminrefs))
 
 main()
