@@ -471,6 +471,7 @@ def main():
     joined['Repo'] = [remote] * len(joined.index)
     commit = subprocess.run(['git', 'rev-parse', 'HEAD'], capture_output = True, check = True).stdout
     joined['Commit'] =[commit] * len(joined.index)
+    joined['Args'] = [' '.join(sys.argv)] * len(joined.index)
   joined.to_csv(path_or_buf = f'output/{args.output}', float_format = '%.0f')
 
 main()
