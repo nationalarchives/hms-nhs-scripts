@@ -6,6 +6,9 @@ from decimal import Decimal, ROUND_HALF_UP
 
 adminrefs = set()
 
+def hill_navy(text):
+  return re.sub(r'hill(\s*navy)\b', 'HM\g<1>', text, flags = re.IGNORECASE)
+
 def clean_18617(text):
   global adminrefs
 
@@ -67,7 +70,7 @@ def clean_18617(text):
   #Drop everything to the right of a comma (inclusive of the comma)
   result = re.sub(r'\s*,.*$', '', result)
 
-  return result
+  return hill_navy(result)
 
 def clean_18619(years):
   numbers = [x.strip() for x in years.split(';')]
