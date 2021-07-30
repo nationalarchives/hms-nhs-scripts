@@ -20,6 +20,7 @@ from collections import defaultdict
 
 bad = defaultdict(int) #Keys of bad are indices of rows in the final dataframe
 autoresolved = {} #Keys of autoresolved are indices of rows in the final dataframe
+subjects = None #Initialised after arg parsing
 
 parser = argparse.ArgumentParser()
 parser.add_argument('workflows',
@@ -71,6 +72,10 @@ if args.workflows == 'development_workflows':
   args.blanks = True
   args.no_stamp = True
 
+subjects = pd.read_csv(f'{args.exports}/hms-nhs-the-nautical-health-service-subjects.csv',
+                         usecols   = ['subject_id', 'metadata'])
+
+
 def flow_report(msg, row_id, value):
   if not args.flow_report: return
 
@@ -84,6 +89,33 @@ def flow_report(msg, row_id, value):
       flow_report.reported.add(report_id)
       print(f'FR: {report_id}')
 flow_report.reported = set()
+
+#Translate subject ids into (vol, page) tuple
+#Assumption: the metadata is invariant across all of the entries for each subject_id
+def get_subject_reference(subject):
+  global subjects
+  metadata = subjects.query(f'subject_id == {subject}').iloc[0]['metadata']
+  fnam = json.loads(metadata)['Filename']
+  match = re.fullmatch('.*_(\d+)-(\d+)(?: \d)?\.jpg', fnam)
+  if match:
+    (vol, page) = [int(x) for x in match.groups()]
+    if   vol == 1: page -= 21
+    elif vol == 2: page -= 28
+    elif vol == 6: raise Exception('Surprisingly met volume 6')
+    else: page -= 3
+    return (vol, page)
+  else: raise Exception(f'"{fnam}" does not match regular expression')
+
+
+#"Port sailed out of" is not in volume 1, so doesn't count as a blank there
+def has_blanks(row):
+  without_port_sailed = row.drop('port sailed out of')
+  if without_port_sailed.isnull().values.any(): return 'Blank(s)' #Something other than 'port sailed out of' is blank, so there are definitely blanks
+  if pd.isnull(row['port sailed out of']): #if this is volume 1, this doesn't count as a blank. otherwise, it does.
+    volume = get_subject_reference(row.name[0])[0]
+    if volume != 1: return 'Blank(s)'
+  return ''
+
 
 #Recieve:
 #'candidates': A dict of category names and votes for that category
@@ -145,6 +177,17 @@ def years_at_sea_resolver(candidates, row, data, datacol):
     return originals
 
 def string_resolver(row, data, datacol):
+  #Start with a special case -- if port sailed out of is set and we are volume 1, autoresolve to blank
+  if data['name'] == 'port sailed out of' and get_subject_reference(row.name[0])[0] == 1:
+    if row['data.number_views'] > 0:
+      if row.name in autoresolved:
+        flow_report('port sailed out of in volume 1 (later)', row.name, row['data.aligned_text'])
+        autoresolved[row.name][data['name']] = None
+        return ''
+      else:
+        flow_report('port sailed out of in volume 1 (first)', row.name, row['data.aligned_text'])
+        autoresolved[row.name] = { data['name']: None }
+        return ''
   if row['data.consensus_score'] / row['data.number_views'] < args.text_threshold:
     flow_report('Did not pass threshold', row.name, row['data.aligned_text'])
     bad[row.name] += 1
@@ -246,7 +289,6 @@ def main():
 
   KEYS = ['subject_id', 'task']
   RETIREMENT_COUNT = 3 #I believe that this is the same for all workflows at all times. Can be parameterised in workflows.yaml if need be.
-  PREFIX=f'{args.exports}/hms-nhs-the-nautical-health-service'
 
   with open('workflow.yaml') as f:
     workflow = yaml.load(f, Loader = yaml.Loader)
@@ -364,7 +406,7 @@ def main():
 
   #Tag or remove the rows with badness
   joined.insert(0, 'Problems', '')
-  joined['Problems'] = joined.apply(lambda x: 'Blank(s)' if x.isnull().values.any() else '', axis = 'columns')
+  joined['Problems'] = joined.apply(has_blanks, axis = 'columns')
   if not args.blanks:
     incomplete_subjects = list(joined[joined.Problems != ''].index.get_level_values('subject_id').unique())
     removed = joined.query(f'subject_id in @incomplete_subjects')
@@ -391,11 +433,12 @@ def main():
 
   #Translate subjects ids into original filenames
   #Assumption: the metadata is invariant across all of the entries for each subject_id
-  subjects = pd.read_csv(f'{PREFIX}-subjects.csv',
-                         usecols   = ['subject_id', 'metadata'])
   joined.insert(0, 'volume', '')
   joined.insert(1, 'page', '')
   for sid in joined.index.get_level_values('subject_id').unique():
+    #This is what I should do here. But enabling it produces a peculiar warning,
+    #so sticking with duplicate vol/page calculation code for now.
+    #(vol, page) = get_subject_reference(sid)
     metadata = subjects.query(f'subject_id == {sid}').iloc[0]['metadata']
     fnam = json.loads(metadata)['Filename']
     match = re.fullmatch('.*_(\d+)-(\d+)(?: \d)?\.jpg', fnam)
