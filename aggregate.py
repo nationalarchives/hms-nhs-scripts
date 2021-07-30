@@ -455,13 +455,9 @@ def main():
       (vol, page) = [int(x) for x in match.groups()]
       if   vol == 1: page -= 21
       elif vol == 2: page -= 28
-      elif vol == 6:
-        print('Surprisingly met volume 6', file = sys.stderr)
-        (vol, page) = ('6', '?')
+      elif vol == 6: raise Exception('Surprisingly met volume 6')
       else: page -= 3
-    else:
-      print(f'"{fnam}" does not match regular expression', file = sys.stderr)
-      (vol, page) = '?', '?'
+    else: raise Exception(f'"{fnam}" does not match regular expression')
     joined.loc[[sid], 'volume'] = [vol]  * 25
     joined.loc[[sid], 'page']   = [page] * 25
 
