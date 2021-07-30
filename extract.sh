@@ -27,7 +27,7 @@ name=(1-admission-number-classifications.csv
     version=(      3       3       3       3       3       3       3       3       3       3       3       3       3)
       minor=(      1       1       1       1       1       1       1       1       1       1       1       1       1)
    datatype=($text_t $text_t $text_t $drop_t $text_t $text_t $text_t $text_t $text_t $text_t $text_t $drop_t $text_t)
-postextract=(  false   false   false   false   false    true   false   false   false   false   false   false   false)
+postextract=(  false   false   false   false   false    true   false    true   false   false   false   false   false)
 
 #development workflows (matches name in YAML file)
 #name=(1-admission-number-workflow-classifications.csv
