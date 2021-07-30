@@ -8,8 +8,8 @@ done
 wait
 
 for x in output/joined*.csv; do
-  disagreeing_rows=$(printf '%6d'  `csvtool namedcol Problems $x | grep isagreements | wc -l`)
-  disagreeing_cells=$(printf '%6d' `csvtool namedcol Problems $x | grep isagreements | sed 's/^.* \?\([[:digit:]]\+\) disagreements$/\1/' | paste -s -d+ - | bc`)
+  disagreeing_rows=$(printf '%6d'  `csvtool namedcol Problems $x | grep nresolved | wc -l`)
+  disagreeing_cells=$(printf '%6d' `csvtool namedcol Problems $x | grep nresolved | sed 's/^.* \?\([[:digit:]]\+\) unresolved fields$/\1/' | paste -s -d+ - | bc`)
   complete=$(printf '%6d' `csvtool namedcol Problems $x | grep -c '^$'`)
   total_rows=`cat $x | wc -l`; total_rows=$(printf '%6d' $((total_rows - 1)))
   total_cells=$(printf '%6d' $((total_rows * 13)))
