@@ -528,7 +528,7 @@ subject_id,workflow_id,task,data.aligned_text,data.number_views,data.consensus_s
 44121904,18617,T2,"[['London', 'London', 'London', 'London']]",4,4,London
 44121904,18617,T3,"[['Brighton', 'Brighton', 'Brighton.', 'Brighton'], ['', '', 'London', '']]",4,2,Brighton London
 44121904,18617,T4,"[['Eastbourn', 'Eastbourn', 'Eastbourne', 'Eastbourn']]",4,3,Eastbourn
-44121904,18617,T5,"[['Brixham', 'Brixham', 'Brixham', 'Brixham']]",4,4,Brixham
+44121904,18617,T5,"[['00', '00', '00', '00']]",4,4,00
 44121904,18617,T7,"[['Lyminton', 'Lymington', 'Lyminton', 'Syminton']]",4,2,Lyminton
 44121904,18617,T8,"[['Stromness', 'Stromness', 'Stromefs', 'Stromness']]",4,3,Stromness
 44121904,18617,T9,"[['Ireland', 'Ireland', 'Ireland', 'Ireland']]",4,4,Ireland

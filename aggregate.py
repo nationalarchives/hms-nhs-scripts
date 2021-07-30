@@ -110,6 +110,19 @@ def has_blanks(row):
   return ''
 
 
+#We can find these by looking for square brackets and for '00'
+#But square brackets will show up in every cell that was already flagged as bad
+#So we give up on counting the bad cells, and just make sure that we flag all
+#rows that contain at least one of them
+def has_transcriptionisms(row):
+  if row.name in bad: return
+  if row.str.contains('[\[\]]').any():
+    bad[row.name] = 1
+  #TODO: Should use the info in workflows.yaml to drop the number columns, rather than listing them all by name:
+  if row.drop(['admission number', 'age', 'years at sea', 'number of days victualled']).str.contains('00').any():
+    bad[row.name] += 1
+
+
 #Recieve:
 #'candidates': A dict of category names and votes for that category
 #'threshold': A threshold for winning
@@ -397,6 +410,8 @@ def main():
   first = columns.pop(0)
   joined = first.join(columns, how='outer')
 
+  #Search for transcription problmes
+  joined.apply(has_transcriptionisms, axis = 'columns')
 
   #Tag or remove the rows with badness
   joined.insert(0, 'Problems', '')
@@ -414,9 +429,9 @@ def main():
   for b in bad.keys():
     problems = joined.at[b, 'Problems']
     if len(problems):
-      joined.at[b, 'Problems'] = f'{problems} & {bad[b]} disagreements'
+      joined.at[b, 'Problems'] = f'{problems} & at least {bad[b]} disagreements'
     else:
-      joined.at[b, 'Problems'] = f'{bad[b]} disagreements'
+      joined.at[b, 'Problems'] = f'At least {bad[b]} disagreements'
 
   #Record where there was autoresolution
   joined.insert(0, 'Autoresolved', '')
