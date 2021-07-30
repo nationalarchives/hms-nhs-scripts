@@ -25,7 +25,7 @@ subjects = None #Initialised after arg parsing
 parser = argparse.ArgumentParser()
 parser.add_argument('workflows',
                     nargs = '?',
-                    default = 'development_workflows',
+                    default = 'launch_workflows',
                     help = 'Label for workflows to process (see workflows.yaml).')
 parser.add_argument('--text_threshold', '-t',
                     type = float,
@@ -65,13 +65,6 @@ parser.add_argument('--flow_report', '-f',
                            )
                    )
 args = parser.parse_args()
-if args.workflows == 'development_workflows':
-  print('*** TEST MODE')
-  args.dir = 'doctored'
-  args.unfinished = True
-  args.blanks = True
-  args.no_stamp = True
-
 subjects = pd.read_csv(f'{args.exports}/hms-nhs-the-nautical-health-service-subjects.csv',
                          usecols   = ['subject_id', 'metadata'])
 
