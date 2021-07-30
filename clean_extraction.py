@@ -6,15 +6,14 @@ from decimal import Decimal, ROUND_HALF_UP
 
 adminrefs = set()
 
+def strip(x):
+  return x.strip()
+
 def hill_navy(text):
   return re.sub(r'hill(\s*navy)\b', 'HM\g<1>', text, flags = re.IGNORECASE)
 
-def clean_18617(text):
-  global adminrefs
-
-  #chomp whitespace (Panoptes extraction doesn't do this)
-  result = text.strip()
-
+def normalise_case(text):
+  result = text
   #Title case (all words start with a capital letter, rest is lowercase)
   #Sometimes there is a sentence instead of a placename, so just guess that anything
   #longer than 4 words is a sentence and leave it alone.
@@ -58,19 +57,33 @@ def clean_18617(text):
 
   #First character is always upper case
   result = re.sub(r'^\'?[a-z]', lambda x: x[0].upper(), result) #The 'possible quote' at the beginning is just to deal with 'New Hampshire, which was annoying me.
+  return result
 
+
+def strip_crossref(text):
   #Check for possible reference to another admission.
   #If it is there, log it and strip it
+  global adminrefs
+  result = text
   number = re.search(r'\d+$', result)
   if number:
     adminrefs.add(int(number[0]))
     result = re.sub(r'\s*\d+', '', result)
     result = re.sub(r'\s+[Nn]o\.?$', '', result)
+  return result
+
+
+def clean_18617(text):
+  #chomp whitespace (Panoptes extraction doesn't do this)
+  result = text.strip()
+  result = normalise_case(result)
+  result = strip_crossref(result)
 
   #Drop everything to the right of a comma (inclusive of the comma)
   result = re.sub(r'\s*,.*$', '', result)
 
   return hill_navy(result)
+
 
 def clean_18619(years):
   numbers = [x.strip() for x in years.split(';')]
@@ -131,10 +144,25 @@ def clean_18619(years):
   return '; '.join([round_to_month(x) for x in numbers])
 
 
+def clean_text(text):
+  return strip_crossref(hill_navy(normalise_case(strip(text))))
+
+
 def main():
   funcmap = {
-    '18617': clean_18617,
-    '18619': clean_18619,
+    '18611': strip, #number or date, just strip
+    '18612': strip, #number or date, just strip
+    '18613': clean_text,
+    #'18614': dropdown, nothing to normalise
+    '18616': strip, #number or date, just strip
+    '18617': clean_18617, #some special handling for extra words
+    '18618': clean_text,
+    '18619': clean_18619, #some special handling for splitting the fields and rounding to 0.08
+    '18621': clean_text,
+    '18622': clean_text,
+    '18623': strip, #number or date, just strip
+    #'18624': dropdown, nothing to normalise,
+    '18625': strip, #number or date, just strip
   }
 
   for infile, cleanfunc in zip(sys.argv[1::2], sys.argv[2::2]):

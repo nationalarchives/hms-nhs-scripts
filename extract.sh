@@ -27,7 +27,6 @@ name=(1-admission-number-classifications.csv
     version=(      3       3       3       3       3       3       3       3       3       3       3       3       3)
       minor=(      1       1       1       1       1       1       1       1       1       1       1       1       1)
    datatype=($text_t $text_t $text_t $drop_t $text_t $text_t $text_t $text_t $text_t $text_t $text_t $drop_t $text_t)
-postextract=(  false   false   false   false   false    true   false    true   false   false   false   false   false)
 
 #development workflows (matches name in YAML file)
 #name=(1-admission-number-workflow-classifications.csv
@@ -62,7 +61,7 @@ for i in {0..12}; do
     set -o pipefail
     { panoptes_aggregation config "${indir}"/hms-nhs-the-nautical-health-service-workflows.csv ${id[$i]} -v ${version[$i]} -m ${minor[$i]} -d "${outdir}"               > "${outdir}/config_${id[$i]}.log"  2>&1;  } &&
     { panoptes_aggregation extract "${indir}/${name[$i]}" "${outdir}"/Extractor_config_workflow_${id[$i]}_V${version[$i]}.${minor[$i]}.yaml -d "${outdir}" -o ${id[$i]} > "${outdir}/extract_${id[$i]}.log" 2>&1; } &&
-    if ${postextract[$i]}; then
+    if [ "${datatype[$i]}" == "$text_t" ]; then
       { ./clean_extraction.py "${outdir}/${datatype[$i]}_extractor_${id[$i]}.csv" > "${outdir}/postextract_${id[$i]}.log" ${id[$i]} 2>&1 &&
          mv "${outdir}/${datatype[$i]}_extractor_${id[$i]}.csv" "${outdir}/${datatype[$i]}_extractor_${id[$i]}.csv.original" &&
          cp "${outdir}/${datatype[$i]}_extractor_${id[$i]}.csv.cleaned" "${outdir}/${datatype[$i]}_extractor_${id[$i]}.csv"; }
