@@ -424,14 +424,14 @@ def main():
       autoresolved.pop(key, None)
     joined = joined.query(f'subject_id not in @incomplete_subjects')
 
-  #Tag unresolved disagreements
+  #Tag unresolved unresolved fields
   #TODO This part does not feel like the Pandas way
   for b in bad.keys():
     problems = joined.at[b, 'Problems']
     if len(problems):
-      joined.at[b, 'Problems'] = f'{problems} & at least {bad[b]} disagreements'
+      joined.at[b, 'Problems'] = f'{problems} & at least {bad[b]} unresolved fields'
     else:
-      joined.at[b, 'Problems'] = f'At least {bad[b]} disagreements'
+      joined.at[b, 'Problems'] = f'At least {bad[b]} unresolved fields'
 
   #Record where there was autoresolution
   joined.insert(0, 'Autoresolved', '')
