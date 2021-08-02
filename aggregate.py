@@ -10,6 +10,7 @@ import collections
 import datetime
 import dateutil
 import subprocess
+import inspect
 from collections import defaultdict
 
 #For debugging
@@ -56,6 +57,12 @@ parser.add_argument('--blanks', '-b',
 parser.add_argument('--no_stamp', '-S',
                     action = 'store_true',
                     help = 'Do not stamp the output with information about the script used to generate it')
+parser.add_argument('--flow_report', '-f',
+                    action = 'store_true',
+                    help = ('Show information about paths taken through program.\n'
+                            'Used in conjunction with coverage.sh to make sure that test inputs are testing all paths.'
+                           )
+                   )
 args = parser.parse_args()
 if args.workflows == 'development_workflows':
   print('*** TEST MODE')
@@ -63,6 +70,20 @@ if args.workflows == 'development_workflows':
   args.unfinished = True
   args.blanks = True
   args.no_stamp = True
+
+def flow_report(msg, row_id, value):
+  if not args.flow_report: return
+
+  caller = inspect.stack()[1]
+  try: report_id = f'{caller.function} {msg}'
+  finally: del caller
+  if args.verbose >= 1:
+    print(f'FR: {report_id} {row_id} {value}')
+  else:
+    if report_id not in flow_report.reported:
+      flow_report.reported.add(report_id)
+      print(f'FR: {report_id}')
+flow_report.reported = set()
 
 #Recieve:
 #'candidates': A dict of category names and votes for that category
@@ -93,11 +114,13 @@ def years_at_sea_resolver(candidates, row, data, datacol):
   merchants = []
   for numbers in [x.split(';') for x in originals]:
     if len(numbers) != 2:
+      flow_report('Wrong number of "years at sea" entries (or bad separator)', row.name, originals)
       bad[row.name] += 1
       return originals
     try:
       (navy, merchant) = [float(x) for x in numbers]
     except ValueError:
+      flow_report('Non-float argument in "years at sea"', row.name, originals)
       bad[row.name] += 1
       return originals
     navies.append(navy)
@@ -105,27 +128,39 @@ def years_at_sea_resolver(candidates, row, data, datacol):
   navy_results     = category_resolver(collections.Counter(navies),    args.dropdown_threshold, row.name, data['name'])
   merchant_results = category_resolver(collections.Counter(merchants), args.dropdown_threshold, row.name, data['name'])
   if len(navy_results) == 1 and len(merchant_results) == 1:
+    if row.name in autoresolved and data['name'] in autoresolved[row.name]: flow_report('Autoresolved', row.name, originals)
+    else: flow_report('Unanimous', row.name, originals)
     navy_result = next(iter(navy_results))
     merchant_result = next(iter(merchant_results))
     return f'{navy_result}; {merchant_result}'
   else:
+    if len(navy_results) != 1 and len(merchant_results) != 1: flow_report('Unresolvable (both sides)', row.name, originals)
+    elif len(navy_results) != 1: flow_report('Unresolvable (navy side)', row.name, originals)
+    else: flow_report('Unresolvable (merchant side)', row.name, originals)
     bad[row.name] += 1
     return originals
 
 def string_resolver(row, data, datacol):
   if row['data.consensus_score'] / row['data.number_views'] < args.text_threshold:
+    flow_report('Did not pass threshold', row.name, row['data.aligned_text'])
     bad[row.name] += 1
     return row['data.aligned_text']
   else:
     if row['data.consensus_score'] != row['data.number_views']: #data has been autoresolved
-      if row.name in autoresolved: autoresolved[row.name].append(data['name'])
-      else: autoresolved[row.name] = [data['name']]
+      if row.name in autoresolved:
+        flow_report('Later autoresolve', row.name, row['data.aligned_text'])
+        autoresolved[row.name].append(data['name'])
+      else:
+        flow_report('First autoresolve', row.name, row['data.aligned_text'])
+        autoresolved[row.name] = [data['name']]
+    else: flow_report('Unambiguous', row.name, row['data.aligned_text'])
     return row[datacol]
 
 def date_resolver(row, data):
     candidates = ast.literal_eval(row['data.aligned_text'])
 
     if(len(candidates) != 1): #Not a conventional case, resolve manually
+      flow_report('Surprising input', row.name, row['data.aligned_text'])
       bad[row.name] += 1
       return row['data.aligned_text']
 
@@ -135,13 +170,17 @@ def date_resolver(row, data):
     try:
       candidates = [dateutil.parser.parse(d, dayfirst = True) for d in candidates] #yearfirst defaults to False
     except (TypeError, ValueError): #Something is wrong, resolve manually
+      flow_report('Unparseable', row.name, row['data.aligned_text'])
       bad[row.name] += 1
       return row['data.aligned_text']
     candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, row.name, data['name'])
     if len(candidates) == 1:
+      if row.name in autoresolved and data['name'] in autoresolved[row.name]: flow_report('Autoresolved', row.name, row['data.aligned_text'])
+      else: flow_report('Unanimous', row.name, row['data.aligned_text'])
       date = next(iter(candidates))
       return date.strftime('%d-%m-%Y')
     else:
+      flow_report('Unresolvable', row.name, row['data.aligned_text'])
       bad[row.name] += 1
       return row['data.aligned_text']
 
@@ -155,6 +194,7 @@ def number_resolver(row, data, datacol):
     return years_at_sea_resolver(candidates, row, data, datacol)
 
   if(len(candidates) != 1): #Not a conventional case, resolve manually
+    flow_report('Surprising input', row.name, row['data.aligned_text'])
     bad[row.name] += 1
     return row['data.aligned_text']
 
@@ -164,15 +204,21 @@ def number_resolver(row, data, datacol):
   try:
     candidates = [float(x) for x in candidates]
   except ValueError:
+    flow_report('Non-float input', row.name, row['data.aligned_text'])
     bad[row.name] += 1
     return row['data.aligned_text']
   if not all([x.is_integer() for x in candidates]):
+    flow_report('Non-integer input', row.name, row['data.aligned_text'])
     bad[row.name] += 1
     return row['data.aligned_text']
   candidates = [int(x) for x in candidates]
   candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, row.name, data['name'])
-  if len(candidates) == 1: return next(iter(candidates)) #First key, efficiently (see https://www.geeksforgeeks.org/python-get-the-first-key-in-dictionary/)
+  if len(candidates) == 1:
+    if row.name in autoresolved and data['name'] in autoresolved[row.name]: flow_report('Autoresolved', row.name, row['data.aligned_text'])
+    else: flow_report('Unanimous', row.name, row['data.aligned_text'])
+    return next(iter(candidates)) #First key, efficiently (see https://www.geeksforgeeks.org/python-get-the-first-key-in-dictionary/)
   else:
+    flow_report('Unresolvable', row.name, row['data.aligned_text'])
     bad[row.name] += 1
     return row['data.aligned_text']
 
@@ -233,10 +279,10 @@ def main():
         if args.verbose >= 1:
           overcount = df[df['data.number_views'] > RETIREMENT_COUNT]
           print(f'  Completed rows: {len(df.index)} (of which {len(overcount.index)} overcounted)')
-          if args.verbose >= 2 and not overcount.empty: print(overcount)
+          if args.verbose >= 3 and not overcount.empty: print(overcount)
           undercount = df[df['data.number_views'] < RETIREMENT_COUNT]
           print(f'  Undercounted rows: {len(undercount.index)}')
-          if args.verbose >= 2 and not undercount.empty: print(undercount)
+          if args.verbose >= 3 and not undercount.empty: print(undercount)
 
       df[datacol] = df.apply(text_resolver, axis = 'columns', data = data, datacol = datacol)
       #TODO: For these kinds of strings, may well be better to treat them like dropdowns and just take two thirds identical as permitting auto-resolve
@@ -253,20 +299,26 @@ def main():
         if args.verbose >= 1:
           overcount = df[df[datacol].apply(votecounter) > RETIREMENT_COUNT]
           print(f'  Completed rows: {len(df.index)} (of which {len(overcount.index)} overcounted)')
-          if args.verbose >= 2 and not overcount.empty: print(overcount)
+          if args.verbose >= 3 and not overcount.empty: print(overcount)
           undercount = df[df[datacol].apply(votecounter) < RETIREMENT_COUNT]
           print(f'  Undercounted rows: {len(undercount.index)}')
-          if args.verbose >= 2 and not undercount.empty: print(undercount)
+          if args.verbose >= 3 and not undercount.empty: print(undercount)
 
       #Process classifications for output
-      def resolver(row):
+      def drop_resolver(row):
         #row is a single-element array, containing one dictionary
         selections = ast.literal_eval(row[datacol])
         if len(selections) != 1: raise Exception()
         result = category_resolver(selections[0], args.dropdown_threshold, row.name, data['name'])
-        if len(result) != 1: bad[row.name] += 1
+        if len(result) == 1:
+          if row.name in autoresolved and data['name'] in autoresolved[row.name]:
+            flow_report('Autoresolved', row.name, row['data.value'])
+          else: flow_report('Unanimous', row.name, row['data.value'])
+        else:
+          flow_report('Unresolvable', row.name, row['data.value'])
+          bad[row.name] += 1
         return str([result])
-      df[datacol] = df.apply(resolver, axis = 'columns')
+      df[datacol] = df.apply(drop_resolver, axis = 'columns')
     else: raise Exception()
 
     #Tidy up columns
