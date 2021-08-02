@@ -283,7 +283,9 @@ def text_resolver(row, **kwargs):
   data = kwargs['data']
   datacol = kwargs['datacol']
 
-  if pd.isnull(row['data.consensus_score']) or pd.isnull(row['data.number_views']): return ''
+  if pd.isnull(row['data.consensus_score']) or pd.isnull(row['data.number_views']):
+    assert args.unfinished #This condition should only come up if -u is set
+    return ''
 
   if data['nptype'] == str: return string_resolver(row, data, datacol)
   elif data['nptype'] == pd.Int64Dtype: return number_resolver(row, data, datacol)
@@ -327,6 +329,7 @@ def main():
       if not args.unfinished:
         #Drop all classifications that are based on an insufficient number of views
         df.drop(df[df['data.number_views'] < RETIREMENT_COUNT].index, inplace = True)
+        df.dropna(subset = ['data.number_views'], inplace = True)
 
       #Report on rows with different counts
       if args.verbose >= 1:
