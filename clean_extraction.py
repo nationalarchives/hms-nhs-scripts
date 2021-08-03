@@ -86,7 +86,10 @@ def clean_18617(text):
 
 
 def clean_18619(years):
-  numbers = [x.strip() for x in years.split(';')]
+  separator = re.search(r'[;:,]', years)
+  if separator: separator = separator[0]
+  else: return years
+  numbers = [x.strip() for x in years.split(separator)]
   if len(numbers) != 2: return years
 
   def round_to_month(x):
