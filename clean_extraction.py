@@ -97,7 +97,7 @@ def clean_18619(years):
       float(x)
     except ValueError:
       if re.match(r'^[oO0 ]*$', x): x = '0'
-      else: return x
+      else: return ''
     parts = re.match(r'(.*)\.(.*)$', x)
     if parts:
       integer_part = parts[1]
@@ -144,7 +144,7 @@ def clean_18619(years):
       assert len(x) != 0 #The regexp near the beginning will replace empty strings with 0
       return f'{int(x):02}'
 
-  return '; '.join([round_to_month(x) for x in numbers])
+  return ';'.join([round_to_month(x) for x in numbers])
 
 
 def clean_text(text):
