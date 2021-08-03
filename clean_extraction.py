@@ -3,6 +3,8 @@ import pandas as pd
 import re
 import sys
 from decimal import Decimal, ROUND_HALF_UP
+import dateutil
+import datetime
 
 adminrefs = set()
 
@@ -151,21 +153,57 @@ def clean_text(text):
   return strip_crossref(hill_navy(normalise_case(strip(text))))
 
 
+def unstring_number(text):
+  result = strip(text)
+  try: float(result)
+  except ValueError:
+    if re.match(r'^[oO0]*$', text): return '0'
+    else: return ''
+  return result
+
+
+def unstring_date(text):
+  text = strip(text)
+  try: result = re.sub(r'[oO0]+', '0', text)
+  except TypeError: return ''
+
+  #TODO: If year is missing or badly formatted, we should be able to infer it from the volume.
+  #      This would also allow us to handle dates in 'wordy' (e.g. 'July 17') format.
+  #TODO: Consider just discarding the year and inferring it from the volume
+  #TODO: Consider turning the character class into just 'not digit'
+  #TODO: Consider trying to make a sane date string in the case that the string is duplicated (01-01-182601-01-1826)
+  #TODO: Consider trying to make a sane date string if a separator is missing or some random digit
+  if not re.match(r'^\d+\s*[-/\.=]\s*\d+\s*[-/\.=]\s*\d+$', result): return ''
+
+  result = re.sub(r'\s*=\s*', '-', result)
+
+  #dateutil.parser.parse is thrown off by leading zeros if that results in too many digits in a field
+  result = re.sub(r'-0+', '-', result)
+  result = re.sub(r'^0+', '', result)
+
+  try: result = dateutil.parser.parse(result, dayfirst = True)
+  except (TypeError, ValueError): return ''
+  if result.year > 9999: return text
+  if result.year < 1800: return text
+  if result.year > 1900: result = datetime.datetime(int(f'18{str(result.year)[2:4]}'), result.month, result.day)
+  return result.strftime('%d-%m-%Y')
+
+
 def main():
   funcmap = {
-    '18611': strip, #number or date, just strip
-    '18612': strip, #number or date, just strip
+    '18611': unstring_number,
+    '18612': unstring_date,
     '18613': clean_text,
     #'18614': dropdown, nothing to normalise
-    '18616': strip, #number or date, just strip
+    '18616': unstring_number,
     '18617': clean_18617, #some special handling for extra words
     '18618': clean_text,
     '18619': clean_18619, #some special handling for splitting the fields and rounding to 0.08
     '18621': clean_text,
     '18622': clean_text,
-    '18623': strip, #number or date, just strip
+    '18623': unstring_date,
     #'18624': dropdown, nothing to normalise,
-    '18625': strip, #number or date, just strip
+    '18625': unstring_number, #number or date, just strip
   }
 
   for infile, cleanfunc in zip(sys.argv[1::2], sys.argv[2::2]):
