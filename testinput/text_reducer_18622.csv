@@ -1,5 +1,5 @@
 subject_id,task,data.aligned_text,data.number_views,data.consensus_score,data.consensus_text
-44121861,T1,"[['Rheumatism', 'Rheumatism', 'Rheumatism']]",3.0,3.0,Rheumatism
+44121861,T1,"[['', '', '']]",3.0,3.0,""
 44121861,T2,"[['Scald', 'Scald', 'Scald'], ['head', 'Head', 'Hand']]",3.0,2.0,Scald head
 44121861,T3,"[['Rheumatism', 'Rheumatism', 'Rheumatism']]",3.0,3.0,Rheumatism
 44121861,T4,"[['Pulmonic', 'Pulmonic', 'Pulmonaic'], ['disease', 'disease', 'disease']]",3.0,2.5,Pulmonic disease

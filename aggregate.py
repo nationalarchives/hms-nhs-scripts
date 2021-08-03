@@ -21,6 +21,7 @@ from collections import defaultdict
 bad = defaultdict(int) #Keys of bad are indices of rows in the final dataframe
 autoresolved = {} #Keys of autoresolved are indices of rows in the final dataframe
 subjects = None #Initialised after arg parsing
+CLASSIFIED_BLANK = '[CLASSIFIED BLANK]'
 
 parser = argparse.ArgumentParser()
 parser.add_argument('workflows',
@@ -118,6 +119,8 @@ def has_transcriptionisms(row):
   if row.name in bad: return
   if row.str.contains('[\[\]]').any():
     bad[row.name] = 1
+  if row.str.fullmatch(r'\[CLASSIFIED BLANK\]').any():
+    bad[row.name] += 1
   #TODO: Should use the info in workflows.yaml to drop the number columns, rather than listing them all by name:
   if row.drop(['admission number', 'age', 'years at sea', 'number of days victualled']).str.contains('^0+$').any():
     bad[row.name] += 1
@@ -207,7 +210,9 @@ def string_resolver(row, data, datacol):
         flow_report('First autoresolve', row.name, row['data.aligned_text'])
         autoresolved[row.name] = { data['name']: None }
     else: flow_report('Unambiguous', row.name, row['data.aligned_text'])
-    return row[datacol]
+    result = row[datacol].strip()
+    if len(result) == 0: result = CLASSIFIED_BLANK
+    return result
 
 def date_resolver(row, data):
     candidates = ast.literal_eval(row['data.aligned_text'])
