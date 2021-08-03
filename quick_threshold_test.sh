@@ -2,12 +2,12 @@
 #bc trick: https://stackoverflow.com/a/451204
 
 for x in 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9; do
-  ./aggregate.py launch_workflows -v -1 -o joined_${x}.csv -t $x "$@" &
+  ./aggregate.py launch_workflows -v -1 -o quick_threshold_test_${x}.csv -t $x "$@" &
 done
 
 wait
 
-for x in output/joined*.csv; do
+for x in output/quick_threshold_test_*.csv; do
   disagreeing_rows=$(printf '%6d'  `csvtool namedcol Problems $x | grep nresolved | wc -l`)
   disagreeing_cells=$(printf '%6d' `csvtool namedcol Problems $x | grep nresolved | sed 's/^.* \?\([[:digit:]]\+\) unresolved fields$/\1/' | paste -s -d+ - | bc`)
   complete=$(printf '%6d' `csvtool namedcol Problems $x | grep -c '^$'`)
