@@ -461,8 +461,8 @@ def main():
       elif vol == 6: raise Exception('Surprisingly met volume 6')
       else: page -= 3
     else: raise Exception(f'"{fnam}" does not match regular expression')
-    joined.loc[[sid], 'volume'] = [vol]  * 25
-    joined.loc[[sid], 'page']   = [page] * 25
+    joined.loc[[sid], 'volume'] = vol
+    joined.loc[[sid], 'page']   = page
 
 
   #This feels ridiculous, but works in conjunction with maxcolwidth.sh to check for columns too wide for Excel
