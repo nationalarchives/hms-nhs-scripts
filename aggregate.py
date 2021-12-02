@@ -438,8 +438,9 @@ def main():
 
   #Translate subjects ids into original filenames
   #Assumption: the metadata is invariant across all of the entries for each subject_id
-  joined.insert(0, 'volume', '')
-  joined.insert(1, 'page', '')
+  joined.insert(0, 'subject', '')
+  joined.insert(1, 'volume', '')
+  joined.insert(2, 'page', '')
   for sid in joined.index.get_level_values('subject_id').unique():
     #This is what I should do here. But enabling it produces a peculiar warning,
     #so sticking with duplicate vol/page calculation code for now.
@@ -454,6 +455,7 @@ def main():
       elif vol == 6: raise Exception('Surprisingly met volume 6')
       else: page -= 3
     else: raise Exception(f'"{fnam}" does not match regular expression')
+    joined.loc[[sid], 'subject'] = sid
     joined.loc[[sid], 'volume'] = vol
     joined.loc[[sid], 'page']   = page
 
@@ -466,7 +468,7 @@ def main():
 
 
   #This feels ridiculous, but works in conjunction with maxcolwidth.sh to check for columns too wide for Excel
-  joined.to_csv(path_or_buf = f'output/lenchecker.csv', float_format = '%.0f', sep = '@')
+  joined.to_csv(path_or_buf = f'output/lenchecker.csv', float_format = '%.0f', sep = '@', index = False)
 
   #Dump output
   if not args.no_stamp:
@@ -475,6 +477,6 @@ def main():
     commit = subprocess.run(['git', 'rev-parse', 'HEAD'], capture_output = True, check = True).stdout
     joined['Commit'] =[commit] * len(joined.index)
     joined['Args'] = [' '.join(sys.argv)] * len(joined.index)
-  joined.to_csv(path_or_buf = f'output/{args.output}', float_format = '%.0f')
+  joined.to_csv(path_or_buf = f'output/{args.output}', float_format = '%.0f', index = False)
 
 main()
