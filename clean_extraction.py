@@ -149,6 +149,15 @@ def clean_18619(years):
   return ';'.join([round_to_month(x) for x in numbers])
 
 
+def clean_18621(text):
+  result = clean_text(text)
+
+  #Can now assume title case
+  result = re.sub(r'^Hms\b', 'HMS', result)
+  result = re.sub(r'^Hcs\b', 'HCS', result)
+  return result
+
+
 def clean_text(text):
   return strip_crossref(hill_navy(normalise_case(strip(text))))
 
@@ -199,7 +208,7 @@ def main():
     '18617': clean_18617, #some special handling for extra words
     '18618': clean_text,
     '18619': clean_18619, #some special handling for splitting the fields and rounding to 0.08
-    '18621': clean_text,
+    '18621': clean_18621, #some special handling for ship name abbreviations
     '18622': clean_text,
     '18623': unstring_date,
     #'18624': dropdown, nothing to normalise,

@@ -10,6 +10,9 @@ diff -s extracttest/test18619.golden.csv extracttest/test18619.csv.cleaned || { 
 diff -s extracttest/test18612_stdout.golden <(./clean_extraction.py extracttest/test18612.csv 18612) || { echo FAIL; exit 1; }
 diff -s extracttest/test18612.golden.csv extracttest/test18612.csv.cleaned || { echo FAIL; exit 1; }
 
+diff -s extracttest/test18621_stdout.golden <(./clean_extraction.py extracttest/test18621.csv 18621) || { echo FAIL; exit 1; }
+diff -s extracttest/test18621.golden.csv extracttest/test18621.csv.cleaned || { echo FAIL; exit 1; }
+
 rm -f output/QTEST.csv; mkdir -p output; ./aggregate.py ${args[@]} && diff -s golden_QTEST.csv output/QTEST.csv && ./coverage.pl ${args[@]} && echo PASS || { echo FAIL; false; }
 
 echo 'If you want to run code coverage tool:'
