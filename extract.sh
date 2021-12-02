@@ -28,6 +28,15 @@ name=(1-admission-number-classifications.csv
       minor=(      1       1       1       1       1       1       1       1       1       1       1       1       1)
    datatype=($text_t $text_t $text_t $drop_t $text_t $text_t $text_t $text_t $text_t $text_t $text_t $drop_t $text_t)
 
+
+#Can add bits here to postprocess outputs of configuration
+#So far only needed to make the label for one of the 'disposed of' tasks consistent
+function config_postproc {
+  case $1 in
+    11) sed -i 's#To a Ship Cured#To a/his Ship Cured#' ${outdir}/Task_labels_workflow_${id[$1]}_V${version[$1]}.${minor[$1]}.yaml;;
+  esac
+}
+
 #development workflows (matches name in YAML file)
 #name=(1-admission-number-workflow-classifications.csv
 #      2-date-of-entry-workflow-classifications.csv
@@ -59,7 +68,7 @@ processes=()
 for i in {0..12}; do
   {
     set -o pipefail
-    { panoptes_aggregation config "${indir}"/hms-nhs-the-nautical-health-service-workflows.csv ${id[$i]} -v ${version[$i]} -m ${minor[$i]} -d "${outdir}"               > "${outdir}/config_${id[$i]}.log"  2>&1;  } &&
+    { panoptes_aggregation config "${indir}"/hms-nhs-the-nautical-health-service-workflows.csv ${id[$i]} -v ${version[$i]} -m ${minor[$i]} -d "${outdir}"               > "${outdir}/config_${id[$i]}.log"  2>&1 && config_postproc $i; } &&
     { panoptes_aggregation extract "${indir}/${name[$i]}" "${outdir}"/Extractor_config_workflow_${id[$i]}_V${version[$i]}.${minor[$i]}.yaml -d "${outdir}" -o ${id[$i]} > "${outdir}/extract_${id[$i]}.log" 2>&1; } &&
     if [ "${datatype[$i]}" == "$text_t" ]; then
       { ./clean_extraction.py "${outdir}/${datatype[$i]}_extractor_${id[$i]}.csv" > "${outdir}/postextract_${id[$i]}.log" ${id[$i]} 2>&1 &&

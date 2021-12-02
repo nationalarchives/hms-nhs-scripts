@@ -551,7 +551,7 @@ subject_id,task,volume,page,Problems,admission number,date of entry,name,quality
 44121904,29,1,1,,4949,27-02-1826,John Jones,Able Seaman,28,Anglesea,,2.0; 13.0,Kitty,Pulmonic affection,13-03-1826,Request Cured,15,date of entry; quality; port sailed out of; under what circumstances admitted (or nature of complaint)
 44121906,1,1,2,,4950,27-02-1826,Samuel Evers,Able Seaman,31,London,,10.5; 4.0,H.C.S Marquis of Huntley,Sprained foot,13-03-1826,Request Cured,15,admission number; name; port sailed out of; years at sea; last services; under what circumstances admitted (or nature of complaint)
 44121906,2,1,2,,4951,27-02-1826,George Capen,Ordinary Seaman,20,United States,,0.0; 0.5,Nautilus F,Injury of the Head,18-03-1826,To a/his Ship Cured,20,admission number; port sailed out of; years at sea; under what circumstances admitted (or nature of complaint)
-44121906,3,1,2,At least 1 unresolved fields,4952,27-02-1826,Thomas Carter,Boy,16,United States,,"['00;00.08', '00;00.083', '19.5;0.5']",Nautilus F,Ulcered foot,01-03-1826,To a Ship Cured,3,name; port sailed out of; under what circumstances admitted (or nature of complaint)
+44121906,3,1,2,At least 1 unresolved fields,4952,27-02-1826,Thomas Carter,Boy,16,United States,,"['00;00.08', '00;00.083', '19.5;0.5']",Nautilus F,Ulcered foot,01-03-1826,To a/his Ship Cured,3,name; port sailed out of; under what circumstances admitted (or nature of complaint)
 44121906,4,1,2,,4953,27-02-1826,John Hopwood,Able Seaman,24,Whitby,,3.25; 8.0,William Harris,Venereal,28-02-1826,Other,2,name; port sailed out of; years at sea; last services; under what circumstances admitted (or nature of complaint)
 44121906,5,1,2,,4954,27-02-1826,William Finley,Able Seaman,49,Hull,,20.0; 8.0,Lord Melville,Rheumatism,13-03-1826,Request Cured,15,admission number; port sailed out of; under what circumstances admitted (or nature of complaint)
 44121906,7,1,2,,4955,27-02-1826,William Rees,Able Seaman,23,Wales,,0.0; 11.0,Rosalind,Pulmonic affection,09-03-1826,Request Cured,11,admission number; port sailed out of; years at sea; under what circumstances admitted (or nature of complaint)
@@ -576,7 +576,7 @@ subject_id,task,volume,page,Problems,admission number,date of entry,name,quality
 44121906,29,1,2,,4974,02-03-1826,William Davis,Ordinary Seaman,19,Deptford,,0.0; 6.0,Mary,Ague,08-03-1826,Request Cured,7,admission number; age; port sailed out of; years at sea; under what circumstances admitted (or nature of complaint)
 44121907,1,1,3,At least 1 unresolved fields,4975,02-03-1826,George Ryan,Able Seaman,56,Ireland,,"['22', '22;16', '22;16']",Anne,Ague,12-04-1826,Request Cured,42,name; port sailed out of; under what circumstances admitted (or nature of complaint)
 44121907,2,1,3,At least 1 unresolved fields,4976,02-03-1826,John Kay,Able Seaman,17,Shields,,"['22', '00;06', '22;6']",Two Brothers,Catarrh,04-03-1826,To a/his Ship Cured,3,admission number; port sailed out of; under what circumstances admitted (or nature of complaint)
-44121907,3,1,3,At least 1 unresolved fields,4977,03-03-1826,Joseph Osburn,Apprentice,14,Edmonton,,"['22', '00;0.75', '22;22']",Valena,Fever,05-03-1826,To a Ship Cured,3,admission number; name; port sailed out of; under what circumstances admitted (or nature of complaint)
+44121907,3,1,3,At least 1 unresolved fields,4977,03-03-1826,Joseph Osburn,Apprentice,14,Edmonton,,"['22', '00;0.75', '22;22']",Valena,Fever,05-03-1826,To a/his Ship Cured,3,admission number; name; port sailed out of; under what circumstances admitted (or nature of complaint)
 44121907,4,1,3,At least 1 unresolved fields,4978,03-03-1826,James Drummond,Able Seaman,35,Falkirk,,"['22', '00;22', '11;25']",Fountain Hay,Contusion of the Leg,05-03-1826,Other,3,admission number; name; port sailed out of; last services; under what circumstances admitted (or nature of complaint); how disposed of
 44121907,5,1,3,At least 1 unresolved fields,4979,03-03-1826,James Banks,Able Seaman,45,Scotland,,"['11', '11;25', '11;16']",Posthumous,Paralysis,05-03-1826,Died,4,admission number; name; port sailed out of; under what circumstances admitted (or nature of complaint)
 44121907,7,1,3,At least 2 unresolved fields,4980,03-03-1826,Thomas Been,Able Seaman,26,Whitby,,"['11', '00;16', '2;10']",Liberty,Diseased ...ncle,13-06-1826,"{'Request Convalescent': 1, 'Request Cured': 1, 'Other': 1}",103,name; port sailed out of; under what circumstances admitted (or nature of complaint)
@@ -613,7 +613,7 @@ subject_id,task,volume,page,Problems,admission number,date of entry,name,quality
 44121908,14,1,4,,5011,08-03-1826,William Doyle,Able Seaman,38,Ireland,,5.0; 10.0,London,Rheumatism,03-04-1826,Request Convalescent,27,port sailed out of
 44121908,15,1,4,,5012,08-03-1826,Andrew Offer,Able Seaman,37,Sweden,,0.0; 20.0,Arethusa,Dysentery,20-03-1826,Request Cured,13,port sailed out of
 44121908,16,1,4,,5013,08-03-1826,Elwick Meggitt,Able Seaman,20,Hull,,0.0; 6.0,Rambler,Venereal,28-03-1826,Request Fit for Duty,21,name; port sailed out of; how disposed of
-44121908,17,1,4,,5014,09-03-1826,Julius Raash,Able Seaman,18,Statten,,0.0; 3.0,Laura,Ague,30-03-1826,To a Ship Cured,22,place of birth; port sailed out of; under what circumstances admitted (or nature of complaint)
+44121908,17,1,4,,5014,09-03-1826,Julius Raash,Able Seaman,18,Statten,,0.0; 3.0,Laura,Ague,30-03-1826,To a/his Ship Cured,22,place of birth; port sailed out of; under what circumstances admitted (or nature of complaint)
 44121908,19,1,4,,5015,09-03-1826,William Frazer,Able Seaman,27,Shetland,,0.0; 13.0,John,Venereal,25-03-1826,Shipped,17,name; port sailed out of
 44121908,20,1,4,,5016,09-03-1826,Thomas Simmonds,Able Seaman,38,Lewis,,2.0; 21.0,William Harris,Injury of the back,23-03-1826,Request Cured,15,port sailed out of
 44121908,21,1,4,,5017,09-03-1826,George Johnson,Able Seaman,26,Russia,,0.0; 6.0,Laplander,Venereal,18-04-1826,Request Cured,41,port sailed out of
@@ -626,7 +626,7 @@ subject_id,task,volume,page,Problems,admission number,date of entry,name,quality
 44121908,29,1,4,,5024,10-03-1826,George Williams,Able Seaman,25,Devonshire,,0.0; 12.0,Hebe,Dropsy,25-03-1826,Request Cured,16,admission number; port sailed out of
 44121910,1,1,5,,5025,10-03-1826,Andrew Hudson,Able Seaman,47,Durham,,8.0; 25.0,Jane,Fever,20-04-1826,Seven Day Order,42,name; port sailed out of
 44121910,2,1,5,,5026,11-03-1826,John Elliott,Able Seaman,52,London,,2.0; 34.0,Anne Maria,Ulcered Leg,30-03-1826,Request Cured,20,name; port sailed out of; under what circumstances admitted (or nature of complaint)
-44121910,3,1,5,,5027,11-03-1826,James Miller,Able Seaman,18,Dysart,,0.0; 4.5,Tasmaniew,Scurvy,29-03-1826,To a Ship Cured,19,name; place of birth; port sailed out of; years at sea; last services
+44121910,3,1,5,,5027,11-03-1826,James Miller,Able Seaman,18,Dysart,,0.0; 4.5,Tasmaniew,Scurvy,29-03-1826,To a/his Ship Cured,19,name; place of birth; port sailed out of; years at sea; last services
 44121910,4,1,5,,5028,11-03-1826,Michael Leven,Able Seaman,47,Dublin,,17.0; 15.0,HMS Liffey,Venereal,10-04-1826,Request Fit for Duty,31,name; port sailed out of
 44121910,5,1,5,,5029,11-03-1826,Edward Lewis,Cook,28,United States,,1.0; 8.0,La Bonne More F,Venereal,18-04-1826,Request Cured,39,name; port sailed out of; last services; under what circumstances admitted (or nature of complaint)
 44121910,7,1,5,,5030,11-03-1826,William Duke,Apprentice,13,London,,0.0; 0.5,Boywell,Fractured thigh,10-04-1826,To a/his Ship Cured,31,name; port sailed out of; years at sea; under what circumstances admitted (or nature of complaint)
@@ -662,8 +662,8 @@ subject_id,task,volume,page,Problems,admission number,date of entry,name,quality
 44121912,13,1,6,Blank(s),5060,18-03-1826,George Norman,Apprentice,20,Shields,,0.0; 3.0,Thomas,Venereal,,To a/his Ship Cured,12,admission number; port sailed out of
 44121912,14,1,6,Blank(s),5061,19-03-1826,Charles Gardner,Able Seaman,25,United States,,0.0; 12.0,Neva,Dyspepsia,,Request Fit for Duty,44,admission number; port sailed out of
 44121912,15,1,6,Blank(s),5062,20-03-1826,John Shaw,Able Seaman,26,Yorkshire,,6.0; 7.0,HMS Parthian,Venereal,,To a/his Ship Cured,16,admission number; port sailed out of; last services
-44121912,16,1,6,Blank(s),5063,20-03-1826,Benjamin Banks,Able Seaman,27,Westmorland,,4.0; 11.0,George,Ulcered foot,,To a Ship Cured,13,admission number; name; port sailed out of; under what circumstances admitted (or nature of complaint)
-44121912,17,1,6,Blank(s) & at least 1 unresolved fields,5064,20-03-1826,George Crosby,Able Seaman,40,Dublin,,15.0; 7.0,George,"[['Rheumatism', 'Rheumatism', 'Reumatism'], ['and', '', '&'], ['heeptions', '[...........]', '...uptions']]",,To a Ship Cured,13,admission number; port sailed out of
+44121912,16,1,6,Blank(s),5063,20-03-1826,Benjamin Banks,Able Seaman,27,Westmorland,,4.0; 11.0,George,Ulcered foot,,To a/his Ship Cured,13,admission number; name; port sailed out of; under what circumstances admitted (or nature of complaint)
+44121912,17,1,6,Blank(s) & at least 1 unresolved fields,5064,20-03-1826,George Crosby,Able Seaman,40,Dublin,,15.0; 7.0,George,"[['Rheumatism', 'Rheumatism', 'Reumatism'], ['and', '', '&'], ['heeptions', '[...........]', '...uptions']]",,To a/his Ship Cured,13,admission number; port sailed out of
 44121912,19,1,6,Blank(s),5065,20-03-1826,Adriel Hunthy,Ordinary Seaman,21,United States,,0.0; 0.75,Curtis,Inflammation of the arm,,Request Cured,11,admission number; name; port sailed out of; under what circumstances admitted (or nature of complaint)
 44121912,20,1,6,Blank(s),5066,20-03-1826,Manuel Jose,Able Seaman,26,Cape de Verd,,0.0; 6.0,Numa,Inflammation of the eye,,To a/his Ship Cured,85,admission number; name; port sailed out of; last services; under what circumstances admitted (or nature of complaint); number of days victualled
 44121912,21,1,6,Blank(s),5067,20-03-1826,Jos Chipperton,Able Seaman,25,Harwich,,0.0; 10.0,Gratitude,Pulmonic disease,,Died,36,admission number; name; port sailed out of
@@ -701,7 +701,7 @@ subject_id,task,volume,page,Problems,admission number,date of entry,name,quality
 44121914,29,1,7,Blank(s),5099,28-03-1826,And Grant,Able Seaman,47,Scotland,,9.0; 24.0,Mary,Ague and Rheumatism,,Request Cured,18,name; port sailed out of; under what circumstances admitted (or nature of complaint)
 44121915,1,1,8,Blank(s),5100,28-03-1826,Robert Whittaker,Able Seaman,22,United States,,0.0; 6.0,Robert Edward F,Catarrh,,Request Cured,35,port sailed out of; under what circumstances admitted (or nature of complaint)
 44121915,2,1,8,Blank(s),5101,29-03-1826,John Howl,Able Seaman,26,Sweden,,0.0; 13.0,Mole,Diarrhoa,,Request Cured,15,port sailed out of; under what circumstances admitted (or nature of complaint)
-44121915,3,1,8,Blank(s),5102,29-03-1826,Edmund Webb,Ordinary Seaman,18,Lambeth,,0.0; 1.0,Emperor Alexander,Injury of the Shoulder,,To a Ship Cured,41,name; age; port sailed out of; under what circumstances admitted (or nature of complaint)
+44121915,3,1,8,Blank(s),5102,29-03-1826,Edmund Webb,Ordinary Seaman,18,Lambeth,,0.0; 1.0,Emperor Alexander,Injury of the Shoulder,,To a/his Ship Cured,41,name; age; port sailed out of; under what circumstances admitted (or nature of complaint)
 44121915,4,1,8,Blank(s),5103,29-03-1826,William Bishop,Able Seaman,43,Dover,,9.0; 20.0,Atlas,Injury of the Knee,,Request Fit for Duty,34,port sailed out of; under what circumstances admitted (or nature of complaint)
 44121915,5,1,8,Blank(s),5104,29-03-1826,James Barrett,Apprentice,19,Rochford,,0.0; 1.0,union,Injury of the Hand,,Other,29,name; port sailed out of; under what circumstances admitted (or nature of complaint)
 44121915,7,1,8,Blank(s),5105,29-03-1826,James Delany,Able Seaman,45,Dublin,,10.0; 0.0,HMS Liffey,Dropsy,,Seven Day Order,64,name; port sailed out of
@@ -826,7 +826,7 @@ subject_id,task,volume,page,Problems,admission number,date of entry,name,quality
 44121923,29,1,12,Blank(s) & at least 2 unresolved fields,"[['5224', '5224', '5224', '5224', '5225', '3224', '5204', '5224']]",29-04-1826,Henry Hanclock,Apprentice,13,"[['Gisborough', 'Guisborough', 'Gisbro']]",,0.0; 0.5,,Bruises,,To a/his Ship Cured,7,name; port sailed out of
 44121925,1,1,13,Blank(s),5225,01-05-1826,Robert Mathews,Able Seaman,26,Greenwich,,7.0; 7.0,,Venereal,,To a/his Ship Cured,15,name; port sailed out of
 44121925,2,1,13,Blank(s),5226,01-05-1826,William Cox,Able Seaman,21,Oakey,,0.0; 8.0,,Ulcered leg,,To a/his Ship Cured,45,port sailed out of; under what circumstances admitted (or nature of complaint)
-44121925,3,1,13,Blank(s),5227,01-05-1826,George Hardy,Able Seaman,45,London,,16.0; 14.0,,Ulcered leg,,To a Ship Cured,19,port sailed out of; under what circumstances admitted (or nature of complaint)
+44121925,3,1,13,Blank(s),5227,01-05-1826,George Hardy,Able Seaman,45,London,,16.0; 14.0,,Ulcered leg,,To a/his Ship Cured,19,port sailed out of; under what circumstances admitted (or nature of complaint)
 44121925,4,1,13,Blank(s),5228,01-05-1826,Thomas Coleman,Able Seaman,49,Essex,,17.0; 20.0,,Ulcered leg,,Request Cured,36,age; port sailed out of; under what circumstances admitted (or nature of complaint)
 44121925,5,1,13,Blank(s),5229,01-05-1826,William Whaling,Able Seaman,46,Ireland,,14.0; 11.0,,Rheumatism,,Request Cured,50,port sailed out of
 44121925,7,1,13,Blank(s),5230,02-05-1826,Richard Taylor,Able Seaman,36,Deal,,0.0; 16.0,,Dysentery,,Died,2,port sailed out of
@@ -838,7 +838,7 @@ subject_id,task,volume,page,Problems,admission number,date of entry,name,quality
 44121925,14,1,13,Blank(s),5236,03-05-1826,Peter Anderson,Able Seaman,33,Sweden,,0.0; 26.0,,Injury to the chest,,Request Cured,6,port sailed out of; under what circumstances admitted (or nature of complaint)
 44121925,15,1,13,Blank(s),5237,03-05-1826,Charles Meltstrom,Cook,20,Sweden,,0.0; 0.2,,Diseased finger,,To a/his Ship Cured,27,port sailed out of; years at sea; under what circumstances admitted (or nature of complaint); number of days victualled
 44121925,16,1,13,Blank(s),5238,03-05-1826,Charles Dunbar,Able Seaman,48,Nottinghamshire,,9.0; 29.0,,Rheumatism,,Request to attend as an Out Patient,83,port sailed out of
-44121925,17,1,13,Blank(s),5239,03-05-1826,Joseph Morgan,Able Seaman,25,Essex,,1.25; 13.0,,Venereal,,To a Ship Cured,37,port sailed out of
+44121925,17,1,13,Blank(s),5239,03-05-1826,Joseph Morgan,Able Seaman,25,Essex,,1.25; 13.0,,Venereal,,To a/his Ship Cured,37,port sailed out of
 44121925,19,1,13,Blank(s),5240,03-05-1826,David Fyle,Able Seaman,23,Leith,,0.0; 10.0,,Sore Throat,,Other,5,name; age; port sailed out of; under what circumstances admitted (or nature of complaint); how disposed of
 44121925,20,1,13,Blank(s),5241,04-05-1826,William Locksley,Able Seaman,19,Portsmouth,,0.0; 3.0,,Venereal,,Request Cured,16,port sailed out of
 44121925,21,1,13,Blank(s),5242,04-05-1826,William Grigman,Able Seaman,34,Plymouth,,16.0; 8.0,,Pulmonic affection,,Request Cured,15,port sailed out of; under what circumstances admitted (or nature of complaint)
@@ -851,7 +851,7 @@ subject_id,task,volume,page,Problems,admission number,date of entry,name,quality
 44121925,29,1,13,Blank(s),5249,06-05-1826,Robert Westray,Able Seaman,41,Stockholm,,7.0; 16.0,,Dysentery,,Request Cured,10,port sailed out of
 44121926,1,1,14,Blank(s) & at least 1 unresolved fields,5250,06-05-1826,Robert Ship,Able Seaman,28,Suffolk,,"['00;15', '.;15']",,Ulcered Leg,,To a/his Ship Cured,52,port sailed out of; under what circumstances admitted (or nature of complaint)
 44121926,2,1,14,Blank(s),5251,06-05-1826,James Johnston,Able Seaman,33,Ipswich,,7.0; 11.0,,Pulmonic disease,,Died,84,port sailed out of; under what circumstances admitted (or nature of complaint)
-44121926,3,1,14,Blank(s),5252,06-05-1826,Archibald McNeil,Able Seaman,38,Scotland,,4.0; 11.0,,Venereal,,To a Ship Cured,14,name; port sailed out of
+44121926,3,1,14,Blank(s),5252,06-05-1826,Archibald McNeil,Able Seaman,38,Scotland,,4.0; 11.0,,Venereal,,To a/his Ship Cured,14,name; port sailed out of
 44121926,4,1,14,Blank(s),5253,06-05-1826,Thomas Ferris,Able Seaman,31,Devonshire,,3.0; 13.0,,Ulcered Leg,,Seven Day Order,43,port sailed out of; under what circumstances admitted (or nature of complaint)
 44121926,5,1,14,Blank(s) & at least 1 unresolved fields,5254,07-05-1826,John Bain,Able Seaman,26,Scotland,,"['00;17', '3;17']",,"Fractured Arm, Clavicle and Ribs",,Absent,42,port sailed out of; under what circumstances admitted (or nature of complaint)
 44121926,7,1,14,Blank(s) & at least 1 unresolved fields,5255,08-05-1826,James Noble,Able Seaman,21,West Indies,,"['00;06', '3;6']",,Venereal,,Request Cured,26,port sailed out of
@@ -862,7 +862,7 @@ subject_id,task,volume,page,Problems,admission number,date of entry,name,quality
 44121926,13,1,14,Blank(s) & at least 1 unresolved fields,5260,08-05-1826,John Jackson,Able Seaman,22,Hertfordshire,,"['00;05', '5;5']",,Venereal,,To a/his Ship Cured,29,port sailed out of
 44121926,14,1,14,Blank(s) & at least 2 unresolved fields,5261,09-05-1826,Charles Shelton,Able Seaman,26,Prussia,,"['00;11', '5;11']",,Injury of the Shoulder,,"{'Other': 1, 'To a/his Ship Cured': 1, 'Request Convalescent': 1}",6,port sailed out of; under what circumstances admitted (or nature of complaint)
 44121926,15,1,14,Blank(s),5262,09-05-1826,John Hartnell,Able Seaman,32,Bridgewater,,4.0; 14.0,,Erysipelas,,Request Cured,14,port sailed out of
-44121926,16,1,14,Blank(s),5263,09-05-1826,James White,Able Seaman,34,Greenwich,,11.0; 8.0,,Ulcered Leg,,To a Ship Cured,8,port sailed out of; under what circumstances admitted (or nature of complaint); how disposed of
+44121926,16,1,14,Blank(s),5263,09-05-1826,James White,Able Seaman,34,Greenwich,,11.0; 8.0,,Ulcered Leg,,To a/his Ship Cured,8,port sailed out of; under what circumstances admitted (or nature of complaint); how disposed of
 44121926,17,1,14,Blank(s) & at least 1 unresolved fields,5264,10-05-1826,Jacob Boyd,Able Seaman,25,New Brunswick,,"['00;08', '11;8']",,Fever,,Seven Day Order,14,port sailed out of
 44121926,19,1,14,Blank(s),5265,10-05-1826,Andrew Grant,Able Seaman,47,Scotland,,0.0; 0.0,,Fever,,Seven Day Order,70,port sailed out of
 44121926,20,1,14,Blank(s) & at least 1 unresolved fields,5266,10-05-1826,James Slade,Ordinary Seaman,24,Weymouth,,"['00;11', '11;11']",,Venereal,,To a/his Ship Cured,10,port sailed out of
@@ -2601,7 +2601,7 @@ subject_id,task,volume,page,Problems,admission number,date of entry,name,quality
 44290145,29,2,3,Blank(s) & at least 1 unresolved fields,7524,"[['june', '27-06-1824', '27-06-1827'], ['27', '', '']]",Edward Wilson,Able Seaman,22,Reading,London,,,Venereal,,Request Cured,,
 44290146,1,2,4,Blank(s) & at least 1 unresolved fields,7525,"[['june27', '27-06-1824', '27-06-1827']]",William Johnson,Ordinary Seaman,21,Africa,Africa,,,Venereal,,Request Cured,,under what circumstances admitted (or nature of complaint)
 44290146,2,2,4,Blank(s) & at least 1 unresolved fields,7526,"[['june', '27-06-1824', '27-06-1827'], ['27', '', '']]",James Hamilton,Able Seaman,23,Liverpool,7231,,,Venereal,,Shipped,,name; port sailed out of; under what circumstances admitted (or nature of complaint)
-44290146,3,2,4,Blank(s) & at least 1 unresolved fields,7527,"[['june', '27-06-1824', '27-06-1827'], ['27', '', '']]",Samuel Hames,Able Seaman,30,Liverpool,Liverpool,,,Ague,,To a Ship Cured,,name; under what circumstances admitted (or nature of complaint)
+44290146,3,2,4,Blank(s) & at least 1 unresolved fields,7527,"[['june', '27-06-1824', '27-06-1827'], ['27', '', '']]",Samuel Hames,Able Seaman,30,Liverpool,Liverpool,,,Ague,,To a/his Ship Cured,,name; under what circumstances admitted (or nature of complaint)
 44290146,4,2,4,Blank(s) & at least 1 unresolved fields,7528,"[['june', '27-06-1824', '27-06-1827'], ['27', '', '']]",Joseph Mitchell,Able Seaman,21,Whitby,London,,,Venereal,,Seven Day Order,,under what circumstances admitted (or nature of complaint)
 44290146,5,2,4,Blank(s) & at least 1 unresolved fields,7529,"[['june', '27-06-1824', '27-06-1827'], ['27', '', '']]",James Kenneday,Carpenter,25,Liverpool,Liverpool,,,Pulmonic disorder,,Request Fit for Duty,,name; port sailed out of; under what circumstances admitted (or nature of complaint)
 44290146,7,2,4,Blank(s) & at least 1 unresolved fields,7530,"[['june', '28-06-1824', '28-06-1827'], ['28', '', '']]",Robert Norris,Able Seaman,20,Danbury,London,,,Venereal,,Other,,name; place of birth; under what circumstances admitted (or nature of complaint)
@@ -2676,7 +2676,7 @@ subject_id,task,volume,page,Problems,admission number,date of entry,name,quality
 44290148,29,2,6,Blank(s),7599,09-07-1827,James Mann,Able Seaman,27,London,London,,,Fever,,Seven Day Order,,under what circumstances admitted (or nature of complaint)
 44290149,1,2,7,Blank(s),7600,09-07-1827,John Hanley,Ordinary Seaman,19,Yorkshire,Hull,,,Venereal,,Seven Day Order,,
 44290149,2,2,7,Blank(s),7601,09-07-1827,John Power,Ordinary Seaman,20,Bristol,7336,,,Venereal,,Seven Day Order,,place of birth
-44290149,3,2,7,Blank(s),7602,10-07-1827,James Myers,Steward,20,North America,Calcutta,,,Venereal,,To a Ship Cured,,place of birth
+44290149,3,2,7,Blank(s),7602,10-07-1827,James Myers,Steward,20,North America,Calcutta,,,Venereal,,To a/his Ship Cured,,place of birth
 44290149,4,2,7,Blank(s),7603,10-07-1827,Florance Crowley,Able Seaman,46,Scotland,5319,,,Venereal,,Request Cured,,
 44290149,5,2,7,Blank(s),7604,10-07-1827,Jos Pratt,Ordinary seaman,20,London,5475,,,Ague,,Request Cured,,name
 44290149,7,2,7,Blank(s),7605,10-07-1827,George Kiddell,Ordinary Seaman,32,Bermondsey,7123,,,Venereal,,Shipped,,
@@ -2712,8 +2712,8 @@ subject_id,task,volume,page,Problems,admission number,date of entry,name,quality
 44290150,13,2,8,Blank(s),7635,14-07-1827,William Boyce,Sailmaker,40,Isle of Wight,London,,,"Bruises, wound of the head",,Shipped,,name; under what circumstances admitted (or nature of complaint)
 44290150,14,2,8,Blank(s) & at least 1 unresolved fields,7636,14-07-1827,Henry George Gertson,Steward,19,Cape of Good Hope,Lake of good hope,,,"[['', 'Bruises,', ''], ['', 'Wound', ''], ['', 'of', ''], ['Fever', 'the', 'Fever'], ['', 'Head', '']]",,Request Cured,,name; port sailed out of
 44290150,15,2,8,Blank(s) & at least 2 unresolved fields,7637,14-07-1827,Samuel Wright,Able Seaman,32,London,London,,,"[['Discased', 'Fever', 'Diseased'], ['bone', '', 'Bone'], ['(leg)', '', '(Leg)']]",,"{'Other': 1, 'Request not Cured': 1}",,name
-44290150,16,2,8,Blank(s),7638,14-07-1827,John Slade,Ordinary Seaman,10,Bridport,Bridfort,,,Inflamed Leg Bone,,To a Ship Cured,,place of birth; port sailed out of; under what circumstances admitted (or nature of complaint)
-44290150,17,2,8,Blank(s),7639,14-07-1827,Daniel Murray,Mate,31,Scotland,Liverpool,,,Inflamed Rheumatic,,To a Ship Cured,,name; under what circumstances admitted (or nature of complaint)
+44290150,16,2,8,Blank(s),7638,14-07-1827,John Slade,Ordinary Seaman,10,Bridport,Bridfort,,,Inflamed Leg Bone,,To a/his Ship Cured,,place of birth; port sailed out of; under what circumstances admitted (or nature of complaint)
+44290150,17,2,8,Blank(s),7639,14-07-1827,Daniel Murray,Mate,31,Scotland,Liverpool,,,Inflamed Rheumatic,,To a/his Ship Cured,,name; under what circumstances admitted (or nature of complaint)
 44290150,19,2,8,Blank(s),7640,14-07-1827,James Curran,Able Seaman,33,Ireland,4542,,,Rheumatism,,Shipped,,under what circumstances admitted (or nature of complaint)
 44290150,20,2,8,Blank(s),7641,16-07-1827,William Robinson,Able Seaman,34,Paris,London,,,Fever,,Request Cured,,name; under what circumstances admitted (or nature of complaint)
 44290150,21,2,8,Blank(s),7642,16-07-1827,William Burke,Ballast Heaver,23,Cork,London,,,Venereal,,Request to attend as an Out Patient,,name; under what circumstances admitted (or nature of complaint)
@@ -2763,7 +2763,7 @@ subject_id,task,volume,page,Problems,admission number,date of entry,name,quality
 44290152,14,2,10,Blank(s),7686,24-07-1827,,,23,Shetland,Liverpool,,,Venereal,,Request Cured,,
 44290152,15,2,10,Blank(s),7687,24-07-1827,,,34,Isle of Wight,London,,,Venereal,,Died,,
 44290152,16,2,10,Blank(s),7688,25-07-1827,,,19,Marylebone,London,,,Rheumatic,,Request Cured,,
-44290152,17,2,10,Blank(s),7689,25-07-1827,,,21,Ireland,Hill Navy,,,Hernia Femoralis (venereal),,To a Ship Cured,,under what circumstances admitted (or nature of complaint)
+44290152,17,2,10,Blank(s),7689,25-07-1827,,,21,Ireland,Hill Navy,,,Hernia Femoralis (venereal),,To a/his Ship Cured,,under what circumstances admitted (or nature of complaint)
 44290152,19,2,10,Blank(s),7690,25-07-1827,,,26,Norway,Norway,,,Fever,,Request Convalescent,,
 44290152,20,2,10,Blank(s),7691,25-07-1827,,,17,South Petherden,Bridport,,,Fever,,To a/his Ship Cured,,
 44290152,21,2,10,Blank(s),7692,26-07-1827,,,29,Merionethshire,London,,,Fever (typhus),,Request Cured,,under what circumstances admitted (or nature of complaint)
@@ -2801,7 +2801,7 @@ subject_id,task,volume,page,Problems,admission number,date of entry,name,quality
 44290153,29,2,11,Blank(s),7724,02-08-1827,,,17,Denmark,Archangel,,,Venereal,,To a/his Ship Cured,,
 44290154,1,2,12,Blank(s),7725,02-08-1827,,,15,Mornen,Liverpool,,,Scorbutic,,Shipped,,
 44290154,2,2,12,Blank(s),7726,03-08-1827,,,10,Kildare,7674,,,Fever,,Shipped,,
-44290154,3,2,12,Blank(s),7727,03-08-1827,,,30,Aberdeen,Aberdeen,,,Fever,,To a Ship Cured,,
+44290154,3,2,12,Blank(s),7727,03-08-1827,,,30,Aberdeen,Aberdeen,,,Fever,,To a/his Ship Cured,,
 44290154,4,2,12,Blank(s),7728,03-08-1827,,,63,London,7000,,,Fistula,,Request Cured,,
 44290154,5,2,12,Blank(s),7729,03-08-1827,,,34,Marylebone,Barking,,,Pulmonic disorder,,Request Convalescent,,
 44290154,7,2,12,Blank(s),7730,03-08-1827,,,23,Milford Haven,Milford Haven,,,Venereal,,Died,,
@@ -8401,7 +8401,7 @@ subject_id,task,volume,page,Problems,admission number,date of entry,name,quality
 44293771,29,3,43,Blank(s),,,,,,Bath,,,,,,,,
 44377680,1,4,2,Blank(s),18075,20-11-1832,,Boatswain,,,Hamburg,,,,,To a/his Ship Cured,,
 44377680,2,4,2,Blank(s),18076,20-11-1832,,Able Seaman,,,Liverpool,,,,,Request Cured,,
-44377680,3,4,2,Blank(s),18077,20-11-1832,,Ordinary Seaman,,,Hamburg,,,,,To a Ship Cured,,
+44377680,3,4,2,Blank(s),18077,20-11-1832,,Ordinary Seaman,,,Hamburg,,,,,To a/his Ship Cured,,
 44377680,4,4,2,Blank(s),18078,20-11-1832,,Ordinary Seaman,,,Bombay,,,,,Request Cured,,
 44377680,5,4,2,Blank(s),18079,20-11-1832,,Able Seaman,,,London,,,,,Request Cured,,admission number
 44377680,7,4,2,Blank(s),18080,20-11-1832,,Apprentice,,,Shields,,,,,To a/his Ship Cured,,
