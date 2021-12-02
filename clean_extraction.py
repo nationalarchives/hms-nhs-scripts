@@ -75,6 +75,7 @@ def strip_crossref(text):
   return result
 
 
+#Place of Birth
 def clean_18617(text):
   #chomp whitespace (Panoptes extraction doesn't do this)
   result = text.strip()
@@ -87,6 +88,7 @@ def clean_18617(text):
   return hill_navy(result)
 
 
+#Years at Sea
 def clean_18619(years):
   separator = re.search(r'[;:,]', years)
   if separator: separator = separator[0]
@@ -149,6 +151,7 @@ def clean_18619(years):
   return ';'.join([round_to_month(x) for x in numbers])
 
 
+#Last Services
 def clean_18621(text):
   result = clean_text(text)
 
@@ -205,10 +208,10 @@ def main():
     '18613': clean_text,
     #'18614': dropdown, nothing to normalise
     '18616': unstring_number,
-    '18617': clean_18617, #some special handling for extra words
+    '18617': clean_18617, #place of birth -- some special handling for extra words
     '18618': clean_text,
-    '18619': clean_18619, #some special handling for splitting the fields and rounding to 0.08
-    '18621': clean_18621, #some special handling for ship name abbreviations
+    '18619': clean_18619, #years at sea -- some special handling for splitting the fields and rounding to 0.08
+    '18621': clean_18621, #last services -- some special handling for ship name abbreviations
     '18622': clean_text,
     '18623': unstring_date,
     #'18624': dropdown, nothing to normalise,
