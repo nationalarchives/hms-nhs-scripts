@@ -436,13 +436,6 @@ def main():
     else:
       joined.at[b, 'Problems'] = f'At least {bad[b]} unresolved fields'
 
-  #Record where there was autoresolution
-  joined.insert(0, 'Autoresolved', '')
-  #TODO: Again, doesn't feel like Pandas
-  for index, value in autoresolved.items():
-    joined.at[index, 'Autoresolved'] = '; '.join(value.keys())
-
-
   #Translate subjects ids into original filenames
   #Assumption: the metadata is invariant across all of the entries for each subject_id
   joined.insert(0, 'volume', '')
@@ -463,6 +456,13 @@ def main():
     else: raise Exception(f'"{fnam}" does not match regular expression')
     joined.loc[[sid], 'volume'] = vol
     joined.loc[[sid], 'page']   = page
+
+
+  #Record where there was autoresolution
+  joined.insert(len(joined.columns), 'Autoresolved', '')
+  #TODO: Again, doesn't feel like Pandas
+  for index, value in autoresolved.items():
+    joined.at[index, 'Autoresolved'] = '; '.join(value.keys())
 
 
   #This feels ridiculous, but works in conjunction with maxcolwidth.sh to check for columns too wide for Excel
