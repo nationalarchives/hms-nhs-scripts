@@ -66,7 +66,7 @@ parser.add_argument('--flow_report', '-f',
                    )
 args = parser.parse_args()
 subjects = pd.read_csv(f'{args.exports}/hms-nhs-the-nautical-health-service-subjects.csv',
-                         usecols   = ['subject_id', 'metadata'])
+                         usecols   = ['subject_id', 'metadata', 'locations'])
 
 
 def flow_report(msg, row_id, value):
@@ -455,7 +455,16 @@ def main():
       elif vol == 6: raise Exception('Surprisingly met volume 6')
       else: page -= 3
     else: raise Exception(f'"{fnam}" does not match regular expression')
-    joined.loc[[sid], 'subject'] = sid
+
+    #Figure out URL of page image
+    location = subjects.query(f'subject_id == {sid}').iloc[0]['locations']
+    location = json.loads(location)
+    assert len(location) == 1
+    location = location.values()
+    location = next(iter(location))
+    assert isinstance(location, str)
+
+    joined.loc[[sid], 'subject'] = f'=HYPERLINK("{location}"; "{sid}")'
     joined.loc[[sid], 'volume'] = vol
     joined.loc[[sid], 'page']   = page
 
