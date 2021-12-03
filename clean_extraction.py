@@ -108,8 +108,8 @@ def clean_18619(years):
       if len(integer_part) == 0: integer_part = 0
       else: integer_part = int(integer_part)
 
-      decimal_part = parts[2]
-      if len(decimal_part) == 0: decimal_part = '0'
+      decimal_part = parts[2].rstrip('0')
+      if len(decimal_part) == 0: return f'{integer_part:02}'
       significant_digits = len(decimal_part)
       nonzero_digits = len(decimal_part.lstrip('0'))
       leading_zeros = significant_digits - nonzero_digits
