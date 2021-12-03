@@ -168,8 +168,10 @@ def years_at_sea_resolver(candidates, row, data, datacol):
   if len(navy_results) == 1 and len(merchant_results) == 1:
     if row.name in autoresolved and data['name'] in autoresolved[row.name]: flow_report('Autoresolved', row.name, originals)
     else: flow_report('Unanimous', row.name, originals)
-    navy_result = next(iter(navy_results))
-    merchant_result = next(iter(merchant_results))
+    navy_result = "%02g" % next(iter(navy_results))
+    merchant_result = "%02g" % next(iter(merchant_results))
+    navy_result=re.sub('^\d\.', '0\g<0>', navy_result)
+    merchant_result=re.sub('^\d\.', '0\g<0>', merchant_result)
     return f'{navy_result}; {merchant_result}'
   else:
     #Because we resolve the two sides independently, we might both autoresolve and fail for the field.
@@ -477,7 +479,7 @@ def main():
 
 
   #This feels ridiculous, but works in conjunction with maxcolwidth.sh to check for columns too wide for Excel
-  joined.to_csv(path_or_buf = f'output/lenchecker.csv', float_format = '%.0f', sep = '@', index = False)
+  joined.to_csv(path_or_buf = f'output/lenchecker.csv', sep = '@', index = False)
 
   #Dump output
   if not args.no_stamp:
@@ -486,6 +488,6 @@ def main():
     commit = subprocess.run(['git', 'rev-parse', 'HEAD'], capture_output = True, check = True).stdout
     joined['Commit'] =[commit] * len(joined.index)
     joined['Args'] = [' '.join(sys.argv)] * len(joined.index)
-  joined.to_csv(path_or_buf = f'output/{args.output}', float_format = '%.0f', index = False)
+  joined.to_csv(path_or_buf = f'output/{args.output}', index = False)
 
 main()
