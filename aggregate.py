@@ -479,7 +479,7 @@ def main():
 
 
   #This feels ridiculous, but works in conjunction with maxcolwidth.sh to check for columns too wide for Excel
-  joined.to_csv(path_or_buf = f'output/lenchecker.csv', sep = '@', index = False)
+  joined.to_csv(path_or_buf = f'output/lenchecker.csv', index = False, sep = '@')
 
   #Dump output
   if not args.no_stamp:
