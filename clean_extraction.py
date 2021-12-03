@@ -110,39 +110,68 @@ def clean_18619(years):
 
       decimal_part = parts[2].rstrip('0')
       if len(decimal_part) == 0: return f'{integer_part:02}'
-      significant_digits = len(decimal_part)
-      nonzero_digits = len(decimal_part.lstrip('0'))
-      leading_zeros = significant_digits - nonzero_digits
 
-      #Round to mutiple of 0.08: see https://stackoverflow.com/a/2272174, but we must convert to int and adjust divisor accordingly
-      #Should avoid any float fiddliness
-      decimal_part = Decimal(decimal_part)
+      #Skip this part if the number is part of the 'new scheme'
+      if decimal_part != '08' and \
+         decimal_part != '17' and \
+         decimal_part != '25' and \
+         decimal_part != '33' and \
+         decimal_part != '42' and \
+         decimal_part != '50' and \
+         decimal_part != '58' and \
+         decimal_part != '67' and \
+         decimal_part != '75' and \
+         decimal_part != '83' and \
+         decimal_part != '92':
 
-      #Always be working in integers
-      #If there is only one significant digit then the divisor would be 0.8, so multiply everything by 10
-      assert significant_digits > 0 #We deal with 0-length significant digits above
-      if significant_digits == 1:
-        decimal_part *= 10
-        significant_digits += 1
+        #Original scheme called for multiples of 0.08, so we round to that if the number is not part of the new scheme
+        significant_digits = len(decimal_part)
+        nonzero_digits = len(decimal_part.lstrip('0'))
+        leading_zeros = significant_digits - nonzero_digits
 
-      divisor = Decimal('8')
-      divisor *= Decimal(f'1{"0" * (significant_digits - 2)}')
-      decimal_part /= divisor
-      decimal_part = decimal_part.to_integral_value(ROUND_HALF_UP)
-      decimal_part *= divisor #Requires an integer divisor
-      assert decimal_part == int(decimal_part)
-      decimal_part = int(decimal_part) #Should anyway be an integer at this point -- quick way to discard any '.0'
+        #Round to mutiple of 0.08: see https://stackoverflow.com/a/2272174, but we must convert to int and adjust divisor accordingly
+        #Should avoid any float fiddliness
+        decimal_part = Decimal(decimal_part)
 
-      #Figure out what to return
-      if decimal_part == 0: return f'{integer_part:02}'
+        #Always be working in integers
+        #If there is only one significant digit then the divisor would be 0.8, so multiply everything by 10
+        assert significant_digits > 0 #We deal with 0-length significant digits above
+        if significant_digits == 1:
+          decimal_part *= 10
+          significant_digits += 1
 
-      decimal_part = str(decimal_part)
-      #In theory the number could gain a digit 'to the left', filling in one of the zeros -- but in practice I don't believe it can happen for rounding to 0.08 in the range (>= 0, < 1). So we don't have to detect this. If it could happen then we would just have to drop a leading 0.
-      #We can however gain a digit 'to the right', for example if the input is 0.5 (becomes 0.48). No special handling is required for this (unless we needed to differentiate it from gaining a digit 'to the left' -- in which case we would need to track that we changed the significant digits from 1 to 2 in the if clause above)
-      decimal_part = decimal_part.rstrip('0')
-      decimal_part = f'{"0" * leading_zeros}{decimal_part}'
-      assert len(decimal_part) >= 1 #Because we tested for zero above
-      if len(decimal_part) < 2: decimal_part += '0'
+        divisor = Decimal('8')
+        divisor *= Decimal(f'1{"0" * (significant_digits - 2)}')
+        decimal_part /= divisor
+        decimal_part = decimal_part.to_integral_value(ROUND_HALF_UP)
+        decimal_part *= divisor #Requires an integer divisor
+        assert decimal_part == int(decimal_part)
+        decimal_part = int(decimal_part) #Should anyway be an integer at this point -- quick way to discard any '.0'
+
+        if decimal_part == 0: return f'{integer_part:02}'
+
+        decimal_part = str(decimal_part)
+        #In theory the number could gain a digit 'to the left', filling in one of the zeros -- but in practice I don't believe it can happen for rounding to 0.08 in the range (>= 0, < 1). So we don't have to detect this. If it could happen then we would just have to drop a leading 0.
+        #We can however gain a digit 'to the right', for example if the input is 0.5 (becomes 0.48). No special handling is required for this (unless we needed to differentiate it from gaining a digit 'to the left' -- in which case we would need to track that we changed the significant digits from 1 to 2 in the if clause above)
+        decimal_part = decimal_part.rstrip('0')
+        decimal_part = f'{"0" * leading_zeros}{decimal_part}'
+        assert len(decimal_part) >= 1 #Because we tested for zero above
+        if len(decimal_part) < 2: decimal_part += '0'
+
+        #Convert to the new scheme with a lookup table
+        if   decimal_part == '08': decimal_part = '08' # 1 month
+        elif decimal_part == '16': decimal_part = '17' # 2 months
+        elif decimal_part == '24': decimal_part = '25' # 3 months
+        elif decimal_part == '32': decimal_part = '33' # 4 months
+        elif decimal_part == '40': decimal_part = '42' # 5 months
+        elif decimal_part == '48': decimal_part = '5'  # 6 months
+        elif decimal_part == '56': decimal_part = '58' # 7 months
+        elif decimal_part == '64': decimal_part = '67' # 8 months
+        elif decimal_part == '72': decimal_part = '75' # 9 months
+        elif decimal_part == '80': decimal_part = '83' #10 months
+        elif decimal_part == '88': decimal_part = '92' #11 months
+        else: raise Exception('Unexpected year fraction')#If none of these conditions apply I would like to know about it
+
       return f'{integer_part:02}.{decimal_part}'
     else:
       assert len(x) != 0 #The regexp near the beginning will replace empty strings with 0
