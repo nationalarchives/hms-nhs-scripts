@@ -184,9 +184,10 @@ def clean_18619(years):
 def clean_18621(text):
   result = clean_text(text)
 
-  #Can now assume title case
-  result = re.sub(r'^Hms\b', 'HMS', result)
-  result = re.sub(r'^Hcs\b', 'HCS', result)
+  result, count = re.subn(r'^Hms\b',    'HMS', result)
+  if count != 0: return result
+  result, count = re.subn(r'^Hcs\b',    'HCS', result)
+  if count != 0: return result
   return result
 
 
