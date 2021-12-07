@@ -184,11 +184,11 @@ def clean_18619(years):
 def clean_18621(text):
   result = clean_text(text)
 
-  result, count = re.subn(r'^Hms Ms\b', 'HMS', result)
+  result, count = re.subn(r'^Hms Ms\b', 'HMS', result, flags = re.IGNORECASE)
   if count != 0: return result
-  result, count = re.subn(r'^Hms\b',    'HMS', result)
+  result, count = re.subn(r'^Hms\b',    'HMS', result, flags = re.IGNORECASE)
   if count != 0: return result
-  result, count = re.subn(r'^Hcs\b',    'HCS', result)
+  result, count = re.subn(r'^Hcs\b',    'HCS', result, flags = re.IGNORECASE)
   if count != 0: return result
   return result
 
