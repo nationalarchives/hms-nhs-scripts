@@ -100,6 +100,22 @@ def get_subject_reference(subject):
   else: raise Exception(f'"{fnam}" does not match regular expression')
 
 
+def pretty_candidates(candidates):
+  container = candidates
+  if isinstance(candidates, str):
+    container = ast.literal_eval(candidates)
+    assert isinstance(container, list)
+
+  if isinstance(container, list):
+    container = map(lambda x: ' '.join(x).strip(), zip(*container))
+  elif isinstance(container, dict):
+    container = [f'{k}: {v}' for k, v in candidates.items()]
+  else:
+    raise Exception(f"Unexpected data type {type(container)} while prettifying candidates")
+
+  return '\n'.join(container)
+
+
 #"Port sailed out of" is not in volume 1, so doesn't count as a blank there
 def has_blanks(row):
   without_port_sailed = row.drop('port sailed out of')
@@ -154,13 +170,13 @@ def years_at_sea_resolver(candidates, row, data, datacol):
     if len(numbers) != 2:
       flow_report('Wrong number of "years at sea" entries (or bad separator)', row.name, originals)
       bad[row.name] += 1
-      return originals
+      return pretty_candidates(candidates)
     try:
       (navy, merchant) = [float(x) for x in numbers]
     except ValueError:
       flow_report('Non-float argument in "years at sea"', row.name, originals)
       bad[row.name] += 1
-      return originals
+      return pretty_candidates(candidates)
     navies.append(navy)
     merchants.append(merchant)
   navy_results     = category_resolver(collections.Counter(navies),    args.dropdown_threshold, row.name, data['name'])
@@ -182,7 +198,7 @@ def years_at_sea_resolver(candidates, row, data, datacol):
     elif len(navy_results) != 1: flow_report('Unresolvable (navy side)', row.name, originals)
     else: flow_report('Unresolvable (merchant side)', row.name, originals)
     bad[row.name] += 1
-    return originals
+    return pretty_candidates(candidates)
 
 def string_resolver(row, data, datacol):
   #Start with a special case -- if port sailed out of is set and we are volume 1, autoresolve to blank
@@ -199,7 +215,7 @@ def string_resolver(row, data, datacol):
   if row['data.consensus_score'] / row['data.number_views'] < args.text_threshold:
     flow_report('Did not pass threshold', row.name, row['data.aligned_text'])
     bad[row.name] += 1
-    return row['data.aligned_text']
+    return pretty_candidates(row['data.aligned_text'])
   else:
     if row['data.consensus_score'] != row['data.number_views']: #data has been autoresolved
       if row.name in autoresolved:
@@ -217,7 +233,7 @@ def date_resolver(row, data):
     if(len(candidates) != 1): #Not a conventional case, resolve manually
       flow_report('Surprising input', row.name, row['data.aligned_text'])
       bad[row.name] += 1
-      return row['data.aligned_text']
+      return pretty_candidates(row['data.aligned_text'])
 
     candidates = candidates[0]
     #https://stackoverflow.com/a/18029112 has a trick for reading arbitrary date formats while rejecting ambiguous cases
@@ -227,7 +243,7 @@ def date_resolver(row, data):
     except (TypeError, ValueError): #Something is wrong, resolve manually
       flow_report('Unparseable', row.name, row['data.aligned_text'])
       bad[row.name] += 1
-      return row['data.aligned_text']
+      return pretty_candidates(row['data.aligned_text'])
     candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, row.name, data['name'])
     if len(candidates) == 1:
       if row.name in autoresolved and data['name'] in autoresolved[row.name]: flow_report('Autoresolved', row.name, row['data.aligned_text'])
@@ -237,7 +253,7 @@ def date_resolver(row, data):
     else:
       flow_report('Unresolvable', row.name, row['data.aligned_text'])
       bad[row.name] += 1
-      return row['data.aligned_text']
+      return pretty_candidates(row['data.aligned_text'])
 
 def number_resolver(row, data, datacol):
   candidates = ast.literal_eval(row['data.aligned_text'])
@@ -251,7 +267,7 @@ def number_resolver(row, data, datacol):
   if(len(candidates) != 1): #Not a conventional case, resolve manually
     flow_report('Surprising input', row.name, row['data.aligned_text'])
     bad[row.name] += 1
-    return row['data.aligned_text']
+    return pretty_candidates(row['data.aligned_text'])
 
   candidates = candidates[0]
 
@@ -261,11 +277,11 @@ def number_resolver(row, data, datacol):
   except ValueError:
     flow_report('Non-float input', row.name, row['data.aligned_text'])
     bad[row.name] += 1
-    return row['data.aligned_text']
+    return pretty_candidates(row['data.aligned_text'])
   if not all([x.is_integer() for x in candidates]):
     flow_report('Non-integer input', row.name, row['data.aligned_text'])
     bad[row.name] += 1
-    return row['data.aligned_text']
+    return pretty_candidates(row['data.aligned_text'])
   candidates = [int(x) for x in candidates]
   candidates = category_resolver(collections.Counter(candidates), args.dropdown_threshold, row.name, data['name'])
   if len(candidates) == 1:
@@ -275,7 +291,7 @@ def number_resolver(row, data, datacol):
   else:
     flow_report('Unresolvable', row.name, row['data.aligned_text'])
     bad[row.name] += 1
-    return row['data.aligned_text']
+    return pretty_candidates(row['data.aligned_text'])
 
 #Process data for output
 #Strings use Levenshtein distance approach, IIRC
@@ -401,7 +417,7 @@ def main():
               result[label] = votes
           if len(result) == 1:
             return list(result.keys())[0]
-          else: return str(result)
+          else: return pretty_candidates(result)
       df[data['name']] = df.apply(decode_dropdown, axis = 'columns')
 
     columns.append(df)
