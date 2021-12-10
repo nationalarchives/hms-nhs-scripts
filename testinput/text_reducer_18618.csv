@@ -1,6 +1,4 @@
 subject_id,task,data.aligned_text,data.number_views,data.consensus_score,data.consensus_text
-44121904,T1,"[['00', 'Boston', 'Lincolnshire']]",3.0,1.0,00
-44121904,T2,"[['00', 'London', 'London']]",3.0,2.0,London
 44121904,T3,"[['00', 'London', 'Brighton']]",3.0,1.0,00
 44121904,T4,"[['00', 'Shields', 'Eastbourn']]",3.0,1.0,00
 44121904,T5,"[['00', 'Brixham', 'Brixham']]",3.0,2.0,Brixham

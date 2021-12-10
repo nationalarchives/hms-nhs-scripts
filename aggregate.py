@@ -324,6 +324,9 @@ def main():
   TEXT_T = workflow['definitions']['TEXT_T']
   DROP_T = workflow['definitions']['DROP_T']
 
+  #Declare array to store record of what we have processed
+  views = []
+
   for wid, data in workflow[args.workflows].items():
     datacol = data['ztype']['name']
     conflict_keys = []
@@ -396,6 +399,10 @@ def main():
     else: raise Exception()
 
     #Tidy up columns
+    if data['ztype'] == TEXT_T:
+      views.append(df['data.number_views'].rename(data['name']))
+    elif data['ztype'] == DROP_T:
+      views.append(df[datacol].apply(votecounter).rename(data['name']))
     df.drop(conflict_keys, axis = 'columns', inplace = True) #Drop columns that we just brought in for conflict handling
     df.rename(columns={datacol: data['name']}, inplace = True) #Rename the data column to something meaninful
 
@@ -431,8 +438,17 @@ def main():
   first = columns.pop(0)
   joined = first.join(columns, how='outer')
 
+  first = views.pop(0).to_frame()
+  joined_views = first.join(views, how='outer')
+
   #Search for transcription problmes
   joined.apply(has_transcriptionisms, axis = 'columns')
+  def complete(row):
+    if get_subject_reference(row.name[0])[0] == 1:
+      return row.drop('port sailed out of').ge(3).all()
+    else:
+      return row.ge(3).all()
+  joined_views['complete'] = joined_views.apply(lambda row: complete(row), axis = 'columns')
 
   #Tag or remove the rows with badness
   joined.insert(0, 'Problems', '')
@@ -444,6 +460,7 @@ def main():
       bad.pop(key, None)
       autoresolved.pop(key, None)
     joined = joined.query(f'subject_id not in @incomplete_subjects')
+    joined_views = joined.query(f'subject_id not in @incomplete_subjects')
 
   #Tag unresolved unresolved fields
   #TODO This part does not feel like the Pandas way
@@ -505,5 +522,6 @@ def main():
     joined['Commit'] =[commit] * len(joined.index)
     joined['Args'] = [' '.join(sys.argv)] * len(joined.index)
   joined.to_csv(path_or_buf = f'output/{args.output}', index = False)
+  joined_views.to_csv(path_or_buf = f'output/views_{args.output}')
 
 main()
