@@ -362,11 +362,11 @@ def main():
       #TODO: For these kinds of strings, may well be better to treat them like dropdowns and just take two thirds identical as permitting auto-resolve
     elif(data['ztype'] == DROP_T):
       #Drop all classifications that are based on an insufficient number of views
+      def votecounter(votes):
+        selections = ast.literal_eval(votes)
+        if len(selections) != 1: raise Exception()
+        return(sum(selections[0].values()))
       if not args.unfinished:
-        def votecounter(votes):
-          selections = ast.literal_eval(votes)
-          if len(selections) != 1: raise Exception()
-          return(sum(selections[0].values()))
         df = df[df[datacol].apply(votecounter) >= RETIREMENT_COUNT]
 
       #Report on rows with different counts
