@@ -61,6 +61,10 @@ function config_postproc {
 #version=(    3     3     3     5     3     3     3     3     3    11     3    35     3)
 #  minor=(    6     7     9     8     6    10     6     7    16    18     6    50     7)
 
+function extraction_name {
+  echo "${outdir}/${datatype[$1]}_extractor_${id[$1]}.csv"
+}
+
 rm -rf "${outdir}"
 mkdir  "${outdir}"
 
@@ -71,16 +75,16 @@ for i in {0..12}; do
     { panoptes_aggregation config "${indir}"/hms-nhs-the-nautical-health-service-workflows.csv ${id[$i]} -v ${version[$i]} -m ${minor[$i]} -d "${outdir}"               > "${outdir}/config_${id[$i]}.log"  2>&1 && config_postproc $i; } &&
     { panoptes_aggregation extract "${indir}/${name[$i]}" "${outdir}"/Extractor_config_workflow_${id[$i]}_V${version[$i]}.${minor[$i]}.yaml -d "${outdir}" -o ${id[$i]} > "${outdir}/extract_${id[$i]}.log" 2>&1; } &&
     if [ "${datatype[$i]}" == "$text_t" ]; then
-      { ./clean_extraction.py "${outdir}/${datatype[$i]}_extractor_${id[$i]}.csv" > "${outdir}/postextract_${id[$i]}.log" ${id[$i]} 2>&1 &&
-         mv "${outdir}/${datatype[$i]}_extractor_${id[$i]}.csv" "${outdir}/${datatype[$i]}_extractor_${id[$i]}.csv.original" &&
-         cp "${outdir}/${datatype[$i]}_extractor_${id[$i]}.csv.cleaned" "${outdir}/${datatype[$i]}_extractor_${id[$i]}.csv"; }
+      { ./clean_extraction.py "`extraction_name $i`" > "${outdir}/postextract_${id[$i]}.log" ${id[$i]} 2>&1 &&
+         mv "`extraction_name $i`" "`extraction_name $i`.original" &&
+         cp "`extraction_name $i`.cleaned" "`extraction_name $i`"; }
     else
        true
     fi &&
     { panoptes_aggregation reduce \
         -F last \
         -d "${outdir}" -o ${id[$i]} \
-        "${outdir}"/${datatype[$i]}_extractor_${id[$i]}.csv \
+        "`extraction_name $i`" \
         "${outdir}"/Reducer_config_workflow_${id[$i]}_V${version[$i]}.${minor[$i]}_${datatype[$i]}_extractor.yaml > "${outdir}/reduce_${id[$i]}.log" 2>&1;
     } || { echo "*** Workflow ${id[$i]} failed" >&2; false; }
   }&
