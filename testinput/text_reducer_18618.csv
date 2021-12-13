@@ -523,8 +523,7 @@ subject_id,task,data.aligned_text,data.number_views,data.consensus_score,data.co
 44121938,T28,[['Deal']],1.0,1.0,Deal
 44121938,T29,[['Londonderry']],1.0,1.0,Londonderry
 44290143,T1,"[['Liverpool', 'Liverpool', 'Liverpool']]",3.0,3.0,Liverpool
-44290143,T2,"[['London', 'London', 'London']]",3.0,3.0,London
-44290143,T3,"[['London', 'London', 'London']]",3.0,3.0,London
+44290143,T2,"[['London', 'London']]",2.0,2.0,London
 44290143,T4,"[['Gravesend', 'Gravesend', 'Gravesend']]",3.0,3.0,Gravesend
 44290143,T5,"[['Stettein', 'Stettein', 'Stettein']]",3.0,3.0,Stettein
 44290143,T7,"[['Barking', 'Barking', 'Banksking']]",3.0,2.0,Barking
