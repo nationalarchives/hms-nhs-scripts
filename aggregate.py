@@ -461,7 +461,7 @@ def main():
       bad.pop(key, None)
       autoresolved.pop(key, None)
     joined = joined.query(f'subject_id not in @incomplete_subjects')
-    joined_views = joined.query(f'subject_id not in @incomplete_subjects')
+    joined_views = joined_views.query(f'subject_id not in @incomplete_subjects')
 
   #Tag unresolved unresolved fields
   #TODO This part does not feel like the Pandas way
