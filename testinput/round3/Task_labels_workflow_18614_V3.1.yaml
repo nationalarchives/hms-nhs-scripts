@@ -1,0 +1,1049 @@
+T1.instruction: 'Working down the QUALITY column, select the first 5 ''qualities''
+    (or ranks) from the drop down menu. If not listed, choose ''Other''.
+
+
+    Keep track of where you left off, as you''ll be asked to work on the next group
+    of 5 after this. There are 25 rows in total. Select Quality #1 here.'
+T1.selects.0.options.*.0.label:
+    56d30e2d0465a: AB = Able Seaman
+T1.selects.0.options.*.1.label:
+    d2618247b9bd3: App = Apprentice
+T1.selects.0.options.*.10.label:
+    8936ad40f735: Lascar
+T1.selects.0.options.*.11.label:
+    db19c4a06d10a: Mate
+T1.selects.0.options.*.12.label:
+    ae1abda238953: Master
+T1.selects.0.options.*.13.label:
+    d6888d0da222f: Ord/Ordy = Ordinary Seaman
+T1.selects.0.options.*.14.label:
+    af804ce243fd9: Sailmaker
+T1.selects.0.options.*.15.label:
+    ab63282935ed7: Steward
+T1.selects.0.options.*.16.label:
+    ef8dfcf2b84cc: Stoker
+T1.selects.0.options.*.17.label:
+    51c007d6809cb: Waterman
+T1.selects.0.options.*.18.label:
+    a3efc2c801d1a: Other
+T1.selects.0.options.*.19.label:
+    cb4fc8cbc7795: Missing/illegible entry
+T1.selects.0.options.*.2.label:
+    aec885e9666f7: Baker
+T1.selects.0.options.*.3.label:
+    03498fe84f1d6: Ballast Heaver
+T1.selects.0.options.*.4.label:
+    27b2f5daa4923: Bargeman
+T1.selects.0.options.*.5.label:
+    5797701dfff4: Boatswain
+T1.selects.0.options.*.6.label:
+    9c4ee4639f714: Boy
+T1.selects.0.options.*.7.label:
+    2f3005606e429: Carpenter
+T1.selects.0.options.*.8.label:
+    a41f0c2ec3693: Cook
+T1.selects.0.options.*.9.label:
+    7eda536dca7ca: Fisherman
+T10.instruction: 'Select Quality #9'
+T10.selects.0.options.*.0.label:
+    e030c2fd68ed1: AB = Able Seaman
+T10.selects.0.options.*.1.label:
+    c0e6e184fab2d: App = Apprentice
+T10.selects.0.options.*.10.label:
+    dbc73e47c8e8e: Lascar
+T10.selects.0.options.*.11.label:
+    18d463a524291: Mate
+T10.selects.0.options.*.12.label:
+    7de0ee22e803a: Master
+T10.selects.0.options.*.13.label:
+    1c6ce57b64c79: Ord/Ordy = Ordinary Seaman
+T10.selects.0.options.*.14.label:
+    f5584865e7e11: Sailmaker
+T10.selects.0.options.*.15.label:
+    043b051dff328: Steward
+T10.selects.0.options.*.16.label:
+    260e6d9e75684: Stoker
+T10.selects.0.options.*.17.label:
+    26e0d7abff383: Waterman
+T10.selects.0.options.*.18.label:
+    566fa8e968d67: Other
+T10.selects.0.options.*.19.label:
+    f0620101da8c2: Missing/illegible entry
+T10.selects.0.options.*.2.label:
+    0c248859e576f: Baker
+T10.selects.0.options.*.3.label:
+    7f4753670ab9b: Ballast Heaver
+T10.selects.0.options.*.4.label:
+    edef1cfc71ac3: Bargeman
+T10.selects.0.options.*.5.label:
+    823ade13cd334: Boatswain
+T10.selects.0.options.*.6.label:
+    c538cb6cb653f: Boy
+T10.selects.0.options.*.7.label:
+    be06a808f2da1: Carpenter
+T10.selects.0.options.*.8.label:
+    7440ba1efdc99: Cook
+T10.selects.0.options.*.9.label:
+    7a19e82b983a1: Fisherman
+T11.instruction: 'Select Quality #10'
+T11.selects.0.options.*.0.label:
+    00efe34dc4333: AB = Able Seaman
+T11.selects.0.options.*.1.label:
+    5b5efb57a6c2b: App = Apprentice
+T11.selects.0.options.*.10.label:
+    5fdf3fc0e7e8d: Lascar
+T11.selects.0.options.*.11.label:
+    6562e926be41: Mate
+T11.selects.0.options.*.12.label:
+    e5e26b33ffc21: Master
+T11.selects.0.options.*.13.label:
+    bc84a35359e79: Ord/Ordy = Ordinary Seaman
+T11.selects.0.options.*.14.label:
+    0830fc9a461c2: Sailmaker
+T11.selects.0.options.*.15.label:
+    2ef35505b4fb4: Steward
+T11.selects.0.options.*.16.label:
+    1d18a695ee9c7: Stoker
+T11.selects.0.options.*.17.label:
+    8d8af3d56501a: Waterman
+T11.selects.0.options.*.18.label:
+    6b6b47902561b: Other
+T11.selects.0.options.*.19.label:
+    e22c94099aa64: Missing/illegible entry
+T11.selects.0.options.*.2.label:
+    e046a777ef254: Baker
+T11.selects.0.options.*.3.label:
+    721d03920a04: Ballast Heaver
+T11.selects.0.options.*.4.label:
+    56ed530b763ea: Bargeman
+T11.selects.0.options.*.5.label:
+    a5607bab06fab: Boatswain
+T11.selects.0.options.*.6.label:
+    81696826650be: Boy
+T11.selects.0.options.*.7.label:
+    5bd5b3514342f: Carpenter
+T11.selects.0.options.*.8.label:
+    47acab3a203a: Cook
+T11.selects.0.options.*.9.label:
+    1accefd2837d3: Fisherman
+T13.instruction: 'Working down the QUALITY column, select the next 5 ''qualities''
+    (or ranks) from the drop down menu. If not listed, choose ''Other''.
+
+
+    Keep track of where you left off, as you''ll be asked to work on the next group
+    of 5 after this. There are 25 rows in total. Select Quality #11 here.'
+T13.selects.0.options.*.0.label:
+    eb8ae6c59ae38: AB = Able Seaman
+T13.selects.0.options.*.1.label:
+    bcedc16a976e9: App = Apprentice
+T13.selects.0.options.*.10.label:
+    ecbc34a75750a: Lascar
+T13.selects.0.options.*.11.label:
+    2cb6dbd4f41fb: Mate
+T13.selects.0.options.*.12.label:
+    b3d97db8db81d: Master
+T13.selects.0.options.*.13.label:
+    d1205aee8a61a: Ord/Ordy = Ordinary Seaman
+T13.selects.0.options.*.14.label:
+    c3de03ff001ca: Sailmaker
+T13.selects.0.options.*.15.label:
+    ce224d7f77f9: Steward
+T13.selects.0.options.*.16.label:
+    65bb3aed0e2f5: Stoker
+T13.selects.0.options.*.17.label:
+    21d8265b75333: Waterman
+T13.selects.0.options.*.18.label:
+    433dc9598fab1: Other
+T13.selects.0.options.*.19.label:
+    d6747369235a1: Missing/illegible entry
+T13.selects.0.options.*.2.label:
+    6a1f3e7af0649: Baker
+T13.selects.0.options.*.3.label:
+    fed06a5045fc4: Ballast Heaver
+T13.selects.0.options.*.4.label:
+    0a7bb557cfc0e: Bargeman
+T13.selects.0.options.*.5.label:
+    b56c76072676f: Boatswain
+T13.selects.0.options.*.6.label:
+    6c0c83f1873b: Boy
+T13.selects.0.options.*.7.label:
+    85cee62e248df: Carpenter
+T13.selects.0.options.*.8.label:
+    '4302515580809': Cook
+T13.selects.0.options.*.9.label:
+    d0e227126492c: Fisherman
+T14.instruction: 'Select Quality #12'
+T14.selects.0.options.*.0.label:
+    8a8eee3f8e3d3: AB = Able Seaman
+T14.selects.0.options.*.1.label:
+    da9ddf0cced8: App = Apprentice
+T14.selects.0.options.*.10.label:
+    e7b88827a3798: Lascar
+T14.selects.0.options.*.11.label:
+    14a66170ee2ea: Mate
+T14.selects.0.options.*.12.label:
+    6f0620a3f219d: Master
+T14.selects.0.options.*.13.label:
+    66549bbb9b66: Ord/Ordy = Ordinary Seaman
+T14.selects.0.options.*.14.label:
+    ae48e7c852ed5: Sailmaker
+T14.selects.0.options.*.15.label:
+    e59bde6a88e6: Steward
+T14.selects.0.options.*.16.label:
+    15d192b843b3: Stoker
+T14.selects.0.options.*.17.label:
+    cbf6b923695fb: Waterman
+T14.selects.0.options.*.18.label:
+    4264e8d813312: Other
+T14.selects.0.options.*.19.label:
+    02f2467c3acb8: Missing/illegible entry
+T14.selects.0.options.*.2.label:
+    a3cea8d67407d: Baker
+T14.selects.0.options.*.3.label:
+    0916a1bc76551: Ballast Heaver
+T14.selects.0.options.*.4.label:
+    d19d88ca0d656: Bargeman
+T14.selects.0.options.*.5.label:
+    59b072b21b41f: Boatswain
+T14.selects.0.options.*.6.label:
+    8c6fe04d6f789: Boy
+T14.selects.0.options.*.7.label:
+    86887207e2e2d: Carpenter
+T14.selects.0.options.*.8.label:
+    2a5952417d8ab: Cook
+T14.selects.0.options.*.9.label:
+    add93c4be9046: Fisherman
+T15.instruction: 'Select Quality #13'
+T15.selects.0.options.*.0.label:
+    6c3613d109bba: AB = Able Seaman
+T15.selects.0.options.*.1.label:
+    bfad6603f5514: App = Apprentice
+T15.selects.0.options.*.10.label:
+    63e09b262ae3a: Lascar
+T15.selects.0.options.*.11.label:
+    f8d7647b10928: Mate
+T15.selects.0.options.*.12.label:
+    459dd2ab3e97a: Master
+T15.selects.0.options.*.13.label:
+    518fece857851: Ord/Ordy = Ordinary Seaman
+T15.selects.0.options.*.14.label:
+    36a5703bb9fcb: Sailmaker
+T15.selects.0.options.*.15.label:
+    c8ffa1cce1db2: Steward
+T15.selects.0.options.*.16.label:
+    13014c8c891a7: Stoker
+T15.selects.0.options.*.17.label:
+    d84e68f74622a: Waterman
+T15.selects.0.options.*.18.label:
+    fd3a65db17491: Other
+T15.selects.0.options.*.19.label:
+    60a24c8baca64: Missing/illegible entry
+T15.selects.0.options.*.2.label:
+    012f89a5692b2: Baker
+T15.selects.0.options.*.3.label:
+    3ec10500876bc: Ballast Heaver
+T15.selects.0.options.*.4.label:
+    fdd27f1cae9f8: Bargeman
+T15.selects.0.options.*.5.label:
+    c6774cbbe3cbc: Boatswain
+T15.selects.0.options.*.6.label:
+    5ae4c4ca14af2: Boy
+T15.selects.0.options.*.7.label:
+    2d8aba935e92b: Carpenter
+T15.selects.0.options.*.8.label:
+    e8d5f53f7761b: Cook
+T15.selects.0.options.*.9.label:
+    488afce65fa54: Fisherman
+T16.instruction: 'Select Quality #14'
+T16.selects.0.options.*.0.label:
+    d51ab89105be2: AB = Able Seaman
+T16.selects.0.options.*.1.label:
+    29e18938b24f9: App = Apprentice
+T16.selects.0.options.*.10.label:
+    d417a47370333: Lascar
+T16.selects.0.options.*.11.label:
+    177461f440d1c: Mate
+T16.selects.0.options.*.12.label:
+    a47832db30605: Master
+T16.selects.0.options.*.13.label:
+    24f09cfd5a332: Ord/Ordy = Ordinary Seaman
+T16.selects.0.options.*.14.label:
+    b6e7f40bd7fd1: Ord = Ordinary Seaman
+T16.selects.0.options.*.15.label:
+    b310c1651e20a: Sailmaker
+T16.selects.0.options.*.16.label:
+    8fa4533a77391: Steward
+T16.selects.0.options.*.17.label:
+    e94d691c947f4: Stoker
+T16.selects.0.options.*.18.label:
+    a016bf32aa09: Waterman
+T16.selects.0.options.*.19.label:
+    101eca7f5863: Other
+T16.selects.0.options.*.2.label:
+    221c31bdcefcc: Baker
+T16.selects.0.options.*.20.label:
+    8e82527d14fe6: Missing/illegible entry
+T16.selects.0.options.*.3.label:
+    19453e257106a: Ballast Heaver
+T16.selects.0.options.*.4.label:
+    33bb3ee26b7fa: Bargeman
+T16.selects.0.options.*.5.label:
+    3827beb426bb5: Boatswain
+T16.selects.0.options.*.6.label:
+    1631045ad02cd: Boy
+T16.selects.0.options.*.7.label:
+    33c07879688b7: Carpenter
+T16.selects.0.options.*.8.label:
+    de9407f6cad24: Cook
+T16.selects.0.options.*.9.label:
+    d58875bc29e05: Fisherman
+T17.instruction: 'Select Quality #15'
+T17.selects.0.options.*.0.label:
+    a57cc877c03e3: AB = Able Seaman
+T17.selects.0.options.*.1.label:
+    cf3f01c9831c2: App = Apprentice
+T17.selects.0.options.*.10.label:
+    b6694608bfc0d: Lascar
+T17.selects.0.options.*.11.label:
+    9281f1b32a82e: Mate
+T17.selects.0.options.*.12.label:
+    757bdd4860685: Master
+T17.selects.0.options.*.13.label:
+    b16c136a7bd2: Ord/Ordy = Ordinary Seaman
+T17.selects.0.options.*.14.label:
+    bb503b0885669: Sailmaker
+T17.selects.0.options.*.15.label:
+    97cc2f296149c: Steward
+T17.selects.0.options.*.16.label:
+    bf01c3647171a: Stoker
+T17.selects.0.options.*.17.label:
+    4752934d3337: Waterman
+T17.selects.0.options.*.18.label:
+    17d3778e9b476: Other
+T17.selects.0.options.*.19.label:
+    a5bcbbea7aeed: Missing/illegible entry
+T17.selects.0.options.*.2.label:
+    28306684e7345: Baker
+T17.selects.0.options.*.3.label:
+    ed973c153051a: Ballast Heaver
+T17.selects.0.options.*.4.label:
+    44e1ab12b8704: Bargeman
+T17.selects.0.options.*.5.label:
+    3b4d2eb6b8528: Boatswain
+T17.selects.0.options.*.6.label:
+    6312734d6a966: Boy
+T17.selects.0.options.*.7.label:
+    08dee50cb7da1: Carpenter
+T17.selects.0.options.*.8.label:
+    43ca70500da7e: Cook
+T17.selects.0.options.*.9.label:
+    897bd1edaed72: Fisherman
+T19.instruction: 'Working down the QUALITY column, select the next 5 ''qualities''
+    (or ranks) from the drop down menu. If not listed, choose ''Other''.
+
+
+    Keep track of where you left off, as you''ll be asked to work on the final group
+    of 5 after this. There are 25 rows in total. Select Quality #16 here.'
+T19.selects.0.options.*.0.label:
+    e09cfa41005c9: AB = Able Seaman
+T19.selects.0.options.*.1.label:
+    3482735fa7d9b: App = Apprentice
+T19.selects.0.options.*.10.label:
+    2063e0e2d32a1: Lascar
+T19.selects.0.options.*.11.label:
+    b9678d2de7f82: Mate
+T19.selects.0.options.*.12.label:
+    dc569e063cb06: Master
+T19.selects.0.options.*.13.label:
+    4f08a4402710d: Ord/Ordy = Ordinary Seaman
+T19.selects.0.options.*.14.label:
+    a247d50e54c0d: Sailmaker
+T19.selects.0.options.*.15.label:
+    8c9bbd18ff285: Steward
+T19.selects.0.options.*.16.label:
+    cd5cce9ef1749: Stoker
+T19.selects.0.options.*.17.label:
+    49ab403304c4d: Waterman
+T19.selects.0.options.*.18.label:
+    0ee9e997b2ec6: Other
+T19.selects.0.options.*.19.label:
+    38a4a2ffcc51f: Missing/illegible entry
+T19.selects.0.options.*.2.label:
+    ba56a8dc90978: Baker
+T19.selects.0.options.*.3.label:
+    11981f3e9907f: Ballast Heaver
+T19.selects.0.options.*.4.label:
+    ce1a8180eead2: Bargeman
+T19.selects.0.options.*.5.label:
+    54041a56e56e6: Boatswain
+T19.selects.0.options.*.6.label:
+    67f329987b973: Boy
+T19.selects.0.options.*.7.label:
+    49bb427fa09fe: Carpenter
+T19.selects.0.options.*.8.label:
+    662f2490ceb08: Cook
+T19.selects.0.options.*.9.label:
+    050e473e2123e: Fisherman
+T2.instruction: 'Select Quality #2'
+T2.selects.0.options.*.0.label:
+    79618fa3d498f: AB = Able Seaman
+T2.selects.0.options.*.1.label:
+    896a18cc27779: App = Apprentice
+T2.selects.0.options.*.10.label:
+    1b3137f1d6ddc: Lascar
+T2.selects.0.options.*.11.label:
+    a8e17fec0aed5: Mate
+T2.selects.0.options.*.12.label:
+    d8a4a9bf58da6: Master
+T2.selects.0.options.*.13.label:
+    63290affa13fb: Ord/Ordy = Ordinary Seaman
+T2.selects.0.options.*.14.label:
+    e41284579c412: Sailmaker
+T2.selects.0.options.*.15.label:
+    f4264bb77789e: Steward
+T2.selects.0.options.*.16.label:
+    c62b8a91716ac: Stoker
+T2.selects.0.options.*.17.label:
+    84e46b0ff62: Waterman
+T2.selects.0.options.*.18.label:
+    b4ffe4e1bca66: Other
+T2.selects.0.options.*.19.label:
+    1656aa818b2b6: Missing/illegible entry
+T2.selects.0.options.*.2.label:
+    0a7b09f4e1cd7: Baker
+T2.selects.0.options.*.3.label:
+    a070c046c321e: Ballast Heaver
+T2.selects.0.options.*.4.label:
+    7af91d11da79f: Bargeman
+T2.selects.0.options.*.5.label:
+    07c8acadffbc9: Boatswain
+T2.selects.0.options.*.6.label:
+    3bcb952380137: Boy
+T2.selects.0.options.*.7.label:
+    f10d9ed56d0cc: Carpenter
+T2.selects.0.options.*.8.label:
+    afe9b8ca5facc: Cook
+T2.selects.0.options.*.9.label:
+    b525de13ee2fc: Fisherman
+T20.instruction: 'Select Quality #17'
+T20.selects.0.options.*.0.label:
+    41cc4aef02355: AB = Able Seaman
+T20.selects.0.options.*.1.label:
+    3c2a828a84ac7: App = Apprentice
+T20.selects.0.options.*.10.label:
+    1d032d63cddd3: Lascar
+T20.selects.0.options.*.11.label:
+    80433668186e: Mate
+T20.selects.0.options.*.12.label:
+    bef25a5ba0d4f: Master
+T20.selects.0.options.*.13.label:
+    90376ac605578: Ord/Ordy = Ordinary Seaman
+T20.selects.0.options.*.14.label:
+    3ea26173f32ad: Sailmaker
+T20.selects.0.options.*.15.label:
+    f7f9f0b15b123: Steward
+T20.selects.0.options.*.16.label:
+    cd97d9dc6d082: Stoker
+T20.selects.0.options.*.17.label:
+    bde878b76f1e9: Waterman
+T20.selects.0.options.*.18.label:
+    4af4ec01ca824: Other
+T20.selects.0.options.*.19.label:
+    daf7765bd732e: Missing/illegible entry
+T20.selects.0.options.*.2.label:
+    6f8c8c24d4f57: Baker
+T20.selects.0.options.*.3.label:
+    b71a03c978495: Ballast Heaver
+T20.selects.0.options.*.4.label:
+    c6ae3489f43ed: Bargeman
+T20.selects.0.options.*.5.label:
+    36bd0f7e37b6a: Boatswain
+T20.selects.0.options.*.6.label:
+    4b8e1f2631f95: Boy
+T20.selects.0.options.*.7.label:
+    a72e14b774ec: Carpenter
+T20.selects.0.options.*.8.label:
+    13614fff82642: Cook
+T20.selects.0.options.*.9.label:
+    9a589ad497b24: Fisherman
+T21.instruction: 'Select Quality #18'
+T21.selects.0.options.*.0.label:
+    42c47fa58f5b9: AB = Able Seaman
+T21.selects.0.options.*.1.label:
+    2c00c368670d3: App = Apprentice
+T21.selects.0.options.*.10.label:
+    53fbfcfa09222: Lascar
+T21.selects.0.options.*.11.label:
+    8947a7ec14ecf: Mate
+T21.selects.0.options.*.12.label:
+    4ad1a22cc7745: Master
+T21.selects.0.options.*.13.label:
+    9607d4510a865: Ord/Ordy = Ordinary Seaman
+T21.selects.0.options.*.14.label:
+    ed7934faf8543: Sailmaker
+T21.selects.0.options.*.15.label:
+    b779582590656: Steward
+T21.selects.0.options.*.16.label:
+    1f01c2c8fe3ff: Stoker
+T21.selects.0.options.*.17.label:
+    27c15effb1614: Waterman
+T21.selects.0.options.*.18.label:
+    cee3c4bcb7146: Other
+T21.selects.0.options.*.19.label:
+    a3e1949586f4e: Missing/illegible entry
+T21.selects.0.options.*.2.label:
+    b457d1b526b42: Baker
+T21.selects.0.options.*.3.label:
+    d6cf4e9d30208: Ballast Heaver
+T21.selects.0.options.*.4.label:
+    2a1ee4ef7cf2: Bargeman
+T21.selects.0.options.*.5.label:
+    ed01d0ae50073: Boatswain
+T21.selects.0.options.*.6.label:
+    b65f59a98feff: Boy
+T21.selects.0.options.*.7.label:
+    aab87f9450b18: Carpenter
+T21.selects.0.options.*.8.label:
+    d5f591922573e: Cook
+T21.selects.0.options.*.9.label:
+    c3feaa09c3fbf: Fisherman
+T22.instruction: 'Select Quality #19'
+T22.selects.0.options.*.0.label:
+    58f8c46bf545d: AB = Able Seaman
+T22.selects.0.options.*.1.label:
+    db0df44029b24: App = Apprentice
+T22.selects.0.options.*.10.label:
+    10cb362e3aec1: Lascar
+T22.selects.0.options.*.11.label:
+    1ae4632f93849: Mate
+T22.selects.0.options.*.12.label:
+    a3821b5147e06: Master
+T22.selects.0.options.*.13.label:
+    f2e3740b7f80b: Ord/Ordy = Ordinary Seaman
+T22.selects.0.options.*.14.label:
+    ed532831e85c: Sailmaker
+T22.selects.0.options.*.15.label:
+    f8f9df7ed096c: Steward
+T22.selects.0.options.*.16.label:
+    1a0fe7cf2f0e4: Stoker
+T22.selects.0.options.*.17.label:
+    5643a69553b63: Waterman
+T22.selects.0.options.*.18.label:
+    c99362ce5298d: Other
+T22.selects.0.options.*.19.label:
+    ec3c10e7d936c: Missing/illegible entry
+T22.selects.0.options.*.2.label:
+    2735cd4981795: Baker
+T22.selects.0.options.*.3.label:
+    eb2fdc2e2f366: Ballast Heaver
+T22.selects.0.options.*.4.label:
+    61b971d17e479: Bargeman
+T22.selects.0.options.*.5.label:
+    e2ba0938050ac: Boatswain
+T22.selects.0.options.*.6.label:
+    63323f5e50901: Boy
+T22.selects.0.options.*.7.label:
+    9ce86a29eb9a9: Carpenter
+T22.selects.0.options.*.8.label:
+    11c58ddc3f4ec: Cook
+T22.selects.0.options.*.9.label:
+    e56c4accdee73: Fisherman
+T23.instruction: 'Select Quality #20'
+T23.selects.0.options.*.0.label:
+    6a06049f52c8b: AB = Able Seaman
+T23.selects.0.options.*.1.label:
+    0a28371824c0c: App = Apprentice
+T23.selects.0.options.*.10.label:
+    9fe6251e91a71: Lascar
+T23.selects.0.options.*.11.label:
+    e7227716ab6fd: Mate
+T23.selects.0.options.*.12.label:
+    d9ce9e2a57c41: Master
+T23.selects.0.options.*.13.label:
+    e7e9c03b15033: Ord/Ordy = Ordinary Seaman
+T23.selects.0.options.*.14.label:
+    2bff1469b05dc: Sailmaker
+T23.selects.0.options.*.15.label:
+    6f8856709099f: Steward
+T23.selects.0.options.*.16.label:
+    d19c28cb0a877: Stoker
+T23.selects.0.options.*.17.label:
+    aef3649eebdaa: Waterman
+T23.selects.0.options.*.18.label:
+    6ebc415f8e264: Other
+T23.selects.0.options.*.19.label:
+    be7d0cfc6492: Missing/illegible entry
+T23.selects.0.options.*.2.label:
+    99daa5f3e94cc: Baker
+T23.selects.0.options.*.3.label:
+    cf7804b915bf1: Ballast Heaver
+T23.selects.0.options.*.4.label:
+    01186dd3e914b: Bargeman
+T23.selects.0.options.*.5.label:
+    906feec7291dc: Boatswain
+T23.selects.0.options.*.6.label:
+    f397394a6b66c: Boy
+T23.selects.0.options.*.7.label:
+    47b09bb5466e4: Carpenter
+T23.selects.0.options.*.8.label:
+    2bc76d7969245: Cook
+T23.selects.0.options.*.9.label:
+    80c110236db75: Fisherman
+T25.instruction: 'Working down the QUALITY column, select the final 5 ''qualities''
+    (or ranks) from the drop down menu. If not listed, choose ''Other''. Select Quality
+    #21 here.'
+T25.selects.0.options.*.0.label:
+    a4a6ef58cbcaf: AB = Able Seaman
+T25.selects.0.options.*.1.label:
+    0dd729cb8b5b5: App = Apprentice
+T25.selects.0.options.*.10.label:
+    b6d599c53043b: Lascar
+T25.selects.0.options.*.11.label:
+    37349d6ec51fa: Mate
+T25.selects.0.options.*.12.label:
+    55e8187fc1d2d: Master
+T25.selects.0.options.*.13.label:
+    5d2e08f5c82df: Ord/Ordy = Ordinary Seaman
+T25.selects.0.options.*.14.label:
+    3576f0cccbbef: Sailmaker
+T25.selects.0.options.*.15.label:
+    050873346ddf6: Steward
+T25.selects.0.options.*.16.label:
+    12bcfd223fabe: Stoker
+T25.selects.0.options.*.17.label:
+    3514e3f59478f: Waterman
+T25.selects.0.options.*.18.label:
+    d5e7b7cbf67e1: Other
+T25.selects.0.options.*.19.label:
+    4f55cd5f4dd25: Missing/illegible entry
+T25.selects.0.options.*.2.label:
+    55eb35f9354fa: Baker
+T25.selects.0.options.*.3.label:
+    1ce55289b2c56: Ballast Heaver
+T25.selects.0.options.*.4.label:
+    bccfb515748dc: Bargeman
+T25.selects.0.options.*.5.label:
+    b18b0dd55aaa8: Boatswain
+T25.selects.0.options.*.6.label:
+    3aed90e7c7a62: Boy
+T25.selects.0.options.*.7.label:
+    dd6a0bf6c5b52: Carpenter
+T25.selects.0.options.*.8.label:
+    5d3c597577632: Cook
+T25.selects.0.options.*.9.label:
+    e5c69fd104433: Fisherman
+T26.instruction: 'Select Quality #22'
+T26.selects.0.options.*.0.label:
+    7fa900dcd07ef: AB = Able Seaman
+T26.selects.0.options.*.1.label:
+    ec121a54dd6f1: App = Apprentice
+T26.selects.0.options.*.10.label:
+    d632feb95f636: Lascar
+T26.selects.0.options.*.11.label:
+    008af594aa708: Mate
+T26.selects.0.options.*.12.label:
+    494745d87a8d1: Master
+T26.selects.0.options.*.13.label:
+    3485667f7715b: Ord/Ordy = Ordinary Seaman
+T26.selects.0.options.*.14.label:
+    c0c50b3337a7c: Sailmaker
+T26.selects.0.options.*.15.label:
+    1f0378e26dcde: Steward
+T26.selects.0.options.*.16.label:
+    cbfbe23ea71af: Stoker
+T26.selects.0.options.*.17.label:
+    fc073988ed631: Waterman
+T26.selects.0.options.*.18.label:
+    5d27757c468b5: Other
+T26.selects.0.options.*.19.label:
+    a3015a04428ce: Missing/illegible entry
+T26.selects.0.options.*.2.label:
+    2f86c3787b202: Baker
+T26.selects.0.options.*.3.label:
+    ed127c5d0d896: Ballast Heaver
+T26.selects.0.options.*.4.label:
+    784c126fbd80c: Bargeman
+T26.selects.0.options.*.5.label:
+    fb0491bccd331: Boatswain
+T26.selects.0.options.*.6.label:
+    f5af906e769c7: Boy
+T26.selects.0.options.*.7.label:
+    6f2f0cef25d97: Carpenter
+T26.selects.0.options.*.8.label:
+    a5f0a47ee0eb4: Cook
+T26.selects.0.options.*.9.label:
+    71999be5a2b35: Fisherman
+T27.instruction: 'Select Quality #23'
+T27.selects.0.options.*.0.label:
+    ec22e8240970c: AB = Able Seaman
+T27.selects.0.options.*.1.label:
+    5132543c23836: App = Apprentice
+T27.selects.0.options.*.10.label:
+    c1710c74ddb35: Lascar
+T27.selects.0.options.*.11.label:
+    458295fce82f9: Mate
+T27.selects.0.options.*.12.label:
+    a609b74a32c7d: Master
+T27.selects.0.options.*.13.label:
+    6e154c2364bbb: Ord/Ordy = Ordinary Seaman
+T27.selects.0.options.*.14.label:
+    75f6c553a14ee: Sailmaker
+T27.selects.0.options.*.15.label:
+    6a38459c4c1e1: Steward
+T27.selects.0.options.*.16.label:
+    0a51eb7dacf: Stoker
+T27.selects.0.options.*.17.label:
+    e60d9d6ef478c: Waterman
+T27.selects.0.options.*.18.label:
+    b8c6ea69e6e97: Other
+T27.selects.0.options.*.19.label:
+    205d1efd2c8d6: Missing/illegible entry
+T27.selects.0.options.*.2.label:
+    d69a70d71524a: Baker
+T27.selects.0.options.*.3.label:
+    a92b385d06bea: Ballast Heaver
+T27.selects.0.options.*.4.label:
+    c0e22c7f39af1: Bargeman
+T27.selects.0.options.*.5.label:
+    e648a8245f304: Boatswain
+T27.selects.0.options.*.6.label:
+    d81ec34f5f686: Boy
+T27.selects.0.options.*.7.label:
+    fd649f18a2b94: Carpenter
+T27.selects.0.options.*.8.label:
+    469240c7d01c2: Cook
+T27.selects.0.options.*.9.label:
+    1d570077fb2e8: Fisherman
+T28.instruction: 'Select Quality #24'
+T28.selects.0.options.*.0.label:
+    3b381d47474b2: AB = Able Seaman
+T28.selects.0.options.*.1.label:
+    9baaaf019f42: App = Apprentice
+T28.selects.0.options.*.10.label:
+    346b641ceaa54: Lascar
+T28.selects.0.options.*.11.label:
+    3ab4da847e86a: Mate
+T28.selects.0.options.*.12.label:
+    fa9c1c9d1e41c: Master
+T28.selects.0.options.*.13.label:
+    ddb58d55fdc64: Ord/Ordy = Ordinary Seaman
+T28.selects.0.options.*.14.label:
+    34f73d45cd843: Sailmaker
+T28.selects.0.options.*.15.label:
+    8fb4a199db2ce: Steward
+T28.selects.0.options.*.16.label:
+    43bc688640633: Stoker
+T28.selects.0.options.*.17.label:
+    6b0782baec659: Waterman
+T28.selects.0.options.*.18.label:
+    2be75d9ea819f: Other
+T28.selects.0.options.*.19.label:
+    f4bc7d68b9046: Missing/illegible entry
+T28.selects.0.options.*.2.label:
+    24a1f90866364: Baker
+T28.selects.0.options.*.3.label:
+    54d2add7b348a: Ballast Heaver
+T28.selects.0.options.*.4.label:
+    190c80fa902b3: Bargeman
+T28.selects.0.options.*.5.label:
+    9864fbdefa191: Boatswain
+T28.selects.0.options.*.6.label:
+    07b7baef89ac3: Boy
+T28.selects.0.options.*.7.label:
+    f62c194a924f8: Carpenter
+T28.selects.0.options.*.8.label:
+    8ea7bcfe78cf5: Cook
+T28.selects.0.options.*.9.label:
+    a27ad04625d7e: Fisherman
+T29.instruction: 'Select Quality #25'
+T29.selects.0.options.*.0.label:
+    0dec97a56fb18: AB = Able Seaman
+T29.selects.0.options.*.1.label:
+    1667c7de6ea37: App = Apprentice
+T29.selects.0.options.*.10.label:
+    17ba9869b4003: Lascar
+T29.selects.0.options.*.11.label:
+    16913cd7f671: Mate
+T29.selects.0.options.*.12.label:
+    868c0cde4a905: Master
+T29.selects.0.options.*.13.label:
+    585f2b171f385: Ord/Ordy = Ordinary Seaman
+T29.selects.0.options.*.14.label:
+    8bfe254d788a1: Sailmaker
+T29.selects.0.options.*.15.label:
+    a6b717dd5fff: Steward
+T29.selects.0.options.*.16.label:
+    582efb88d4115: Stoker
+T29.selects.0.options.*.17.label:
+    36d150bde567c: Waterman
+T29.selects.0.options.*.18.label:
+    c781feafcfe3e: Other
+T29.selects.0.options.*.19.label:
+    205289a204be5: Missing/illegible entry
+T29.selects.0.options.*.2.label:
+    608e42f60a3e9: Baker
+T29.selects.0.options.*.3.label:
+    921ae9c9e6af1: Ballast Heaver
+T29.selects.0.options.*.4.label:
+    644d71f489b62: Bargeman
+T29.selects.0.options.*.5.label:
+    19986740c18e: Boatswain
+T29.selects.0.options.*.6.label:
+    06ca13e8bd837: Boy
+T29.selects.0.options.*.7.label:
+    8252362d050cc: Carpenter
+T29.selects.0.options.*.8.label:
+    ff380cf740d6b: Cook
+T29.selects.0.options.*.9.label:
+    3af8ee8e5b8da: Fisherman
+T3.instruction: 'Select Quality #3'
+T3.selects.0.options.*.0.label:
+    9c56c90c143de: AB= Able Seaman
+T3.selects.0.options.*.1.label:
+    ed84cf8368ded: App = Apprentice
+T3.selects.0.options.*.10.label:
+    7017e1a663a14: Lascar
+T3.selects.0.options.*.11.label:
+    698954061daa5: Mate
+T3.selects.0.options.*.12.label:
+    e7b4fdd5e8287: Master
+T3.selects.0.options.*.13.label:
+    4f1c8da1a6fb5: Ord/Ordy = Ordinary Seaman
+T3.selects.0.options.*.14.label:
+    0575f5e86e208: Sailmaker
+T3.selects.0.options.*.15.label:
+    b54f78dddf4b6: Steward
+T3.selects.0.options.*.16.label:
+    926b97d4e72d9: Stoker
+T3.selects.0.options.*.17.label:
+    a5055658bc4ec: Waterman
+T3.selects.0.options.*.18.label:
+    7e11acdcb714a: Other
+T3.selects.0.options.*.19.label:
+    3c840bcf2139b: Missing/illegible entry
+T3.selects.0.options.*.2.label:
+    dd658f49ff3f1: Baker
+T3.selects.0.options.*.3.label:
+    5fc3fade4544a: Ballast Heaver
+T3.selects.0.options.*.4.label:
+    0ca0bd377d29: Bargeman
+T3.selects.0.options.*.5.label:
+    73f552f4403d8: Boatswain
+T3.selects.0.options.*.6.label:
+    c3f38282ab6ca: Boy
+T3.selects.0.options.*.7.label:
+    0e4e0f24fc72a: Carpenter
+T3.selects.0.options.*.8.label:
+    64c9bb52e8a05: Cook
+T3.selects.0.options.*.9.label:
+    ec3aed26de7aa: Fisherman
+T4.instruction: 'Select Quality #4'
+T4.selects.0.options.*.0.label:
+    5b5d3ac3b3f37: AB= Able Seaman
+T4.selects.0.options.*.1.label:
+    1c2f6a1fa5cd7: App = Apprentice
+T4.selects.0.options.*.10.label:
+    6241220c6659c: Lascar
+T4.selects.0.options.*.11.label:
+    fc016db5c4102: Mate
+T4.selects.0.options.*.12.label:
+    94c5f8b63431a: Master
+T4.selects.0.options.*.13.label:
+    60977ef47ff4a: Ord/Ordy = Ordinary Seaman
+T4.selects.0.options.*.14.label:
+    293a2bf6a94ce: Sailmaker
+T4.selects.0.options.*.15.label:
+    cf9b11d18fcaa: Steward
+T4.selects.0.options.*.16.label:
+    a279053ae4ed4: Stoker
+T4.selects.0.options.*.17.label:
+    226fdcbcdbd9d: Waterman
+T4.selects.0.options.*.18.label:
+    c6f3ee560eab9: Other
+T4.selects.0.options.*.19.label:
+    7226a12d75c37: Missing/illegible entry
+T4.selects.0.options.*.2.label:
+    fde3e3380a5fe: Baker
+T4.selects.0.options.*.3.label:
+    5e0e337f8595: Ballast Heaver
+T4.selects.0.options.*.4.label:
+    19942725ae988: Bargeman
+T4.selects.0.options.*.5.label:
+    55245acb149c9: Boatswain
+T4.selects.0.options.*.6.label:
+    26ba8b0aae155: Boy
+T4.selects.0.options.*.7.label:
+    153d9cdb1231f: Carpenter
+T4.selects.0.options.*.8.label:
+    33deea00b3c82: Cook
+T4.selects.0.options.*.9.label:
+    4f843a0668c34: Fisherman
+T5.instruction: 'Select Quality #5'
+T5.selects.0.options.*.0.label:
+    a6d21719b4f46: AB= Able Seaman
+T5.selects.0.options.*.1.label:
+    b0f1a07a49a2: App = Apprentice
+T5.selects.0.options.*.10.label:
+    817c26bea1452: Lascar
+T5.selects.0.options.*.11.label:
+    b5e943ccc647f: Mate
+T5.selects.0.options.*.12.label:
+    b1b4ce3d469c3: Master
+T5.selects.0.options.*.13.label:
+    52fce04ea71ad: Ord/Ordy = Ordinary seaman
+T5.selects.0.options.*.14.label:
+    f4d3716f4d455: Sailmaker
+T5.selects.0.options.*.15.label:
+    b3c0731010cfe: Steward
+T5.selects.0.options.*.16.label:
+    2aff9a6a8fcb7: Stoker
+T5.selects.0.options.*.17.label:
+    6e3b77cf52c5d: Waterman
+T5.selects.0.options.*.18.label:
+    9c5e556003b88: Other
+T5.selects.0.options.*.19.label:
+    732fc10295357: Missing/illegible entry
+T5.selects.0.options.*.2.label:
+    5995cf9796bb8: Baker
+T5.selects.0.options.*.3.label:
+    e3e17c150aceb: Ballast Heaver
+T5.selects.0.options.*.4.label:
+    127086214db75: Bargeman
+T5.selects.0.options.*.5.label:
+    76321809abb35: Boatswain
+T5.selects.0.options.*.6.label:
+    778e5b9bf56a3: Boy
+T5.selects.0.options.*.7.label:
+    4974ddba37603: Carpenter
+T5.selects.0.options.*.8.label:
+    1afe9448081a: Cook
+T5.selects.0.options.*.9.label:
+    698a681b91881: Fisherman
+T7.instruction: 'Working down the QUALITY column, select the next 5 ''qualities''
+    (or ranks) from the drop down menu. If not listed, choose ''Other''.
+
+
+    Keep track of where you left off, as you''ll be asked to work on the next group
+    of 5 after this. There are 25 rows in total. Select Quality #6 here.'
+T7.selects.0.options.*.0.label:
+    4508999a622ab: AB = Able Seaman
+T7.selects.0.options.*.1.label:
+    65a6314a83fe7: App = Apprentice
+T7.selects.0.options.*.10.label:
+    0a7f0eaa1f0d5: Lascar
+T7.selects.0.options.*.11.label:
+    fac97c5b6b475: Mate
+T7.selects.0.options.*.12.label:
+    242f0da84b243: Master
+T7.selects.0.options.*.13.label:
+    f8139dd24b25e: Ord/Ordy = Ordinary Seaman
+T7.selects.0.options.*.14.label:
+    5adde19ac58c3: Sailmaker
+T7.selects.0.options.*.15.label:
+    2d5cb56b6cb0b: Steward
+T7.selects.0.options.*.16.label:
+    4bebe63692428: Stoker
+T7.selects.0.options.*.17.label:
+    61ee77e0ee4d1: Waterman
+T7.selects.0.options.*.18.label:
+    6c17a6414a851: Other
+T7.selects.0.options.*.19.label:
+    0265961f3882b: Missing/illegible entry
+T7.selects.0.options.*.2.label:
+    9057f361f297f: Baker
+T7.selects.0.options.*.3.label:
+    2ca00fb2a36e8: Ballast Heaver
+T7.selects.0.options.*.4.label:
+    2498d5ee30f59: Bargeman
+T7.selects.0.options.*.5.label:
+    c2b0c569a997e: Boatswain
+T7.selects.0.options.*.6.label:
+    3e023705eb2b4: Boy
+T7.selects.0.options.*.7.label:
+    ddbf2f9e3a3ce: Carpenter
+T7.selects.0.options.*.8.label:
+    0ac39bd2fde54: Cook
+T7.selects.0.options.*.9.label:
+    9dc062f7d002a: Fisherman
+T8.instruction: 'Select Quality #7'
+T8.selects.0.options.*.0.label:
+    03f14098973c4: AB = Able Seaman
+T8.selects.0.options.*.1.label:
+    2482f43c502ff: App = Apprentice
+T8.selects.0.options.*.10.label:
+    4d5a5c4265985: Lascar
+T8.selects.0.options.*.11.label:
+    5b86c8fc74772: Mate
+T8.selects.0.options.*.12.label:
+    11fc554416f5c: Master
+T8.selects.0.options.*.13.label:
+    b365592a1df3f: Ord/Ordy = Ordinary Seaman
+T8.selects.0.options.*.14.label:
+    1e17a53f32131: Sailmaker
+T8.selects.0.options.*.15.label:
+    272043f32bd5a: Steward
+T8.selects.0.options.*.16.label:
+    387c16d6638c1: Stoker
+T8.selects.0.options.*.17.label:
+    9033dcf0b4f06: Waterman
+T8.selects.0.options.*.18.label:
+    914f864cb885c: Other
+T8.selects.0.options.*.19.label:
+    d3cb59a56e07: Missing/illegible entry
+T8.selects.0.options.*.2.label:
+    852d7544bda4a: Baker
+T8.selects.0.options.*.3.label:
+    2c40991bde912: Ballast Heaver
+T8.selects.0.options.*.4.label:
+    7f166b99dc937: Bargeman
+T8.selects.0.options.*.5.label:
+    a0bc164f73473: Boatswain
+T8.selects.0.options.*.6.label:
+    7ee709af15629: Boy
+T8.selects.0.options.*.7.label:
+    cdcd5f3ed5cd8: Carpenter
+T8.selects.0.options.*.8.label:
+    e871beb6b763: Cook
+T8.selects.0.options.*.9.label:
+    ccd4b026fd441: Fisherman
+T9.instruction: 'Select Quality #8'
+T9.selects.0.options.*.0.label:
+    ccf6331ce59b: AB = Able Seaman
+T9.selects.0.options.*.1.label:
+    243328761c9ac: App = Apprentice
+T9.selects.0.options.*.10.label:
+    3592cc54ad35: Lascar
+T9.selects.0.options.*.11.label:
+    f88f2bc4da291: Mate
+T9.selects.0.options.*.12.label:
+    2ce80eed92ec1: Master
+T9.selects.0.options.*.13.label:
+    4a95f904cf84c: Ord/Ordy = Ordinary Seaman
+T9.selects.0.options.*.14.label:
+    7ec07cca3353a: Sailmaker
+T9.selects.0.options.*.15.label:
+    0d43e1d60e682: Steward
+T9.selects.0.options.*.16.label:
+    b63223fac16da: Stoker
+T9.selects.0.options.*.17.label:
+    2ebadfd0971c: Waterman
+T9.selects.0.options.*.18.label:
+    7c2f806c8f93d: Other
+T9.selects.0.options.*.19.label:
+    e2ab7b607c1b1: Missing/illegible
+T9.selects.0.options.*.2.label:
+    b79f8abeb5cb7: Baker
+T9.selects.0.options.*.3.label:
+    a848be77c8aa8: Ballast Heaver
+T9.selects.0.options.*.4.label:
+    4a8449833a87b: Bargeman
+T9.selects.0.options.*.5.label:
+    318f4d90dc43b: Boatswain
+T9.selects.0.options.*.6.label:
+    1f099e01bd4a1: Boy
+T9.selects.0.options.*.7.label:
+    b84c4c1e1a6f9: Carpenter
+T9.selects.0.options.*.8.label:
+    a2ae7e0bd7ff3: Cook
+T9.selects.0.options.*.9.label:
+    2e4b14aa805a6: Fisherman

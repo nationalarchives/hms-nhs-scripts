@@ -26,6 +26,11 @@ rm -f output/{views_,}QTEST.csv
 rm -f output/QTEST.csv #Deliberately keep the previous views files
 ./aggregate.py ${args[@]} -r testinput/round2 && diff -qs golden_2_QTEST.csv output/QTEST.csv && diff -qs golden_views_QTEST.csv output/views_QTEST.csv || { echo FAIL; exit 1; }
 
+#Round3 adds another completed row. QTEST.csv should be as before: it happens that that completed row shows up the exact same way with these settings.
+#views_QTEST.csv should be as before, but with the new row showing complete=True
+rm -f output/QTEST.csv #Deliberately keep the previous views file
+./aggregate.py ${args[@]} -r testinput/round3 && diff -qs golden_2_QTEST.csv output/QTEST.csv && diff -qs golden_views_2_QTEST.csv output/views_QTEST.csv || { echo FAIL; exit 1; }
+
 rm -f output/{views_,}QTEST.csv
 ./coverage.pl ${args[@]} -r testinput/round1 && echo PASS || { echo FAIL; false; }
 

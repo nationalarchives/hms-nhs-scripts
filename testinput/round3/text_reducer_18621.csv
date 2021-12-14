@@ -1,0 +1,347 @@
+subject_id,task,data.aligned_text,data.number_views,data.consensus_score,data.consensus_text
+44121904,T2,"[['George', 'George', 'George'], ['4th', '4th', '4th'], ['HCS', 'H.C.S', 'HCS']]",3,2.6666666666666665,George 4th HCS
+44121904,T4,"[['Hebe', 'Hebe', 'Hebe']]",3,3.0,Hebe
+44121904,T7,"[['Champion', 'Champion', 'Champion']]",3,3.0,Champion
+44121904,T8,"[['Anne', 'Anne', 'Anne']]",3,3.0,Anne
+44121904,T9,"[['Finley', 'Tinley', 'Tinley']]",3,2.0,Tinley
+44121904,T10,"[['Union', 'Union', 'Union']]",3,3.0,Union
+44121904,T11,"[['Susan', 'Susan', 'Susan'], ['&', '&', '&'], ['Anne', 'Anne', 'Anne']]",3,3.0,Susan & Anne
+44121904,T13,"[['HMS', 'H.M.S', 'HMS'], ['Liffy', 'Liffy', 'Liffy']]",3,2.5,HMS Liffy
+44121904,T14,"[['Princess', 'Princess', 'Princess'], ['Royal', 'Royal', 'Royal']]",3,3.0,Princess Royal
+44121904,T15,"[['John', 'John', 'John'], ['&', '&', '&'], ['Elizabeth', 'Elizabeth', 'Elizabeth']]",3,3.0,John & Elizabeth
+44121904,T16,"[['HMS', 'HMS', 'HMS'], ['Liffey', 'Liffey', 'Liffey']]",3,3.0,HMS Liffey
+44121904,T17,"[['Iris', 'Iris', 'Iris']]",3,3.0,Iris
+44121904,T19,"[['Fortitude', 'Fortitude', 'Fortitude'], ['Increased', 'Increased', 'Increased']]",3,3.0,Fortitude Increased
+44121904,T20,"[['Bind', 'Bind', 'Bend']]",3,2.0,Bind
+44121904,T21,"[['Brilliant', 'Brilliant', 'Brilliant']]",3,3.0,Brilliant
+44121904,T22,"[['Hindostan', 'Hindostan', 'Hendostan']]",3,2.0,Hindostan
+44121904,T23,"[['Albina', 'Albina', 'Albina']]",3,3.0,Albina
+44121904,T25,"[['HCS', 'H.C.S', 'HCS'], ['Margaret', 'Marquess', 'Marquis'], ['Camden', 'Camden', 'Camden']]",3,2.0,HCS Margaret Camden
+44121904,T26,"[['Maria', 'Maria', 'Maria']]",3,3.0,Maria
+44121904,T27,"[['Minerva', 'Minerva', 'Minerva']]",3,3.0,Minerva
+44121904,T28,"[['HMS', 'HMS', 'HMS'], ['Spartiate', 'Spartiate', 'Spartiate']]",3,3.0,HMS Spartiate
+44121904,T29,"[['Kitty', 'Kitty', 'Kitty']]",3,3.0,Kitty
+44121906,T1,"[['H.C.S', 'HCS', ''], ['Marquess', 'Marquis', 'Marquis'], ['of', 'of', 'of'], ['Huntley', 'Huntley', 'Huntley']]",3,2.25,H.C.S Marquis of Huntley
+44121906,T2,"[['Nautilus', 'Nautilus', 'Nautilus'], ['F', 'F', 'F']]",3,3.0,Nautilus F
+44121906,T3,"[['Nautilus', 'Nautilus', 'Nautilus'], ['F', 'F', 'F']]",3,3.0,Nautilus F
+44121906,T4,"[['William', 'William', 'Wm'], ['Harris', 'Harris', 'Harris']]",3,2.5,William Harris
+44121906,T5,"[['Lord', 'Lord', 'Lord'], ['Melville', 'Melville', 'Melville']]",3,3.0,Lord Melville
+44121906,T7,"[['Rosalind', 'Rosalind', 'Rosalind']]",3,3.0,Rosalind
+44121906,T8,"[['Malcolm', 'Malcolm', 'Malcolm']]",3,3.0,Malcolm
+44121906,T9,"[['Java', 'Two', 'Tove'], ['Brothers', 'Brothers', 'Brothers']]",3,2.0,Java Brothers
+44121906,T10,"[['Trial', 'Trial', 'Trial']]",3,3.0,Trial
+44121906,T11,"[['William', 'William', 'Wm.'], ['Harris', 'Harris', 'Harris']]",3,2.5,William Harris
+44121906,T13,"[['Mary', 'Marys', 'Mary']]",3,2.0,Mary
+44121906,T14,"[['Robert', 'Robert', 'Robt.'], ['.at.', 'James', 'Pat'], ['Harris', 'Haines', 'Haines']]",3,1.6666666666666667,Robert .at. Haines
+44121906,T15,"[['Enterprize', 'Enterprize', 'Enterprize']]",3,3.0,Enterprize
+44121906,T16,"[['Volunteer', 'Volunteer', 'Volunteer']]",3,3.0,Volunteer
+44121906,T17,"[['Amphitrite', 'Amphitrite', 'Amphitrite']]",3,3.0,Amphitrite
+44121906,T19,"[['HMS', 'HMS', 'HMS'], ['Siffey', 'Liffey', 'Liffey']]",3,2.5,HMS Liffey
+44121906,T20,"[['Maria', 'Maria', 'Maria']]",3,3.0,Maria
+44121906,T21,"[['Felicity', 'Felicity', 'Felicity']]",3,3.0,Felicity
+44121906,T22,"[['Juno', 'Juno', 'Juno']]",3,3.0,Juno
+44121906,T23,"[['Waterford', 'Waterford', 'Waterlord']]",3,2.0,Waterford
+44121906,T25,"[['Mary', 'Mary', 'Mary']]",3,3.0,Mary
+44121906,T26,"[['Lady', 'Lady', 'Lady'], ['Kennaway', 'Kennaway', 'Kennarvey']]",3,2.5,Lady Kennaway
+44121906,T27,"[['Raccoon', 'Raccoon', 'Raccoon']]",3,3.0,Raccoon
+44121906,T28,"[['Wanderer', 'Wanderer', 'Wanderer']]",3,3.0,Wanderer
+44121906,T29,"[['Mary', 'Mary', 'Mary']]",3,3.0,Mary
+44121907,T1,"[['Anne', 'Anne', 'Anne']]",3,3.0,Anne
+44121907,T2,"[['Two', 'Two', 'Two'], ['Brothers', 'Brothers', 'Brothers']]",3,3.0,Two Brothers
+44121907,T3,"[['Valena', 'Valena', 'Valena']]",3,3.0,Valena
+44121907,T4,"[['Fountain', 'Fountain', 'Fountain'], ['Hay', 'Hay', 'Bay']]",3,2.5,Fountain Hay
+44121907,T5,"[['Posthumous', 'Posthumous', 'Posthumous']]",3,3.0,Posthumous
+44121907,T7,"[['Liberty', 'Liberty', 'Liberty']]",3,3.0,Liberty
+44121907,T8,"[['Boyne', 'Boyne', 'Boyne']]",3,3.0,Boyne
+44121907,T9,"[['Nancy', 'Nancy', 'Nancy']]",3,3.0,Nancy
+44121907,T10,"[['Grenade', 'Grenada', 'Grenada']]",3,2.0,Grenada
+44121907,T11,"[['HMS', 'HCS', 'HMS'], ['Thames', 'Thames', 'Thames']]",3,2.5,HMS Thames
+44121907,T13,"[['Tropic', 'Tropic', 'Tropic']]",3,3.0,Tropic
+44121907,T14,"[['Magnet', 'Magnet', 'Magnet']]",3,3.0,Magnet
+44121907,T15,"[['Magnet', 'Magnet', 'Magnet']]",3,3.0,Magnet
+44121907,T16,"[['Magnet', 'Magnet', 'Magnet']]",3,3.0,Magnet
+44121907,T17,"[['Princess', 'Princess', 'Princess'], ['Charlotte', 'Charlotte', 'Charlotte']]",3,3.0,Princess Charlotte
+44121907,T19,"[['HCS', 'HCS', 'H'], ['', '', 'C'], ['', '', 'S'], ['Thames', 'Thames', 'Thames']]",3,1.75,HCS C S Thames
+44121907,T20,"[['Trafalgar', 'Trafalgar', 'Trafalgar']]",3,3.0,Trafalgar
+44121907,T21,"[['Trafalgar', 'Trafalgar', 'Trafalgar']]",3,3.0,Trafalgar
+44121907,T22,"[['Alchemist', 'Alchemist', 'Alchemist']]",3,3.0,Alchemist
+44121907,T23,"[['Ranger', 'Ranger', 'Ranger']]",3,3.0,Ranger
+44121907,T25,"[['Amarathe', 'Amarathe', 'Amarathe']]",3,3.0,Amarathe
+44121907,T26,"[['HMS', 'HMS', 'HMS'], ['Romney', 'Romney', 'Romney']]",3,3.0,HMS Romney
+44121907,T27,"[['Cortes', 'Cortes', 'Cortes'], ['', 'F', 'F']]",3,2.5,Cortes F
+44121907,T28,"[['Thornes', 'Thorns', 'Thornes']]",3,2.0,Thornes
+44121907,T29,"[['Ayrisk', 'Ayrisk', 'Ayrisk'], ['J', 'F', 'F']]",3,2.5,Ayrisk F
+44121908,T1,"[['Malcolm', 'Malcolm']]",2,2.0,Malcolm
+44121908,T2,"[['Atlanta', 'Atlanta']]",2,2.0,Atlanta
+44121908,T3,"[['Mon[..]ek', 'Moncek']]",2,1.0,Mon[..]ek
+44121908,T4,"[['Cortes', 'Cortes'], ['F', 'J']]",2,1.5,Cortes F
+44121908,T5,"[['HMS', 'HMS'], ['Liffey', 'LIffey']]",2,1.5,HMS Liffey
+44121908,T7,"[['Alford', 'Alford']]",2,2.0,Alford
+44121908,T8,"[['Robert', 'Robert'], ['Edward', 'Edward'], ['F', '']]",2,1.6666666666666667,Robert Edward F
+44121908,T9,"[['Robert', 'Robert'], ['Edward', 'Edward'], ['F', '']]",2,1.6666666666666667,Robert Edward F
+44121908,T10,"[['Robert', 'Robert'], ['Edward', 'Edward'], ['F', '']]",2,1.6666666666666667,Robert Edward F
+44121908,T11,"[['Marie', 'Marie'], ['Carolina', 'Carolina'], ['F', '']]",2,1.6666666666666667,Marie Carolina F
+44121908,T13,"[['HCS', ''], ['Marquis', 'Marquis'], ['', 'H.C.S'], ['Camden', 'Camden']]",2,1.5,HCS Marquis H.C.S Camden
+44121908,T14,"[['London', 'London']]",2,2.0,London
+44121908,T15,"[['Arethusa', 'Arethusa']]",2,2.0,Arethusa
+44121908,T16,"[['Rambler', 'Rambler']]",2,2.0,Rambler
+44121908,T17,"[['Laura', 'Laura']]",2,2.0,Laura
+44121908,T19,"[['John', 'John']]",2,2.0,John
+44121908,T20,"[['William', 'William'], ['Harris', 'Harris']]",2,2.0,William Harris
+44121908,T21,"[['Laplander', 'Laplander']]",2,2.0,Laplander
+44121908,T22,"[['Lady', 'Lady'], ['of', 'of'], ['the', 'the'], ['Lake', 'Lake']]",2,2.0,Lady of the Lake
+44121908,T23,"[['Henry', 'Henry']]",2,2.0,Henry
+44121908,T25,"[['Levinder', 'Levinder']]",2,2.0,Levinder
+44121908,T26,"[['HCS', 'Marquess'], ['Marquis', 'H.C.S'], ['Camden', 'Camden']]",2,1.3333333333333333,HCS Marquis Camden
+44121908,T27,"[['Melpomone', 'Melpomone']]",2,2.0,Melpomone
+44121908,T28,"[['Aurora', 'Aurora']]",2,2.0,Aurora
+44121908,T29,"[['Hebe', 'Hebe']]",2,2.0,Hebe
+44121910,T1,"[['Jane', 'Jane']]",2,2.0,Jane
+44121910,T2,"[['Anne', 'Anne'], ['Maria', 'Maria']]",2,2.0,Anne Maria
+44121910,T3,"[['Tasmaniew', 'Tasmariew']]",2,1.0,Tasmaniew
+44121910,T4,"[['HMS', 'HMS'], ['Liffey', 'Liffey']]",2,2.0,HMS Liffey
+44121910,T5,"[['La', 'La'], ['Bonne', 'Bonne.llou.'], ['More', ''], ['F', '']]",2,1.25,La Bonne More F
+44121910,T7,"[['Boywell', 'Boywell']]",2,2.0,Boywell
+44121910,T8,"[['Comet', 'Comet']]",2,2.0,Comet
+44121910,T9,"[['Perseus', 'Penseus']]",2,1.0,Perseus
+44121910,T10,"[['Phoenix', 'Phoenix']]",2,2.0,Phoenix
+44121910,T11,"[['Henry', 'Henry']]",2,2.0,Henry
+44121910,T13,"[['Rebecca', 'Rebecca']]",2,2.0,Rebecca
+44121910,T14,"[['Mary', 'Mary'], ['Anne', 'Anne']]",2,2.0,Mary Anne
+44121910,T15,"[['Amity', 'Amity']]",2,2.0,Amity
+44121910,T16,"[['Hank', 'Hawk']]",2,1.0,Hank
+44121910,T17,"[['Cadmus', 'Cadmus']]",2,2.0,Cadmus
+44121910,T19,"[['Chapman', 'Chapman']]",2,2.0,Chapman
+44121910,T20,"[['Hilton', 'Hilton']]",2,2.0,Hilton
+44121910,T21,"[['Prince', 'Prince'], ['of', 'of'], ['Waterloo', 'Waterloo']]",2,2.0,Prince of Waterloo
+44121910,T22,"[['John', 'John']]",2,2.0,John
+44121910,T23,"[['Exporter', 'Exporter']]",2,2.0,Exporter
+44121910,T25,"[['Thurleston', 'Thurleston']]",2,2.0,Thurleston
+44121910,T26,"[['Dominica', 'Dominica']]",2,2.0,Dominica
+44121910,T27,"[['Albion', 'Albion']]",2,2.0,Albion
+44121910,T28,"[['Emma', 'Emma']]",2,2.0,Emma
+44121910,T29,"[['Marianne', 'Marianne']]",2,2.0,Marianne
+44121912,T1,"[['Henry', 'Henry', 'Henry']]",3,3.0,Henry
+44121912,T2,"[['Malcolm', 'Malcolm', 'Malcolm']]",3,3.0,Malcolm
+44121912,T3,"[['HMS', 'HMS', 'HMS'], ['Liffey', 'Liffey', 'Liffey']]",3,3.0,HMS Liffey
+44121912,T4,"[['Czar', 'Czar', 'Ezar']]",3,2.0,Czar
+44121912,T5,"[['Diedem', 'Diedem', 'Diadem']]",3,2.0,Diedem
+44121912,T7,"[['Messenger', 'Messenger', 'Messenger']]",3,3.0,Messenger
+44121912,T8,"[['Walruss', 'Walruss', 'Walrufs']]",3,2.0,Walruss
+44121912,T9,"[['Anne', 'Anne', 'Anne']]",3,3.0,Anne
+44121912,T10,"[['Hilton', 'Hilton', 'Hilton']]",3,3.0,Hilton
+44121912,T11,"[['Endeavour', 'Endeavour', 'Endeavor']]",3,2.0,Endeavour
+44121912,T13,"[['Thomas', 'Thomas', 'Thomas']]",3,3.0,Thomas
+44121912,T14,"[['Neva', 'Neva', 'Neva']]",3,3.0,Neva
+44121912,T15,"[['HMS', 'HMS', 'H.M.S'], ['Parthian', 'Parthian', 'Parthian']]",3,2.5,HMS Parthian
+44121912,T16,"[['George', 'George', 'George']]",3,3.0,George
+44121912,T17,"[['George', 'George', 'George']]",3,3.0,George
+44121912,T19,"[['Curtis', 'Curtis', 'Curtis']]",3,3.0,Curtis
+44121912,T20,"[['Numa', 'Numa', 'Nima']]",3,2.0,Numa
+44121912,T21,"[['Gratitude', 'Gratitude', 'Gratitude']]",3,3.0,Gratitude
+44121912,T22,"[['St', 'St', ''], ['Vincent', 'Vincent', 'St.Vincent']]",3,2.0,St Vincent
+44121912,T23,"[['Swift', 'Swift', 'Swift']]",3,3.0,Swift
+44121912,T25,"[['Adonis', 'Adonis', 'Adonis']]",3,3.0,Adonis
+44121912,T26,"[['HMS', 'HMS', 'H.M.S'], ['Cherokee', 'Cherokee', 'Cherokee']]",3,2.5,HMS Cherokee
+44121912,T27,"[['HMS', 'HMS', 'H.M.S'], ['Bellette', 'Bellette', 'Bellette']]",3,2.5,HMS Bellette
+44121912,T28,"[['Harrier', 'Harrier', 'Harrier']]",3,3.0,Harrier
+44121912,T29,"[['HMS', 'HMS', 'H.M.S'], ['Bellette', 'Bellette', 'Bellette']]",3,2.5,HMS Bellette
+44121914,T1,[['Velocity']],1,1.0,Velocity
+44121914,T2,[['Sally']],1,1.0,Sally
+44121914,T3,"[['St'], ['Davids']]",1,1.0,St Davids
+44121914,T4,[['Bind']],1,1.0,Bind
+44121914,T5,[['Vaniman']],1,1.0,Vaniman
+44121914,T7,[['Palladium']],1,1.0,Palladium
+44121914,T8,"[['HMS'], ['Scout']]",1,1.0,HMS Scout
+44121914,T9,[['Boldan']],1,1.0,Boldan
+44121914,T10,[['Adventure']],1,1.0,Adventure
+44121914,T11,[['Brothers']],1,1.0,Brothers
+44121914,T13,"[['HMS'], ['Bellette']]",1,1.0,HMS Bellette
+44121914,T14,"[['Prince'], ['Leopold']]",1,1.0,Prince Leopold
+44121914,T15,[['Charles']],1,1.0,Charles
+44121914,T16,[['Kent']],1,1.0,Kent
+44121914,T17,[['Melpomone']],1,1.0,Melpomone
+44121914,T19,[['London']],1,1.0,London
+44121914,T20,[['Oak']],1,1.0,Oak
+44121914,T21,[['Itinerant']],1,1.0,Itinerant
+44121914,T22,[['Mary']],1,1.0,Mary
+44121914,T23,[['Latona']],1,1.0,Latona
+44121914,T25,[['Crown']],1,1.0,Crown
+44121914,T26,"[['Lady'], ['Harwood']]",1,1.0,Lady Harwood
+44121914,T27,[['Potton']],1,1.0,Potton
+44121914,T28,[['Melantho']],1,1.0,Melantho
+44121914,T29,[['Mary']],1,1.0,Mary
+44121915,T1,"[['Robert'], ['Edward'], ['F']]",1,1.0,Robert Edward F
+44121915,T2,[['Mole']],1,1.0,Mole
+44121915,T3,"[['Emperor'], ['Alexander']]",1,1.0,Emperor Alexander
+44121915,T4,[['Atlas']],1,1.0,Atlas
+44121915,T5,[['union']],1,1.0,union
+44121915,T7,"[['HMS'], ['Liffey']]",1,1.0,HMS Liffey
+44121915,T8,"[['George'], ['Canning']]",1,1.0,George Canning
+44121915,T9,[['Sallus']],1,1.0,Sallus
+44121915,T10,[['Mary']],1,1.0,Mary
+44121915,T11,"[['Thomas'], ['&'], ['Mary']]",1,1.0,Thomas & Mary
+44121915,T13,"[['Wilhelmina'], ['F']]",1,1.0,Wilhelmina F
+44121915,T14,[['Union']],1,1.0,Union
+44121915,T15,[['Fox']],1,1.0,Fox
+44121915,T16,[['Brilliant']],1,1.0,Brilliant
+44121915,T17,[['Atlas']],1,1.0,Atlas
+44121915,T19,[['Eclair']],1,1.0,Eclair
+44121915,T20,[['Commerce']],1,1.0,Commerce
+44121915,T21,[['Trial']],1,1.0,Trial
+44121915,T22,"[['HCS'], ['Thames']]",1,1.0,HCS Thames
+44121915,T23,"[['Princess'], ['Charlotte']]",1,1.0,Princess Charlotte
+44121915,T25,[['Vine']],1,1.0,Vine
+44121915,T26,"[['Anders'], ['F']]",1,1.0,Anders F
+44121915,T27,"[['HMS'], ['Ramillies']]",1,1.0,HMS Ramillies
+44121915,T28,[['Maria']],1,1.0,Maria
+44121915,T29,[['Jane']],1,1.0,Jane
+44121918,T1,"[['Mary'], ['Anne']]",1,1.0,Mary Anne
+44121918,T2,[['William']],1,1.0,William
+44121918,T3,"[['HCS'], ['Repulse']]",1,1.0,HCS Repulse
+44121918,T4,[['Doris']],1,1.0,Doris
+44121918,T5,[['Choice']],1,1.0,Choice
+44121918,T7,[['Hope']],1,1.0,Hope
+44121918,T8,[['Jemima']],1,1.0,Jemima
+44121918,T9,[['Hereford']],1,1.0,Hereford
+44121918,T10,[['Britannia']],1,1.0,Britannia
+44121918,T11,"[['HCS'], ['Kellie'], ['Castle']]",1,1.0,HCS Kellie Castle
+44121918,T13,"[['Liffey'], ['S.P.']]",1,1.0,Liffey S.P.
+44121918,T14,"[['Richard'], ['Rennels']]",1,1.0,Richard Rennels
+44121918,T15,[['Anne']],1,1.0,Anne
+44121918,T16,"[['HCS'], ['Kellie'], ['Castle']]",1,1.0,HCS Kellie Castle
+44121918,T17,[['Mediteranean']],1,1.0,Mediteranean
+44121918,T19,"[['Edinburgh'], ['Packet']]",1,1.0,Edinburgh Packet
+44121918,T20,"[['Princess'], ['Royal']]",1,1.0,Princess Royal
+44121918,T21,"[['HCS'], ['General'], ['Kidd']]",1,1.0,HCS General Kidd
+44121918,T22,"[['Richard'], ['Rimmer']]",1,1.0,Richard Rimmer
+44121918,T23,"[['HCS'], ['Marquis'], ['Camden']]",1,1.0,HCS Marquis Camden
+44121918,T25,"[['Vrow'], ['Andrina'], ['F']]",1,1.0,Vrow Andrina F
+44121918,T26,[['Griffin']],1,1.0,Griffin
+44121918,T27,[['Ritchies']],1,1.0,Ritchies
+44121918,T28,[['Ardent']],1,1.0,Ardent
+44121918,T29,[['Boyne']],1,1.0,Boyne
+44121920,T1,[['Chapman']],1,1.0,Chapman
+44121920,T2,"[['HCS'], ['George'], ['Canning']]",1,1.0,HCS George Canning
+44121920,T3,[['Grocer']],1,1.0,Grocer
+44121920,T4,"[['General'], ['Hewitt']]",1,1.0,General Hewitt
+44121920,T5,"[['General'], ['Hewitt']]",1,1.0,General Hewitt
+44121920,T7,"[['General'], ['Hewitt']]",1,1.0,General Hewitt
+44121920,T8,[['Neva']],1,1.0,Neva
+44121920,T9,"[['HCS'], ['Repulse']]",1,1.0,HCS Repulse
+44121920,T10,"[['HCS'], ['Kellie'], ['Castle']]",1,1.0,HCS Kellie Castle
+44121920,T11,[['Choice']],1,1.0,Choice
+44121920,T13,"[['Lady'], ['Flora']]",1,1.0,Lady Flora
+44121920,T14,"[['Lady'], ['Flora']]",1,1.0,Lady Flora
+44121920,T15,"[['Queen'], ['of'], ['Netherlands']]",1,1.0,Queen of Netherlands
+44121920,T16,"[['HCS'], ['Repulse']]",1,1.0,HCS Repulse
+44121920,T17,"[['James'], ['Sibbald']]",1,1.0,James Sibbald
+44121920,T19,[['Elizabeth']],1,1.0,Elizabeth
+44121920,T20,[['Anne']],1,1.0,Anne
+44121920,T21,[['Mary']],1,1.0,Mary
+44121920,T22,"[['Royal'], ['Harry']]",1,1.0,Royal Harry
+44121920,T23,[['Enterprize']],1,1.0,Enterprize
+44121920,T25,[['Triton']],1,1.0,Triton
+44121920,T26,[['Plata']],1,1.0,Plata
+44121920,T27,[['Itinerant']],1,1.0,Itinerant
+44121920,T28,[['Grecian']],1,1.0,Grecian
+44121920,T29,[['Chace']],1,1.0,Chace
+44290143,T2,"[['HCS','HCS','HCS'], ['Sir','Sir','Sir], ['David','David','David'], ['Scott','Scott','Scott']]",3,3.0,HCS Sir David Scott
+44290143,T3,"[['HCS','HCS','HCS'], ['Prince','Prince','Prince'], ['Regent','Regent','Regent']]",3,3.0,HCS Prince Regent
+44290143,T4,"[['Hill'], ['S'], ['Wellesley']]",1,1.0,Hill S Wellesley
+44290143,T5,"[['Ullysses'], ['F']]",1,1.0,Ullysses F
+44290143,T7,"[['HCS'], ['Macqueen']]",1,1.0,HCS Macqueen
+44290143,T8,[['Exmouth']],1,1.0,Exmouth
+44290143,T9,"[['Sarah'], ['Christania']]",1,1.0,Sarah Christania
+44290143,T10,"[['HCS'], ['Princess'], ['Amelia']]",1,1.0,HCS Princess Amelia
+44290143,T11,"[['HCS'], ['London']]",1,1.0,HCS London
+44290143,T13,[['Elizabeth']],1,1.0,Elizabeth
+44290143,T14,"[['Lady'], ['Ann'], ['Ellis']]",1,1.0,Lady Ann Ellis
+44290143,T15,[['Blenheim']],1,1.0,Blenheim
+44290143,T16,"[['HCS'], ['Orwell']]",1,1.0,HCS Orwell
+44290143,T17,[['Elizabeth']],1,1.0,Elizabeth
+44290143,T19,[['Offley']],1,1.0,Offley
+44290143,T20,[['Cleveland']],1,1.0,Cleveland
+44290143,T21,"[['Defence'], ['Rev'], ['&'], ['Cutt']]",1,1.0,Defence Rev & Cutt
+44290143,T22,"[['HCS'], ['Winchelsea']]",1,1.0,HCS Winchelsea
+44290143,T23,"[['Shannon'], ['Steamer']]",1,1.0,Shannon Steamer
+44290143,T25,"[['HCS'], ['Earl'], ['Balcanray']]",1,1.0,HCS Earl Balcanray
+44290143,T26,"[['Wm'], ['Lushington']]",1,1.0,Wm Lushington
+44290143,T27,"[['HCS'], ['Marquels'], ['Camden']]",1,1.0,HCS Marquels Camden
+44290143,T28,"[['Hill'], ['S'], ['Snap']]",1,1.0,Hill S Snap
+44290143,T29,"[['HCS'], ['Prince'], ['Regent']]",1,1.0,HCS Prince Regent
+44290144,T1,"[['HCS'], ['Duchess'], ['of'], ['Atholl']]",1,1.0,HCS Duchess of Atholl
+44290144,T2,"[['HCS'], ['George'], ['Canning']]",1,1.0,HCS George Canning
+44290144,T3,[['Hannah']],1,1.0,Hannah
+44290144,T4,[['Hibernia']],1,1.0,Hibernia
+44290144,T5,"[['Hills'], ['Briton']]",1,1.0,Hills Briton
+44290144,T7,"[['Mary'], ['V'], ['Hannah']]",1,1.0,Mary V Hannah
+44290144,T8,"[['William'], ['Fairlie']]",1,1.0,William Fairlie
+44290144,T9,"[['HCS'], ['London']]",1,1.0,HCS London
+44290144,T10,"[['Trinity'], ['Buoy'], ['Ft']]",1,1.0,Trinity Buoy Ft
+44290144,T11,"[['Princess'], ['Amelia']]",1,1.0,Princess Amelia
+44290144,T13,[['Ocean']],1,1.0,Ocean
+44290144,T14,"[['William'], ['Pushington']]",1,1.0,William Pushington
+44290144,T15,[['Nonsuch']],1,1.0,Nonsuch
+44290144,T16,"[['William'], ['Money']]",1,1.0,William Money
+44290144,T17,[['Janet']],1,1.0,Janet
+44290144,T19,[['Elizabeth']],1,1.0,Elizabeth
+44290144,T20,"[['Hills'], ['Revenge']]",1,1.0,Hills Revenge
+44290144,T21,"[['Sir'], ['David'], ['Scott']]",1,1.0,Sir David Scott
+44290144,T22,"[['HCS'], ['Rose']]",1,1.0,HCS Rose
+44290144,T23,"[['Hills'], ['Victory']]",1,1.0,Hills Victory
+44290144,T25,[['Moira']],1,1.0,Moira
+44290144,T26,[['Milo']],1,1.0,Milo
+44290144,T27,"[['Marian'], ['&'], ['Jane']]",1,1.0,Marian & Jane
+44290144,T28,"[['HCS'], ['Princess'], ['Amelia']]",1,1.0,HCS Princess Amelia
+44290144,T29,[['Euphrates']],1,1.0,Euphrates
+44293717,T1,"[['Perseverance', 'Perseverance']]",2,2.0,Perseverance
+44293717,T2,"[['Dorset', 'Dorset']]",2,2.0,Dorset
+44293717,T3,"[['Providence', 'Providence']]",2,2.0,Providence
+44293717,T4,"[['Topaz', 'Topaz']]",2,2.0,Topaz
+44293717,T5,"[['Hope', 'Hope']]",2,2.0,Hope
+44293717,T7,"[['Romulus', 'Romulus']]",2,2.0,Romulus
+44293717,T8,"[['Anna', 'Anna'], ['Robertson', 'Robertson']]",2,2.0,Anna Robertson
+44293717,T9,"[['Sarah', 'Sarah']]",2,2.0,Sarah
+44293717,T10,"[['Jubilee', 'Jubilee']]",2,2.0,Jubilee
+44293717,T11,"[['Isabella', 'Isabella']]",2,2.0,Isabella
+44293717,T13,"[['Hermann', 'Hermann'], ['', 'F.']]",2,1.5,Hermann F.
+44293717,T14,"[['Cambria', 'Cambria']]",2,2.0,Cambria
+44293717,T15,"[['Good', 'Good'], ['Intent', 'Intent']]",2,2.0,Good Intent
+44293717,T16,"[['Amsterdam', 'Amsterdam']]",2,2.0,Amsterdam
+44293717,T17,"[['Priscilla', 'Priscilla']]",2,2.0,Priscilla
+44293717,T19,"[['Active', 'Active']]",2,2.0,Active
+44293717,T20,"[['Manapia', 'Manapia']]",2,2.0,Manapia
+44293717,T21,"[['Scotia', 'Scotia']]",2,2.0,Scotia
+44293717,T22,"[['Duckinfield', 'Duckinfield']]",2,2.0,Duckinfield
+44293717,T23,"[['', 'Hill'], ['HMS', 'S.'], ['Ganges', 'Ganges'], ['paid', ''], ['off', ''], ['Sept', ''], ['1829', '']]",2,1.1428571428571428,Hill HMS Ganges paid off Sept 1829
+44293717,T25,"[['Faith', 'Faith']]",2,2.0,Faith
+44293717,T26,"[['Egginton', 'Egginton'], ['Tpt', '??']]",2,1.5,Egginton Tpt
+44293717,T27,"[['Mary', 'Mary']]",2,2.0,Mary
+44293717,T28,"[['', 'Hill'], ['HMS', 'S.'], ['Rainbow', 'Rainbow'], ['paid', ''], ['off', ''], ['August', ''], ['1829', '']]",2,1.1428571428571428,Hill HMS Rainbow paid off August 1829
+44293717,T29,"[['Trinity', 'Trinity'], ['Lighter', 'Lighter'], ['No.', ''], ['25', '']]",2,1.5,Trinity Lighter No. 25
+44441923,T1,[['Jane']],1,1.0,Jane
+44441923,T2,"[['Justicia'], ['F.']]",1,1.0,Justicia F.
+44441923,T3,"[['Union'], ['F.']]",1,1.0,Union F.
+44441923,T4,"[['Ida'], ['Maria'], ['F.']]",1,1.0,Ida Maria F.
+44441923,T5,[['Sarah']],1,1.0,Sarah
+44441923,T7,[['Esther']],1,1.0,Esther
+44441923,T8,"[['Vesta'], ['F.']]",1,1.0,Vesta F.
+44441923,T9,[['Thames']],1,1.0,Thames
+44441923,T10,[['Watersprite']],1,1.0,Watersprite
+44441923,T11,"[['Robert'], ['Dickson'], ['F.']]",1,1.0,Robert Dickson F.
+44441923,T13,[['Livingstone']],1,1.0,Livingstone
+44441923,T14,[['Sebastian']],1,1.0,Sebastian
+44441923,T15,"[['Prince'], ['Albert'], ['F.']]",1,1.0,Prince Albert F.
+44441923,T16,"[['Ygdrasil'], ['F.']]",1,1.0,Ygdrasil F.
+44441923,T17,"[['Lina'], ['F.']]",1,1.0,Lina F.
+44441923,T19,"[['Maria'], ['Hay']]",1,1.0,Maria Hay
+44441923,T20,"[['Gustav'], ['F.']]",1,1.0,Gustav F.
+44441923,T21,"[['Corinthian'], ['Lass']]",1,1.0,Corinthian Lass
+44441923,T22,[['Enchantress']],1,1.0,Enchantress
+44441923,T23,"[['Ashburton'], ['F.']]",1,1.0,Ashburton F.
+44441923,T25,"[['Windsor'], ['Castle']]",1,1.0,Windsor Castle
+44441923,T26,[['Chase']],1,1.0,Chase
+44441923,T27,[['Abdalla']],1,1.0,Abdalla
+44441923,T28,"[['Rolus'], ['F.']]",1,1.0,Rolus F.
+44441923,T29,"[['Estephania'], ['(Frigate)']]",1,1.0,Estephania (Frigate)
