@@ -16,7 +16,10 @@ diff -s extracttest/test18612.golden.csv extracttest/test18612.csv.cleaned || { 
 diff -s extracttest/test18621_stdout.golden <(./clean_extraction.py extracttest/test18621.csv 18621) || { echo FAIL; exit 1; }
 diff -s extracttest/test18621.golden.csv extracttest/test18621.csv.cleaned || { echo FAIL; exit 1; }
 
-rm -f output/{views_,}QTEST.csv; mkdir -p output; ./aggregate.py ${args[@]} -r testinput/round1 && diff -qs golden_QTEST.csv output/QTEST.csv && diff -qs golden_views_QTEST.csv output/views_QTEST.csv || { echo FAIL; exit 1; }
+mkdir -p output
+
+rm -f output/{views_,}QTEST.csv
+./aggregate.py ${args[@]} -r testinput/round1 && diff -qs golden_QTEST.csv output/QTEST.csv && diff -qs golden_views_QTEST.csv output/views_QTEST.csv || { echo FAIL; exit 1; }
 
 rm -f output/{views_,}QTEST.csv
 ./coverage.pl ${args[@]} -r testinput/round1 && echo PASS || { echo FAIL; false; }
