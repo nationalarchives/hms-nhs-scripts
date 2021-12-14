@@ -404,8 +404,7 @@ def main():
       views.append(df['data.number_views'].rename(data['name']))
     elif data['ztype'] == DROP_T:
       views.append(df[datacol].apply(votecounter).rename(data['name']))
-    df.drop(conflict_keys, axis = 'columns', inplace = True) #Drop columns that we just brought in for conflict handling
-    df.rename(columns={datacol: data['name']}, inplace = True) #Rename the data column to something meaninful
+    df = df[datacol].rename(data['name']).to_frame() #Keep just the data column, renaming it to something meaningful and keeping it a DF rather than a Series
 
     #Convert dropdowns to their values
     if(data['ztype'] == DROP_T):
