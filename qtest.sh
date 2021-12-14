@@ -21,6 +21,11 @@ mkdir -p output
 rm -f output/{views_,}QTEST.csv
 ./aggregate.py ${args[@]} -r testinput/round1 && diff -qs golden_QTEST.csv output/QTEST.csv && diff -qs golden_views_QTEST.csv output/views_QTEST.csv || { echo FAIL; exit 1; }
 
+#Round2 gives input as if views_QTEST.csv had been applied. The result should be output as before, but with the complete=True rows missing from QTEST.csv.
+#views_QTEST.csv should be exactly the same as before.
+rm -f output/QTEST.csv #Deliberately keep the previous views files
+./aggregate.py ${args[@]} -r testinput/round2 && diff -qs golden_2_QTEST.csv output/QTEST.csv && diff -qs golden_views_QTEST.csv output/views_QTEST.csv || { echo FAIL; exit 1; }
+
 rm -f output/{views_,}QTEST.csv
 ./coverage.pl ${args[@]} -r testinput/round1 && echo PASS || { echo FAIL; false; }
 
