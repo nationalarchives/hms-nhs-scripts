@@ -11,6 +11,7 @@ import datetime
 import dateutil
 import subprocess
 import inspect
+import os
 from collections import defaultdict
 
 #For debugging
@@ -522,6 +523,21 @@ def main():
     joined['Commit'] =[commit] * len(joined.index)
     joined['Args'] = [' '.join(sys.argv)] * len(joined.index)
   joined.to_csv(path_or_buf = f'output/{args.output}', index = False)
-  joined_views.to_csv(path_or_buf = f'output/views_{args.output}')
+
+  #Update views file
+  #A row that is complete in the old views file cannot be in the new views data because any data
+  #pertaining to that row will have been removed during extraction. This includes any new data
+  #pertaining to that row if late classifications have come in.
+  #But a row that is incomplete in the old views file will be in the new views data as well. The
+  #new data by itself contains the full updated status of that row (old views will have been re-read).
+  #So we:
+  # * Keep rows in the old file that have complete is True
+  # * Replace rows from the old file that have complete is False
+  # * Add rows that do not exist in the old file
+  views_file = f'output/views_{args.output}'
+  if os.path.exists(views_file):
+    old_views = pd.read_csv(views_file, index_col = [0, 1])
+    joined_views = joined_views.append(old_views[old_views['complete']], verify_integrity = True).sort_index()
+  joined_views.to_csv(path_or_buf = views_file)
 
 main()
