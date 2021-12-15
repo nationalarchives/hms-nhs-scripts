@@ -8,7 +8,7 @@ while getopts "t" x; do
   esac
 done
 
-args=(-S -u -b -o QTEST.csv -t 0.5)
+args=(-S -u -b -o QTEST.csv -t 0.5 --timing)
 
 ./strip_processed.py -s .cleaned -t extracttest/testtranche_views.csv extracttest/testtranche_input.csv || { echo FAIL; exit 1; }
 diff -s extracttest/testtranche.golden.csv extracttest/testtranche_input.csv.cleaned || { echo FAIL; exit 1; }
@@ -47,7 +47,7 @@ rm -f output/QTEST.csv #Deliberately keep the previous views file
 
 #Now we go back to the beginning, but now we are only reading complete pages
 #With the original data, this will result in both an empty QTEST.csv file and an empty views_QTEST.csv file
-page_args=(-S -o QTEST.csv -t 0.5)
+page_args=(-S -o QTEST.csv -t 0.5 --timing)
 rm -f output/{views_,}QTEST.csv
 ./aggregate.py ${page_args[@]} -r testdata/baseline && diff -qs testdata/golden/golden_3_QTEST.csv output/QTEST.csv && diff -qs testdata/golden/golden_views_3_QTEST.csv output/views_QTEST.csv || { echo FAIL; exit 1; }
 

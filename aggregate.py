@@ -12,6 +12,7 @@ import dateutil
 import subprocess
 import inspect
 import os
+import time
 from collections import defaultdict
 
 #For debugging
@@ -43,6 +44,9 @@ parser.add_argument('--verbose', '-v',
                     type = int,
                     default = 0,
                     help = 'Set to higher numbers for increasing verbosity')
+parser.add_argument('--timing',
+                    action = 'store_true',
+                    help = 'Give timing information for phases in the program')
 parser.add_argument('--output', '-o',
                     default = 'joined.csv',
                     help = 'Set name of output file (will always go in output/ dir)')
@@ -83,6 +87,16 @@ def flow_report(msg, row_id, value):
       flow_report.reported.add(report_id)
       print(f'FR: {report_id}')
 flow_report.reported = set()
+
+def track(msg, **kwargs):
+  if args.timing:
+    now = time.time()
+    if track.last == 0: track.last = now
+    print(f'[{int(now - track.last):>5n}] {msg}')
+    track.last = now
+  elif 'regardless' in kwargs and kwargs['regardless']:
+    print(msg)
+track.last = 0
 
 #Translate subject ids into (vol, page) tuple
 #Assumption: the metadata is invariant across all of the entries for each subject_id
@@ -328,11 +342,11 @@ def main():
   #Declare array to store record of what we have processed
   views = []
 
+  track('Processing workflows')
   for wid, data in workflow[args.workflows].items():
     datacol = data['ztype']['name']
     conflict_keys = []
     reduced_file = f'{args.dir}/{data["ztype"]["type"]}_reducer_{wid}.csv'
-    if args.verbose >= 0: print(f'*** Processing {reduced_file}')
     if data['ztype'] == TEXT_T:
       conflict_keys = ['data.aligned_text', 'data.number_views', 'data.consensus_score']
     try:
@@ -429,8 +443,9 @@ def main():
       df[data['name']] = df.apply(decode_dropdown, axis = 'columns')
 
     columns.append(df)
+    track(f'* {reduced_file} done', regardless = True)
 
-  if args.verbose >= 0: print('*** Generating output')
+  track('Generating output', regardless = True)
   #Combine the separate workflows into a single dataframe
   #Assumption: Task numbers always refer to the same row in each workflow
   #            If this assumption does not hold, we can perform a mapping
@@ -438,18 +453,23 @@ def main():
   #Quick test shows that this assumption does hold for now.
   first = columns.pop(0)
   joined = first.join(columns, how='outer')
+  track('* Data joined')
 
   first = views.pop(0).to_frame()
   joined_views = first.join(views, how='outer')
+  track('* Views joined')
 
   #Search for transcription problmes
   joined.apply(has_transcriptionisms, axis = 'columns')
+  track('* Transcriptionisms identified')
+
   def complete(row):
     if get_subject_reference(row.name[0])[0] == 1:
       return row.drop('port sailed out of').ge(RETIREMENT_COUNT).all()
     else:
       return row.ge(RETIREMENT_COUNT).all()
   joined_views['complete'] = joined_views.apply(lambda row: complete(row), axis = 'columns')
+  track('* Complete views identified')
 
   #Tag or remove the rows with badness
   joined.insert(0, 'Problems', '')
@@ -462,6 +482,7 @@ def main():
       autoresolved.pop(key, None)
     joined = joined.query(f'subject_id not in @incomplete_subjects')
     joined_views = joined_views.query(f'subject_id not in @incomplete_subjects')
+  track('* Badness identified')
 
   #Tag unresolved unresolved fields
   #TODO This part does not feel like the Pandas way
@@ -471,6 +492,7 @@ def main():
       joined.at[b, 'Problems'] = f'{problems} & at least {bad[b]} unresolved fields'
     else:
       joined.at[b, 'Problems'] = f'At least {bad[b]} unresolved fields'
+  track('* Unresolved identified')
 
   #Translate subjects ids into original filenames
   #Assumption: the metadata is invariant across all of the entries for each subject_id
@@ -503,6 +525,7 @@ def main():
     joined.loc[[sid], 'subject'] = f'=HYPERLINK("{location}"; "{sid}")'
     joined.loc[[sid], 'volume'] = vol
     joined.loc[[sid], 'page']   = page
+  track('* Subjects identified')
 
 
   #Record where there was autoresolution
@@ -510,6 +533,7 @@ def main():
   #TODO: Again, doesn't feel like Pandas
   for index, value in autoresolved.items():
     joined.at[index, 'Autoresolved'] = '; '.join(value.keys())
+  track('* Autos identified')
 
 
   #This feels ridiculous, but works in conjunction with maxcolwidth.sh to check for columns too wide for Excel
@@ -539,5 +563,7 @@ def main():
     old_views = pd.read_csv(views_file, index_col = [0, 1])
     joined_views = joined_views.append(old_views[old_views['complete']], verify_integrity = True).sort_index()
   joined_views.to_csv(path_or_buf = views_file)
+
+  track('* All done')
 
 main()
