@@ -37,9 +37,9 @@ rm -f output/{views_,}QTEST.csv
 
 echo "** Baseline coverage test **"
 rm -f output/{views_,}QTEST.csv
-./coverage.pl ${args[@]} -r testdata/baseline && echo PASS || { echo FAIL; exit 1; }
+./coverage.pl ${args[@]} -r testdata/baseline || { echo FAIL; exit 1; }
 
-if [ $TRANCHE -eq 0 ]; then exit; fi
+if [ $TRANCHE -eq 0 ]; then echo PASS; exit; fi
 
 #repeat_row_tranche gives input as if views_QTEST.csv had been applied. The result should be output as before, but with the complete=True rows missing from QTEST.csv.
 #views_QTEST.csv should be exactly the same as before.
