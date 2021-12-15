@@ -446,9 +446,9 @@ def main():
   joined.apply(has_transcriptionisms, axis = 'columns')
   def complete(row):
     if get_subject_reference(row.name[0])[0] == 1:
-      return row.drop('port sailed out of').ge(3).all()
+      return row.drop('port sailed out of').ge(RETIREMENT_COUNT).all()
     else:
-      return row.ge(3).all()
+      return row.ge(RETIREMENT_COUNT).all()
   joined_views['complete'] = joined_views.apply(lambda row: complete(row), axis = 'columns')
 
   #Tag or remove the rows with badness
