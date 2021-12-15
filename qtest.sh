@@ -39,12 +39,12 @@ rm -f output/{views_,}QTEST.csv
 
 if [ $TRANCHE -eq 0 ]; then exit; fi
 
-#Round2 gives input as if views_QTEST.csv had been applied. The result should be output as before, but with the complete=True rows missing from QTEST.csv.
+#repeat_row_tranche gives input as if views_QTEST.csv had been applied. The result should be output as before, but with the complete=True rows missing from QTEST.csv.
 #views_QTEST.csv should be exactly the same as before.
 rm -f output/QTEST.csv #Deliberately keep the previous views files
 ./aggregate.py ${args[@]} -r testdata/repeat_row_tranche && diff -qs testdata/golden/golden_2_QTEST.csv output/QTEST.csv && diff -qs testdata/golden/golden_views_QTEST.csv output/views_QTEST.csv || { echo FAIL; exit 1; }
 
-#Round3 adds another completed row. QTEST.csv should be as before: it happens that that completed row shows up the exact same way with these settings.
+#additional_row_tranche adds another completed row. QTEST.csv should be as before: it happens that that completed row shows up the exact same way with these settings.
 #views_QTEST.csv should be as before, but with the new row showing complete=True
 rm -f output/QTEST.csv #Deliberately keep the previous views file
 ./aggregate.py ${args[@]} -r testdata/additional_row_tranche && diff -qs testdata/golden/golden_2_QTEST.csv output/QTEST.csv && diff -qs testdata/golden/golden_views_2_QTEST.csv output/views_QTEST.csv || { echo FAIL; exit 1; }
