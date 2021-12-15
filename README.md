@@ -42,8 +42,8 @@ CSV file, this one suitable for ingest into RMG's cataloguing system.
 * coverage.pl: Quick & dirty coverage checker for aggregate.py's -f mode.
 * workflow.yaml: Data file describing the workflows. Used by aggregate.py.
 * qtest.sh: Simple test driver for checking clean_extraction.py and aggregate.py
-* testinput/: Test inputs for aggregate.py
-* gentestinput.sh: Script for generating the initial contents of testinput/
+* testdata/: Test inputs and golden logs for aggregate.py
+* gentestinput.sh: Script for generating the initial contents of testinput/ (now testdata/)
 * golden_0.5.csv: Reference file for qtest.sh (testing the first CSV output)
 * output/: Directory where output of aggregate.py goes
 
