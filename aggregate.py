@@ -372,14 +372,14 @@ def main():
         return(sum(selections[0].values()))
       df['votes'] = df[datacol].apply(votecounter)
       if not args.unfinished:
-        df = df[df[datacol].apply(votecounter) >= RETIREMENT_COUNT]
+        df = df[df['votes'] >= RETIREMENT_COUNT]
 
       #Report on rows with different counts
       if args.verbose >= 1:
-        overcount = df[df[datacol].apply(votecounter) > RETIREMENT_COUNT]
+        overcount = df[df['votes'] > RETIREMENT_COUNT]
         print(f'  Completed rows: {len(df.index)} (of which {len(overcount.index)} overcounted)')
         if args.verbose >= 3 and not overcount.empty: print(overcount)
-        undercount = df[df[datacol].apply(votecounter) < RETIREMENT_COUNT]
+        undercount = df[df['votes'] < RETIREMENT_COUNT]
         print(f'  Undercounted rows: {len(undercount.index)}')
         if args.verbose >= 3 and not undercount.empty: print(undercount)
 
