@@ -45,7 +45,7 @@ rm -f output/QTEST.csv #Deliberately keep the previous views files
 rm -f output/QTEST.csv #Deliberately keep the previous views file
 ./aggregate.py ${args[@]} -r testdata/additional_row_tranche && diff -qs testdata/golden/golden_2_QTEST.csv output/QTEST.csv && diff -qs testdata/golden/golden_views_2_QTEST.csv output/views_QTEST.csv || { echo FAIL; exit 1; }
 
-#Round4 goes back to the beginning, but now we are only reading complete pages
+#Now we go back to the beginning, but now we are only reading complete pages
 #With the original data, this will result in both an empty QTEST.csv file and an empty views_QTEST.csv file
 page_args=(-S -o QTEST.csv -t 0.5)
 rm -f output/{views_,}QTEST.csv
