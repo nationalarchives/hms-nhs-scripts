@@ -1,0 +1,902 @@
+T1.instruction: 'Working down the ''HOW DISPOSED OF'' column,  select the first 5
+    ''disposed of'' entries from the drop down menu, referring to the list of abbreviations
+    in the FIELD GUIDE as needed. If not listed, choose ''Other''.
+
+
+    Keep track of where you left off, as you''ll be asked to work on the next group
+    of 5 after this. There are 25 rows in total. Select ''How Disposed of'' #1 here.'
+T1.selects.0.options.*.0.label:
+    f3c71bdb0a543: Absconded
+T1.selects.0.options.*.1.label:
+    059571653b098: Absent
+T1.selects.0.options.*.10.label:
+    83d14625d8486: Request to attend as an Out Patient
+T1.selects.0.options.*.11.label:
+    8df334f7424ac: Relieved
+T1.selects.0.options.*.12.label:
+    587198194a75c: Seven Day Order
+T1.selects.0.options.*.13.label:
+    3296255a18536: Shipped
+T1.selects.0.options.*.14.label:
+    0cbf90ccb031e: To a/his Ship Cured
+T1.selects.0.options.*.15.label:
+    b2b1d5bd56482: Other
+T1.selects.0.options.*.16.label:
+    9680d71e73441: Missing/illegible entry
+T1.selects.0.options.*.2.label:
+    977a663e38cf7: Died
+T1.selects.0.options.*.3.label:
+    51045d88aa67: Expelled
+T1.selects.0.options.*.4.label:
+    831a3d7ad525d: Incurable
+T1.selects.0.options.*.5.label:
+    6f74ed33dd9e: Isolation
+T1.selects.0.options.*.6.label:
+    c287bbb01dc83: Request Convalescent
+T1.selects.0.options.*.7.label:
+    933f538d85499: Request Cured
+T1.selects.0.options.*.8.label:
+    c7ebdb2ca637d: Request Fit for Duty
+T1.selects.0.options.*.9.label:
+    fa25c98818c61: Request not Cured
+T10.instruction: 'Select ''How Disposed of'' #9'
+T10.selects.0.options.*.0.label:
+    ab5603552f23b: Absconded
+T10.selects.0.options.*.1.label:
+    f38c79c46b7c5: Absent
+T10.selects.0.options.*.10.label:
+    2220e449da2df: Request to attend as an Out Patient
+T10.selects.0.options.*.11.label:
+    86b1342da6ac1: Relieved
+T10.selects.0.options.*.12.label:
+    3a00e73d22ca6: Seven Day Order
+T10.selects.0.options.*.13.label:
+    2898b328527cd: Shipped
+T10.selects.0.options.*.14.label:
+    49f6c4b6dd33c: To a/his Ship Cured
+T10.selects.0.options.*.15.label:
+    f53160066a136: Other
+T10.selects.0.options.*.16.label:
+    a2594cc7a87ed: Missing/illegible entry
+T10.selects.0.options.*.2.label:
+    4e75862d5fa1d: Died
+T10.selects.0.options.*.3.label:
+    f190be98d23f3: Expelled
+T10.selects.0.options.*.4.label:
+    3938a10dbb8ce: Incurable
+T10.selects.0.options.*.5.label:
+    289405c078fc1: Isolation
+T10.selects.0.options.*.6.label:
+    4fbd90bc22795: Request Convalescent
+T10.selects.0.options.*.7.label:
+    2cf32897b51cd: Request Cured
+T10.selects.0.options.*.8.label:
+    b48f3faf836c5: Request Fit for Duty
+T10.selects.0.options.*.9.label:
+    b242ce547d2af: Request not Cured
+T11.instruction: 'Select ''How Disposed of'' #10'
+T11.selects.0.options.*.0.label:
+    085db6d267e3d: Absconded
+T11.selects.0.options.*.1.label:
+    139a20a462e42: Absent
+T11.selects.0.options.*.10.label:
+    6e2457f83b614: Request to attend as an Out Patient
+T11.selects.0.options.*.11.label:
+    34b221ea116e7: Relieved
+T11.selects.0.options.*.12.label:
+    a4fb0dfcdaad5: Seven Day Order
+T11.selects.0.options.*.13.label:
+    e3a5e2e7d90df: Shipped
+T11.selects.0.options.*.14.label:
+    94c103a73f9e5: To a/his Ship Cured
+T11.selects.0.options.*.15.label:
+    f13a477787092: Other
+T11.selects.0.options.*.16.label:
+    9b5d0dc588925: Missing/illegible entry
+T11.selects.0.options.*.2.label:
+    03b63830e3474: Died
+T11.selects.0.options.*.3.label:
+    45c826abc86c5: Expelled
+T11.selects.0.options.*.4.label:
+    9aaec1b9a1f81: Incurable
+T11.selects.0.options.*.5.label:
+    65567b7461e7e: Isolation
+T11.selects.0.options.*.6.label:
+    3da70f84bf955: Request Convalescent
+T11.selects.0.options.*.7.label:
+    af9ea1eedff2d: Request Cured
+T11.selects.0.options.*.8.label:
+    3a2b469a9f389: Request Fit for Duty
+T11.selects.0.options.*.9.label:
+    9373387b32547: Request not Cured
+T13.instruction: 'Working down the ''HOW DISPOSED OF'' column,  select the next 5
+    ''disposed of'' entries from the drop down menu, referring to the list of abbreviations
+    in the FIELD GUIDE as needed. If not listed, choose ''Other''.
+
+
+    Keep track of where you left off, as you''ll be asked to work on the next group
+    of 5 after this. There are 25 rows in total. Select ''How Disposed of'' #11 here.'
+T13.selects.0.options.*.0.label:
+    0ed1614f12964: Absconded
+T13.selects.0.options.*.1.label:
+    24422373c0692: Absent
+T13.selects.0.options.*.10.label:
+    a12f0159c4797: Request to attend as an Out Patient
+T13.selects.0.options.*.11.label:
+    6f2962143e02a: Relieved
+T13.selects.0.options.*.12.label:
+    958ac0b71989c: Seven Day Order
+T13.selects.0.options.*.13.label:
+    36797799b5509: Shipped
+T13.selects.0.options.*.14.label:
+    b92f5235b969d: To a/his Ship Cured
+T13.selects.0.options.*.15.label:
+    9544aadfd6d58: Other
+T13.selects.0.options.*.16.label:
+    50be8afef6aa: Missing/illegible entry
+T13.selects.0.options.*.2.label:
+    f73633bb4ac98: Died
+T13.selects.0.options.*.3.label:
+    89327cb48c0bf: Expelled
+T13.selects.0.options.*.4.label:
+    cab6956965ca8: Incurable
+T13.selects.0.options.*.5.label:
+    f91cf1753072b: Isolation
+T13.selects.0.options.*.6.label:
+    3583420c527ff: Request Convalescent
+T13.selects.0.options.*.7.label:
+    c9d46b9cf2c63: Request Cured
+T13.selects.0.options.*.8.label:
+    5abcfe645cfa2: Request Fit for Duty
+T13.selects.0.options.*.9.label:
+    c41950aee319a: Request not Cured
+T14.instruction: 'Select ''How Disposed of'' #12'
+T14.selects.0.options.*.0.label:
+    c6da1e9318f97: Absconded
+T14.selects.0.options.*.1.label:
+    bf4ce3817321d: Absent
+T14.selects.0.options.*.10.label:
+    b52cb9a8eb256: Request to attend as an Out Patient
+T14.selects.0.options.*.11.label:
+    ee3c82b6dd952: Relieved
+T14.selects.0.options.*.12.label:
+    828bf5b337c63: Seven Day Order
+T14.selects.0.options.*.13.label:
+    90ae09f83291: Shipped
+T14.selects.0.options.*.14.label:
+    45ee40af976ba: To a/his Ship Cured
+T14.selects.0.options.*.15.label:
+    2eb32a71b7d32: Other
+T14.selects.0.options.*.16.label:
+    6fe3c5de36e89: Missing/illegible entry
+T14.selects.0.options.*.2.label:
+    4ab74c66431b2: Died
+T14.selects.0.options.*.3.label:
+    076aa3e522edd: Expelled
+T14.selects.0.options.*.4.label:
+    f0ba7d7acf682: Incurable
+T14.selects.0.options.*.5.label:
+    8a61fafb62bf6: Isolation
+T14.selects.0.options.*.6.label:
+    bc31dd8dd4ce8: Request Convalescent
+T14.selects.0.options.*.7.label:
+    9b3f235ade3e5: Request Cured
+T14.selects.0.options.*.8.label:
+    4ba9acd94e835: Request Fit for Duty
+T14.selects.0.options.*.9.label:
+    007eab0e648f5: Request not Cured
+T15.instruction: 'Select ''How Disposed of'' #13'
+T15.selects.0.options.*.0.label:
+    5f616f144299e: Absconded
+T15.selects.0.options.*.1.label:
+    7df9ccceeddc4: Absent
+T15.selects.0.options.*.10.label:
+    34c5b6742be27: Request to attend as an Out Patient
+T15.selects.0.options.*.11.label:
+    24aa562698a44: Relieved
+T15.selects.0.options.*.12.label:
+    0354e9936523a: Seven Day Order
+T15.selects.0.options.*.13.label:
+    28f4323ecaec2: Shipped
+T15.selects.0.options.*.14.label:
+    ca2cd97e3a70d: To a/his Ship Cured
+T15.selects.0.options.*.15.label:
+    2d8e228a52e99: Other
+T15.selects.0.options.*.16.label:
+    1f3d8da8b4273: Missing/illegible entry
+T15.selects.0.options.*.2.label:
+    f0420ba5b5725: Died
+T15.selects.0.options.*.3.label:
+    271fb5554869b: Expelled
+T15.selects.0.options.*.4.label:
+    2a143bfa93dd5: Incurable
+T15.selects.0.options.*.5.label:
+    88fb1d0be12a5: Isolation
+T15.selects.0.options.*.6.label:
+    abadab9aff782: Request Convalescent
+T15.selects.0.options.*.7.label:
+    f0f3eb5727a1b: Request Cured
+T15.selects.0.options.*.8.label:
+    fe23ab4afb8c2: Request Fit for Duty
+T15.selects.0.options.*.9.label:
+    fdcac6be4b623: Request not Cured
+T16.instruction: 'Select ''How Disposed of'' #14'
+T16.selects.0.options.*.0.label:
+    fea51c2047c86: Absconded
+T16.selects.0.options.*.1.label:
+    5126bd1653345: Absent
+T16.selects.0.options.*.10.label:
+    ac56e7e937e27: Request to attend as an Out Patient
+T16.selects.0.options.*.11.label:
+    5c3314f2f827f: Relieved
+T16.selects.0.options.*.12.label:
+    21ea44458207f: Seven Day Order
+T16.selects.0.options.*.13.label:
+    4217019f57c9c: Shipped
+T16.selects.0.options.*.14.label:
+    737e3e2106942: To a/his Ship Cured
+T16.selects.0.options.*.15.label:
+    becd5d19224bb: Other
+T16.selects.0.options.*.16.label:
+    5276929c1072a: Missing/illegible entry
+T16.selects.0.options.*.2.label:
+    e0ecdbc869b33: Died
+T16.selects.0.options.*.3.label:
+    76f327b2e1a2a: Expelled
+T16.selects.0.options.*.4.label:
+    30b8b22eda76f: Incurable
+T16.selects.0.options.*.5.label:
+    91bea7afea223: Isolation
+T16.selects.0.options.*.6.label:
+    ad7856c371b2b: Request Convalescent
+T16.selects.0.options.*.7.label:
+    f7b09b7448613: Request Cured
+T16.selects.0.options.*.8.label:
+    af7da1eb6a82: Request Fit for Duty
+T16.selects.0.options.*.9.label:
+    b4f1b22befee1: Request not Cured
+T17.instruction: 'Select ''How Disposed of'' #15'
+T17.selects.0.options.*.0.label:
+    66f77f1c6b5b6: Absconded
+T17.selects.0.options.*.1.label:
+    0498827cb9e9d: Absent
+T17.selects.0.options.*.10.label:
+    47ff65919e2d4: Request to attend as an Out Patient
+T17.selects.0.options.*.11.label:
+    c36fa73525519: Relieved
+T17.selects.0.options.*.12.label:
+    a1221a89a0a1d: Seven Day Order
+T17.selects.0.options.*.13.label:
+    9aea5ef86ea54: Shipped
+T17.selects.0.options.*.14.label:
+    4135bcf5fbca8: To a/his Ship Cured
+T17.selects.0.options.*.15.label:
+    047858b921a31: Other
+T17.selects.0.options.*.16.label:
+    0f0011047de62: Missing/illegible entry
+T17.selects.0.options.*.2.label:
+    e3df8ba56d596: Died
+T17.selects.0.options.*.3.label:
+    01a090c79eb92: Expelled
+T17.selects.0.options.*.4.label:
+    ce1ea3964d676: Incurable
+T17.selects.0.options.*.5.label:
+    97e380b0bba81: Isolation
+T17.selects.0.options.*.6.label:
+    03d31126e5d99: Request Convalescent
+T17.selects.0.options.*.7.label:
+    2d3d699a63063: Request Cured
+T17.selects.0.options.*.8.label:
+    a20d5d19c665b: Request Fit for Duty
+T17.selects.0.options.*.9.label:
+    d4b639007469e: Request not Cured
+T19.instruction: 'Working down the ''HOW DISPOSED OF'' column,  select the next 5
+    ''disposed of'' entries from the drop down menu, referring to the list of abbreviations
+    in the FIELD GUIDE as needed. If not listed, choose ''Other''.
+
+
+    Keep track of where you left off, as you''ll be asked to work on the next group
+    of 5 after this. There are 25 rows in total. Select ''How Disposed of'' #16 here.'
+T19.selects.0.options.*.0.label:
+    fa8075dab3c06: Absconded
+T19.selects.0.options.*.1.label:
+    07e83e53bccb5: Absent
+T19.selects.0.options.*.10.label:
+    f0934b0a4c5bc: Request to attend as an Out Patient
+T19.selects.0.options.*.11.label:
+    300561d11835b: Relieved
+T19.selects.0.options.*.12.label:
+    861e6f293dcfc: Seven Day Order
+T19.selects.0.options.*.13.label:
+    b3b3500b500bb: Shipped
+T19.selects.0.options.*.14.label:
+    c5b61be0367c7: To a/his Ship Cured
+T19.selects.0.options.*.15.label:
+    0cc252d7c4cd9: Other
+T19.selects.0.options.*.16.label:
+    4e270f7738d78: Missing/illegible entry
+T19.selects.0.options.*.2.label:
+    4192fe6f2f1d6: Died
+T19.selects.0.options.*.3.label:
+    d6aef8578d9ad: Expelled
+T19.selects.0.options.*.4.label:
+    27263decc126f: Incurable
+T19.selects.0.options.*.5.label:
+    45ef3968cf083: Isolation
+T19.selects.0.options.*.6.label:
+    815d79c728986: Request Convalescent
+T19.selects.0.options.*.7.label:
+    f3cd706efea57: Request Cured
+T19.selects.0.options.*.8.label:
+    fa0cf711398f9: Request Fit for Duty
+T19.selects.0.options.*.9.label:
+    2285e05688c7e: Request not Cured
+T2.instruction: 'Select ''How Disposed of'' #2'
+T2.selects.0.options.*.0.label:
+    ea1118701e235: Absconded
+T2.selects.0.options.*.1.label:
+    2c11dc8a359a7: Absent
+T2.selects.0.options.*.10.label:
+    62ef59e932dd6: Request to attend as an Out Patient
+T2.selects.0.options.*.11.label:
+    ba9cca20fc1e1: Relieved
+T2.selects.0.options.*.12.label:
+    857565c77bf3b: Seven Day Order
+T2.selects.0.options.*.13.label:
+    2f75e7d66a22b: Shipped
+T2.selects.0.options.*.14.label:
+    2e07248fefad5: To a/his Ship Cured
+T2.selects.0.options.*.15.label:
+    8f85a5993b126: Other
+T2.selects.0.options.*.16.label:
+    7705bb59cd9f9: Missing/illegible entry
+T2.selects.0.options.*.2.label:
+    faa0582058bd8: Died
+T2.selects.0.options.*.3.label:
+    90b3bcad6636b: Expelled
+T2.selects.0.options.*.4.label:
+    22bd0b3c3e6ad: Incurable
+T2.selects.0.options.*.5.label:
+    87a5066b57d1e: Isolation
+T2.selects.0.options.*.6.label:
+    1b96b2a70e361: Request Convalescent
+T2.selects.0.options.*.7.label:
+    7d430f38eb2a4: Request Cured
+T2.selects.0.options.*.8.label:
+    0427f6937adcf: Request Fit for Duty
+T2.selects.0.options.*.9.label:
+    0c3c0c5a8f0d4: Request not Cured
+T20.instruction: 'Select ''How Disposed of'' #17'
+T20.selects.0.options.*.0.label:
+    465eeb84f4981: Absconded
+T20.selects.0.options.*.1.label:
+    6665cec353b1b: Absent
+T20.selects.0.options.*.10.label:
+    41c695f851e7b: Request to attend as an Out Patient
+T20.selects.0.options.*.11.label:
+    df226cf9d91aa: Relieved
+T20.selects.0.options.*.12.label:
+    0275c7c698096: Seven Day Order
+T20.selects.0.options.*.13.label:
+    8413458f406cd: Shipped
+T20.selects.0.options.*.14.label:
+    84de2e0f4d794: To a/his Ship Cured
+T20.selects.0.options.*.15.label:
+    a5e979582336b: Other
+T20.selects.0.options.*.16.label:
+    ca7fb0e3d76d5: Missing/illegible entry
+T20.selects.0.options.*.2.label:
+    de30580569727: Died
+T20.selects.0.options.*.3.label:
+    722408a43e7bc: Expelled
+T20.selects.0.options.*.4.label:
+    4f98feb7b265d: Incurable
+T20.selects.0.options.*.5.label:
+    ff940f8451ceb: Isolation
+T20.selects.0.options.*.6.label:
+    bc319061187cc: Request Convalescent
+T20.selects.0.options.*.7.label:
+    1d111efe21cf6: Request Cured
+T20.selects.0.options.*.8.label:
+    a0ff2603bff01: Request Fit for Duty
+T20.selects.0.options.*.9.label:
+    5c5abfd8ac2da: Request not Cured
+T21.instruction: 'Select ''How Disposed of'' #18'
+T21.selects.0.options.*.0.label:
+    e530917d99fca: Absconded
+T21.selects.0.options.*.1.label:
+    4b6d705507ffd: Absent
+T21.selects.0.options.*.10.label:
+    45f99b1bc060d: Request to attend as an Out Patient
+T21.selects.0.options.*.11.label:
+    cc575ed9e1dc1: Relieved
+T21.selects.0.options.*.12.label:
+    f29b158d73603: Seven Day Order
+T21.selects.0.options.*.13.label:
+    35aa310591c83: Shipped
+T21.selects.0.options.*.14.label:
+    4610a861d7ee3: To a/his Ship Cured
+T21.selects.0.options.*.15.label:
+    5d0a2162babc3: Other
+T21.selects.0.options.*.16.label:
+    6c4cbbbb017ac: Missing/illegible entry
+T21.selects.0.options.*.2.label:
+    c359105e40dc5: Died
+T21.selects.0.options.*.3.label:
+    ec62dc847ed52: Expelled
+T21.selects.0.options.*.4.label:
+    d6de6ae3a32b1: Incurable
+T21.selects.0.options.*.5.label:
+    1a0bda416ee29: Isolation
+T21.selects.0.options.*.6.label:
+    8c2cc24e3f94c: Request Convalescent
+T21.selects.0.options.*.7.label:
+    b9c2ebed6e3cc: Request Cured
+T21.selects.0.options.*.8.label:
+    71db24886a2fe: Request Fit for Duty
+T21.selects.0.options.*.9.label:
+    baac3aecf3d84: Request not Cured
+T22.instruction: 'Select ''How Disposed of'' #19'
+T22.selects.0.options.*.0.label:
+    0dac9d0fd65d: Absconded
+T22.selects.0.options.*.1.label:
+    6148b655e94dc: Absent
+T22.selects.0.options.*.10.label:
+    18e79a5471d6a: Relieved
+T22.selects.0.options.*.11.label:
+    25a4384662221: Request to attend as an Out Patient
+T22.selects.0.options.*.12.label:
+    2156c3d72459c: Seven Day Order
+T22.selects.0.options.*.13.label:
+    332d646fbf3b1: Shipped
+T22.selects.0.options.*.14.label:
+    180971f073025: To a/his Ship Cured
+T22.selects.0.options.*.15.label:
+    49075ac89504b: Other
+T22.selects.0.options.*.16.label:
+    d79a0cf4bfcf3: Missing/illegible entry
+T22.selects.0.options.*.2.label:
+    f249ea76cddb5: Died
+T22.selects.0.options.*.3.label:
+    ac64cf8101a56: Expelled
+T22.selects.0.options.*.4.label:
+    95fa28b1ac6fb: Incurable
+T22.selects.0.options.*.5.label:
+    be9eed0e002da: Isolation
+T22.selects.0.options.*.6.label:
+    0a7a2c096d26a: Request Convalescent
+T22.selects.0.options.*.7.label:
+    e9f598238c448: Request Cured
+T22.selects.0.options.*.8.label:
+    ef60b219deef9: Request Fit for Duty
+T22.selects.0.options.*.9.label:
+    f8d71a9249de5: Request not Cured
+T23.instruction: 'Select ''How Disposed of'' #20'
+T23.selects.0.options.*.0.label:
+    65b0dacabc623: Absconded
+T23.selects.0.options.*.1.label:
+    d872414b97a96: Absent
+T23.selects.0.options.*.10.label:
+    9b2acd9508cd9: Request to attend as an Out Patient
+T23.selects.0.options.*.11.label:
+    3cc26cd5c49f1: Relieved
+T23.selects.0.options.*.12.label:
+    ffda6a15daa79: Seven Day Order
+T23.selects.0.options.*.13.label:
+    4b9b5c5ed7933: Shipped
+T23.selects.0.options.*.14.label:
+    c099a780dde46: To a/his Ship Cured
+T23.selects.0.options.*.15.label:
+    d025190a56103: Other
+T23.selects.0.options.*.16.label:
+    4f0a2b97d99ad: Missing/illegible entry
+T23.selects.0.options.*.2.label:
+    a711c20577cb2: Died
+T23.selects.0.options.*.3.label:
+    1d74fd416c702: Expelled
+T23.selects.0.options.*.4.label:
+    dea30e374ba17: Incurable
+T23.selects.0.options.*.5.label:
+    6a1531538547f: Isolation
+T23.selects.0.options.*.6.label:
+    2ace9236b0b3b: Request Convalescent
+T23.selects.0.options.*.7.label:
+    3fb30d64d8376: Request Cured
+T23.selects.0.options.*.8.label:
+    6e1d8ef6c0362: Request Fit for Duty
+T23.selects.0.options.*.9.label:
+    3c35391106b86: Request not Cured
+T25.instruction: 'Working down the ''HOW DISPOSED OF'' column,  select the final 5
+    ''disposed of'' entries from the drop down menu, referring to the list of abbreviations
+    in the FIELD GUIDE as needed. If not listed, choose ''Other''. Select ''How Disposed
+    of'' #21 here.'
+T25.selects.0.options.*.0.label:
+    94cc5822e987c: Absconded
+T25.selects.0.options.*.1.label:
+    1182b58416d91: Absent
+T25.selects.0.options.*.10.label:
+    54c5fff4269f: Request to attend as an Out Patient
+T25.selects.0.options.*.11.label:
+    02872d8549868: Relieved
+T25.selects.0.options.*.12.label:
+    c243764ce78f3: Seven Day Order
+T25.selects.0.options.*.13.label:
+    8cc3d49c17d12: Shipped
+T25.selects.0.options.*.14.label:
+    a19cea0116f73: To a/his Ship Cured
+T25.selects.0.options.*.15.label:
+    63a98408f2935: Other
+T25.selects.0.options.*.16.label:
+    9d628f1cb9692: Missing/illegible entry
+T25.selects.0.options.*.2.label:
+    24cb63ed5befe: Died
+T25.selects.0.options.*.3.label:
+    5056d7aa30f15: Expelled
+T25.selects.0.options.*.4.label:
+    40093803baf5a: Incurable
+T25.selects.0.options.*.5.label:
+    aa01e774bc01c: Isolation
+T25.selects.0.options.*.6.label:
+    e5737bb837f55: Request Convalescent
+T25.selects.0.options.*.7.label:
+    269460a11cb5b: Request Cured
+T25.selects.0.options.*.8.label:
+    e6b7ee4aa1295: Request Fit for Duty
+T25.selects.0.options.*.9.label:
+    93697af2c3a15: Request not Cured
+T26.instruction: 'Select ''How Disposed of'' #22'
+T26.selects.0.options.*.0.label:
+    03efb20649a0e: Absconded
+T26.selects.0.options.*.1.label:
+    cb338dd82e9f4: Absent
+T26.selects.0.options.*.10.label:
+    161884789f3d9: Request to attend as an Out Patient
+T26.selects.0.options.*.11.label:
+    71876b8f7897f: Relieved
+T26.selects.0.options.*.12.label:
+    da919adb0f333: Seven Day Order
+T26.selects.0.options.*.13.label:
+    930378bf1400d: Shipped
+T26.selects.0.options.*.14.label:
+    bd7c281c3e2a5: To a/his Ship Cured
+T26.selects.0.options.*.15.label:
+    44706928fd22d: Other
+T26.selects.0.options.*.16.label:
+    01d14429da9f8: Missing/illegible entry
+T26.selects.0.options.*.2.label:
+    79cb0c0a958b2: Died
+T26.selects.0.options.*.3.label:
+    6ce995486b9d9: Expelled
+T26.selects.0.options.*.4.label:
+    3e8ee132a954a: Incurable
+T26.selects.0.options.*.5.label:
+    74df744d70521: Isolation
+T26.selects.0.options.*.6.label:
+    724f354af2d63: Request Convalescent
+T26.selects.0.options.*.7.label:
+    8b59d301bbdf3: Request Cured
+T26.selects.0.options.*.8.label:
+    a10edcb0308ca: Request Fit for Duty
+T26.selects.0.options.*.9.label:
+    c2e40f116b7eb: Request not Cured
+T27.instruction: 'Select ''How Disposed of'' #23'
+T27.selects.0.options.*.0.label:
+    f45b8e7141576: Absconded
+T27.selects.0.options.*.1.label:
+    f5747d78a7ff7: Absent
+T27.selects.0.options.*.10.label:
+    0e5ccc3a73aec: Request to attend as an Out Patient
+T27.selects.0.options.*.11.label:
+    93b87c0bc273c: Relieved
+T27.selects.0.options.*.12.label:
+    8c23d4e967eee: Seven Day Order
+T27.selects.0.options.*.13.label:
+    d52b70aea852c: Shipped
+T27.selects.0.options.*.14.label:
+    8566c43b24b0d: To a/his Ship Cured
+T27.selects.0.options.*.15.label:
+    330f195b82c1: Other
+T27.selects.0.options.*.16.label:
+    84f6fd4c33b56: Missing/illegible entry
+T27.selects.0.options.*.2.label:
+    9f617c882a773: Died
+T27.selects.0.options.*.3.label:
+    6aaac0d70a66e: Expelled
+T27.selects.0.options.*.4.label:
+    97f2701059049: Incurable
+T27.selects.0.options.*.5.label:
+    9d15a2c09ad91: Isolation
+T27.selects.0.options.*.6.label:
+    e4370c6642928: Request Convalescent
+T27.selects.0.options.*.7.label:
+    e5a9813dff988: Request Cured
+T27.selects.0.options.*.8.label:
+    f6cc93eea43c8: Request Fit for Duty
+T27.selects.0.options.*.9.label:
+    0b4cac0356f7: Request not Cured
+T28.instruction: 'Select ''How Disposed of'' #24'
+T28.selects.0.options.*.0.label:
+    f371d5cb5ecd6: Absconded
+T28.selects.0.options.*.1.label:
+    c3021f6a2a6b5: Absent
+T28.selects.0.options.*.10.label:
+    c0a022d7fdd07: Request to attend as an Out Patient
+T28.selects.0.options.*.11.label:
+    6b9a1d22e5c51: Relieved
+T28.selects.0.options.*.12.label:
+    d3fd081519c33: Seven Day Order
+T28.selects.0.options.*.13.label:
+    6275cdddfe9a8: Shipped
+T28.selects.0.options.*.14.label:
+    1220fc18d6725: To a/his Ship Cured
+T28.selects.0.options.*.15.label:
+    5822fffe54bf7: Other
+T28.selects.0.options.*.16.label:
+    b325063999e5c: Missing/illegible entry
+T28.selects.0.options.*.2.label:
+    23ec601be3058: Died
+T28.selects.0.options.*.3.label:
+    1501e84ae475c: Expelled
+T28.selects.0.options.*.4.label:
+    6f532772a176a: Incurable
+T28.selects.0.options.*.5.label:
+    8f3955ead74fc: Isolation
+T28.selects.0.options.*.6.label:
+    b9bcc4c2cc9bf: Request Convalescent
+T28.selects.0.options.*.7.label:
+    439dc9b39a40d: Request Cured
+T28.selects.0.options.*.8.label:
+    19d1a7d1865ca: Request Fit for Duty
+T28.selects.0.options.*.9.label:
+    75d1d72b77ab4: Request not Cured
+T29.instruction: 'Select ''How Disposed of'' #25'
+T29.selects.0.options.*.0.label:
+    e17561319f79a: Absconded
+T29.selects.0.options.*.1.label:
+    e2ad4279475fb: Absent
+T29.selects.0.options.*.10.label:
+    b458521a80f67: Request to attend as an Out Patient
+T29.selects.0.options.*.11.label:
+    de47f3b0bffe7: Relieved
+T29.selects.0.options.*.12.label:
+    49f552c30c949: Seven Day Order
+T29.selects.0.options.*.13.label:
+    cf82e2645f38f: Shipped
+T29.selects.0.options.*.14.label:
+    b69a3dfd25fbf: To a/his Ship Cured
+T29.selects.0.options.*.15.label:
+    5a38401b0f8ae: Other
+T29.selects.0.options.*.16.label:
+    bd21346f2b0b9: Missing/illegible entry
+T29.selects.0.options.*.2.label:
+    3f7be3985c0e4: Died
+T29.selects.0.options.*.3.label:
+    441143338f18: Expelled
+T29.selects.0.options.*.4.label:
+    c76ed8c3a5158: Incurable
+T29.selects.0.options.*.5.label:
+    905718265184b: Isolation
+T29.selects.0.options.*.6.label:
+    f85a832717328: Request Convalescent
+T29.selects.0.options.*.7.label:
+    25332b0e7602: Request Cured
+T29.selects.0.options.*.8.label:
+    9c2b5e8285302: Request Fit for Duty
+T29.selects.0.options.*.9.label:
+    964f1782edf9b: Request not Cured
+T3.instruction: 'Select ''How Disposed of'' #3'
+T3.selects.0.options.*.0.label:
+    30a94b9b843ac: Absconded
+T3.selects.0.options.*.1.label:
+    8a6ad1298962c: Absent
+T3.selects.0.options.*.10.label:
+    83367f2ad99fe: Request to attend as an Out Patient
+T3.selects.0.options.*.11.label:
+    4f625588bf284: Relieved
+T3.selects.0.options.*.12.label:
+    7535dcf765378: Seven Day Order
+T3.selects.0.options.*.13.label:
+    60b7872d68bfd: Shipped
+T3.selects.0.options.*.14.label:
+    9197e5082b681: To a/his Ship Cured
+T3.selects.0.options.*.15.label:
+    b2196946eb815: Other
+T3.selects.0.options.*.16.label:
+    5fea23e31a709: Missing/illegible entry
+T3.selects.0.options.*.2.label:
+    655c5fc81d182: Died
+T3.selects.0.options.*.3.label:
+    7df38d8e6094f: Expelled
+T3.selects.0.options.*.4.label:
+    995fb0dd8d2f5: Incurable
+T3.selects.0.options.*.5.label:
+    e04d2c09c2c65: Isolation
+T3.selects.0.options.*.6.label:
+    a9533492f4fd2: Request Convalescent
+T3.selects.0.options.*.7.label:
+    9beb84afc913b: Request Cured
+T3.selects.0.options.*.8.label:
+    8db13f7e132c7: Request Fit for Duty
+T3.selects.0.options.*.9.label:
+    6b70a824c4108: Request not Cured
+T4.instruction: 'Select ''How Disposed of'' #4'
+T4.selects.0.options.*.0.label:
+    4d5b14d293f6c: Absconded
+T4.selects.0.options.*.1.label:
+    7c5a18fcc6b15: Absent
+T4.selects.0.options.*.10.label:
+    dc2bf18529b86: Request to attend as an Out Patient
+T4.selects.0.options.*.11.label:
+    5373c8eefa491: Relieved
+T4.selects.0.options.*.12.label:
+    010eb459f1423: Seven Day Order
+T4.selects.0.options.*.13.label:
+    d89596508d50c: Shipped
+T4.selects.0.options.*.14.label:
+    b3e6784fdd2e6: To a/his Ship Cured
+T4.selects.0.options.*.15.label:
+    577023fa454f8: Other
+T4.selects.0.options.*.16.label:
+    402d9575e055b: Missing/illegible entry
+T4.selects.0.options.*.2.label:
+    4c852c593f2c7: Died
+T4.selects.0.options.*.3.label:
+    39b718116c194: Expelled
+T4.selects.0.options.*.4.label:
+    6040d04b5be4b: Incurable
+T4.selects.0.options.*.5.label:
+    444e2e3b7395: Isolation
+T4.selects.0.options.*.6.label:
+    32bd4a43a498b: Request Convalescent
+T4.selects.0.options.*.7.label:
+    2c0268a474635: Request Cured
+T4.selects.0.options.*.8.label:
+    f1ddf203e826: Request Fit for Duty
+T4.selects.0.options.*.9.label:
+    c77b6da08d01f: Request not Cured
+T5.instruction: 'Select ''How Disposed of'' #5'
+T5.selects.0.options.*.0.label:
+    74a7d40075f71: Absconded
+T5.selects.0.options.*.1.label:
+    6e0b255295d54: Absent
+T5.selects.0.options.*.10.label:
+    9cfa07f6df387: Request to attend as an Out Patient
+T5.selects.0.options.*.11.label:
+    d6744c65ac04: Relieved
+T5.selects.0.options.*.12.label:
+    2aa7e6c6a2e6d: Seven Day Order
+T5.selects.0.options.*.13.label:
+    fbd22c9b1f2d1: Shipped
+T5.selects.0.options.*.14.label:
+    ec41a63c11ce: To a/his Ship Cured
+T5.selects.0.options.*.15.label:
+    64fd09b65626e: Other
+T5.selects.0.options.*.16.label:
+    2613ec4c473e: Missing/illegible entry
+T5.selects.0.options.*.2.label:
+    cde8f065a520b: Died
+T5.selects.0.options.*.3.label:
+    354b0e5fcfe48: Expelled
+T5.selects.0.options.*.4.label:
+    9fdd57893aa25: Incurable
+T5.selects.0.options.*.5.label:
+    7b7f6ba3d2ce3: Isolation
+T5.selects.0.options.*.6.label:
+    2719279abc562: Request Convalescent
+T5.selects.0.options.*.7.label:
+    b2991eb0d1787: Request Cured
+T5.selects.0.options.*.8.label:
+    d50cb681198a8: Request Fit for Duty
+T5.selects.0.options.*.9.label:
+    97a540755c62: Request not Cured
+T7.instruction: 'Working down the ''HOW DISPOSED OF'' column,  select the next 5 ''disposed
+    of'' entries from the drop down menu, referring to the list of abbreviations in
+    the FIELD GUIDE as needed. If not listed, choose ''Other''.
+
+
+    Keep track of where you left off, as you''ll be asked to work on the next group
+    of 5 after this. There are 25 rows in total. Select ''How Disposed of'' #6 here.'
+T7.selects.0.options.*.0.label:
+    17d42c4075b28: Absconded
+T7.selects.0.options.*.1.label:
+    42caf3993eab9: Absent
+T7.selects.0.options.*.10.label:
+    281d5e3e8c1fc: Request to attend as an Out Patient
+T7.selects.0.options.*.11.label:
+    a437f66a3b4c2: Relieved
+T7.selects.0.options.*.12.label:
+    3c0e2360499a1: Seven Day Order
+T7.selects.0.options.*.13.label:
+    9803f00074d23: Shipped
+T7.selects.0.options.*.14.label:
+    13704b6efb945: To a/his Ship Cured
+T7.selects.0.options.*.15.label:
+    333d8c6b729dc: Other
+T7.selects.0.options.*.16.label:
+    bfb499ad87b99: Missing/illegible entry
+T7.selects.0.options.*.2.label:
+    5bd3f61d9a06b: Died
+T7.selects.0.options.*.3.label:
+    6432a6fa575fc: Expelled
+T7.selects.0.options.*.4.label:
+    4474b4f72bf7f: Incurable
+T7.selects.0.options.*.5.label:
+    92708f646d1ab: Isolation
+T7.selects.0.options.*.6.label:
+    95c95a879a146: Request Convalescent
+T7.selects.0.options.*.7.label:
+    5b8f7cb86d554: Request Cured
+T7.selects.0.options.*.8.label:
+    8e6c0c80549b1: Request Fit for Duty
+T7.selects.0.options.*.9.label:
+    b93746d9a8b86: Request not Cured
+T8.instruction: 'Select ''How Disposed of'' #7'
+T8.selects.0.options.*.0.label:
+    ba2a2062b3bd6: Absconded
+T8.selects.0.options.*.1.label:
+    dcbfccebcbe6c: Absent
+T8.selects.0.options.*.10.label:
+    c850da531709c: Request to attend as an Out Patient
+T8.selects.0.options.*.11.label:
+    416e47f0c4d8e: Relieved
+T8.selects.0.options.*.12.label:
+    b5687278ad56a: Seven Day Order
+T8.selects.0.options.*.13.label:
+    51afaf4b53c1d: Shipped
+T8.selects.0.options.*.14.label:
+    e68f0004915e8: To a/his Ship Cured
+T8.selects.0.options.*.15.label:
+    dbf50897589e9: Other
+T8.selects.0.options.*.16.label:
+    a04ca81bc3532: Missing/illegible entry
+T8.selects.0.options.*.2.label:
+    2ffbb692dcd2c: Died
+T8.selects.0.options.*.3.label:
+    6e22db3acdb1d: Expelled
+T8.selects.0.options.*.4.label:
+    7c25f07bf97a4: Incurable
+T8.selects.0.options.*.5.label:
+    698c2ef716195: Isolation
+T8.selects.0.options.*.6.label:
+    501cf08b6a499: Request Convalescent
+T8.selects.0.options.*.7.label:
+    53b79cd44ebce: Request Cured
+T8.selects.0.options.*.8.label:
+    9087832659dd7: Request fit for Duty
+T8.selects.0.options.*.9.label:
+    715cad64d9a65: Request not Cured
+T9.instruction: 'Select ''How Disposed of'' #8'
+T9.selects.0.options.*.0.label:
+    d1cbe2cdd62c5: Absconded
+T9.selects.0.options.*.1.label:
+    e896ebbfa425c: Absent
+T9.selects.0.options.*.10.label:
+    9d1ca7682dd19: Request to attend as an Out Patient
+T9.selects.0.options.*.11.label:
+    98241743fbe92: Relieved
+T9.selects.0.options.*.12.label:
+    263688461c75a: Seven Day Order
+T9.selects.0.options.*.13.label:
+    bb2e5e0a793c1: Shipped
+T9.selects.0.options.*.14.label:
+    baefcc4feea94: To a/his Ship Cured
+T9.selects.0.options.*.15.label:
+    4437580e41371: Other
+T9.selects.0.options.*.16.label:
+    4aefca8ad1f6c: Missing/illegible entry
+T9.selects.0.options.*.2.label:
+    cff1f5ed59c01: Died
+T9.selects.0.options.*.3.label:
+    b5abf52599f1e: Expelled
+T9.selects.0.options.*.4.label:
+    a491a9bd9728e: Incurable
+T9.selects.0.options.*.5.label:
+    5de90699a6a56: Isolation
+T9.selects.0.options.*.6.label:
+    20b66417a5686: Request Convalescent
+T9.selects.0.options.*.7.label:
+    1068a91c80de3: Request Cured
+T9.selects.0.options.*.8.label:
+    8dcf037a23ac3: Request Fit for Duty
+T9.selects.0.options.*.9.label:
+    a4c55872c579c: Request not Cured

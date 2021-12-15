@@ -1,0 +1,2875 @@
+subject_id,task,data.aligned_text,data.number_views,data.consensus_score,data.consensus_text
+44121906,T1,"[['H', 'H', 'London'], ['M', 'M', ''], ['Navy', 'Navy', '']]",3.0,2.0,H M Navy
+44121906,T2,"[['Boston', 'Boston', 'United'], ['', '', 'States']]",3.0,1.5,Boston States
+44121906,T3,"[['Boston', 'Boston', 'United'], ['', '', 'States']]",3.0,1.5,Boston States
+44121906,T4,"[['Liverpool', 'Liverpool', 'Whitby']]",3.0,2.0,Liverpool
+44121906,T5,"[['London', 'London', 'Hull']]",3.0,2.0,London
+44121906,T7,"[['Bristol', 'Bristol', 'Wales']]",3.0,2.0,Bristol
+44121906,T8,"[['London', 'London', 'United'], ['', '', 'States']]",3.0,1.5,London States
+44121906,T9,"[['Shields', 'Shields', 'Berwick']]",3.0,2.0,Shields
+44121906,T10,"[['London', 'London', 'Portsmouth']]",3.0,2.0,London
+44121906,T11,"[['LOndon', 'London', 'Cornwall']]",3.0,1.0,LOndon
+44121906,T13,"[['Shoreham', 'Shoreham', 'Brighton']]",3.0,2.0,Shoreham
+44121906,T14,"[['London', 'London', 'London']]",3.0,3.0,London
+44121906,T15,"[['4873', '4873', 'Ireland']]",3.0,2.0,4873
+44121906,T16,"[['London', 'London', 'London']]",3.0,3.0,London
+44121906,T17,"[['London', 'London', 'Glascow']]",3.0,2.0,London
+44121906,T19,"[['London', 'London', 'Cork']]",3.0,2.0,London
+44121906,T20,"[['London', 'London', 'Deptford']]",3.0,2.0,London
+44121906,T21,"[['Newport', 'Newport', 'Newport']]",3.0,3.0,Newport
+44121906,T22,"[['Shields', 'Shields', 'Shields']]",3.0,3.0,Shields
+44121906,T23,"[['London', 'London', 'Ireland']]",3.0,2.0,London
+44121906,T25,"[['London', 'London', 'Lambeth']]",3.0,2.0,London
+44121906,T26,"[['London', 'London', 'Southwold']]",3.0,2.0,London
+44121906,T27,"[['Bengal', 'Bengal', 'Isle'], ['', '', 'of'], ['', '', 'France']]",3.0,1.3333333333333333,Bengal of France
+44121906,T28,"[['St', 'St.', 'Isle'], [""John's"", 'Johns', 'of'], ['', '', 'Man']]",3.0,1.0,St John's Man
+44121906,T29,"[['London', 'London', 'Deptford']]",3.0,2.0,London
+44121907,T1,"[['London', 'Ireland']]",2.0,1.0,London
+44121907,T2,"[['Shields', 'Sheilds']]",2.0,1.0,Shields
+44121907,T3,"[['London', 'Edmonton']]",2.0,1.0,London
+44121907,T4,"[['Sunderland', 'Falkirk']]",2.0,1.0,Sunderland
+44121907,T5,"[['4219', 'Scotland']]",2.0,1.0,4219
+44121907,T7,"[['London', 'Whitby']]",2.0,1.0,London
+44121907,T8,"[['', 'Isle'], ['Greenock', 'of'], ['', 'Man']]",2.0,1.0,Isle Greenock Man
+44121907,T9,"[['Waterford', 'Waterford']]",2.0,2.0,Waterford
+44121907,T10,"[['London', 'London']]",2.0,2.0,London
+44121907,T11,"[['London', 'Aberdeen']]",2.0,1.0,London
+44121907,T13,"[['4093', 'Ireland']]",2.0,1.0,4093
+44121907,T14,"[['London', 'Wales']]",2.0,1.0,London
+44121907,T15,"[['London', 'Scotland']]",2.0,1.0,London
+44121907,T16,"[['London', 'Ireland']]",2.0,1.0,London
+44121907,T17,"[['London', 'London']]",2.0,2.0,London
+44121907,T19,"[['4803', 'London']]",2.0,1.0,4803
+44121907,T20,"[['Mary', ''], ['port', 'Scotland']]",2.0,1.0,Mary port
+44121907,T21,"[['Mary', ''], ['port', 'Scotland']]",2.0,1.0,Mary port
+44121907,T22,"[['London', 'Yorkshire']]",2.0,1.0,London
+44121907,T23,"[['Greennich', 'Ireland']]",2.0,1.0,Greennich
+44121907,T25,"[['2287', 'London']]",2.0,1.0,2287
+44121907,T26,"[['H', 'Woolwich'], ['M', ''], ['Navy', '']]",2.0,1.0,H M Navy
+44121907,T27,"[['New', 'United'], ['York', 'States']]",2.0,1.0,New York
+44121907,T28,"[['Sunderland', 'Sussex']]",2.0,1.0,Sunderland
+44121907,T29,"[['4836', 'Prussia']]",2.0,1.0,4836
+44121908,T1,"[['London', 'Warrington']]",2.0,1.0,London
+44121908,T2,"[['Newcastle', 'Sunderlanad']]",2.0,1.0,Newcastle
+44121908,T3,"[['London', 'Essex']]",2.0,1.0,London
+44121908,T4,"[['Greenock', 'Glascow']]",2.0,1.0,Greenock
+44121908,T5,"[['Aberdeen', 'Aberdeen']]",2.0,2.0,Aberdeen
+44121908,T7,"[['Bristol', 'Cork']]",2.0,1.0,Bristol
+44121908,T8,"[['New', 'United'], ['Yorl', 'States']]",2.0,1.0,New Yorl
+44121908,T9,"[['New', 'United'], ['York', 'States']]",2.0,1.0,New York
+44121908,T10,"[['New', 'United'], ['York', 'States']]",2.0,1.0,New York
+44121908,T11,"[['Gottenburg', 'Sweden']]",2.0,1.0,Gottenburg
+44121908,T13,"[['London', 'London']]",2.0,2.0,London
+44121908,T14,"[['London', 'Ireland']]",2.0,1.0,London
+44121908,T15,"[['London', 'Sweden']]",2.0,1.0,London
+44121908,T16,"[['London', 'Hull']]",2.0,1.0,London
+44121908,T17,"[['Statten', 'Statten']]",2.0,2.0,Statten
+44121908,T19,"[['1364', 'Shetland']]",2.0,1.0,1364
+44121908,T20,"[['1114', 'Lewis']]",2.0,1.0,1114
+44121908,T21,"[['Archangel', 'Russia']]",2.0,1.0,Archangel
+44121908,T22,"[['London', 'Wexford']]",2.0,1.0,London
+44121908,T23,"[['London', 'Scotland']]",2.0,1.0,London
+44121908,T25,"[['London', 'Edinburg']]",2.0,1.0,London
+44121908,T26,"[['3639', 'Ireland']]",2.0,1.0,3639
+44121908,T27,"[['London', 'London']]",2.0,2.0,London
+44121908,T28,"[['4893', 'Shields']]",2.0,1.0,4893
+44121908,T29,"[['London', 'Devonshire']]",2.0,1.0,London
+44121910,T1,[['Durham']],1.0,1.0,Durham
+44121910,T2,[['London']],1.0,1.0,London
+44121910,T3,[['Dysart']],1.0,1.0,Dysart
+44121910,T4,[['Dublin']],1.0,1.0,Dublin
+44121910,T5,"[['United'], ['States']]",1.0,1.0,United States
+44121910,T7,[['London']],1.0,1.0,London
+44121910,T8,[['Newfoundland']],1.0,1.0,Newfoundland
+44121910,T9,[['Wales']],1.0,1.0,Wales
+44121910,T10,[['Scotland']],1.0,1.0,Scotland
+44121910,T11,[['Emsworth']],1.0,1.0,Emsworth
+44121910,T13,[['Newcastle']],1.0,1.0,Newcastle
+44121910,T14,[['Gosport']],1.0,1.0,Gosport
+44121910,T15,[['Whitby']],1.0,1.0,Whitby
+44121910,T16,[['Greenock']],1.0,1.0,Greenock
+44121910,T17,[['Ireland']],1.0,1.0,Ireland
+44121910,T19,[['Greenwich']],1.0,1.0,Greenwich
+44121910,T20,[['Newcastle']],1.0,1.0,Newcastle
+44121910,T21,[['London']],1.0,1.0,London
+44121910,T22,[['Yarmouth']],1.0,1.0,Yarmouth
+44121910,T23,[['Penzance']],1.0,1.0,Penzance
+44121910,T25,[['Hull']],1.0,1.0,Hull
+44121910,T26,[['Havanah']],1.0,1.0,Havanah
+44121910,T27,[['London']],1.0,1.0,London
+44121910,T28,[['Plymouth']],1.0,1.0,Plymouth
+44121910,T29,[['Bristol']],1.0,1.0,Bristol
+44121912,T1,[['Ireland']],1.0,1.0,Ireland
+44121912,T2,[['Ireland']],1.0,1.0,Ireland
+44121912,T3,[['London']],1.0,1.0,London
+44121912,T4,[['Edinburg']],1.0,1.0,Edinburg
+44121912,T5,[['Essex']],1.0,1.0,Essex
+44121912,T7,[['Portsea']],1.0,1.0,Portsea
+44121912,T8,[['Bristol']],1.0,1.0,Bristol
+44121912,T9,[['Banking']],1.0,1.0,Banking
+44121912,T10,[['Sussex']],1.0,1.0,Sussex
+44121912,T11,[['Yorkshire']],1.0,1.0,Yorkshire
+44121912,T13,[['Shields']],1.0,1.0,Shields
+44121912,T14,"[['United'], ['States']]",1.0,1.0,United States
+44121912,T15,[['Yorkshire']],1.0,1.0,Yorkshire
+44121912,T16,[['Westmorland']],1.0,1.0,Westmorland
+44121912,T17,[['Dublin']],1.0,1.0,Dublin
+44121912,T19,"[['United'], ['States']]",1.0,1.0,United States
+44121912,T20,"[['Cape'], ['de'], ['Verd']]",1.0,1.0,Cape de Verd
+44121912,T21,[['Harwich']],1.0,1.0,Harwich
+44121912,T22,[['Manchester']],1.0,1.0,Manchester
+44121912,T23,[['Dundee']],1.0,1.0,Dundee
+44121912,T25,[['Suffolk']],1.0,1.0,Suffolk
+44121912,T26,[['Bermuda']],1.0,1.0,Bermuda
+44121912,T27,[['Liverpool']],1.0,1.0,Liverpool
+44121912,T28,[['Shields']],1.0,1.0,Shields
+44121912,T29,[['London']],1.0,1.0,London
+44121914,T1,[['Ireland']],1.0,1.0,Ireland
+44121914,T2,[['Cork']],1.0,1.0,Cork
+44121914,T3,[['Jamaica']],1.0,1.0,Jamaica
+44121914,T4,[['Greenock']],1.0,1.0,Greenock
+44121914,T5,[['London']],1.0,1.0,London
+44121914,T7,[['Yorkshire']],1.0,1.0,Yorkshire
+44121914,T8,[['Woolwick']],1.0,1.0,Woolwick
+44121914,T9,[['Scotland']],1.0,1.0,Scotland
+44121914,T10,[['Chatham']],1.0,1.0,Chatham
+44121914,T11,[['Wales']],1.0,1.0,Wales
+44121914,T13,[['Essex']],1.0,1.0,Essex
+44121914,T14,[['London']],1.0,1.0,London
+44121914,T15,[['Lincolnshire']],1.0,1.0,Lincolnshire
+44121914,T16,[['Penzance']],1.0,1.0,Penzance
+44121914,T17,[['Barkin']],1.0,1.0,Barkin
+44121914,T19,[['Sussex']],1.0,1.0,Sussex
+44121914,T20,[['London']],1.0,1.0,London
+44121914,T21,[['Eyton']],1.0,1.0,Eyton
+44121914,T22,[['Sweden']],1.0,1.0,Sweden
+44121914,T23,[['Ireland']],1.0,1.0,Ireland
+44121914,T25,[['Stromness']],1.0,1.0,Stromness
+44121914,T26,"[['United'], ['States']]",1.0,1.0,United States
+44121914,T27,[['Plymouth']],1.0,1.0,Plymouth
+44121914,T28,"[['Isle'], ['of'], ['Man']]",1.0,1.0,Isle of Man
+44121914,T29,[['Scotland']],1.0,1.0,Scotland
+44121915,T1,"[['United'], ['States']]",1.0,1.0,United States
+44121915,T2,[['Sweden']],1.0,1.0,Sweden
+44121915,T3,[['Lambeth']],1.0,1.0,Lambeth
+44121915,T4,[['Dover']],1.0,1.0,Dover
+44121915,T5,[['Rockford']],1.0,1.0,Rockford
+44121915,T7,[['Dublin']],1.0,1.0,Dublin
+44121915,T8,[['Dover']],1.0,1.0,Dover
+44121915,T9,[['Barmouth']],1.0,1.0,Barmouth
+44121915,T10,[['Scotland']],1.0,1.0,Scotland
+44121915,T11,[['Hull']],1.0,1.0,Hull
+44121915,T13,[['Prussia']],1.0,1.0,Prussia
+44121915,T14,[['Lisbon']],1.0,1.0,Lisbon
+44121915,T15,[['Sussex']],1.0,1.0,Sussex
+44121915,T16,[['Plymouth']],1.0,1.0,Plymouth
+44121915,T17,[['Bristol']],1.0,1.0,Bristol
+44121915,T19,[['Wales']],1.0,1.0,Wales
+44121915,T20,[['Montreal']],1.0,1.0,Montreal
+44121915,T21,[['Lisbon']],1.0,1.0,Lisbon
+44121915,T22,[['Newcastle']],1.0,1.0,Newcastle
+44121915,T23,[['Lincolnshire']],1.0,1.0,Lincolnshire
+44121915,T25,[['Shields']],1.0,1.0,Shields
+44121915,T26,[['Sweden']],1.0,1.0,Sweden
+44121915,T27,[['Ireland']],1.0,1.0,Ireland
+44121915,T28,[['Stromness']],1.0,1.0,Stromness
+44121915,T29,[['London']],1.0,1.0,London
+44121918,T1,[['Wales']],1.0,1.0,Wales
+44121918,T2,[['Yarmouth']],1.0,1.0,Yarmouth
+44121918,T3,[['Ireland']],1.0,1.0,Ireland
+44121918,T4,[['Wiltshire']],1.0,1.0,Wiltshire
+44121918,T5,[['Aberdeen']],1.0,1.0,Aberdeen
+44121918,T7,[['Dublin']],1.0,1.0,Dublin
+44121918,T8,[['Larwick']],1.0,1.0,Larwick
+44121918,T9,[['Londonderry']],1.0,1.0,Londonderry
+44121918,T10,[['Northumberland']],1.0,1.0,Northumberland
+44121918,T11,[['Sudbury']],1.0,1.0,Sudbury
+44121918,T13,[['Wales']],1.0,1.0,Wales
+44121918,T14,"[['New'], ['Providence']]",1.0,1.0,New Providence
+44121918,T15,[['Stromness']],1.0,1.0,Stromness
+44121918,T16,[['Leith']],1.0,1.0,Leith
+44121918,T17,[['Cornwall']],1.0,1.0,Cornwall
+44121918,T19,[['Sweden']],1.0,1.0,Sweden
+44121918,T20,[['Ireland']],1.0,1.0,Ireland
+44121918,T21,[['London']],1.0,1.0,London
+44121918,T22,[['Gottenburg']],1.0,1.0,Gottenburg
+44121918,T23,[['Ireland']],1.0,1.0,Ireland
+44121918,T25,[['Prussia']],1.0,1.0,Prussia
+44121918,T26,"[['New'], ['South'], ['Wales']]",1.0,1.0,New South Wales
+44121918,T27,[['Cornwall']],1.0,1.0,Cornwall
+44121918,T28,[['Wales']],1.0,1.0,Wales
+44121918,T29,[['London']],1.0,1.0,London
+44121920,T1,[['Ireland']],1.0,1.0,Ireland
+44121920,T2,[['Northampton']],1.0,1.0,Northampton
+44121920,T3,[['Yorkshire']],1.0,1.0,Yorkshire
+44121920,T4,[['Scotland']],1.0,1.0,Scotland
+44121920,T5,"[['Isle'], ['of'], ['Man']]",1.0,1.0,Isle of Man
+44121920,T7,[['Leith']],1.0,1.0,Leith
+44121920,T8,[['Somersetshire']],1.0,1.0,Somersetshire
+44121920,T9,[['Hackney']],1.0,1.0,Hackney
+44121920,T10,[['London']],1.0,1.0,London
+44121920,T11,[['Lincolnshire']],1.0,1.0,Lincolnshire
+44121920,T13,[['Scotland']],1.0,1.0,Scotland
+44121920,T14,[['Scotland']],1.0,1.0,Scotland
+44121920,T15,[['Ireland']],1.0,1.0,Ireland
+44121920,T16,[['Cork']],1.0,1.0,Cork
+44121920,T17,[['Hanover']],1.0,1.0,Hanover
+44121920,T19,[['Liverpool']],1.0,1.0,Liverpool
+44121920,T20,[['Deptford']],1.0,1.0,Deptford
+44121920,T21,[['Yorkshire']],1.0,1.0,Yorkshire
+44121920,T22,[['Cornwall']],1.0,1.0,Cornwall
+44121920,T23,[['Ireland']],1.0,1.0,Ireland
+44121920,T25,[['Wales']],1.0,1.0,Wales
+44121920,T26,[['Ireland']],1.0,1.0,Ireland
+44121920,T27,[['Eyton']],1.0,1.0,Eyton
+44121920,T28,[['London']],1.0,1.0,London
+44121920,T29,[['Scotland']],1.0,1.0,Scotland
+44121922,T1,[['Scotland']],1.0,1.0,Scotland
+44121922,T2,[['Wales']],1.0,1.0,Wales
+44121922,T3,[['Brighton']],1.0,1.0,Brighton
+44121922,T4,[['Ireland']],1.0,1.0,Ireland
+44121922,T5,[['Brisbain']],1.0,1.0,Brisbain
+44121922,T7,[['Shields']],1.0,1.0,Shields
+44121922,T8,[['Woolwich']],1.0,1.0,Woolwich
+44121922,T9,[['Kent']],1.0,1.0,Kent
+44121922,T10,"[['United'], ['States']]",1.0,1.0,United States
+44121922,T11,[['Ireland']],1.0,1.0,Ireland
+44121922,T13,[['Shopshire']],1.0,1.0,Shopshire
+44121922,T14,[['Scotland']],1.0,1.0,Scotland
+44121922,T15,[['Wales']],1.0,1.0,Wales
+44121922,T16,[['Witby']],1.0,1.0,Witby
+44121922,T17,"[['Isle'], ['of'], ['Wight']]",1.0,1.0,Isle of Wight
+44121922,T19,[['Scotland']],1.0,1.0,Scotland
+44121922,T20,[['Ireland']],1.0,1.0,Ireland
+44121922,T21,[['Plymouth']],1.0,1.0,Plymouth
+44121922,T22,[['Deptford']],1.0,1.0,Deptford
+44121922,T23,[['Scotland']],1.0,1.0,Scotland
+44121922,T25,[['Woolwich']],1.0,1.0,Woolwich
+44121922,T26,[['Scotland']],1.0,1.0,Scotland
+44121922,T27,"[['Gretna'], ['Green']]",1.0,1.0,Gretna Green
+44121922,T28,[['Orkneys']],1.0,1.0,Orkneys
+44121922,T29,[['Bristol']],1.0,1.0,Bristol
+44121923,T1,[['Gorce']],1.0,1.0,Gorce
+44121923,T2,"[['United'], ['states']]",1.0,1.0,United states
+44121923,T3,[['Rye']],1.0,1.0,Rye
+44121923,T4,[['Hull']],1.0,1.0,Hull
+44121923,T5,[['Greenwich']],1.0,1.0,Greenwich
+44121923,T7,[['Ireland']],1.0,1.0,Ireland
+44121923,T8,[['Ireland']],1.0,1.0,Ireland
+44121923,T9,[['Greenwich']],1.0,1.0,Greenwich
+44121923,T10,[['London']],1.0,1.0,London
+44121923,T11,[['Aberdeen']],1.0,1.0,Aberdeen
+44121923,T13,[['Hull']],1.0,1.0,Hull
+44121923,T14,[['Glascow']],1.0,1.0,Glascow
+44121923,T15,[['Ireland']],1.0,1.0,Ireland
+44121923,T16,[['Yarmouth']],1.0,1.0,Yarmouth
+44121923,T17,[['Essex']],1.0,1.0,Essex
+44121923,T19,[['Hanover']],1.0,1.0,Hanover
+44121923,T20,[['Whitby']],1.0,1.0,Whitby
+44121923,T21,[['Bristol']],1.0,1.0,Bristol
+44121923,T22,[['Ireland']],1.0,1.0,Ireland
+44121923,T23,[['Wales']],1.0,1.0,Wales
+44121923,T25,[['Ireland']],1.0,1.0,Ireland
+44121923,T26,[['Biddeford']],1.0,1.0,Biddeford
+44121923,T27,[['London']],1.0,1.0,London
+44121923,T28,[['Hartlepool']],1.0,1.0,Hartlepool
+44121923,T29,[['Gisborough']],1.0,1.0,Gisborough
+44121925,T1,"[['Greenwich', 'Greenwich']]",2.0,2.0,Greenwich
+44121925,T2,"[['Oakey', 'Oakey']]",2.0,2.0,Oakey
+44121925,T3,"[['London', 'London']]",2.0,2.0,London
+44121925,T4,"[['Essex', 'Essex']]",2.0,2.0,Essex
+44121925,T5,"[['Ireland', 'Ireland']]",2.0,2.0,Ireland
+44121925,T7,"[['Deal', 'Deal']]",2.0,2.0,Deal
+44121925,T8,"[['Newcastle', 'Newcastle']]",2.0,2.0,Newcastle
+44121925,T9,"[['London', 'London']]",2.0,2.0,London
+44121925,T10,"[['Plymouth', 'Plymouth']]",2.0,2.0,Plymouth
+44121925,T11,"[['London', 'London']]",2.0,2.0,London
+44121925,T13,"[['London', 'London']]",2.0,2.0,London
+44121925,T14,"[['Sweden', 'Sweden']]",2.0,2.0,Sweden
+44121925,T15,"[['Sweden', 'Sweden']]",2.0,2.0,Sweden
+44121925,T16,"[['Nottinghamshire', 'Nottinghamshire']]",2.0,2.0,Nottinghamshire
+44121925,T17,"[['Essex', 'Essex']]",2.0,2.0,Essex
+44121925,T19,"[['Leith', 'Leith']]",2.0,2.0,Leith
+44121925,T20,"[['Portsmouth', 'Portsmouth']]",2.0,2.0,Portsmouth
+44121925,T21,"[['Plymouth', 'Plymouth']]",2.0,2.0,Plymouth
+44121925,T22,"[['Scotland', 'Scotland']]",2.0,2.0,Scotland
+44121925,T23,"[['Greenock', 'Greenock']]",2.0,2.0,Greenock
+44121925,T25,"[['Ryde', 'Ryde']]",2.0,2.0,Ryde
+44121925,T26,"[['Scotland', 'Scotland']]",2.0,2.0,Scotland
+44121925,T27,"[['Hull', 'Hull']]",2.0,2.0,Hull
+44121925,T28,"[['Sweden', 'Sweden']]",2.0,2.0,Sweden
+44121925,T29,"[['Stockholm', 'Stockholm']]",2.0,2.0,Stockholm
+44121926,T1,[['Suffolk']],1.0,1.0,Suffolk
+44121926,T2,[['Ipswich']],1.0,1.0,Ipswich
+44121926,T3,[['Scotland']],1.0,1.0,Scotland
+44121926,T4,[['Devonshire']],1.0,1.0,Devonshire
+44121926,T5,[['Scotland']],1.0,1.0,Scotland
+44121926,T7,"[['West'], ['Indies']]",1.0,1.0,West Indies
+44121926,T8,[['Milford']],1.0,1.0,Milford
+44121926,T9,[['Dublin']],1.0,1.0,Dublin
+44121926,T10,[['Lynn']],1.0,1.0,Lynn
+44121926,T11,[['London']],1.0,1.0,London
+44121926,T13,[['Hertfordshire']],1.0,1.0,Hertfordshire
+44121926,T14,[['Prussia']],1.0,1.0,Prussia
+44121926,T15,[['Bridgewater']],1.0,1.0,Bridgewater
+44121926,T16,[['Greenwich']],1.0,1.0,Greenwich
+44121926,T17,"[['New'], ['Brunswick']]",1.0,1.0,New Brunswick
+44121926,T19,[['Scotland']],1.0,1.0,Scotland
+44121926,T20,[['Weymouth']],1.0,1.0,Weymouth
+44121926,T21,[['Scarborough']],1.0,1.0,Scarborough
+44121926,T22,[['Scotland']],1.0,1.0,Scotland
+44121926,T23,[['London']],1.0,1.0,London
+44121926,T25,[['Bridgeport']],1.0,1.0,Bridgeport
+44121926,T26,[['Dartford']],1.0,1.0,Dartford
+44121926,T27,[['Harwich']],1.0,1.0,Harwich
+44121926,T28,[['Scotland']],1.0,1.0,Scotland
+44121926,T29,[['Penzance']],1.0,1.0,Penzance
+44121927,T1,[['Penzance']],1.0,1.0,Penzance
+44121927,T2,[['Holland']],1.0,1.0,Holland
+44121927,T3,[['Dublin']],1.0,1.0,Dublin
+44121927,T4,[['Barbados']],1.0,1.0,Barbados
+44121927,T5,[['Newcastle']],1.0,1.0,Newcastle
+44121927,T7,[['Chelsea']],1.0,1.0,Chelsea
+44121927,T8,[['Plymouth']],1.0,1.0,Plymouth
+44121927,T9,"[['Isle'], ['of'], ['Wight']]",1.0,1.0,Isle of Wight
+44121927,T10,[['London']],1.0,1.0,London
+44121927,T11,[['Sweden']],1.0,1.0,Sweden
+44121927,T13,[['Leith']],1.0,1.0,Leith
+44121927,T14,[['Norway']],1.0,1.0,Norway
+44121927,T15,[['Hull']],1.0,1.0,Hull
+44121927,T16,[['Belfast']],1.0,1.0,Belfast
+44121927,T17,[['Ireland']],1.0,1.0,Ireland
+44121927,T19,[['Lancaster']],1.0,1.0,Lancaster
+44121927,T20,[['Kent']],1.0,1.0,Kent
+44121927,T21,[['Edinburg']],1.0,1.0,Edinburg
+44121927,T22,[['Stromness']],1.0,1.0,Stromness
+44121927,T23,[['Bermuda']],1.0,1.0,Bermuda
+44121927,T25,[['Wales']],1.0,1.0,Wales
+44121927,T26,"[['New'], ['Brunswick']]",1.0,1.0,New Brunswick
+44121927,T27,[['Milford']],1.0,1.0,Milford
+44121927,T28,[['London']],1.0,1.0,London
+44121927,T29,[['Leith']],1.0,1.0,Leith
+44121928,T1,[['Litchfield']],1.0,1.0,Litchfield
+44121928,T2,[['Montrose']],1.0,1.0,Montrose
+44121928,T3,[['Stockton']],1.0,1.0,Stockton
+44121928,T4,[['Scotland']],1.0,1.0,Scotland
+44121928,T5,[['Guernsey']],1.0,1.0,Guernsey
+44121928,T7,[['Nottingham']],1.0,1.0,Nottingham
+44121928,T8,[['Ireland']],1.0,1.0,Ireland
+44121928,T9,[['Cork']],1.0,1.0,Cork
+44121928,T10,[['London']],1.0,1.0,London
+44121928,T11,[['Ireland']],1.0,1.0,Ireland
+44121928,T13,[['Kent']],1.0,1.0,Kent
+44121928,T14,[['Greenwich']],1.0,1.0,Greenwich
+44121928,T15,[['Ireland']],1.0,1.0,Ireland
+44121928,T16,[['Wales']],1.0,1.0,Wales
+44121928,T17,[['Dover']],1.0,1.0,Dover
+44121928,T19,[['Cornwall']],1.0,1.0,Cornwall
+44121928,T20,[['Ireland']],1.0,1.0,Ireland
+44121928,T21,[['Limerick']],1.0,1.0,Limerick
+44121928,T22,[['Sunderland']],1.0,1.0,Sunderland
+44121928,T23,[['Scotland']],1.0,1.0,Scotland
+44121928,T25,[['Notts']],1.0,1.0,Notts
+44121928,T26,[['Sweden']],1.0,1.0,Sweden
+44121928,T27,[['Germany']],1.0,1.0,Germany
+44121928,T28,[['Greenwich']],1.0,1.0,Greenwich
+44121928,T29,[['Newcastle']],1.0,1.0,Newcastle
+44121930,T1,[['London']],1.0,1.0,London
+44121930,T2,[['Ayer']],1.0,1.0,Ayer
+44121930,T3,[['Portsmouth']],1.0,1.0,Portsmouth
+44121930,T4,[['Sunderland']],1.0,1.0,Sunderland
+44121930,T5,[['Ostend']],1.0,1.0,Ostend
+44121930,T7,[['Oxfordness']],1.0,1.0,Oxfordness
+44121930,T8,[['London']],1.0,1.0,London
+44121930,T9,[['Deptford']],1.0,1.0,Deptford
+44121930,T10,[['Holyhead']],1.0,1.0,Holyhead
+44121930,T11,[['Wexford']],1.0,1.0,Wexford
+44121930,T13,"[['United'], ['States']]",1.0,1.0,United States
+44121930,T14,[['Scotland']],1.0,1.0,Scotland
+44121930,T15,[['Prussia']],1.0,1.0,Prussia
+44121930,T16,[['Essex']],1.0,1.0,Essex
+44121930,T17,[['Africa']],1.0,1.0,Africa
+44121930,T19,[['Scotland']],1.0,1.0,Scotland
+44121930,T20,[['London']],1.0,1.0,London
+44121930,T21,[['Fleming']],1.0,1.0,Fleming
+44121930,T22,[['Ireland']],1.0,1.0,Ireland
+44121930,T23,[['Leith']],1.0,1.0,Leith
+44121930,T25,[['Milford']],1.0,1.0,Milford
+44121930,T26,[['London']],1.0,1.0,London
+44121930,T27,[['Falmouth']],1.0,1.0,Falmouth
+44121930,T28,[['Norwich']],1.0,1.0,Norwich
+44121930,T29,[['London']],1.0,1.0,London
+44121933,T1,[['Gloucestershire']],1.0,1.0,Gloucestershire
+44121933,T2,[['Scotland']],1.0,1.0,Scotland
+44121933,T3,[['Gosport']],1.0,1.0,Gosport
+44121933,T4,[['Kildare']],1.0,1.0,Kildare
+44121933,T5,[['Grimsby']],1.0,1.0,Grimsby
+44121933,T7,[['Malaga']],1.0,1.0,Malaga
+44121933,T8,[['Lincolnshire']],1.0,1.0,Lincolnshire
+44121933,T9,[['London']],1.0,1.0,London
+44121933,T10,[['Norfolk']],1.0,1.0,Norfolk
+44121933,T11,[['Scotland']],1.0,1.0,Scotland
+44121933,T13,[['Egham']],1.0,1.0,Egham
+44121933,T14,[['Leith']],1.0,1.0,Leith
+44121933,T15,[['Ireland']],1.0,1.0,Ireland
+44121933,T16,[['Wisbeach']],1.0,1.0,Wisbeach
+44121933,T17,[['Middleburg']],1.0,1.0,Middleburg
+44121933,T19,[['Gottenburg']],1.0,1.0,Gottenburg
+44121933,T20,[['Genoa']],1.0,1.0,Genoa
+44121933,T21,[['Shropshire']],1.0,1.0,Shropshire
+44121933,T22,[['Shoreham']],1.0,1.0,Shoreham
+44121933,T23,[['Ireland']],1.0,1.0,Ireland
+44121933,T25,[['00']],1.0,1.0,00
+44121933,T26,[['London']],1.0,1.0,London
+44121933,T27,[['Scotland']],1.0,1.0,Scotland
+44121933,T28,[['Londonderry']],1.0,1.0,Londonderry
+44121933,T29,[['Sunderland']],1.0,1.0,Sunderland
+44121934,T1,[['Henfield']],1.0,1.0,Henfield
+44121934,T2,[['Bermuda']],1.0,1.0,Bermuda
+44121934,T3,[['Yarmouth']],1.0,1.0,Yarmouth
+44121934,T4,[['Ireland']],1.0,1.0,Ireland
+44121934,T5,[['Newcastle']],1.0,1.0,Newcastle
+44121934,T7,[['Kent']],1.0,1.0,Kent
+44121934,T8,[['Dundee']],1.0,1.0,Dundee
+44121934,T9,[['London']],1.0,1.0,London
+44121934,T10,[['Manchester']],1.0,1.0,Manchester
+44121934,T11,[['London']],1.0,1.0,London
+44121934,T13,[['Bangor']],1.0,1.0,Bangor
+44121934,T14,[['Bexley']],1.0,1.0,Bexley
+44121934,T15,[['Oporto']],1.0,1.0,Oporto
+44121934,T16,[['Dundee']],1.0,1.0,Dundee
+44121934,T17,[['Scotland']],1.0,1.0,Scotland
+44121934,T19,[['London']],1.0,1.0,London
+44121934,T20,[['Bristol']],1.0,1.0,Bristol
+44121934,T21,[['Reading']],1.0,1.0,Reading
+44121934,T22,[['Middlesex']],1.0,1.0,Middlesex
+44121934,T23,[['Dunbar']],1.0,1.0,Dunbar
+44121934,T25,[['Denmark']],1.0,1.0,Denmark
+44121934,T26,[['Liverpool']],1.0,1.0,Liverpool
+44121934,T27,[['Southwold']],1.0,1.0,Southwold
+44121934,T28,[['Whitby']],1.0,1.0,Whitby
+44121934,T29,[['Sweden']],1.0,1.0,Sweden
+44121936,T1,[['Sussex']],1.0,1.0,Sussex
+44121936,T2,[['Liverpool']],1.0,1.0,Liverpool
+44121936,T3,[['Lewisham']],1.0,1.0,Lewisham
+44121936,T4,[['Sweden']],1.0,1.0,Sweden
+44121936,T5,[['Boston']],1.0,1.0,Boston
+44121936,T7,[['Wells']],1.0,1.0,Wells
+44121936,T8,[['Prussia']],1.0,1.0,Prussia
+44121936,T9,"[['Isle'], ['of'], ['Man']]",1.0,1.0,Isle of Man
+44121936,T10,[['Glocestershire']],1.0,1.0,Glocestershire
+44121936,T11,[['Wigam']],1.0,1.0,Wigam
+44121936,T13,[['Cheshire']],1.0,1.0,Cheshire
+44121936,T14,[['Prussia']],1.0,1.0,Prussia
+44121936,T15,[['Plymouthh']],1.0,1.0,Plymouthh
+44121936,T16,[['Ireland']],1.0,1.0,Ireland
+44121936,T17,"[['St.'], ['Johns,'], ['New'], ['Brunswick']]",1.0,1.0,"St. Johns, New Brunswick"
+44121936,T19,[['Perth']],1.0,1.0,Perth
+44121936,T20,[['Ireland']],1.0,1.0,Ireland
+44121936,T21,[['Ireland']],1.0,1.0,Ireland
+44121936,T22,[['Devon']],1.0,1.0,Devon
+44121936,T23,[['Hythe']],1.0,1.0,Hythe
+44121936,T25,[['London']],1.0,1.0,London
+44121936,T26,[['London']],1.0,1.0,London
+44121936,T27,[['London']],1.0,1.0,London
+44121936,T28,[['Holyhead']],1.0,1.0,Holyhead
+44121936,T29,[['Ireland']],1.0,1.0,Ireland
+44121938,T1,[['Deal']],1.0,1.0,Deal
+44121938,T2,[['Hampshire']],1.0,1.0,Hampshire
+44121938,T3,[['Rotherhithe']],1.0,1.0,Rotherhithe
+44121938,T4,[['London']],1.0,1.0,London
+44121938,T5,[['Liverpool']],1.0,1.0,Liverpool
+44121938,T7,[['Ireland']],1.0,1.0,Ireland
+44121938,T8,[['Suffolk']],1.0,1.0,Suffolk
+44121938,T9,[['Essex']],1.0,1.0,Essex
+44121938,T10,[['London']],1.0,1.0,London
+44121938,T11,[['Sweden']],1.0,1.0,Sweden
+44121938,T13,[['Plymouoth']],1.0,1.0,Plymouoth
+44121938,T14,[['Folkstone']],1.0,1.0,Folkstone
+44121938,T15,[['Kent']],1.0,1.0,Kent
+44121938,T16,[['London']],1.0,1.0,London
+44121938,T17,[['London']],1.0,1.0,London
+44121938,T19,[['Ireland']],1.0,1.0,Ireland
+44121938,T20,[['Deptford']],1.0,1.0,Deptford
+44121938,T21,[['Worthing']],1.0,1.0,Worthing
+44121938,T22,[['Brazil']],1.0,1.0,Brazil
+44121938,T23,[['Shields']],1.0,1.0,Shields
+44121938,T25,[['Dublin']],1.0,1.0,Dublin
+44121938,T26,[['Ireland']],1.0,1.0,Ireland
+44121938,T27,[['Ireland']],1.0,1.0,Ireland
+44121938,T28,[['Deal']],1.0,1.0,Deal
+44121938,T29,[['Londonderry']],1.0,1.0,Londonderry
+44290143,T1,"[['Liverpool', 'Liverpool', 'Liverpool']]",3.0,3.0,Liverpool
+44290143,T2,"[['London', 'London']]",2.0,2.0,London
+44290143,T4,"[['Gravesend', 'Gravesend', 'Gravesend']]",3.0,3.0,Gravesend
+44290143,T5,"[['Stettein', 'Stettein', 'Stettein']]",3.0,3.0,Stettein
+44290143,T7,"[['Barking', 'Barking', 'Banksking']]",3.0,2.0,Barking
+44290143,T8,"[['London', 'London', 'London']]",3.0,3.0,London
+44290143,T9,"[['London', 'London', 'London']]",3.0,3.0,London
+44290143,T10,"[['Liverpool', 'Liverpool', 'Liverpool']]",3.0,3.0,Liverpool
+44290143,T11,"[['London', 'London', 'London']]",3.0,3.0,London
+44290143,T13,"[['7233', '7233', 'y233']]",3.0,2.0,7233
+44290143,T14,"[['Dublin', 'Dublin', 'Dublin']]",3.0,3.0,Dublin
+44290143,T15,"[['Newcastle', 'Newcastle', 'Newcastle']]",3.0,3.0,Newcastle
+44290143,T16,"[['Liverpool', 'Liverpool', 'Liverpool']]",3.0,3.0,Liverpool
+44290143,T17,"[['London', 'London', 'London']]",3.0,3.0,London
+44290143,T19,"[['London', 'London', 'London']]",3.0,3.0,London
+44290143,T20,"[['London', 'London', 'London']]",3.0,3.0,London
+44290143,T21,"[['Hull', 'Hull', 'Hull']]",3.0,3.0,Hull
+44290143,T22,"[['London', 'London', 'London']]",3.0,3.0,London
+44290143,T23,"[['Dublin', 'Dublin', 'Dublin']]",3.0,3.0,Dublin
+44290143,T25,"[['London', 'London', 'London']]",3.0,3.0,London
+44290143,T26,"[['London', 'London', 'London']]",3.0,3.0,London
+44290143,T27,"[['Dover', 'Dover', 'Dover']]",3.0,3.0,Dover
+44290143,T28,"[['7317', '7317', 'y31y']]",3.0,2.0,7317
+44290143,T29,"[['Liverpool', 'Liverpool', 'Liverpool']]",3.0,3.0,Liverpool
+44290144,T1,"[['2129', '2129', '2129']]",3.0,3.0,2129
+44290144,T2,"[['Whitby', 'Whitby', 'Whitby']]",3.0,3.0,Whitby
+44290144,T3,"[['Malta', 'Malta', 'Malta']]",3.0,3.0,Malta
+44290144,T4,"[['London', 'London', 'London']]",3.0,3.0,London
+44290144,T5,"[['London', 'London', 'London']]",3.0,3.0,London
+44290144,T7,"[['Limerick', 'Limennick', 'Limerick']]",3.0,2.0,Limerick
+44290144,T8,"[['London', 'London', 'London']]",3.0,3.0,London
+44290144,T9,"[['Stockholm', 'Stockholm', 'Stockholm']]",3.0,3.0,Stockholm
+44290144,T10,"[['7039', 'y039', '7039']]",3.0,2.0,7039
+44290144,T11,"[['London', 'London', 'London']]",3.0,3.0,London
+44290144,T13,"[['Bristol', 'Bristol', 'Bristol']]",3.0,3.0,Bristol
+44290144,T14,"[['London', 'London', 'London']]",3.0,3.0,London
+44290144,T15,"[['London', 'London', 'London']]",3.0,3.0,London
+44290144,T16,"[['London', 'London', 'London']]",3.0,3.0,London
+44290144,T17,"[['Limerick', 'Limenick', 'Limerick']]",3.0,2.0,Limerick
+44290144,T19,"[['London', 'London', 'London']]",3.0,3.0,London
+44290144,T20,"[['London', 'London', 'London']]",3.0,3.0,London
+44290144,T21,"[['London', 'London', 'London']]",3.0,3.0,London
+44290144,T22,"[['London', 'London', 'London']]",3.0,3.0,London
+44290144,T23,"[['London', 'London', 'London']]",3.0,3.0,London
+44290144,T25,"[['London', 'London', 'London']]",3.0,3.0,London
+44290144,T26,"[['Jersey', 'Jersey', 'Jersey']]",3.0,3.0,Jersey
+44290144,T27,"[['London', 'London', 'London']]",3.0,3.0,London
+44290144,T28,"[['Carwich', 'Hanwich', 'Harwick']]",3.0,1.0,Carwich
+44290144,T29,"[['7391', 'y391', '7391']]",3.0,2.0,7391
+44290145,T1,"[['Shields', 'Shields', 'Shields'], ['N', 'n', 'N']]",3.0,2.5,Shields N
+44290145,T2,"[['London', 'London', 'London']]",3.0,3.0,London
+44290145,T3,"[['London', 'London', 'London']]",3.0,3.0,London
+44290145,T4,"[['6710', '6y10', '6710']]",3.0,2.0,6710
+44290145,T5,"[['Harwich', 'Hanwich', 'Harwich']]",3.0,2.0,Harwich
+44290145,T7,"[['Selby', 'Selby', 'Selby']]",3.0,3.0,Selby
+44290145,T8,"[['Greenock', 'Greenock', 'Greenock']]",3.0,3.0,Greenock
+44290145,T9,"[['Shields', 'Shields', 'Shields'], ['N', 'n', 'N']]",3.0,2.5,Shields N
+44290145,T10,"[['London', 'London', 'London']]",3.0,3.0,London
+44290145,T11,"[['Aberdeen', 'Aberdeen', 'Aberdeen']]",3.0,3.0,Aberdeen
+44290145,T13,"[['Dartmouth', 'Bournemouth', 'Dartmouth']]",3.0,2.0,Dartmouth
+44290145,T14,"[['Southampton', 'Southampton', 'Southampton']]",3.0,3.0,Southampton
+44290145,T15,"[['Newcastle', 'Newcastle', 'Newcastle']]",3.0,3.0,Newcastle
+44290145,T16,"[['London', 'London', 'London']]",3.0,3.0,London
+44290145,T17,"[['London', 'London', 'London']]",3.0,3.0,London
+44290145,T19,"[['London', 'London', 'London']]",3.0,3.0,London
+44290145,T20,"[['7305', 'y305', '7305']]",3.0,2.0,7305
+44290145,T21,"[['Port', 'East', 'Port'], ['Glasgow', 'Glasgow', 'Glasgow']]",3.0,2.5,Port Glasgow
+44290145,T22,"[['London', 'London', 'London']]",3.0,3.0,London
+44290145,T23,"[['Thomaston', 'Thomaston', 'Thomaston'], ['US', '', '']]",3.0,2.0,Thomaston US
+44290145,T25,"[['Newcastle', 'Newcastle', 'Newcastle']]",3.0,3.0,Newcastle
+44290145,T26,"[['Shields', 'Shieldsef', 'Shields'], ['S', '', 'S']]",3.0,2.0,Shields S
+44290145,T27,"[['Chatham', 'Chatham', 'Chatham']]",3.0,3.0,Chatham
+44290145,T28,"[['Bengal', 'Bengal', 'Bengal']]",3.0,3.0,Bengal
+44290145,T29,"[['London', 'London', 'London']]",3.0,3.0,London
+44290146,T1,"[['Africa', 'Africa', 'Africa']]",3.0,3.0,Africa
+44290146,T2,"[['7231', 'y231', '7231']]",3.0,2.0,7231
+44290146,T3,"[['Liverpool', 'Liverpool', 'Liverpool']]",3.0,3.0,Liverpool
+44290146,T4,"[['London', 'London', 'London']]",3.0,3.0,London
+44290146,T5,"[['London', 'Liverpool', 'Liverpool']]",3.0,2.0,Liverpool
+44290146,T7,"[['London', 'London', 'London']]",3.0,3.0,London
+44290146,T8,"[['London', 'London', 'London']]",3.0,3.0,London
+44290146,T9,"[['6493', '6493', '6493']]",3.0,3.0,6493
+44290146,T10,"[['Bengal', 'Bengal', 'Bengal']]",3.0,3.0,Bengal
+44290146,T11,"[['New', 'New', 'New'], ['York', 'York', 'York']]",3.0,3.0,New York
+44290146,T13,"[['Liverpool', 'Liverpool', 'Liverpool']]",3.0,3.0,Liverpool
+44290146,T14,"[['Liverpool', 'Liverpool', 'Liverpool']]",3.0,3.0,Liverpool
+44290146,T15,"[['[NillNavy]', 'Hillisavy', 'Hilli'], ['', '', 'Navy']]",3.0,1.0,[NillNavy] Navy
+44290146,T16,"[['Shields', 'Shields', 'Shields']]",3.0,3.0,Shields
+44290146,T17,"[['7077', 'y0yy', '7077']]",3.0,2.0,7077
+44290146,T19,"[['London', 'London', 'London']]",3.0,3.0,London
+44290146,T20,"[['London', 'London', 'London']]",3.0,3.0,London
+44290146,T21,"[['2270', '22y0', '2270']]",3.0,2.0,2270
+44290146,T22,"[['London', 'London', 'London']]",3.0,3.0,London
+44290146,T23,"[['[Hill', 'Hillisavy', 'Hilli'], ['Navy]', '', 'Navy']]",3.0,1.0,[Hill Navy]
+44290146,T25,"[['London', 'London', 'London']]",3.0,3.0,London
+44290146,T26,"[['London', 'London', 'London']]",3.0,3.0,London
+44290146,T27,"[['London', 'London', 'London']]",3.0,3.0,London
+44290146,T28,"[['Calcutta', 'Calcutta', 'Calcutta']]",3.0,3.0,Calcutta
+44290146,T29,"[['6322', '6322', '6322']]",3.0,3.0,6322
+44290147,T1,"[['Miliford', 'Milford']]",2.0,1.0,Miliford
+44290147,T2,"[['London', 'London']]",2.0,2.0,London
+44290147,T3,"[['Hellisay', 'Hill'], ['', 'Navy']]",2.0,1.0,Hellisay Navy
+44290147,T4,"[['Shield', 'Shields']]",2.0,1.0,Shield
+44290147,T5,"[['London', 'London']]",2.0,2.0,London
+44290147,T7,"[['Chichister', 'Chichester']]",2.0,1.0,Chichister
+44290147,T8,"[['Goree', 'Goree']]",2.0,2.0,Goree
+44290147,T9,"[['Liverpool', 'Liverpool']]",2.0,2.0,Liverpool
+44290147,T10,"[['London', 'London']]",2.0,2.0,London
+44290147,T11,"[['London', 'London']]",2.0,2.0,London
+44290147,T13,"[['2338', '2330']]",2.0,1.0,2338
+44290147,T14,"[['5338', '5330']]",2.0,1.0,5338
+44290147,T15,"[['London', 'London']]",2.0,2.0,London
+44290147,T16,"[['London', 'London']]",2.0,2.0,London
+44290147,T17,"[['London', 'London']]",2.0,2.0,London
+44290147,T19,"[['London', 'London']]",2.0,2.0,London
+44290147,T20,"[['Liverpool', 'Liverpool']]",2.0,2.0,Liverpool
+44290147,T21,"[['5152', '5152']]",2.0,2.0,5152
+44290147,T22,"[['Norway', 'Norway']]",2.0,2.0,Norway
+44290147,T23,"[['Weymouth', 'Weymouth']]",2.0,2.0,Weymouth
+44290147,T25,"[['259y', '2597']]",2.0,1.0,259y
+44290147,T26,"[['y302', '7302']]",2.0,1.0,y302
+44290147,T27,"[['London', 'London']]",2.0,2.0,London
+44290147,T28,"[['London', 'London']]",2.0,2.0,London
+44290147,T29,"[['London', 'London']]",2.0,2.0,London
+44290148,T1,"[['Shields', 'Shields']]",2.0,2.0,Shields
+44290148,T2,"[['Poole', 'Poole']]",2.0,2.0,Poole
+44290148,T3,"[['London', 'London']]",2.0,2.0,London
+44290148,T4,"[['430y', '4307']]",2.0,1.0,430y
+44290148,T5,"[['So'], ['Shields']]",1.0,1.0,So Shields
+44290148,T7,"[['London', 'London']]",2.0,2.0,London
+44290148,T8,"[['River', 'River'], ['Gambia', 'Gambia']]",2.0,2.0,River Gambia
+44290148,T9,"[['y300', '7300']]",2.0,1.0,y300
+44290148,T10,"[['Peterhead', 'Peterhead']]",2.0,2.0,Peterhead
+44290148,T11,"[['Portsmouth', 'Portsmouth']]",2.0,2.0,Portsmouth
+44290148,T13,"[['London', 'London']]",2.0,2.0,London
+44290148,T14,"[['Hellisavy', 'Hill'], ['', 'Navy']]",2.0,1.0,Hellisavy Navy
+44290148,T15,"[['Liverpool', 'Liverpool']]",2.0,2.0,Liverpool
+44290148,T16,"[['London', 'London']]",2.0,2.0,London
+44290148,T17,"[['Lake', 'Cape'], ['of', 'of'], ['good', 'Good'], ['hope', 'Hope']]",2.0,1.25,Lake of good hope
+44290148,T19,"[['London', 'London']]",2.0,2.0,London
+44290148,T20,"[['London', 'London']]",2.0,2.0,London
+44290148,T21,"[['London', 'London']]",2.0,2.0,London
+44290148,T22,"[['Whitehaven', 'Whitehaven']]",2.0,2.0,Whitehaven
+44290148,T23,"[['London', 'London']]",2.0,2.0,London
+44290148,T25,"[['Liverpool', 'Liverpool']]",2.0,2.0,Liverpool
+44290148,T26,"[['Halifaxnis', 'Halifax'], ['', 'NS']]",2.0,1.0,Halifaxnis NS
+44290148,T27,"[['Plymouth', 'Plymouth']]",2.0,2.0,Plymouth
+44290148,T28,"[['London', 'London']]",2.0,2.0,London
+44290148,T29,"[['London', 'London']]",2.0,2.0,London
+44290149,T1,"[['Hull', 'Hull']]",2.0,2.0,Hull
+44290149,T2,"[['7336', '7336']]",2.0,2.0,7336
+44290149,T3,"[['Calcutta', 'Calcutta']]",2.0,2.0,Calcutta
+44290149,T4,"[['5319', '5319']]",2.0,2.0,5319
+44290149,T5,"[['5475', '5475']]",2.0,2.0,5475
+44290149,T7,"[['7123', '7123']]",2.0,2.0,7123
+44290149,T8,"[['Newcastle', 'Newcastle']]",2.0,2.0,Newcastle
+44290149,T9,"[['London', 'London']]",2.0,2.0,London
+44290149,T10,"[['London', 'London']]",2.0,2.0,London
+44290149,T11,"[['London', 'London']]",2.0,2.0,London
+44290149,T13,"[['London', 'London']]",2.0,2.0,London
+44290149,T14,"[['Dolchester', 'Colchester']]",2.0,1.0,Dolchester
+44290149,T15,"[['London', 'London']]",2.0,2.0,London
+44290149,T16,"[['London', 'London']]",2.0,2.0,London
+44290149,T17,"[['Holstein', 'Holstein']]",2.0,2.0,Holstein
+44290149,T19,"[['Hillisavy', 'Hill'], ['', 'Navy']]",2.0,1.0,Hillisavy Navy
+44290149,T20,"[['London', 'London']]",2.0,2.0,London
+44290149,T21,"[['Hillisavy', 'Hill'], ['', 'Navy']]",2.0,1.0,Hillisavy Navy
+44290149,T22,"[['Denmark', 'Denmark']]",2.0,2.0,Denmark
+44290149,T23,"[['London', 'London']]",2.0,2.0,London
+44290149,T25,"[['London', 'London']]",2.0,2.0,London
+44290149,T26,"[['London', 'London']]",2.0,2.0,London
+44290149,T27,"[['Liverpool', 'Liverpool']]",2.0,2.0,Liverpool
+44290149,T28,"[['Liverpool', 'Liverpoool']]",2.0,1.0,Liverpool
+44290149,T29,"[['London', 'London']]",2.0,2.0,London
+44290150,T1,"[['6300', '6300']]",2.0,2.0,6300
+44290150,T2,"[['Hillisavy', 'Hill'], ['', 'Navy']]",2.0,1.0,Hillisavy Navy
+44290150,T3,"[['Newcastle', 'Newcastle']]",2.0,2.0,Newcastle
+44290150,T4,"[['Hillisavy', 'Hill'], ['', 'Navy']]",2.0,1.0,Hillisavy Navy
+44290150,T5,"[['London', 'London']]",2.0,2.0,London
+44290150,T7,"[['London', 'London']]",2.0,2.0,London
+44290150,T8,"[['Petersborough', 'Petersburgh']]",2.0,1.0,Petersborough
+44290150,T9,"[['7365', '7365']]",2.0,2.0,7365
+44290150,T10,"[['', 'Little'], ['Settlehampton', 'Hampton']]",2.0,1.0,Little Settlehampton
+44290150,T11,"[['', 'N'], ['Nithields', 'Shields']]",2.0,1.0,N Nithields
+44290150,T13,"[['London', 'London']]",2.0,2.0,London
+44290150,T14,"[['Lake', 'Cape'], ['of', 'of'], ['good', 'Good'], ['hope', 'Hope']]",2.0,1.25,Lake of good hope
+44290150,T15,"[['London', 'London']]",2.0,2.0,London
+44290150,T16,"[['Bridfort', 'Bridport']]",2.0,1.0,Bridfort
+44290150,T17,"[['Liverpool', 'Liverpool']]",2.0,2.0,Liverpool
+44290150,T19,"[['4542', '4542']]",2.0,2.0,4542
+44290150,T20,"[['London', 'London']]",2.0,2.0,London
+44290150,T21,"[['London', 'London']]",2.0,2.0,London
+44290150,T22,"[['Stettein', 'Stettein']]",2.0,2.0,Stettein
+44290150,T23,"[['Hillisavy', 'Hill'], ['', 'Navy']]",2.0,1.0,Hillisavy Navy
+44290150,T25,"[['Liverpool', 'Liverpool']]",2.0,2.0,Liverpool
+44290150,T26,"[['Liverpool', 'Liverpool']]",2.0,2.0,Liverpool
+44290150,T27,"[['London', 'London']]",2.0,2.0,London
+44290150,T28,"[['', 'N'], ['Nethields', 'Shields']]",2.0,1.0,N Nethields
+44290150,T29,"[['London', 'London']]",2.0,2.0,London
+44290151,T1,[['Dundee']],1.0,1.0,Dundee
+44290151,T2,[['London']],1.0,1.0,London
+44290151,T3,[['London']],1.0,1.0,London
+44290151,T4,[['3003']],1.0,1.0,3003
+44290151,T5,[['London']],1.0,1.0,London
+44290151,T7,[['7494']],1.0,1.0,7494
+44290151,T8,[['London']],1.0,1.0,London
+44290151,T9,[['7291']],1.0,1.0,7291
+44290151,T10,[['London']],1.0,1.0,London
+44290151,T11,[['Calcutta']],1.0,1.0,Calcutta
+44290151,T13,[['Harwich']],1.0,1.0,Harwich
+44290151,T14,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290151,T15,[['London']],1.0,1.0,London
+44290151,T16,[['London']],1.0,1.0,London
+44290151,T17,[['Plymouth']],1.0,1.0,Plymouth
+44290151,T19,[['Newfoundland']],1.0,1.0,Newfoundland
+44290151,T20,[['Bristol']],1.0,1.0,Bristol
+44290151,T21,[['7459']],1.0,1.0,7459
+44290151,T22,[['London']],1.0,1.0,London
+44290151,T23,[['Liverpool']],1.0,1.0,Liverpool
+44290151,T25,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290151,T26,[['London']],1.0,1.0,London
+44290151,T27,[['Newcastle']],1.0,1.0,Newcastle
+44290151,T28,[['3669']],1.0,1.0,3669
+44290151,T29,[['London']],1.0,1.0,London
+44290152,T1,[['London']],1.0,1.0,London
+44290152,T2,[['4757']],1.0,1.0,4757
+44290152,T3,[['Hull']],1.0,1.0,Hull
+44290152,T4,[['London']],1.0,1.0,London
+44290152,T5,[['5167']],1.0,1.0,5167
+44290152,T7,[['London']],1.0,1.0,London
+44290152,T8,[['London']],1.0,1.0,London
+44290152,T9,[['7334']],1.0,1.0,7334
+44290152,T10,[['London']],1.0,1.0,London
+44290152,T11,[['7404']],1.0,1.0,7404
+44290152,T13,[['London']],1.0,1.0,London
+44290152,T14,[['Liverpool']],1.0,1.0,Liverpool
+44290152,T15,[['London']],1.0,1.0,London
+44290152,T16,[['London']],1.0,1.0,London
+44290152,T17,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290152,T19,[['Norway']],1.0,1.0,Norway
+44290152,T20,[['Bridport']],1.0,1.0,Bridport
+44290152,T21,[['London']],1.0,1.0,London
+44290152,T22,[['London']],1.0,1.0,London
+44290152,T23,[['Londonderry']],1.0,1.0,Londonderry
+44290152,T25,[['London']],1.0,1.0,London
+44290152,T26,[['Arundel']],1.0,1.0,Arundel
+44290152,T27,[['7427']],1.0,1.0,7427
+44290152,T28,[['Calcutta']],1.0,1.0,Calcutta
+44290152,T29,[['London']],1.0,1.0,London
+44290153,T1,[['London']],1.0,1.0,London
+44290153,T2,[['London']],1.0,1.0,London
+44290153,T3,[['London']],1.0,1.0,London
+44290153,T4,[['London']],1.0,1.0,London
+44290153,T5,[['Rotterdam']],1.0,1.0,Rotterdam
+44290153,T7,"[['Boston'], ['7302']]",1.0,1.0,Boston 7302
+44290153,T8,[['London']],1.0,1.0,London
+44290153,T9,[['London']],1.0,1.0,London
+44290153,T10,[['Brava']],1.0,1.0,Brava
+44290153,T11,[['Brava']],1.0,1.0,Brava
+44290153,T13,[['Sunderland']],1.0,1.0,Sunderland
+44290153,T14,[['London']],1.0,1.0,London
+44290153,T15,[['London']],1.0,1.0,London
+44290153,T16,[['London']],1.0,1.0,London
+44290153,T17,[['7310']],1.0,1.0,7310
+44290153,T19,[['London']],1.0,1.0,London
+44290153,T20,[['London']],1.0,1.0,London
+44290153,T21,[['Broxham']],1.0,1.0,Broxham
+44290153,T22,[['London']],1.0,1.0,London
+44290153,T23,[['Cork']],1.0,1.0,Cork
+44290153,T25,[['Calcutta']],1.0,1.0,Calcutta
+44290153,T26,[['London']],1.0,1.0,London
+44290153,T27,[['London']],1.0,1.0,London
+44290153,T28,[['London']],1.0,1.0,London
+44290153,T29,[['Archangel']],1.0,1.0,Archangel
+44290154,T1,[['Liverpool']],1.0,1.0,Liverpool
+44290154,T2,[['7674']],1.0,1.0,7674
+44290154,T3,[['Aberdeen']],1.0,1.0,Aberdeen
+44290154,T4,[['7000']],1.0,1.0,7000
+44290154,T5,[['Barking']],1.0,1.0,Barking
+44290154,T7,"[['Milford'], ['Haven']]",1.0,1.0,Milford Haven
+44290154,T8,[['London']],1.0,1.0,London
+44290154,T9,[['London']],1.0,1.0,London
+44290154,T10,[['London']],1.0,1.0,London
+44290154,T11,[['London']],1.0,1.0,London
+44290154,T13,[['Holland']],1.0,1.0,Holland
+44290154,T14,"[['S'], ['Shields']]",1.0,1.0,S Shields
+44290154,T15,[['7446']],1.0,1.0,7446
+44290154,T16,"[['So'], ['Shields']]",1.0,1.0,So Shields
+44290154,T17,[['London']],1.0,1.0,London
+44290154,T19,[['London']],1.0,1.0,London
+44290154,T20,[['4402']],1.0,1.0,4402
+44290154,T21,[['London']],1.0,1.0,London
+44290154,T22,[['7673']],1.0,1.0,7673
+44290154,T23,[['London']],1.0,1.0,London
+44290154,T25,[['Archangel']],1.0,1.0,Archangel
+44290154,T26,[['London']],1.0,1.0,London
+44290154,T27,[['London']],1.0,1.0,London
+44290154,T28,[['London']],1.0,1.0,London
+44290154,T29,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290155,T1,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290155,T2,[['Amsterdam']],1.0,1.0,Amsterdam
+44290155,T3,[['London']],1.0,1.0,London
+44290155,T4,[['London']],1.0,1.0,London
+44290155,T5,[['5303']],1.0,1.0,5303
+44290155,T7,[['London']],1.0,1.0,London
+44290155,T8,[['London']],1.0,1.0,London
+44290155,T9,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290155,T10,[['Glasgow']],1.0,1.0,Glasgow
+44290155,T11,"[['East'], ['Indies']]",1.0,1.0,East Indies
+44290155,T13,[['London']],1.0,1.0,London
+44290155,T14,[['Leghorn']],1.0,1.0,Leghorn
+44290155,T15,[['London']],1.0,1.0,London
+44290155,T16,[['1734']],1.0,1.0,1734
+44290155,T17,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290155,T19,[['7071']],1.0,1.0,7071
+44290155,T20,[['Greenwich']],1.0,1.0,Greenwich
+44290155,T21,[['London']],1.0,1.0,London
+44290155,T22,[['Liverpool']],1.0,1.0,Liverpool
+44290155,T23,"[['N'], ['Shields']]",1.0,1.0,N Shields
+44290155,T25,[['Liverpool']],1.0,1.0,Liverpool
+44290155,T26,[['Cork']],1.0,1.0,Cork
+44290155,T27,[['Holland']],1.0,1.0,Holland
+44290155,T28,[['London']],1.0,1.0,London
+44290155,T29,[['London']],1.0,1.0,London
+44290156,T1,[['London']],1.0,1.0,London
+44290156,T2,[['Hull']],1.0,1.0,Hull
+44290156,T3,[['London']],1.0,1.0,London
+44290156,T4,[['7430']],1.0,1.0,7430
+44290156,T5,[['4502']],1.0,1.0,4502
+44290156,T7,[['Liverpool']],1.0,1.0,Liverpool
+44290156,T8,[['London']],1.0,1.0,London
+44290156,T9,[['Liverpool']],1.0,1.0,Liverpool
+44290156,T10,[['London']],1.0,1.0,London
+44290156,T11,[['London']],1.0,1.0,London
+44290156,T13,[['London']],1.0,1.0,London
+44290156,T14,[['London']],1.0,1.0,London
+44290156,T15,[['London']],1.0,1.0,London
+44290156,T16,[['Shields']],1.0,1.0,Shields
+44290156,T17,[['London']],1.0,1.0,London
+44290156,T19,[['7600']],1.0,1.0,7600
+44290156,T20,[['London']],1.0,1.0,London
+44290156,T21,[['London']],1.0,1.0,London
+44290156,T22,[['London']],1.0,1.0,London
+44290156,T23,[['London']],1.0,1.0,London
+44290156,T25,[['London']],1.0,1.0,London
+44290156,T26,[['7724']],1.0,1.0,7724
+44290156,T27,[['Bristol']],1.0,1.0,Bristol
+44290156,T28,[['London']],1.0,1.0,London
+44290156,T29,[['Holland']],1.0,1.0,Holland
+44290157,T1,[['London']],1.0,1.0,London
+44290157,T2,[['London']],1.0,1.0,London
+44290157,T3,[['Shields']],1.0,1.0,Shields
+44290157,T4,[['Hull']],1.0,1.0,Hull
+44290157,T5,[['2010']],1.0,1.0,2010
+44290157,T7,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290157,T8,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290157,T9,[['Plymourh']],1.0,1.0,Plymourh
+44290157,T10,[['London']],1.0,1.0,London
+44290157,T11,[['Jamaica']],1.0,1.0,Jamaica
+44290157,T13,[['London']],1.0,1.0,London
+44290157,T14,[['Stockholm']],1.0,1.0,Stockholm
+44290157,T15,[['Liverpool']],1.0,1.0,Liverpool
+44290157,T16,[['London']],1.0,1.0,London
+44290157,T17,"[['S'], ['Shields']]",1.0,1.0,S Shields
+44290157,T19,"[['No.'], ['Yarmouth']]",1.0,1.0,No. Yarmouth
+44290157,T20,"[['No.'], ['Yarmouth']]",1.0,1.0,No. Yarmouth
+44290157,T21,[['Stettin']],1.0,1.0,Stettin
+44290157,T22,[['4007']],1.0,1.0,4007
+44290157,T23,[['Liverpool']],1.0,1.0,Liverpool
+44290157,T25,[['London']],1.0,1.0,London
+44290157,T26,[['7771']],1.0,1.0,7771
+44290157,T27,[['London']],1.0,1.0,London
+44290157,T28,[['London']],1.0,1.0,London
+44290157,T29,[['London']],1.0,1.0,London
+44290158,T1,[['Sunderland']],1.0,1.0,Sunderland
+44290158,T2,[['Hull']],1.0,1.0,Hull
+44290158,T3,[['London']],1.0,1.0,London
+44290158,T4,[['London']],1.0,1.0,London
+44290158,T5,[['London']],1.0,1.0,London
+44290158,T7,[['7700']],1.0,1.0,7700
+44290158,T8,[['Shields']],1.0,1.0,Shields
+44290158,T9,[['London']],1.0,1.0,London
+44290158,T10,[['London']],1.0,1.0,London
+44290158,T11,[['London']],1.0,1.0,London
+44290158,T13,[['Liverpool']],1.0,1.0,Liverpool
+44290158,T14,[['Liverpool']],1.0,1.0,Liverpool
+44290158,T15,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290158,T16,[['London']],1.0,1.0,London
+44290158,T17,"[['7747'], ['Hill'], ['Navy']]",1.0,1.0,7747 Hill Navy
+44290158,T19,[['London']],1.0,1.0,London
+44290158,T20,[['London']],1.0,1.0,London
+44290158,T21,[['6500']],1.0,1.0,6500
+44290158,T22,[['Whitby']],1.0,1.0,Whitby
+44290158,T23,[['Philadelphia']],1.0,1.0,Philadelphia
+44290158,T25,[['London']],1.0,1.0,London
+44290158,T26,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290158,T27,[['London']],1.0,1.0,London
+44290158,T28,[['London']],1.0,1.0,London
+44290158,T29,"[['S'], ['Shields']]",1.0,1.0,S Shields
+44290159,T1,[['7246']],1.0,1.0,7246
+44290159,T2,[['London']],1.0,1.0,London
+44290159,T3,[['London']],1.0,1.0,London
+44290159,T4,[['London']],1.0,1.0,London
+44290159,T5,[['Finland']],1.0,1.0,Finland
+44290159,T7,[['London']],1.0,1.0,London
+44290159,T8,[['London']],1.0,1.0,London
+44290159,T9,"[['West'], ['Indies']]",1.0,1.0,West Indies
+44290159,T10,[['Liverpool']],1.0,1.0,Liverpool
+44290159,T11,[['Aberdeen']],1.0,1.0,Aberdeen
+44290159,T13,[['London']],1.0,1.0,London
+44290159,T14,[['London']],1.0,1.0,London
+44290159,T15,[['4073']],1.0,1.0,4073
+44290159,T16,[['London']],1.0,1.0,London
+44290159,T17,[['Norway']],1.0,1.0,Norway
+44290159,T19,[['London']],1.0,1.0,London
+44290159,T20,[['London']],1.0,1.0,London
+44290159,T21,[['London']],1.0,1.0,London
+44290159,T22,[['London']],1.0,1.0,London
+44290159,T23,[['Stettin']],1.0,1.0,Stettin
+44290159,T25,[['London']],1.0,1.0,London
+44290159,T26,[['London']],1.0,1.0,London
+44290159,T27,[['3515']],1.0,1.0,3515
+44290159,T28,"[['S'], ['Shields']]",1.0,1.0,S Shields
+44290159,T29,[['950']],1.0,1.0,950
+44290160,T1,[['London']],1.0,1.0,London
+44290160,T2,[['London']],1.0,1.0,London
+44290160,T3,[['London']],1.0,1.0,London
+44290160,T4,[['London']],1.0,1.0,London
+44290160,T5,[['Newport']],1.0,1.0,Newport
+44290160,T7,[['London']],1.0,1.0,London
+44290160,T8,[['Aldborough']],1.0,1.0,Aldborough
+44290160,T9,[['Norway']],1.0,1.0,Norway
+44290160,T10,[['Glasgow']],1.0,1.0,Glasgow
+44290160,T11,[['Dantzic']],1.0,1.0,Dantzic
+44290160,T13,[['Greenock']],1.0,1.0,Greenock
+44290160,T14,[['4602']],1.0,1.0,4602
+44290160,T15,[['Liverpool']],1.0,1.0,Liverpool
+44290160,T16,[['Milford']],1.0,1.0,Milford
+44290160,T17,[['Antwerp']],1.0,1.0,Antwerp
+44290160,T19,[['Liverpool']],1.0,1.0,Liverpool
+44290160,T20,"[[""Aldboro'""]]",1.0,1.0,Aldboro'
+44290160,T21,[['Shields']],1.0,1.0,Shields
+44290160,T22,[['Sunderland']],1.0,1.0,Sunderland
+44290160,T23,[['London']],1.0,1.0,London
+44290160,T25,[['London']],1.0,1.0,London
+44290160,T26,[['London']],1.0,1.0,London
+44290160,T27,[['London']],1.0,1.0,London
+44290160,T28,[['London']],1.0,1.0,London
+44290160,T29,[['7757']],1.0,1.0,7757
+44290161,T1,[['London']],1.0,1.0,London
+44290161,T2,[['Antwerp']],1.0,1.0,Antwerp
+44290161,T3,[['Plymouth']],1.0,1.0,Plymouth
+44290161,T4,[['Portsmouth']],1.0,1.0,Portsmouth
+44290161,T5,[['Sunderland']],1.0,1.0,Sunderland
+44290161,T7,[['Belfast']],1.0,1.0,Belfast
+44290161,T8,[['Antwerp']],1.0,1.0,Antwerp
+44290161,T9,[['London']],1.0,1.0,London
+44290161,T10,[['London']],1.0,1.0,London
+44290161,T11,[['Norway']],1.0,1.0,Norway
+44290161,T13,[['London']],1.0,1.0,London
+44290161,T14,[['7646']],1.0,1.0,7646
+44290161,T15,[['London']],1.0,1.0,London
+44290161,T16,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290161,T17,[['7013']],1.0,1.0,7013
+44290161,T19,[['7670']],1.0,1.0,7670
+44290161,T20,[['London']],1.0,1.0,London
+44290161,T21,[['London']],1.0,1.0,London
+44290161,T22,[['Dartmouth']],1.0,1.0,Dartmouth
+44290161,T23,[['Plymouth']],1.0,1.0,Plymouth
+44290161,T25,[['London']],1.0,1.0,London
+44290161,T26,[['Hull']],1.0,1.0,Hull
+44290161,T27,[['Cork']],1.0,1.0,Cork
+44290161,T28,[['Sunderland']],1.0,1.0,Sunderland
+44290161,T29,[['Liverpool']],1.0,1.0,Liverpool
+44290162,T1,[['London']],1.0,1.0,London
+44290162,T2,"[['N'], ['Yarmouth']]",1.0,1.0,N Yarmouth
+44290162,T3,[['London']],1.0,1.0,London
+44290162,T4,[['London']],1.0,1.0,London
+44290162,T5,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290162,T7,[['Liverpool']],1.0,1.0,Liverpool
+44290162,T8,[['Bremen']],1.0,1.0,Bremen
+44290162,T9,[['Scarborough']],1.0,1.0,Scarborough
+44290162,T10,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290162,T11,[['London']],1.0,1.0,London
+44290162,T13,[['7795']],1.0,1.0,7795
+44290162,T14,[['6313']],1.0,1.0,6313
+44290162,T15,[['7445']],1.0,1.0,7445
+44290162,T16,[['London']],1.0,1.0,London
+44290162,T17,[['London']],1.0,1.0,London
+44290162,T19,[['London']],1.0,1.0,London
+44290162,T20,"[['Port'], ['Jackson']]",1.0,1.0,Port Jackson
+44290162,T21,[['7755']],1.0,1.0,7755
+44290162,T22,[['London']],1.0,1.0,London
+44290162,T23,[['London']],1.0,1.0,London
+44290162,T25,[['7709']],1.0,1.0,7709
+44290162,T26,[['London']],1.0,1.0,London
+44290162,T27,[['London']],1.0,1.0,London
+44290162,T28,[['Hamburg']],1.0,1.0,Hamburg
+44290162,T29,[['London']],1.0,1.0,London
+44290163,T1,[['London']],1.0,1.0,London
+44290163,T2,[['3302']],1.0,1.0,3302
+44290163,T3,[['London']],1.0,1.0,London
+44290163,T4,[['Rye']],1.0,1.0,Rye
+44290163,T5,[['Aberdeen']],1.0,1.0,Aberdeen
+44290163,T7,[['London']],1.0,1.0,London
+44290163,T8,[['London']],1.0,1.0,London
+44290163,T9,[['London']],1.0,1.0,London
+44290163,T10,[['London']],1.0,1.0,London
+44290163,T11,[['London']],1.0,1.0,London
+44290163,T13,[['Deptford']],1.0,1.0,Deptford
+44290163,T14,[['Liverpool']],1.0,1.0,Liverpool
+44290163,T15,[['Norway']],1.0,1.0,Norway
+44290163,T16,[['Philadelphia']],1.0,1.0,Philadelphia
+44290163,T17,[['London']],1.0,1.0,London
+44290163,T19,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290163,T20,[['Liverpool']],1.0,1.0,Liverpool
+44290163,T21,[['Liverpool']],1.0,1.0,Liverpool
+44290163,T22,[['6270']],1.0,1.0,6270
+44290163,T23,[['6010']],1.0,1.0,6010
+44290163,T25,[['London']],1.0,1.0,London
+44290163,T26,[['Liverpool']],1.0,1.0,Liverpool
+44290163,T27,[['London']],1.0,1.0,London
+44290163,T28,[['Trinidad']],1.0,1.0,Trinidad
+44290163,T29,"[['Norfolk'], ['US']]",1.0,1.0,Norfolk US
+44290164,T1,[['Sunderland']],1.0,1.0,Sunderland
+44290164,T2,[['Workington']],1.0,1.0,Workington
+44290164,T3,[['Sunderland']],1.0,1.0,Sunderland
+44290164,T4,[['London']],1.0,1.0,London
+44290164,T5,[['Bordeaux']],1.0,1.0,Bordeaux
+44290164,T7,[['7778']],1.0,1.0,7778
+44290164,T8,[['London']],1.0,1.0,London
+44290164,T9,[['Liverpool']],1.0,1.0,Liverpool
+44290164,T10,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290164,T11,[['London']],1.0,1.0,London
+44290164,T13,"[['N'], ['Shields']]",1.0,1.0,N Shields
+44290164,T14,[['London']],1.0,1.0,London
+44290164,T15,[['Stralsund']],1.0,1.0,Stralsund
+44290164,T16,[['London']],1.0,1.0,London
+44290164,T17,[['London']],1.0,1.0,London
+44290164,T19,[['London']],1.0,1.0,London
+44290164,T20,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290164,T21,"[['S'], ['Shields']]",1.0,1.0,S Shields
+44290164,T22,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290164,T23,[['Liverpool']],1.0,1.0,Liverpool
+44290164,T25,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290164,T26,[['7201']],1.0,1.0,7201
+44290164,T27,[['London']],1.0,1.0,London
+44290164,T28,[['Hull']],1.0,1.0,Hull
+44290164,T29,[['Liverpool']],1.0,1.0,Liverpool
+44290165,T1,[['5579']],1.0,1.0,5579
+44290165,T2,[['London']],1.0,1.0,London
+44290165,T3,[['Boston']],1.0,1.0,Boston
+44290165,T4,[['5690']],1.0,1.0,5690
+44290165,T5,[['Blythe']],1.0,1.0,Blythe
+44290165,T7,"[['Boston'], ['U.S.']]",1.0,1.0,Boston U.S.
+44290165,T8,[['London']],1.0,1.0,London
+44290165,T9,[['London']],1.0,1.0,London
+44290165,T10,[['Dantzic']],1.0,1.0,Dantzic
+44290165,T11,[['Dantzic']],1.0,1.0,Dantzic
+44290165,T13,[['London']],1.0,1.0,London
+44290165,T14,[['Swansea']],1.0,1.0,Swansea
+44290165,T15,[['Perth']],1.0,1.0,Perth
+44290165,T16,[['Portsay']],1.0,1.0,Portsay
+44290165,T17,[['London']],1.0,1.0,London
+44290165,T19,[['Hull']],1.0,1.0,Hull
+44290165,T20,[['Cambden']],1.0,1.0,Cambden
+44290165,T21,[['2100']],1.0,1.0,2100
+44290165,T22,[['Dantzic']],1.0,1.0,Dantzic
+44290165,T23,[['London']],1.0,1.0,London
+44290165,T25,[['London']],1.0,1.0,London
+44290165,T26,"[['N'], ['Shields']]",1.0,1.0,N Shields
+44290165,T27,[['Woodbridge']],1.0,1.0,Woodbridge
+44290165,T28,[['6701']],1.0,1.0,6701
+44290165,T29,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290166,T1,[['London']],1.0,1.0,London
+44290166,T2,"[['Boston'], ['U.S.']]",1.0,1.0,Boston U.S.
+44290166,T3,[['Liverpool']],1.0,1.0,Liverpool
+44290166,T4,[['Ramsgate']],1.0,1.0,Ramsgate
+44290166,T5,[['London']],1.0,1.0,London
+44290166,T7,[['Liverpool']],1.0,1.0,Liverpool
+44290166,T8,[['London']],1.0,1.0,London
+44290166,T9,[['Dundee']],1.0,1.0,Dundee
+44290166,T10,[['Sunderland']],1.0,1.0,Sunderland
+44290166,T11,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290166,T13,"[['So'], ['Shields']]",1.0,1.0,So Shields
+44290166,T14,[['London']],1.0,1.0,London
+44290166,T15,[['7361']],1.0,1.0,7361
+44290166,T16,[['3963']],1.0,1.0,3963
+44290166,T17,,,,
+44290166,T19,[['London']],1.0,1.0,London
+44290166,T20,[['London']],1.0,1.0,London
+44290166,T21,[['7415']],1.0,1.0,7415
+44290166,T22,"[['Boston'], ['U.S.']]",1.0,1.0,Boston U.S.
+44290166,T23,[['London']],1.0,1.0,London
+44290166,T25,[['Hull']],1.0,1.0,Hull
+44290166,T26,[['London']],1.0,1.0,London
+44290166,T27,[['5392']],1.0,1.0,5392
+44290166,T28,"[['So'], ['Shields']]",1.0,1.0,So Shields
+44290166,T29,[['7942']],1.0,1.0,7942
+44290167,T1,[['London']],1.0,1.0,London
+44290167,T2,[['London']],1.0,1.0,London
+44290167,T3,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290167,T4,[['London']],1.0,1.0,London
+44290167,T5,[['London']],1.0,1.0,London
+44290167,T7,[['London']],1.0,1.0,London
+44290167,T8,[['7991']],1.0,1.0,7991
+44290167,T9,[['Newry']],1.0,1.0,Newry
+44290167,T10,[['London']],1.0,1.0,London
+44290167,T11,[['Cork']],1.0,1.0,Cork
+44290167,T13,[['7024']],1.0,1.0,7024
+44290167,T14,[['London']],1.0,1.0,London
+44290167,T15,[['London']],1.0,1.0,London
+44290167,T16,[['London']],1.0,1.0,London
+44290167,T17,[['Liverpool']],1.0,1.0,Liverpool
+44290167,T19,[['London']],1.0,1.0,London
+44290167,T20,[['London']],1.0,1.0,London
+44290167,T21,[['London']],1.0,1.0,London
+44290167,T22,[['London']],1.0,1.0,London
+44290167,T23,[['Liverpool']],1.0,1.0,Liverpool
+44290167,T25,"[['S'], ['Shields']]",1.0,1.0,S Shields
+44290167,T26,[['London']],1.0,1.0,London
+44290167,T27,[['7600']],1.0,1.0,7600
+44290167,T28,[['Weymouth']],1.0,1.0,Weymouth
+44290167,T29,[['London']],1.0,1.0,London
+44290168,T1,[['Dartmouth']],1.0,1.0,Dartmouth
+44290168,T2,[['Liverpool']],1.0,1.0,Liverpool
+44290168,T3,[['London']],1.0,1.0,London
+44290168,T4,[['London']],1.0,1.0,London
+44290168,T5,[['Havana']],1.0,1.0,Havana
+44290168,T7,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290168,T8,[['7526']],1.0,1.0,7526
+44290168,T9,[['London']],1.0,1.0,London
+44290168,T10,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290168,T11,[['Bristol']],1.0,1.0,Bristol
+44290168,T13,[['London']],1.0,1.0,London
+44290168,T14,[['7552']],1.0,1.0,7552
+44290168,T15,"[['East'], ['Indies']]",1.0,1.0,East Indies
+44290168,T16,[['London']],1.0,1.0,London
+44290168,T17,[['London']],1.0,1.0,London
+44290168,T19,"[['S'], ['Shields']]",1.0,1.0,S Shields
+44290168,T20,"[['No'], ['Yarmouth']]",1.0,1.0,No Yarmouth
+44290168,T21,[['London']],1.0,1.0,London
+44290168,T22,[['7774']],1.0,1.0,7774
+44290168,T23,[['London']],1.0,1.0,London
+44290168,T25,[['Liverpool']],1.0,1.0,Liverpool
+44290168,T26,[['Poole']],1.0,1.0,Poole
+44290168,T27,[['Cork']],1.0,1.0,Cork
+44290168,T28,[['Clyde']],1.0,1.0,Clyde
+44290168,T29,[['7719']],1.0,1.0,7719
+44290169,T1,[['5562']],1.0,1.0,5562
+44290169,T2,[['7157']],1.0,1.0,7157
+44290169,T3,[['Lisbon']],1.0,1.0,Lisbon
+44290169,T4,[['London']],1.0,1.0,London
+44290169,T5,[['Carlscrona']],1.0,1.0,Carlscrona
+44290169,T7,[['Plymouth']],1.0,1.0,Plymouth
+44290169,T8,"[['St.'], ['Ives']]",1.0,1.0,St. Ives
+44290169,T9,[['London']],1.0,1.0,London
+44290169,T10,[['Dantzic']],1.0,1.0,Dantzic
+44290169,T11,[['3260']],1.0,1.0,3260
+44290169,T13,[['7297']],1.0,1.0,7297
+44290169,T14,[['Lerwick']],1.0,1.0,Lerwick
+44290169,T15,[['London']],1.0,1.0,London
+44290169,T16,"[['S'], ['Shields']]",1.0,1.0,S Shields
+44290169,T17,[['Jersey']],1.0,1.0,Jersey
+44290169,T19,[['London']],1.0,1.0,London
+44290169,T20,[['Newcastle']],1.0,1.0,Newcastle
+44290169,T21,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290169,T22,[['7973']],1.0,1.0,7973
+44290169,T23,[['Sandwich']],1.0,1.0,Sandwich
+44290169,T25,[['London']],1.0,1.0,London
+44290169,T26,"[['5042'], ['Hill'], ['Navy']]",1.0,1.0,5042 Hill Navy
+44290169,T27,[['Liverpool']],1.0,1.0,Liverpool
+44290169,T28,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290169,T29,[['London']],1.0,1.0,London
+44290170,T1,[['7371']],1.0,1.0,7371
+44290170,T2,[['London']],1.0,1.0,London
+44290170,T3,[['London']],1.0,1.0,London
+44290170,T4,[['Poole']],1.0,1.0,Poole
+44290170,T5,[['7410']],1.0,1.0,7410
+44290170,T7,[['Sunderland']],1.0,1.0,Sunderland
+44290170,T8,[['7301']],1.0,1.0,7301
+44290170,T9,[['London']],1.0,1.0,London
+44290170,T10,[['Liverpool']],1.0,1.0,Liverpool
+44290170,T11,[['6294']],1.0,1.0,6294
+44290170,T13,[['7732']],1.0,1.0,7732
+44290170,T14,[['London']],1.0,1.0,London
+44290170,T15,[['London']],1.0,1.0,London
+44290170,T16,[['8132']],1.0,1.0,8132
+44290170,T17,[['Waterford']],1.0,1.0,Waterford
+44290170,T19,[['London']],1.0,1.0,London
+44290170,T20,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290170,T21,[['7902']],1.0,1.0,7902
+44290170,T22,[['London']],1.0,1.0,London
+44290170,T23,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290170,T25,[['London']],1.0,1.0,London
+44290170,T26,[['London']],1.0,1.0,London
+44290170,T27,[['Liverpool']],1.0,1.0,Liverpool
+44290170,T28,[['London']],1.0,1.0,London
+44290170,T29,[['Liverpool']],1.0,1.0,Liverpool
+44290171,T1,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290171,T2,[['Gamlakarleby']],1.0,1.0,Gamlakarleby
+44290171,T3,[['Garlieston']],1.0,1.0,Garlieston
+44290171,T4,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290171,T5,[['7096']],1.0,1.0,7096
+44290171,T7,[['London']],1.0,1.0,London
+44290171,T8,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290171,T9,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290171,T10,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290171,T11,[['London']],1.0,1.0,London
+44290171,T13,[['Hull']],1.0,1.0,Hull
+44290171,T14,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290171,T15,"[['Seaton'], ['Sluice']]",1.0,1.0,Seaton Sluice
+44290171,T16,[['London']],1.0,1.0,London
+44290171,T17,[['London']],1.0,1.0,London
+44290171,T19,[['Maryport']],1.0,1.0,Maryport
+44290171,T20,[['7580']],1.0,1.0,7580
+44290171,T21,[['London']],1.0,1.0,London
+44290171,T22,[['London']],1.0,1.0,London
+44290171,T23,[['London']],1.0,1.0,London
+44290171,T25,"[['Philadelphia,'], ['U.S.']]",1.0,1.0,"Philadelphia, U.S."
+44290171,T26,[['Liverpool']],1.0,1.0,Liverpool
+44290171,T27,[['Sunderland']],1.0,1.0,Sunderland
+44290171,T28,[['4862']],1.0,1.0,4862
+44290171,T29,[['Galway']],1.0,1.0,Galway
+44290172,T1,"[['St.'], ['Domingo']]",1.0,1.0,St. Domingo
+44290172,T2,[['Liverpool']],1.0,1.0,Liverpool
+44290172,T3,[['London']],1.0,1.0,London
+44290172,T4,[['6419']],1.0,1.0,6419
+44290172,T5,[['Shields']],1.0,1.0,Shields
+44290172,T7,[['7940']],1.0,1.0,7940
+44290172,T8,[['7935']],1.0,1.0,7935
+44290172,T9,[['London']],1.0,1.0,London
+44290172,T10,[['Poole']],1.0,1.0,Poole
+44290172,T11,"[['S'], ['Shields']]",1.0,1.0,S Shields
+44290172,T13,[['London']],1.0,1.0,London
+44290172,T14,[['London']],1.0,1.0,London
+44290172,T15,,,,
+44290172,T16,,,,
+44290172,T17,[['London']],1.0,1.0,London
+44290172,T19,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290172,T20,[['Abderdeen']],1.0,1.0,Abderdeen
+44290172,T21,"[['N'], ['Shields']]",1.0,1.0,N Shields
+44290172,T22,[['Lancaster']],1.0,1.0,Lancaster
+44290172,T23,[['London']],1.0,1.0,London
+44290172,T25,[['London']],1.0,1.0,London
+44290172,T26,[['London']],1.0,1.0,London
+44290172,T27,[['London']],1.0,1.0,London
+44290172,T28,"[['S'], ['Shields']]",1.0,1.0,S Shields
+44290172,T29,[['Bristol']],1.0,1.0,Bristol
+44290173,T1,[['London']],1.0,1.0,London
+44290173,T2,[['London']],1.0,1.0,London
+44290173,T3,[['7953']],1.0,1.0,7953
+44290173,T4,[['London']],1.0,1.0,London
+44290173,T5,[['0016']],1.0,1.0,0016
+44290173,T7,[['Fowey']],1.0,1.0,Fowey
+44290173,T8,[['London']],1.0,1.0,London
+44290173,T9,[['7814']],1.0,1.0,7814
+44290173,T10,[['London']],1.0,1.0,London
+44290173,T11,[['London']],1.0,1.0,London
+44290173,T13,[['London']],1.0,1.0,London
+44290173,T14,[['London']],1.0,1.0,London
+44290173,T15,[['London']],1.0,1.0,London
+44290173,T16,[['7616']],1.0,1.0,7616
+44290173,T17,[['7325']],1.0,1.0,7325
+44290173,T19,[['London']],1.0,1.0,London
+44290173,T20,[['7626']],1.0,1.0,7626
+44290173,T21,[['London']],1.0,1.0,London
+44290173,T22,[['London']],1.0,1.0,London
+44290173,T23,[['Newcastle']],1.0,1.0,Newcastle
+44290173,T25,[['London']],1.0,1.0,London
+44290173,T26,[['London']],1.0,1.0,London
+44290173,T27,[['London']],1.0,1.0,London
+44290173,T28,[['London']],1.0,1.0,London
+44290173,T29,[['7960']],1.0,1.0,7960
+44290174,T1,[['Dundee']],1.0,1.0,Dundee
+44290174,T2,[['Archangel']],1.0,1.0,Archangel
+44290174,T3,[['Ilfracombe']],1.0,1.0,Ilfracombe
+44290174,T4,[['Newcastle']],1.0,1.0,Newcastle
+44290174,T5,[['London']],1.0,1.0,London
+44290174,T7,[['4429']],1.0,1.0,4429
+44290174,T8,[['Hull']],1.0,1.0,Hull
+44290174,T9,[['Londonderry']],1.0,1.0,Londonderry
+44290174,T10,[['Antwerp']],1.0,1.0,Antwerp
+44290174,T11,[['3713']],1.0,1.0,3713
+44290174,T13,[['London']],1.0,1.0,London
+44290174,T14,[['London']],1.0,1.0,London
+44290174,T15,[['7921']],1.0,1.0,7921
+44290174,T16,[['Shields']],1.0,1.0,Shields
+44290174,T17,[['8164']],1.0,1.0,8164
+44290174,T19,[['London']],1.0,1.0,London
+44290174,T20,[['London']],1.0,1.0,London
+44290174,T21,[['London']],1.0,1.0,London
+44290174,T22,[['London']],1.0,1.0,London
+44290174,T23,[['London']],1.0,1.0,London
+44290174,T25,[['London']],1.0,1.0,London
+44290174,T26,[['London']],1.0,1.0,London
+44290174,T27,[['5000']],1.0,1.0,5000
+44290174,T28,[['London']],1.0,1.0,London
+44290174,T29,[['London']],1.0,1.0,London
+44290175,T1,[['London']],1.0,1.0,London
+44290175,T2,"[['Boston,'], ['U.S.']]",1.0,1.0,"Boston, U.S."
+44290175,T3,[['London']],1.0,1.0,London
+44290175,T4,[['London']],1.0,1.0,London
+44290175,T5,[['London']],1.0,1.0,London
+44290175,T7,[['Liverpool']],1.0,1.0,Liverpool
+44290175,T8,[['London']],1.0,1.0,London
+44290175,T9,[['Liverpool']],1.0,1.0,Liverpool
+44290175,T10,[['London']],1.0,1.0,London
+44290175,T11,[['London']],1.0,1.0,London
+44290175,T13,[['Bengal']],1.0,1.0,Bengal
+44290175,T14,"[['Havoc'], ['de'], ['Grace']]",1.0,1.0,Havoc de Grace
+44290175,T15,[['Stockholm']],1.0,1.0,Stockholm
+44290175,T16,[['Genoa']],1.0,1.0,Genoa
+44290175,T17,[['Plymouth']],1.0,1.0,Plymouth
+44290175,T19,[['London']],1.0,1.0,London
+44290175,T20,[['Belfast']],1.0,1.0,Belfast
+44290175,T21,[['London']],1.0,1.0,London
+44290175,T22,[['London']],1.0,1.0,London
+44290175,T23,[['6920']],1.0,1.0,6920
+44290175,T25,[['Plymouth']],1.0,1.0,Plymouth
+44290175,T26,[['London']],1.0,1.0,London
+44290175,T27,[['5047']],1.0,1.0,5047
+44290175,T28,[['London']],1.0,1.0,London
+44290175,T29,[['Liverpool']],1.0,1.0,Liverpool
+44290176,T1,[['London']],1.0,1.0,London
+44290176,T2,[['7994']],1.0,1.0,7994
+44290176,T3,"[['N'], ['Shields']]",1.0,1.0,N Shields
+44290176,T4,[['Liverpool']],1.0,1.0,Liverpool
+44290176,T5,[['Liverpool']],1.0,1.0,Liverpool
+44290176,T7,[['Bristol']],1.0,1.0,Bristol
+44290176,T8,"[['Harford,'], ['U.S.']]",1.0,1.0,"Harford, U.S."
+44290176,T9,[['Gibraltar']],1.0,1.0,Gibraltar
+44290176,T10,[['London']],1.0,1.0,London
+44290176,T11,[['London']],1.0,1.0,London
+44290176,T13,[['Leithe']],1.0,1.0,Leithe
+44290176,T14,[['London']],1.0,1.0,London
+44290176,T15,[['London']],1.0,1.0,London
+44290176,T16,[['London']],1.0,1.0,London
+44290176,T17,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290176,T19,[['London']],1.0,1.0,London
+44290176,T20,[['1037']],1.0,1.0,1037
+44290176,T21,[['Greenock']],1.0,1.0,Greenock
+44290176,T22,[['0052']],1.0,1.0,0052
+44290176,T23,[['Peterhead']],1.0,1.0,Peterhead
+44290176,T25,[['London']],1.0,1.0,London
+44290176,T26,[['London']],1.0,1.0,London
+44290176,T27,[['London']],1.0,1.0,London
+44290176,T28,[['Stettein']],1.0,1.0,Stettein
+44290176,T29,[['Liverpool']],1.0,1.0,Liverpool
+44290177,T1,[['London']],1.0,1.0,London
+44290177,T2,[['Liverpool']],1.0,1.0,Liverpool
+44290177,T3,[['6749']],1.0,1.0,6749
+44290177,T4,[['3900']],1.0,1.0,3900
+44290177,T5,[['Gothenburg']],1.0,1.0,Gothenburg
+44290177,T7,[['8100']],1.0,1.0,8100
+44290177,T8,[['Gottenburg']],1.0,1.0,Gottenburg
+44290177,T9,[['Aberdary']],1.0,1.0,Aberdary
+44290177,T10,[['Selby']],1.0,1.0,Selby
+44290177,T11,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290177,T13,[['Gottenburg']],1.0,1.0,Gottenburg
+44290177,T14,[['London']],1.0,1.0,London
+44290177,T15,[['Liverpool']],1.0,1.0,Liverpool
+44290177,T16,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290177,T17,[['London']],1.0,1.0,London
+44290177,T19,[['Newcastle']],1.0,1.0,Newcastle
+44290177,T20,[['Rotterdam']],1.0,1.0,Rotterdam
+44290177,T21,[['Whitby']],1.0,1.0,Whitby
+44290177,T22,[['London']],1.0,1.0,London
+44290177,T23,[['3966']],1.0,1.0,3966
+44290177,T25,[['London']],1.0,1.0,London
+44290177,T26,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290177,T27,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290177,T28,[['London']],1.0,1.0,London
+44290177,T29,[['London']],1.0,1.0,London
+44290178,T1,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44290178,T2,[['Lynn']],1.0,1.0,Lynn
+44290178,T3,"[['Newport,'], ['S.'], ['Wales']]",1.0,1.0,"Newport, S. Wales"
+44290178,T4,[['Sunderland']],1.0,1.0,Sunderland
+44290178,T5,[['Dundee']],1.0,1.0,Dundee
+44290178,T7,[['London']],1.0,1.0,London
+44290178,T8,"[['Halifax'], ['N.S.']]",1.0,1.0,Halifax N.S.
+44290178,T9,[['7594']],1.0,1.0,7594
+44290178,T10,[['Liverpool']],1.0,1.0,Liverpool
+44290178,T11,[['Lisbon']],1.0,1.0,Lisbon
+44290178,T13,[['Agenta']],1.0,1.0,Agenta
+44290178,T14,[['Bridgewater']],1.0,1.0,Bridgewater
+44290178,T15,[['Sunderland']],1.0,1.0,Sunderland
+44290178,T16,[['8061']],1.0,1.0,8061
+44290178,T17,[['Hull']],1.0,1.0,Hull
+44290178,T19,[['Hull']],1.0,1.0,Hull
+44290178,T20,[['London']],1.0,1.0,London
+44290178,T21,[['Shields']],1.0,1.0,Shields
+44290178,T22,[['8161']],1.0,1.0,8161
+44290178,T23,[['London']],1.0,1.0,London
+44290178,T25,[['Shields']],1.0,1.0,Shields
+44290178,T26,[['8022']],1.0,1.0,8022
+44290178,T27,[['8273']],1.0,1.0,8273
+44290178,T28,[['7802']],1.0,1.0,7802
+44290178,T29,[['Stockholm']],1.0,1.0,Stockholm
+44293717,T1,"[['Blythe', 'Blyth']]",2.0,1.0,Blythe
+44293717,T2,"[['Bridport', 'Bridport']]",2.0,2.0,Bridport
+44293717,T3,"[['London', 'London']]",2.0,2.0,London
+44293717,T4,"[['Antigua', 'Antigua']]",2.0,2.0,Antigua
+44293717,T5,"[['11908', '11908']]",2.0,2.0,11908
+44293717,T7,"[['Greenock', 'Greenock']]",2.0,2.0,Greenock
+44293717,T8,"[['London', 'London']]",2.0,2.0,London
+44293717,T9,"[['St', 'St'], ['Antonio', 'Antonio']]",2.0,2.0,St Antonio
+44293717,T10,"[['Newcastle', 'Newcastle']]",2.0,2.0,Newcastle
+44293717,T11,"[['London', 'London']]",2.0,2.0,London
+44293717,T13,"[['Bremen', 'Bremen']]",2.0,2.0,Bremen
+44293717,T14,"[['Sunderland', 'Sunderland']]",2.0,2.0,Sunderland
+44293717,T15,"[['12235', '12235']]",2.0,2.0,12235
+44293717,T16,"[['10312', '10312']]",2.0,2.0,10312
+44293717,T17,"[['Plymouth', 'Plymouth']]",2.0,2.0,Plymouth
+44293717,T19,"[['Barking', 'Barking']]",2.0,2.0,Barking
+44293717,T20,"[['11306', '11306']]",2.0,2.0,11306
+44293717,T21,"[['Longsound', 'Longround']]",2.0,1.0,Longsound
+44293717,T22,"[['Bridport', 'Bridport']]",2.0,2.0,Bridport
+44293717,T23,"[['Peterhead', 'Peterhead']]",2.0,2.0,Peterhead
+44293717,T25,"[['London', 'London']]",2.0,2.0,London
+44293717,T26,"[['London', 'London']]",2.0,2.0,London
+44293717,T27,"[['London', 'London']]",2.0,2.0,London
+44293717,T28,"[['Hill', 'Hell'], ['Navy', 'Navy']]",2.0,1.5,Hill Navy
+44293717,T29,"[['London', 'London']]",2.0,2.0,London
+44293718,T1,"[['Aberdeen', 'Aberdeen']]",2.0,2.0,Aberdeen
+44293718,T2,"[['Sunderland', 'Sunderland']]",2.0,2.0,Sunderland
+44293718,T3,"[['Sunderland', 'Sunderland']]",2.0,2.0,Sunderland
+44293718,T4,"[['Archangel', 'Archangel']]",2.0,2.0,Archangel
+44293718,T5,"[['London', 'London']]",2.0,2.0,London
+44293718,T7,"[['London', 'London']]",2.0,2.0,London
+44293718,T8,"[['London', 'London']]",2.0,2.0,London
+44293718,T9,"[['Leith', 'Leith']]",2.0,2.0,Leith
+44293718,T10,"[['London', 'London']]",2.0,2.0,London
+44293718,T11,"[['Liverpool', 'Liverpool']]",2.0,2.0,Liverpool
+44293718,T13,"[['Gravesend', 'Gravesend']]",2.0,2.0,Gravesend
+44293718,T14,"[['Archangel', 'Archangel']]",2.0,2.0,Archangel
+44293718,T15,"[['Waterford', 'Waterford']]",2.0,2.0,Waterford
+44293718,T16,"[['Belfast', 'Belfast']]",2.0,2.0,Belfast
+44293718,T17,"[['London', 'London']]",2.0,2.0,London
+44293718,T19,"[['Liverpool', 'Liverpool']]",2.0,2.0,Liverpool
+44293718,T20,"[['London', 'London']]",2.0,2.0,London
+44293718,T21,"[['Liverpool', 'Liverpool']]",2.0,2.0,Liverpool
+44293718,T22,"[['Shields', 'Shields']]",2.0,2.0,Shields
+44293718,T23,"[['London', 'London']]",2.0,2.0,London
+44293718,T25,"[['London', 'London']]",2.0,2.0,London
+44293718,T26,"[['Hull', 'Hull']]",2.0,2.0,Hull
+44293718,T27,"[['12051', '12051']]",2.0,2.0,12051
+44293718,T28,"[['Liverpool', 'Liverpool']]",2.0,2.0,Liverpool
+44293718,T29,"[['London', 'London']]",2.0,2.0,London
+44293719,T1,"[['Liverpool', 'Liverpool', 'Liverpool']]",3.0,3.0,Liverpool
+44293719,T2,"[['Shields', 'Shields', 'Shields']]",3.0,3.0,Shields
+44293719,T3,"[['8444', '8444', '8444']]",3.0,3.0,8444
+44293719,T4,"[['Arendal', 'Arendal', 'Arendal']]",3.0,3.0,Arendal
+44293719,T5,"[['12151', '12151', '12151']]",3.0,3.0,12151
+44293719,T7,"[['Plymouth', 'Plymouth', 'Plymouth']]",3.0,3.0,Plymouth
+44293719,T8,"[['Hell', 'Hill', 'Hill'], ['Navy', 'Navy', 'Navy']]",3.0,2.5,Hill Navy
+44293719,T9,"[['Gefle', 'Gef[...][...]', 'Gef[...][...]']]",3.0,2.0,Gef[...][...]
+44293719,T10,"[['Barking', 'Barking', 'Barking']]",3.0,3.0,Barking
+44293719,T11,"[['London', 'London', 'London']]",3.0,3.0,London
+44293719,T13,"[['Bristol', 'Bristol', 'Bristol']]",3.0,3.0,Bristol
+44293719,T14,"[['12037', '12037', '12037']]",3.0,3.0,12037
+44293719,T15,"[['London', 'London', 'London']]",3.0,3.0,London
+44293719,T16,"[['10042', '10042', '!0042']]",3.0,2.0,10042
+44293719,T17,"[['Falmouth', 'Falmouth', 'Falmouth']]",3.0,3.0,Falmouth
+44293719,T19,"[['Liverpool', 'Liverpool', 'Liverpool']]",3.0,3.0,Liverpool
+44293719,T20,"[['London', 'London', 'London']]",3.0,3.0,London
+44293719,T21,"[['London', 'London', 'London']]",3.0,3.0,London
+44293719,T22,"[['Archangel', 'Archangel', 'Archangel']]",3.0,3.0,Archangel
+44293719,T23,"[['London', 'London', 'London']]",3.0,3.0,London
+44293719,T25,"[['Sunderland', 'Sunderland', 'Sunderland']]",3.0,3.0,Sunderland
+44293719,T26,"[['Sunderland', 'Sunderland', 'Sunderland']]",3.0,3.0,Sunderland
+44293719,T27,"[['London', 'London', 'London']]",3.0,3.0,London
+44293719,T28,"[['London', 'London', 'London']]",3.0,3.0,London
+44293719,T29,"[['Leith', 'Leith', 'Leith']]",3.0,3.0,Leith
+44293720,T1,"[['12107', '12107']]",2.0,2.0,12107
+44293720,T2,"[['9214', '9214']]",2.0,2.0,9214
+44293720,T3,"[['Stockholm', 'Stockholm']]",2.0,2.0,Stockholm
+44293720,T4,"[['London', 'London']]",2.0,2.0,London
+44293720,T5,"[['1435', '1495']]",2.0,1.0,1435
+44293720,T7,"[['Leith', 'Leith']]",2.0,2.0,Leith
+44293720,T8,"[['Greenock', 'Greenock']]",2.0,2.0,Greenock
+44293720,T9,"[['Tunsberg', 'Tunsberg']]",2.0,2.0,Tunsberg
+44293720,T10,"[['St', 'St'], ['John', 'John'], ['', 'N.B']]",2.0,1.6666666666666667,St John N.B
+44293720,T11,"[['Liverpool', 'Liverpool']]",2.0,2.0,Liverpool
+44293720,T13,"[['Shields', 'Shields']]",2.0,2.0,Shields
+44293720,T14,"[['Hill', 'Hill'], ['Navy', 'Navy']]",2.0,2.0,Hill Navy
+44293720,T15,"[['Plymouth', 'Plymouth']]",2.0,2.0,Plymouth
+44293720,T16,"[['London', 'London']]",2.0,2.0,London
+44293720,T17,"[['London', 'London']]",2.0,2.0,London
+44293720,T19,"[['Portsmouth', 'Portsmouth']]",2.0,2.0,Portsmouth
+44293720,T20,"[['8083', '8083']]",2.0,2.0,8083
+44293720,T21,"[['London', 'London']]",2.0,2.0,London
+44293720,T22,"[['11383', '11383']]",2.0,2.0,11383
+44293720,T23,"[['12290', '12290']]",2.0,2.0,12290
+44293720,T25,"[['London', 'London']]",2.0,2.0,London
+44293720,T26,"[['7729', '7729']]",2.0,2.0,7729
+44293720,T27,"[['London', 'London']]",2.0,2.0,London
+44293720,T28,"[['London', 'London']]",2.0,2.0,London
+44293720,T29,"[['Hill', 'Hill'], ['Navy', 'Navy']]",2.0,2.0,Hill Navy
+44293721,T1,[['Shields']],1.0,1.0,Shields
+44293721,T2,[['Halifax']],1.0,1.0,Halifax
+44293721,T3,[['Dublin']],1.0,1.0,Dublin
+44293721,T4,[['London']],1.0,1.0,London
+44293721,T5,[['9902']],1.0,1.0,9902
+44293721,T7,[['London']],1.0,1.0,London
+44293721,T8,[['Liverpool']],1.0,1.0,Liverpool
+44293721,T9,[['Shields']],1.0,1.0,Shields
+44293721,T10,[['London']],1.0,1.0,London
+44293721,T11,[['London']],1.0,1.0,London
+44293721,T13,[['11952']],1.0,1.0,11952
+44293721,T14,[['Smyrna']],1.0,1.0,Smyrna
+44293721,T15,[['11931']],1.0,1.0,11931
+44293721,T16,[['London']],1.0,1.0,London
+44293721,T17,[['9208']],1.0,1.0,9208
+44293721,T19,[['Greenock']],1.0,1.0,Greenock
+44293721,T20,[['Shields']],1.0,1.0,Shields
+44293721,T21,[['London']],1.0,1.0,London
+44293721,T22,[['12200']],1.0,1.0,12200
+44293721,T23,[['London']],1.0,1.0,London
+44293721,T25,[['Bristol']],1.0,1.0,Bristol
+44293721,T26,[['Liverpool']],1.0,1.0,Liverpool
+44293721,T27,[['Shields']],1.0,1.0,Shields
+44293721,T28,[['Deptford']],1.0,1.0,Deptford
+44293721,T29,[['Deptford']],1.0,1.0,Deptford
+44293723,T1,[['London']],1.0,1.0,London
+44293723,T2,[['London']],1.0,1.0,London
+44293723,T3,[['Gravesend']],1.0,1.0,Gravesend
+44293723,T4,[['London']],1.0,1.0,London
+44293723,T5,[['12120']],1.0,1.0,12120
+44293723,T7,[['11572']],1.0,1.0,11572
+44293723,T8,[['London']],1.0,1.0,London
+44293723,T9,[['London']],1.0,1.0,London
+44293723,T10,[['Barking']],1.0,1.0,Barking
+44293723,T11,[['12312']],1.0,1.0,12312
+44293723,T13,[['100065']],1.0,1.0,100065
+44293723,T14,[['London']],1.0,1.0,London
+44293723,T15,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44293723,T16,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44293723,T17,[['London']],1.0,1.0,London
+44293723,T19,[['12412']],1.0,1.0,12412
+44293723,T20,[['London']],1.0,1.0,London
+44293723,T21,[['London']],1.0,1.0,London
+44293723,T22,[['London']],1.0,1.0,London
+44293723,T23,[['Sunderland']],1.0,1.0,Sunderland
+44293723,T25,[['11097']],1.0,1.0,11097
+44293723,T26,[['London']],1.0,1.0,London
+44293723,T27,[['Madeira']],1.0,1.0,Madeira
+44293723,T28,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44293723,T29,[['London']],1.0,1.0,London
+44293724,T1,[['Newhaven']],1.0,1.0,Newhaven
+44293724,T2,[['Scarborough']],1.0,1.0,Scarborough
+44293724,T3,[['London']],1.0,1.0,London
+44293724,T4,,,,
+44293724,T5,[['Ramsgate']],1.0,1.0,Ramsgate
+44293724,T7,[['London']],1.0,1.0,London
+44293724,T8,[['Wandsworth']],1.0,1.0,Wandsworth
+44293724,T9,[['Leghorn']],1.0,1.0,Leghorn
+44293724,T10,[['Greenock']],1.0,1.0,Greenock
+44293724,T11,[['Poole']],1.0,1.0,Poole
+44293724,T13,,,,
+44293724,T14,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44293724,T15,[['10604']],1.0,1.0,10604
+44293724,T16,[['London']],1.0,1.0,London
+44293724,T17,[['Calcutta']],1.0,1.0,Calcutta
+44293724,T19,[['10107']],1.0,1.0,10107
+44293724,T20,[['Plymouth']],1.0,1.0,Plymouth
+44293724,T21,,,,
+44293724,T22,[['Liverpool']],1.0,1.0,Liverpool
+44293724,T23,[['London']],1.0,1.0,London
+44293724,T25,[['9793']],1.0,1.0,9793
+44293724,T26,[['Greenock']],1.0,1.0,Greenock
+44293724,T27,[['Newport']],1.0,1.0,Newport
+44293724,T28,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44293724,T29,[['London']],1.0,1.0,London
+44293726,T1,[['Sunderland']],1.0,1.0,Sunderland
+44293726,T2,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44293726,T3,[['London']],1.0,1.0,London
+44293726,T4,[['London']],1.0,1.0,London
+44293726,T5,[['Liverpool']],1.0,1.0,Liverpool
+44293726,T7,[['3254']],1.0,1.0,3254
+44293726,T8,[['London']],1.0,1.0,London
+44293726,T9,[['Bristol']],1.0,1.0,Bristol
+44293726,T10,[['London']],1.0,1.0,London
+44293726,T11,[['Liverpool']],1.0,1.0,Liverpool
+44293726,T13,[['London']],1.0,1.0,London
+44293726,T14,[['Liverpool']],1.0,1.0,Liverpool
+44293726,T15,[['12226']],1.0,1.0,12226
+44293726,T16,"[['Lime'], ['Kilns']]",1.0,1.0,Lime Kilns
+44293726,T17,[['Sunderland']],1.0,1.0,Sunderland
+44293726,T19,[['12110']],1.0,1.0,12110
+44293726,T20,[['Shields']],1.0,1.0,Shields
+44293726,T21,[['London']],1.0,1.0,London
+44293726,T22,[['Belfast']],1.0,1.0,Belfast
+44293726,T23,[['Gamlakarleby']],1.0,1.0,Gamlakarleby
+44293726,T25,[['Bristol']],1.0,1.0,Bristol
+44293726,T26,[['Bristol']],1.0,1.0,Bristol
+44293726,T27,[['Bristol']],1.0,1.0,Bristol
+44293726,T28,[['London']],1.0,1.0,London
+44293726,T29,[['Hull']],1.0,1.0,Hull
+44293727,T1,[['London']],1.0,1.0,London
+44293727,T2,[['Shields']],1.0,1.0,Shields
+44293727,T3,"[['Algoa'], ['Bay']]",1.0,1.0,Algoa Bay
+44293727,T4,[['Quebec']],1.0,1.0,Quebec
+44293727,T5,[['London']],1.0,1.0,London
+44293727,T7,[['Deal']],1.0,1.0,Deal
+44293727,T8,[['5629']],1.0,1.0,5629
+44293727,T9,[['London']],1.0,1.0,London
+44293727,T10,[['12328']],1.0,1.0,12328
+44293727,T11,[['Batavia']],1.0,1.0,Batavia
+44293727,T13,[['12356']],1.0,1.0,12356
+44293727,T14,"[['Sierra'], ['Leone']]",1.0,1.0,Sierra Leone
+44293727,T15,"[['Sierra'], ['Leone']]",1.0,1.0,Sierra Leone
+44293727,T16,[['Cadiz']],1.0,1.0,Cadiz
+44293727,T17,[['9941']],1.0,1.0,9941
+44293727,T19,[['London']],1.0,1.0,London
+44293727,T20,[['Plymouth']],1.0,1.0,Plymouth
+44293727,T21,[['Falmouth']],1.0,1.0,Falmouth
+44293727,T22,[['London']],1.0,1.0,London
+44293727,T23,[['Hull']],1.0,1.0,Hull
+44293727,T25,[['Leith']],1.0,1.0,Leith
+44293727,T26,[['Newcastle']],1.0,1.0,Newcastle
+44293727,T27,[['London']],1.0,1.0,London
+44293727,T28,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44293727,T29,[['Smyrna']],1.0,1.0,Smyrna
+44293728,T1,[['Sunderland']],1.0,1.0,Sunderland
+44293728,T2,[['London']],1.0,1.0,London
+44293728,T3,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44293728,T4,[['London']],1.0,1.0,London
+44293728,T5,[['London']],1.0,1.0,London
+44293728,T7,[['LOndon']],1.0,1.0,LOndon
+44293728,T8,[['Bombay']],1.0,1.0,Bombay
+44293728,T9,[['London']],1.0,1.0,London
+44293728,T10,[['London']],1.0,1.0,London
+44293728,T11,[['10073']],1.0,1.0,10073
+44293728,T13,[['Liverpool']],1.0,1.0,Liverpool
+44293728,T14,[['London']],1.0,1.0,London
+44293728,T15,[['London']],1.0,1.0,London
+44293728,T16,[['Liverpool']],1.0,1.0,Liverpool
+44293728,T17,[['London']],1.0,1.0,London
+44293728,T19,[['Whitby']],1.0,1.0,Whitby
+44293728,T20,[['Scarborough']],1.0,1.0,Scarborough
+44293728,T21,[['Bristol']],1.0,1.0,Bristol
+44293728,T22,[['London']],1.0,1.0,London
+44293728,T23,[['London']],1.0,1.0,London
+44293728,T25,[['London']],1.0,1.0,London
+44293728,T26,[['London']],1.0,1.0,London
+44293728,T27,[['11652']],1.0,1.0,11652
+44293728,T28,[['London']],1.0,1.0,London
+44293728,T29,[['London']],1.0,1.0,London
+44293729,T1,[['London']],1.0,1.0,London
+44293729,T2,[['London']],1.0,1.0,London
+44293729,T3,[['London']],1.0,1.0,London
+44293729,T4,[['London']],1.0,1.0,London
+44293729,T5,"[['New'], ['York']]",1.0,1.0,New York
+44293729,T7,[['Liverpool']],1.0,1.0,Liverpool
+44293729,T8,[['London']],1.0,1.0,London
+44293729,T9,[['12187']],1.0,1.0,12187
+44293729,T10,[['12267']],1.0,1.0,12267
+44293729,T11,[['7636']],1.0,1.0,7636
+44293729,T13,[['Wisbech']],1.0,1.0,Wisbech
+44293729,T14,[['London']],1.0,1.0,London
+44293729,T15,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44293729,T16,[['7850']],1.0,1.0,7850
+44293729,T17,[['London']],1.0,1.0,London
+44293729,T19,"[['Puerto'], ['Rico']]",1.0,1.0,Puerto Rico
+44293729,T20,[['Lisbon']],1.0,1.0,Lisbon
+44293729,T21,[['12418']],1.0,1.0,12418
+44293729,T22,[['London']],1.0,1.0,London
+44293729,T23,[['Shields']],1.0,1.0,Shields
+44293729,T25,[['London']],1.0,1.0,London
+44293729,T26,[['11906']],1.0,1.0,11906
+44293729,T27,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44293729,T28,[['London']],1.0,1.0,London
+44293729,T29,[['London']],1.0,1.0,London
+44293731,T1,[['Ilfracombe']],1.0,1.0,Ilfracombe
+44293731,T2,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44293731,T3,[['12383']],1.0,1.0,12383
+44293731,T4,[['Wisbech']],1.0,1.0,Wisbech
+44293731,T5,[['London']],1.0,1.0,London
+44293731,T7,[['Greenwich']],1.0,1.0,Greenwich
+44293731,T8,[['London']],1.0,1.0,London
+44293731,T9,[['London']],1.0,1.0,London
+44293731,T10,[['Plymouth']],1.0,1.0,Plymouth
+44293731,T11,[['London']],1.0,1.0,London
+44293731,T13,[['London']],1.0,1.0,London
+44293731,T14,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44293731,T15,[['London']],1.0,1.0,London
+44293731,T16,[['12448']],1.0,1.0,12448
+44293731,T17,"[['Halifax'], ['NS']]",1.0,1.0,Halifax NS
+44293731,T19,[['London']],1.0,1.0,London
+44293731,T20,[['London']],1.0,1.0,London
+44293731,T21,[['Sunderland']],1.0,1.0,Sunderland
+44293731,T22,[['London']],1.0,1.0,London
+44293731,T23,"[['North'], ['Shields']]",1.0,1.0,North Shields
+44293731,T25,[['Yarmouth']],1.0,1.0,Yarmouth
+44293731,T26,[['London']],1.0,1.0,London
+44293731,T27,[['Liverpool']],1.0,1.0,Liverpool
+44293731,T28,[['11200']],1.0,1.0,11200
+44293731,T29,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44293732,T1,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44293732,T2,[['Sunderland']],1.0,1.0,Sunderland
+44293732,T3,[['London']],1.0,1.0,London
+44293732,T4,[['12565']],1.0,1.0,12565
+44293732,T5,[['Newcastle']],1.0,1.0,Newcastle
+44293732,T7,[['Shields']],1.0,1.0,Shields
+44293732,T8,[['Wexford']],1.0,1.0,Wexford
+44293732,T9,[['Liverpool']],1.0,1.0,Liverpool
+44293732,T10,[['Greenwich']],1.0,1.0,Greenwich
+44293732,T11,[['Hull']],1.0,1.0,Hull
+44293732,T13,[['Hartley']],1.0,1.0,Hartley
+44293732,T14,[['Belfast']],1.0,1.0,Belfast
+44293732,T15,[['Shields']],1.0,1.0,Shields
+44293732,T16,[['London']],1.0,1.0,London
+44293732,T17,[['London']],1.0,1.0,London
+44293732,T19,[['Sunderland']],1.0,1.0,Sunderland
+44293732,T20,"[['Nore'], ['Lying'], ['at'], ['anchor']]",1.0,1.0,Nore Lying at anchor
+44293732,T21,[['10353']],1.0,1.0,10353
+44293732,T22,[['London']],1.0,1.0,London
+44293732,T23,[['11791']],1.0,1.0,11791
+44293732,T25,[['London']],1.0,1.0,London
+44293732,T26,[['London']],1.0,1.0,London
+44293732,T27,[['Sunderland']],1.0,1.0,Sunderland
+44293732,T28,[['London']],1.0,1.0,London
+44293732,T29,[['London']],1.0,1.0,London
+44377680,T1,[['Hamburg']],1.0,1.0,Hamburg
+44377680,T2,[['Liverpool']],1.0,1.0,Liverpool
+44377680,T3,[['Hamburg']],1.0,1.0,Hamburg
+44377680,T4,[['Bombay']],1.0,1.0,Bombay
+44377680,T5,[['London']],1.0,1.0,London
+44377680,T7,[['Shields']],1.0,1.0,Shields
+44377680,T8,[['London']],1.0,1.0,London
+44377680,T9,[['London']],1.0,1.0,London
+44377680,T10,[['London']],1.0,1.0,London
+44377680,T11,[['Bermuda']],1.0,1.0,Bermuda
+44377680,T13,[['London']],1.0,1.0,London
+44377680,T14,[['Sunderland']],1.0,1.0,Sunderland
+44377680,T15,[['Greenwich']],1.0,1.0,Greenwich
+44377680,T16,"[['New'], ['York']]",1.0,1.0,New York
+44377680,T17,[['Bridport']],1.0,1.0,Bridport
+44377680,T19,[['London']],1.0,1.0,London
+44377680,T20,[['Liverpool']],1.0,1.0,Liverpool
+44377680,T21,[['Newcastle']],1.0,1.0,Newcastle
+44377680,T22,[['London']],1.0,1.0,London
+44377680,T23,[['Liverpool']],1.0,1.0,Liverpool
+44377680,T25,[['Liverpool']],1.0,1.0,Liverpool
+44377680,T26,[['17530']],1.0,1.0,17530
+44377680,T27,[['London']],1.0,1.0,London
+44377680,T28,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44377680,T29,[['Sunderland']],1.0,1.0,Sunderland
+44377681,T1,[['Shields']],1.0,1.0,Shields
+44377681,T2,[['Aberdeen']],1.0,1.0,Aberdeen
+44377681,T3,[['16240']],1.0,1.0,16240
+44377681,T4,[['London']],1.0,1.0,London
+44377681,T5,[['Arendal']],1.0,1.0,Arendal
+44377681,T7,[['London']],1.0,1.0,London
+44377681,T8,[['London']],1.0,1.0,London
+44377681,T9,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44377681,T10,[['Liverpool']],1.0,1.0,Liverpool
+44377681,T11,[['Milford']],1.0,1.0,Milford
+44377681,T13,[['Liverpool']],1.0,1.0,Liverpool
+44377681,T14,[['Shields']],1.0,1.0,Shields
+44377681,T15,[['London']],1.0,1.0,London
+44377681,T16,[['London']],1.0,1.0,London
+44377681,T17,[['Sunderland']],1.0,1.0,Sunderland
+44377681,T19,[['London']],1.0,1.0,London
+44377681,T20,[['London']],1.0,1.0,London
+44377681,T21,[['Sunderland']],1.0,1.0,Sunderland
+44377681,T22,[['Biorneborg']],1.0,1.0,Biorneborg
+44377681,T23,[['Liverpool']],1.0,1.0,Liverpool
+44377681,T25,[['Whitby']],1.0,1.0,Whitby
+44377681,T26,[['Liverpool']],1.0,1.0,Liverpool
+44377681,T27,[['Bristol']],1.0,1.0,Bristol
+44377681,T28,[['London']],1.0,1.0,London
+44377681,T29,[['Malta']],1.0,1.0,Malta
+44377682,T1,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44377682,T2,[['Liverpool']],1.0,1.0,Liverpool
+44377682,T3,[['Falmouth']],1.0,1.0,Falmouth
+44377682,T4,[['Glasgow']],1.0,1.0,Glasgow
+44377682,T5,[['London']],1.0,1.0,London
+44377682,T7,[['Sunderland']],1.0,1.0,Sunderland
+44377682,T8,[['London']],1.0,1.0,London
+44377682,T9,"[['New'], ['York']]",1.0,1.0,New York
+44377682,T10,"[['New'], ['York']]",1.0,1.0,New York
+44377682,T11,[['Whitby']],1.0,1.0,Whitby
+44377682,T13,[['17934']],1.0,1.0,17934
+44377682,T14,[['17626']],1.0,1.0,17626
+44377682,T15,[['Hull']],1.0,1.0,Hull
+44377682,T16,[['Bristol']],1.0,1.0,Bristol
+44377682,T17,[['15805']],1.0,1.0,15805
+44377682,T19,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44377682,T20,[['Liverpool']],1.0,1.0,Liverpool
+44377682,T21,[['Archangel']],1.0,1.0,Archangel
+44377682,T22,[['London']],1.0,1.0,London
+44377682,T23,[['Liverpool']],1.0,1.0,Liverpool
+44377682,T25,[['London']],1.0,1.0,London
+44377682,T26,[['London']],1.0,1.0,London
+44377682,T27,[['Hamburg']],1.0,1.0,Hamburg
+44377682,T28,[['13951']],1.0,1.0,13951
+44377682,T29,[['London']],1.0,1.0,London
+44377683,T1,[['17542']],1.0,1.0,17542
+44377683,T2,[['Liverpool']],1.0,1.0,Liverpool
+44377683,T3,[['London']],1.0,1.0,London
+44377683,T4,[['Malta']],1.0,1.0,Malta
+44377683,T5,"[['Cape'], ['Coast']]",1.0,1.0,Cape Coast
+44377683,T7,[['London']],1.0,1.0,London
+44377683,T8,[['16868']],1.0,1.0,16868
+44377683,T9,[['Lancaster']],1.0,1.0,Lancaster
+44377683,T10,[['Naples']],1.0,1.0,Naples
+44377683,T11,[['Bristol']],1.0,1.0,Bristol
+44377683,T13,[['London']],1.0,1.0,London
+44377683,T14,[['London']],1.0,1.0,London
+44377683,T15,[['London']],1.0,1.0,London
+44377683,T16,[['Bristol']],1.0,1.0,Bristol
+44377683,T17,[['London']],1.0,1.0,London
+44377683,T19,[['787']],1.0,1.0,787
+44377683,T20,[['Salem']],1.0,1.0,Salem
+44377683,T21,[['London']],1.0,1.0,London
+44377683,T22,[['7442']],1.0,1.0,7442
+44377683,T23,[['Liverpool']],1.0,1.0,Liverpool
+44377683,T25,[['Shields']],1.0,1.0,Shields
+44377683,T26,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44377683,T27,[['Bordeaux']],1.0,1.0,Bordeaux
+44377683,T28,[['Shields']],1.0,1.0,Shields
+44377683,T29,[['Leith']],1.0,1.0,Leith
+44377684,T1,[['Aberdeen']],1.0,1.0,Aberdeen
+44377684,T2,[['Liverpool']],1.0,1.0,Liverpool
+44377684,T3,[['Liverpool']],1.0,1.0,Liverpool
+44377684,T4,[['London']],1.0,1.0,London
+44377684,T5,[['16771']],1.0,1.0,16771
+44377684,T7,[['London']],1.0,1.0,London
+44377684,T8,[['Shields']],1.0,1.0,Shields
+44377684,T9,[['Sunderland']],1.0,1.0,Sunderland
+44377684,T10,[['Shields']],1.0,1.0,Shields
+44377684,T11,[['Bombay']],1.0,1.0,Bombay
+44377684,T13,[['Liverpool']],1.0,1.0,Liverpool
+44377684,T14,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44377684,T15,[['Liverpool']],1.0,1.0,Liverpool
+44377684,T16,[['Newcastle']],1.0,1.0,Newcastle
+44377684,T17,[['Leith']],1.0,1.0,Leith
+44377684,T19,[['Shields']],1.0,1.0,Shields
+44377684,T20,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44377684,T21,[['London']],1.0,1.0,London
+44377684,T22,[['Smyrna']],1.0,1.0,Smyrna
+44377684,T23,[['Wisbech']],1.0,1.0,Wisbech
+44377684,T25,[['Quebec']],1.0,1.0,Quebec
+44377684,T26,[['!8092']],1.0,1.0,!8092
+44377684,T27,[['London']],1.0,1.0,London
+44377684,T28,[['Greenwich']],1.0,1.0,Greenwich
+44377684,T29,[['Londo']],1.0,1.0,Londo
+44377685,T1,[['!7586']],1.0,1.0,!7586
+44377685,T2,[['17592']],1.0,1.0,17592
+44377685,T3,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44377685,T4,[['Boston']],1.0,1.0,Boston
+44377685,T5,[['London']],1.0,1.0,London
+44377685,T7,[['Shields']],1.0,1.0,Shields
+44377685,T8,[['London']],1.0,1.0,London
+44377685,T9,[['Shields']],1.0,1.0,Shields
+44377685,T10,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44377685,T11,[['London']],1.0,1.0,London
+44377685,T13,[['Shields']],1.0,1.0,Shields
+44377685,T14,"[['Hill'], ['Navy']]",1.0,1.0,Hill Navy
+44377685,T15,[['London']],1.0,1.0,London
+44377685,T16,[['Shields']],1.0,1.0,Shields
+44377685,T17,[['London']],1.0,1.0,London
+44377685,T19,[['London']],1.0,1.0,London
+44377685,T20,[['18044']],1.0,1.0,18044
+44377685,T21,[['Liverpool']],1.0,1.0,Liverpool
+44377685,T22,[['London']],1.0,1.0,London
+44377685,T23,[['Liverpool']],1.0,1.0,Liverpool
+44377685,T25,[['Shields']],1.0,1.0,Shields
+44377685,T26,[['Shields']],1.0,1.0,Shields
+44377685,T27,[['Falmouth']],1.0,1.0,Falmouth
+44377685,T28,[['Sunderland']],1.0,1.0,Sunderland
+44377685,T29,[['London']],1.0,1.0,London
+44399540,T1,[['Sunderland']],1.0,1.0,Sunderland
+44399540,T2,[['Liverpool']],1.0,1.0,Liverpool
+44399540,T3,[['Bangor']],1.0,1.0,Bangor
+44399540,T4,[['London']],1.0,1.0,London
+44399540,T5,[['Liverpool']],1.0,1.0,Liverpool
+44399540,T7,[['46058']],1.0,1.0,46058
+44399540,T8,[['44382']],1.0,1.0,44382
+44399540,T9,[['London']],1.0,1.0,London
+44399540,T10,[['Cork']],1.0,1.0,Cork
+44399540,T11,[['London']],1.0,1.0,London
+44399540,T13,[['45733']],1.0,1.0,45733
+44399540,T14,[['Cromarty']],1.0,1.0,Cromarty
+44399540,T15,[['Banff']],1.0,1.0,Banff
+44399540,T16,"[['New'], ['York']]",1.0,1.0,New York
+44399540,T17,[['Greenock']],1.0,1.0,Greenock
+44399540,T19,[['Cortellazo']],1.0,1.0,Cortellazo
+44399540,T20,[['Ilfracombe']],1.0,1.0,Ilfracombe
+44399540,T21,[['London']],1.0,1.0,London
+44399540,T22,[['Lisbon']],1.0,1.0,Lisbon
+44399540,T23,[['London']],1.0,1.0,London
+44399540,T25,[['45298']],1.0,1.0,45298
+44399540,T26,[['Cardiff']],1.0,1.0,Cardiff
+44399540,T27,[['Southampton']],1.0,1.0,Southampton
+44399540,T28,[['Gothenburg']],1.0,1.0,Gothenburg
+44399540,T29,[['London']],1.0,1.0,London
+44399541,T1,[['46553']],1.0,1.0,46553
+44399541,T2,"[['Hobart'], ['Town']]",1.0,1.0,Hobart Town
+44399541,T3,"[['New'], ['York']]",1.0,1.0,New York
+44399541,T4,[['Calcutta']],1.0,1.0,Calcutta
+44399541,T5,"[['Sierra'], ['Leone']]",1.0,1.0,Sierra Leone
+44399541,T7,[['London']],1.0,1.0,London
+44399541,T8,[['[?]']],1.0,1.0,[?]
+44399541,T9,[['Jersey']],1.0,1.0,Jersey
+44399541,T10,[['London']],1.0,1.0,London
+44399541,T11,[['Sunderland']],1.0,1.0,Sunderland
+44399541,T13,[['LIverpool']],1.0,1.0,LIverpool
+44399541,T14,[['Gottenburg']],1.0,1.0,Gottenburg
+44399541,T15,[['Yarmouth']],1.0,1.0,Yarmouth
+44399541,T16,[['London']],1.0,1.0,London
+44399541,T17,[['London']],1.0,1.0,London
+44399541,T19,[['Yarmouth']],1.0,1.0,Yarmouth
+44399541,T20,[['Swansea']],1.0,1.0,Swansea
+44399541,T21,[['Barking']],1.0,1.0,Barking
+44399541,T22,[['London']],1.0,1.0,London
+44399541,T23,[['Madras']],1.0,1.0,Madras
+44399541,T25,[['Carmarthen']],1.0,1.0,Carmarthen
+44399541,T26,[['London']],1.0,1.0,London
+44399541,T27,[['Teneriffe']],1.0,1.0,Teneriffe
+44399541,T28,[['London']],1.0,1.0,London
+44399541,T29,[['Shield']],1.0,1.0,Shield
+44399542,T1,[['London']],1.0,1.0,London
+44399542,T2,[['[?]']],1.0,1.0,[?]
+44399542,T3,[['Liverpool']],1.0,1.0,Liverpool
+44399542,T4,[['London']],1.0,1.0,London
+44399542,T5,[['Hull']],1.0,1.0,Hull
+44399542,T7,[['45941']],1.0,1.0,45941
+44399542,T8,[['London']],1.0,1.0,London
+44399542,T9,[['Shields']],1.0,1.0,Shields
+44399542,T10,"[['{????]'], ['Navy']]",1.0,1.0,{????] Navy
+44399542,T11,[['46064']],1.0,1.0,46064
+44399542,T13,[['44252']],1.0,1.0,44252
+44399542,T14,[['London']],1.0,1.0,London
+44399542,T15,[['46311']],1.0,1.0,46311
+44399542,T16,[['Limerick']],1.0,1.0,Limerick
+44399542,T17,[['Blyth']],1.0,1.0,Blyth
+44399542,T19,[['Barking']],1.0,1.0,Barking
+44399542,T20,[['Wisbech']],1.0,1.0,Wisbech
+44399542,T21,[['Shields']],1.0,1.0,Shields
+44399542,T22,[['Plymouth']],1.0,1.0,Plymouth
+44399542,T23,[['Norrkoping']],1.0,1.0,Norrkoping
+44399542,T25,[['London']],1.0,1.0,London
+44399542,T26,[['44303']],1.0,1.0,44303
+44399542,T27,[['Jamaica']],1.0,1.0,Jamaica
+44399542,T28,[['London']],1.0,1.0,London
+44399542,T29,[['46389']],1.0,1.0,46389
+44399543,T1,[['34459']],1.0,1.0,34459
+44399543,T2,[['London']],1.0,1.0,London
+44399543,T3,[['Barking']],1.0,1.0,Barking
+44399543,T4,"[['[?????]'], ['Navy']]",1.0,1.0,[?????] Navy
+44399543,T5,[['Lynn']],1.0,1.0,Lynn
+44399543,T7,[['London']],1.0,1.0,London
+44399543,T8,[['46300']],1.0,1.0,46300
+44399543,T9,[['Sunderland']],1.0,1.0,Sunderland
+44399543,T10,[['London']],1.0,1.0,London
+44399543,T11,[['44347']],1.0,1.0,44347
+44399543,T13,[['43730']],1.0,1.0,43730
+44399543,T14,[['London']],1.0,1.0,London
+44399543,T15,[['Dundee']],1.0,1.0,Dundee
+44399543,T16,[['London']],1.0,1.0,London
+44399543,T17,[['Portsmouth']],1.0,1.0,Portsmouth
+44399543,T19,[['301859']],1.0,1.0,301859
+44399543,T20,[['Calcutta']],1.0,1.0,Calcutta
+44399543,T21,[['London']],1.0,1.0,London
+44399543,T22,[['Hull']],1.0,1.0,Hull
+44399543,T23,[['39424']],1.0,1.0,39424
+44399543,T25,[['Youghall']],1.0,1.0,Youghall
+44399543,T26,[['Valparaiso']],1.0,1.0,Valparaiso
+44399543,T27,[['Cork']],1.0,1.0,Cork
+44399543,T28,[['Tortola']],1.0,1.0,Tortola
+44399543,T29,[['Stockton']],1.0,1.0,Stockton
+44399544,T1,[['Barking']],1.0,1.0,Barking
+44399544,T2,[['37294']],1.0,1.0,37294
+44399544,T3,[['Jamaica']],1.0,1.0,Jamaica
+44399544,T4,[['Leith']],1.0,1.0,Leith
+44399544,T5,[['43294']],1.0,1.0,43294
+44399544,T7,[['London']],1.0,1.0,London
+44399544,T8,[['London']],1.0,1.0,London
+44399544,T9,[['Halifax']],1.0,1.0,Halifax
+44399544,T10,[['40911']],1.0,1.0,40911
+44399544,T11,[['Belfast']],1.0,1.0,Belfast
+44399544,T13,[['44154']],1.0,1.0,44154
+44399544,T14,[['44081']],1.0,1.0,44081
+44399544,T15,[['46542']],1.0,1.0,46542
+44399544,T16,[['Hartlepool']],1.0,1.0,Hartlepool
+44399544,T17,[['Brixham']],1.0,1.0,Brixham
+44399544,T19,[['Brixham']],1.0,1.0,Brixham
+44399544,T20,[['London']],1.0,1.0,London
+44399544,T21,[['44354']],1.0,1.0,44354
+44399544,T22,[['Liverpool']],1.0,1.0,Liverpool
+44399544,T23,[['Sunderland']],1.0,1.0,Sunderland
+44399544,T25,[['46575']],1.0,1.0,46575
+44399544,T26,[['London']],1.0,1.0,London
+44399544,T27,[['London']],1.0,1.0,London
+44399544,T28,[['London']],1.0,1.0,London
+44399544,T29,[['Stockton']],1.0,1.0,Stockton
+44441923,T1,"[['Sunderland', 'Sunderland']]",2.0,2.0,Sunderland
+44441923,T2,"[['Friderickstadt', 'Frederickstadt']]",2.0,1.0,Friderickstadt
+44441923,T3,"[['New', 'New'], ['York', 'York']]",2.0,2.0,New York
+44441923,T4,"[['Dantsic', 'Dantsic']]",2.0,2.0,Dantsic
+44441923,T5,"[['Sunderland', 'Sunderland']]",2.0,2.0,Sunderland
+44441923,T7,"[['Liverpool', 'Liverpool']]",2.0,2.0,Liverpool
+44441923,T8,"[['Christiansand', 'Christiansand']]",2.0,2.0,Christiansand
+44441923,T9,"[['Liverpool', 'Liverpool']]",2.0,2.0,Liverpool
+44441923,T10,"[['Cardiff', 'Cardiff']]",2.0,2.0,Cardiff
+44441923,T11,"[['Gottenburg', 'Gottenburg']]",2.0,2.0,Gottenburg
+44441923,T13,"[['Newcastle', 'Newcastle']]",2.0,2.0,Newcastle
+44441923,T14,"[['London', 'London']]",2.0,2.0,London
+44441923,T15,"[['Frederickstadt', 'Frederickstadt']]",2.0,2.0,Frederickstadt
+44441923,T16,"[['Christiana', 'Christiana']]",2.0,2.0,Christiana
+44441923,T17,"[['Dantsic', 'Dantsic']]",2.0,2.0,Dantsic
+44441923,T19,"[['London', 'London']]",2.0,2.0,London
+44441923,T20,"[['Fredericksand', 'Fredericksand']]",2.0,2.0,Fredericksand
+44441923,T21,"[['Shields', 'Shields']]",2.0,2.0,Shields
+44441923,T22,"[['London', 'London']]",2.0,2.0,London
+44441923,T23,"[['New', 'New'], ['York', 'York']]",2.0,2.0,New York
+44441923,T25,"[['79212', '79212']]",2.0,2.0,79212
+44441923,T26,"[['Sunderland', 'Sunderland']]",2.0,2.0,Sunderland
+44441923,T27,"[['80903', '80903']]",2.0,2.0,80903
+44441923,T28,"[['Krageroe', 'Krageroe']]",2.0,2.0,Krageroe
+44441923,T29,"[['Lisbon', 'Lisbon']]",2.0,2.0,Lisbon
+44441924,T1,"[['Viana', 'Viana']]",2.0,2.0,Viana
+44441924,T2,"[['Lisbon', 'Lisbon']]",2.0,2.0,Lisbon
+44441924,T3,"[['Dantsic', 'Dantsic']]",2.0,2.0,Dantsic
+44441924,T4,"[['Mermel', 'Mermel']]",2.0,2.0,Mermel
+44441924,T5,"[['Malmo', 'Malmo']]",2.0,2.0,Malmo
+44441924,T7,"[['Malmo', 'Malmo']]",2.0,2.0,Malmo
+44441924,T8,"[['Boston', 'Boston']]",2.0,2.0,Boston
+44441924,T9,"[['Christiana', 'Christiana']]",2.0,2.0,Christiana
+44441924,T10,"[['London', 'London']]",2.0,2.0,London
+44441924,T11,"[['Stettin', 'Stettin']]",2.0,2.0,Stettin
+44441924,T13,"[['Dantsic', 'Dantsic']]",2.0,2.0,Dantsic
+44441924,T14,"[['Fiume', 'Fiume']]",2.0,2.0,Fiume
+44441924,T15,"[['Maldon', 'Maldon']]",2.0,2.0,Maldon
+44441924,T16,"[['Frederickstadt', 'Frederickstadt']]",2.0,2.0,Frederickstadt
+44441924,T17,"[['00', '00']]",2.0,2.0,00
+44441924,T19,"[['Boston', 'Boston'], ['U.S.', 'U.S.']]",2.0,2.0,Boston U.S.
+44441924,T20,"[['Valparaiso', 'Valparaiso']]",2.0,2.0,Valparaiso
+44441924,T21,"[['Liverpool', 'Liverpool']]",2.0,2.0,Liverpool
+44441924,T22,"[['Dantsic', 'Dantsic']]",2.0,2.0,Dantsic
+44441924,T23,"[['Odessa', 'Odessa']]",2.0,2.0,Odessa
+44441924,T25,"[['London', 'London']]",2.0,2.0,London
+44441924,T26,"[['Jamaica', 'Jamaica']]",2.0,2.0,Jamaica
+44441924,T27,"[['Hartlepool', 'Hartlepool']]",2.0,2.0,Hartlepool
+44441924,T28,"[['London', 'London']]",2.0,2.0,London
+44441924,T29,"[['Hamburg', 'Hamburg']]",2.0,2.0,Hamburg
+44441925,T1,"[['Liverpool', 'Liverpool']]",2.0,2.0,Liverpool
+44441925,T2,"[['Copenhagen', 'Copenhagen']]",2.0,2.0,Copenhagen
+44441925,T3,"[['Uleaborg', 'Uleaborg']]",2.0,2.0,Uleaborg
+44441925,T4,"[['Newport', 'Newport']]",2.0,2.0,Newport
+44441925,T5,"[['London', 'London']]",2.0,2.0,London
+44441925,T7,"[['81583', '81582'], ['(Cº', '(Cº'], ['2ºº', '2ºº'], ['(...)', 'I(...)t'], [')', '']]",2.0,1.4,81583 (Cº 2ºº (...) )
+44441925,T8,"[['Liverpool', 'Liverpool']]",2.0,2.0,Liverpool
+44441925,T9,"[['London', 'London']]",2.0,2.0,London
+44441925,T10,"[['London', 'London']]",2.0,2.0,London
+44441925,T11,"[['79474', '79474']]",2.0,2.0,79474
+44441925,T13,"[['London', 'London']]",2.0,2.0,London
+44441925,T14,"[['Glasgow', 'Glasgow']]",2.0,2.0,Glasgow
+44441925,T15,"[['London', 'London']]",2.0,2.0,London
+44441925,T16,"[['81549', '81549']]",2.0,2.0,81549
+44441925,T17,"[['Padstow', 'Padstow']]",2.0,2.0,Padstow
+44441925,T19,"[['London', 'London']]",2.0,2.0,London
+44441925,T20,"[['Barking', 'Barking']]",2.0,2.0,Barking
+44441925,T21,"[['Seaham', 'Seaham']]",2.0,2.0,Seaham
+44441925,T22,"[['Cardiff', 'Cardiff']]",2.0,2.0,Cardiff
+44441925,T23,"[['81506', '81506'], ['(65', '(65'], ['days)', 'days'], ['Cured', 'Cured'], ['7th', '7th'], ['May', 'May)']]",2.0,1.6666666666666667,81506 (65 days) Cured 7th May
+44441925,T25,"[['Boston', 'Boston'], ['U.S.', 'U.S.']]",2.0,2.0,Boston U.S.
+44441925,T26,"[['Sunderland', 'Sunderland']]",2.0,2.0,Sunderland
+44441925,T27,"[['Dantsic', 'Dantsic']]",2.0,2.0,Dantsic
+44441925,T28,"[['London', 'London']]",2.0,2.0,London
+44441925,T29,"[['Liverpool', 'Liverpool']]",2.0,2.0,Liverpool
+44441926,T1,"[['Christiansand', 'Christiansand']]",2.0,2.0,Christiansand
+44441926,T2,"[['Shields', 'Shields']]",2.0,2.0,Shields
+44441926,T3,"[['New', 'New'], ['York', 'York']]",2.0,2.0,New York
+44441926,T4,"[['Southampton', 'Southampton']]",2.0,2.0,Southampton
+44441926,T5,"[['Liverpool', 'Liverpool']]",2.0,2.0,Liverpool
+44441926,T7,"[['Hartlepool', 'Hartlepool']]",2.0,2.0,Hartlepool
+44441926,T8,"[['Shields', 'Shields']]",2.0,2.0,Shields
+44441926,T9,"[['London', 'London']]",2.0,2.0,London
+44441926,T10,"[['80443', '80443']]",2.0,2.0,80443
+44441926,T11,"[['Liverpool', 'Liverpool']]",2.0,2.0,Liverpool
+44441926,T13,"[['Christiana', 'Christiana']]",2.0,2.0,Christiana
+44441926,T14,"[['New', 'New'], ['York', 'York']]",2.0,2.0,New York
+44441926,T15,"[['00', '00']]",2.0,2.0,00
+44441926,T16,"[['London', 'London']]",2.0,2.0,London
+44441926,T17,"[['London', 'London']]",2.0,2.0,London
+44441926,T19,"[['00', '00']]",2.0,2.0,00
+44441926,T20,"[['London', 'London']]",2.0,2.0,London
+44441926,T21,"[['Dantsic', 'Dantsic']]",2.0,2.0,Dantsic
+44441926,T22,"[['Dantsic', 'Dantsic']]",2.0,2.0,Dantsic
+44441926,T23,"[['New', 'New'], ['York', 'York']]",2.0,2.0,New York
+44441926,T25,"[['New', 'New'], ['York', 'York']]",2.0,2.0,New York
+44441926,T26,"[['London', 'London']]",2.0,2.0,London
+44441926,T27,"[['Port', 'Port'], ['Madoc', 'Madoc']]",2.0,2.0,Port Madoc
+44441926,T28,"[['London', 'London']]",2.0,2.0,London
+44441926,T29,"[['London', 'London']]",2.0,2.0,London
+44441928,T1,"[['Boston', 'Boston']]",2.0,2.0,Boston
+44441928,T2,"[['London', 'London']]",2.0,2.0,London
+44441928,T3,"[['Shields', 'Shields']]",2.0,2.0,Shields
+44441928,T4,"[['London', 'London']]",2.0,2.0,London
+44441928,T5,"[['81450', '81450'], ['Convalescent', 'Convalescent'], ['16th', '16th'], ['Ins(...)', 'Inst'], ['in', 'in'], ['84', '84'], ['days', 'days.']]",2.0,1.7142857142857142,81450 Convalescent 16th Ins(...) in 84 days
+44441928,T7,"[['London', 'London']]",2.0,2.0,London
+44441928,T8,"[['London', 'London']]",2.0,2.0,London
+44441928,T9,"[['London', 'London']]",2.0,2.0,London
+44441928,T10,"[['Sunswald', 'Sunswald']]",2.0,2.0,Sunswald
+44441928,T11,"[['Boston', 'Boston']]",2.0,2.0,Boston
+44441928,T13,"[['Shields', 'Shields']]",2.0,2.0,Shields
+44441928,T14,"[['Montego', 'Montego'], ['Bay', 'Bay']]",2.0,2.0,Montego Bay
+44441928,T15,"[['Rochester', 'Rochester']]",2.0,2.0,Rochester
+44441928,T16,"[['London', 'London']]",2.0,2.0,London
+44441928,T17,"[['Liverpool', 'Liverpool']]",2.0,2.0,Liverpool
+44441928,T19,"[['London', 'London']]",2.0,2.0,London
+44441928,T20,"[['Greenock', 'Greenock']]",2.0,2.0,Greenock
+44441928,T21,"[['St.', 'St.'], ['Kitts', 'Kitts']]",2.0,2.0,St. Kitts
+44441928,T22,"[['Shields', 'Shields']]",2.0,2.0,Shields
+44441928,T23,"[['Copenhagen', 'Copenhagen']]",2.0,2.0,Copenhagen
+44441928,T25,"[['Trieste', 'Triste']]",2.0,1.0,Trieste
+44441928,T26,"[['Blankaness', 'Blankanese']]",2.0,1.0,Blankaness
+44441928,T27,"[['London', 'London']]",2.0,2.0,London
+44441928,T28,"[['81722', '81722']]",2.0,2.0,81722
+44441928,T29,"[['Brierstadt', 'Brierstadt']]",2.0,2.0,Brierstadt
+44441929,T1,"[['New'], ['York']]",1.0,1.0,New York
+44441929,T2,[['Christiansand']],1.0,1.0,Christiansand
+44441929,T3,[['Gothenburg']],1.0,1.0,Gothenburg
+44441929,T4,[['Bridport']],1.0,1.0,Bridport
+44441929,T5,[['Tunsberg']],1.0,1.0,Tunsberg
+44441929,T7,[['Manilla']],1.0,1.0,Manilla
+44441929,T8,[['Salem']],1.0,1.0,Salem
+44441929,T9,"[['H.M.S.'], ['Invalided']]",1.0,1.0,H.M.S. Invalided
+44441929,T10,[['London']],1.0,1.0,London
+44441929,T11,[['London']],1.0,1.0,London
+44441929,T13,[['Jersey']],1.0,1.0,Jersey
+44441929,T14,[['London']],1.0,1.0,London
+44441929,T15,[['Greenock']],1.0,1.0,Greenock
+44441929,T16,[['Kioge']],1.0,1.0,Kioge
+44441929,T17,[['London']],1.0,1.0,London
+44441929,T19,[['Seaham']],1.0,1.0,Seaham
+44441929,T20,[['London']],1.0,1.0,London
+44441929,T21,"[['Boston'], ['U.S.']]",1.0,1.0,Boston U.S.
+44441929,T22,[['Hartlepool']],1.0,1.0,Hartlepool
+44441929,T23,[['Hull']],1.0,1.0,Hull
+44441929,T25,[['Memel']],1.0,1.0,Memel
+44441929,T26,[['Drobak']],1.0,1.0,Drobak
+44441929,T27,[['London']],1.0,1.0,London
+44441929,T28,[['Arindal']],1.0,1.0,Arindal
+44441929,T29,[['London']],1.0,1.0,London
+44441930,T1,[['Philadelphia']],1.0,1.0,Philadelphia
+44441930,T2,[['London']],1.0,1.0,London
+44441930,T3,[['00']],1.0,1.0,00
+44441930,T4,[['London']],1.0,1.0,London
+44441930,T5,[['Barking']],1.0,1.0,Barking
+44441930,T7,[['Anclam']],1.0,1.0,Anclam
+44441930,T8,[['Liverpool']],1.0,1.0,Liverpool
+44441930,T9,[['80597']],1.0,1.0,80597
+44441930,T10,"[['Cape'], ['Town']]",1.0,1.0,Cape Town
+44441930,T11,[['Stockholm']],1.0,1.0,Stockholm
+44441930,T13,[['London']],1.0,1.0,London
+44441930,T14,[['London']],1.0,1.0,London
+44441930,T15,[['Odessa']],1.0,1.0,Odessa
+44441930,T16,[['Goole']],1.0,1.0,Goole
+44441930,T17,[['Barking']],1.0,1.0,Barking
+44441930,T19,[['H.M.S.']],1.0,1.0,H.M.S.
+44441930,T20,[['London']],1.0,1.0,London
+44441930,T21,[['00']],1.0,1.0,00
+44441930,T22,[['Shields']],1.0,1.0,Shields
+44441930,T23,"[['New'], ['York']]",1.0,1.0,New York
+44441930,T25,"[['New'], ['York']]",1.0,1.0,New York
+44441930,T26,[['00']],1.0,1.0,00
+44441930,T27,"[['Black'], ['River']]",1.0,1.0,Black River
+44441930,T28,[['Hamburg']],1.0,1.0,Hamburg
+44441930,T29,[['Hamburg']],1.0,1.0,Hamburg
+44441931,T1,[['Dundee']],1.0,1.0,Dundee
+44441931,T2,[['London']],1.0,1.0,London
+44441931,T3,[['Hull']],1.0,1.0,Hull
+44441931,T4,[['Adelaide']],1.0,1.0,Adelaide
+44441931,T5,[['Dantsic']],1.0,1.0,Dantsic
+44441931,T7,[['Workum']],1.0,1.0,Workum
+44441931,T8,[['00']],1.0,1.0,00
+44441931,T9,[['Lahr']],1.0,1.0,Lahr
+44441931,T10,[['Shields']],1.0,1.0,Shields
+44441931,T11,[['Shields']],1.0,1.0,Shields
+44441931,T13,[['London']],1.0,1.0,London
+44441931,T14,[['Deptford']],1.0,1.0,Deptford
+44441931,T15,[['Barking']],1.0,1.0,Barking
+44441931,T16,[['Jersey']],1.0,1.0,Jersey
+44441931,T17,[['Boston']],1.0,1.0,Boston
+44441931,T19,"[['81394'], ['Relieved'], ['4th'], ['June.'], ['In'], ['113'], ['days']]",1.0,1.0,81394 Relieved 4th June. In 113 days
+44441931,T20,[['80791']],1.0,1.0,80791
+44441931,T21,[['Hartlepool']],1.0,1.0,Hartlepool
+44441931,T22,[['Rostoc']],1.0,1.0,Rostoc
+44441931,T23,[['00']],1.0,1.0,00
+44441931,T25,[['Shields']],1.0,1.0,Shields
+44441931,T26,[['Glasgow']],1.0,1.0,Glasgow
+44441931,T27,[['Ragusa']],1.0,1.0,Ragusa
+44441931,T28,"[['New'], ['York']]",1.0,1.0,New York
+44441931,T29,[['00']],1.0,1.0,00
+44441932,T1,[['London']],1.0,1.0,London
+44441932,T2,[['London']],1.0,1.0,London
+44441932,T3,[['Apenrade']],1.0,1.0,Apenrade
+44441932,T4,[['London']],1.0,1.0,London
+44441932,T5,[['London']],1.0,1.0,London
+44441932,T7,[['Goole']],1.0,1.0,Goole
+44441932,T8,[['London']],1.0,1.0,London
+44441932,T9,[['London']],1.0,1.0,London
+44441932,T10,[['Sunderland']],1.0,1.0,Sunderland
+44441932,T11,"[['New'], ['York']]",1.0,1.0,New York
+44441932,T13,[['Shields']],1.0,1.0,Shields
+44441932,T14,[['Stralsund']],1.0,1.0,Stralsund
+44441932,T15,[['Jersey']],1.0,1.0,Jersey
+44441932,T16,[['Liverpool']],1.0,1.0,Liverpool
+44441932,T17,[['00']],1.0,1.0,00
+44441932,T19,[['Stockholm']],1.0,1.0,Stockholm
+44441932,T20,[['London']],1.0,1.0,London
+44441932,T21,"[['81778'], ['Died'], ['19th'], ['May']]",1.0,1.0,81778 Died 19th May
+44441932,T22,[['Liverpool']],1.0,1.0,Liverpool
+44441932,T23,[['Liverpool']],1.0,1.0,Liverpool
+44441932,T25,[['Amsterdam']],1.0,1.0,Amsterdam
+44441932,T26,[['Barking']],1.0,1.0,Barking
+44441932,T27,[['London']],1.0,1.0,London
+44441932,T28,[['Shields']],1.0,1.0,Shields
+44441932,T29,[['London']],1.0,1.0,London
+44441933,T1,[['00']],1.0,1.0,00
+44441933,T2,[['London']],1.0,1.0,London
+44441933,T3,[['Riga']],1.0,1.0,Riga
+44441933,T4,[['Portsmouth']],1.0,1.0,Portsmouth
+44441933,T5,[['London']],1.0,1.0,London
+44441933,T7,[['Sunderland']],1.0,1.0,Sunderland
+44441933,T8,[['72572']],1.0,1.0,72572
+44441933,T9,[['Cardiff']],1.0,1.0,Cardiff
+44441933,T10,[['London']],1.0,1.0,London
+44441933,T11,[['Alnmouth']],1.0,1.0,Alnmouth
+44441933,T13,[['72984']],1.0,1.0,72984
+44441933,T14,[['81689']],1.0,1.0,81689
+44441933,T15,[['76225']],1.0,1.0,76225
+44441933,T16,[['Baltimore']],1.0,1.0,Baltimore
+44441933,T17,[['London']],1.0,1.0,London
+44441933,T19,[['London']],1.0,1.0,London
+44441933,T20,[['Glasgow']],1.0,1.0,Glasgow
+44441933,T21,[['Apenrade']],1.0,1.0,Apenrade
+44441933,T22,[['Liverpool']],1.0,1.0,Liverpool
+44441933,T23,[['Shoreham']],1.0,1.0,Shoreham
+44441933,T25,[['London']],1.0,1.0,London
+44441933,T26,[['Volgush']],1.0,1.0,Volgush
+44441933,T27,[['Stockholm']],1.0,1.0,Stockholm
+44441933,T28,[['Waterford']],1.0,1.0,Waterford
+44441933,T29,[['00']],1.0,1.0,00
+44441934,T1,[['Liverpool']],1.0,1.0,Liverpool
+44441934,T2,[['Shields']],1.0,1.0,Shields
+44441934,T3,[['London']],1.0,1.0,London
+44441934,T4,[['Liverpool']],1.0,1.0,Liverpool
+44441934,T5,[['Goole']],1.0,1.0,Goole
+44441934,T7,[['Rochester']],1.0,1.0,Rochester
+44441934,T8,[['Seaham']],1.0,1.0,Seaham
+44441934,T9,[['Ardrossan']],1.0,1.0,Ardrossan
+44441934,T10,[['Oldenburg']],1.0,1.0,Oldenburg
+44441934,T11,[['00']],1.0,1.0,00
+44441934,T13,[['London']],1.0,1.0,London
+44441934,T14,[['Ragusa']],1.0,1.0,Ragusa
+44441934,T15,"[['New'], ['York']]",1.0,1.0,New York
+44441934,T16,[['Liverpool']],1.0,1.0,Liverpool
+44441934,T17,[['London']],1.0,1.0,London
+44441934,T19,[['Rochester']],1.0,1.0,Rochester
+44441934,T20,[['London']],1.0,1.0,London
+44441934,T21,[['79650']],1.0,1.0,79650
+44441934,T22,[['Newport']],1.0,1.0,Newport
+44441934,T23,[['Stockholm']],1.0,1.0,Stockholm
+44441934,T25,[['London']],1.0,1.0,London
+44441934,T26,[['Hull']],1.0,1.0,Hull
+44441934,T27,[['Rotterdam']],1.0,1.0,Rotterdam
+44441934,T28,[['Bourdeaux']],1.0,1.0,Bourdeaux
+44441934,T29,[['London']],1.0,1.0,London
+44441935,T1,[['Piollheli']],1.0,1.0,Piollheli
+44441935,T2,[['Piollheli']],1.0,1.0,Piollheli
+44441935,T3,[['Barking']],1.0,1.0,Barking
+44441935,T4,[['London']],1.0,1.0,London
+44441935,T5,[['London']],1.0,1.0,London
+44441935,T7,[['Liverpool']],1.0,1.0,Liverpool
+44441935,T8,[['Rotterdam']],1.0,1.0,Rotterdam
+44441935,T9,[['Liverpool']],1.0,1.0,Liverpool
+44441935,T10,[['00']],1.0,1.0,00
+44441935,T11,[['London']],1.0,1.0,London
+44441935,T13,[['London']],1.0,1.0,London
+44441935,T14,[['81166']],1.0,1.0,81166
+44441935,T15,[['Stettin']],1.0,1.0,Stettin
+44441935,T16,[['Groningen']],1.0,1.0,Groningen
+44441935,T17,[['Shields']],1.0,1.0,Shields
+44441935,T19,[['Liverpool']],1.0,1.0,Liverpool
+44441935,T20,"[['New'], ['York']]",1.0,1.0,New York
+44441935,T21,[['London']],1.0,1.0,London
+44441935,T22,[['Biorneborg']],1.0,1.0,Biorneborg
+44441935,T23,[['Liverpool']],1.0,1.0,Liverpool
+44441935,T25,[['London']],1.0,1.0,London
+44441935,T26,[['London']],1.0,1.0,London
+44441935,T27,[['Bergen']],1.0,1.0,Bergen
+44441935,T28,[['Bergen']],1.0,1.0,Bergen
+44441935,T29,[['HMS']],1.0,1.0,HMS
+44441936,T1,[['Newcastle']],1.0,1.0,Newcastle
+44441936,T2,[['Liverpool']],1.0,1.0,Liverpool
+44441936,T3,[['London']],1.0,1.0,London
+44441936,T4,[['London']],1.0,1.0,London
+44441936,T5,[['London']],1.0,1.0,London
+44441936,T7,[['London']],1.0,1.0,London
+44441936,T8,[['00']],1.0,1.0,00
+44441936,T9,[['00']],1.0,1.0,00
+44441936,T10,[['London']],1.0,1.0,London
+44441936,T11,[['Gottenburg']],1.0,1.0,Gottenburg
+44441936,T13,[['Liverpool']],1.0,1.0,Liverpool
+44441936,T14,[['Exmouth']],1.0,1.0,Exmouth
+44441936,T15,[['Liverpool']],1.0,1.0,Liverpool
+44441936,T16,[['Penzance']],1.0,1.0,Penzance
+44441936,T17,[['Liverpool']],1.0,1.0,Liverpool
+44441936,T19,[['London']],1.0,1.0,London
+44441936,T20,[['London']],1.0,1.0,London
+44441936,T21,[['London']],1.0,1.0,London
+44441936,T22,[['Sunderland']],1.0,1.0,Sunderland
+44441936,T23,[['81121']],1.0,1.0,81121
+44441936,T25,[['00']],1.0,1.0,00
+44441936,T26,[['London']],1.0,1.0,London
+44441936,T27,[['Greenock']],1.0,1.0,Greenock
+44441936,T28,[['81177']],1.0,1.0,81177
+44441936,T29,[['Gibraltar']],1.0,1.0,Gibraltar
+44441937,T1,[['London']],1.0,1.0,London
+44441937,T2,[['00']],1.0,1.0,00
+44441937,T3,[['Gravesend']],1.0,1.0,Gravesend
+44441937,T4,[['London']],1.0,1.0,London
+44441937,T5,[['79930']],1.0,1.0,79930
+44441937,T7,[['London']],1.0,1.0,London
+44441937,T8,[['London']],1.0,1.0,London
+44441937,T9,"[['Windsor'], ['N.S.']]",1.0,1.0,Windsor N.S.
+44441937,T10,[['London']],1.0,1.0,London
+44441937,T11,[['London']],1.0,1.0,London
+44441937,T13,[['Jersey']],1.0,1.0,Jersey
+44441937,T14,[['London']],1.0,1.0,London
+44441937,T15,[['Valparaiso']],1.0,1.0,Valparaiso
+44441937,T16,[['London']],1.0,1.0,London
+44441937,T17,[['Christinestad']],1.0,1.0,Christinestad
+44441937,T19,[['Newcastle']],1.0,1.0,Newcastle
+44441937,T20,[['Barking']],1.0,1.0,Barking
+44441937,T21,[['Cardiff']],1.0,1.0,Cardiff
+44441937,T22,[['Triest']],1.0,1.0,Triest
+44441937,T23,[['00']],1.0,1.0,00
+44441937,T25,[['00']],1.0,1.0,00
+44441937,T26,[['Hartlepool']],1.0,1.0,Hartlepool
+44441937,T27,[['London']],1.0,1.0,London
+44441937,T28,[['81986']],1.0,1.0,81986
+44441937,T29,[['London']],1.0,1.0,London
+44441938,T1,[['Liverpool']],1.0,1.0,Liverpool
+44441938,T2,[['H.M.S.']],1.0,1.0,H.M.S.
+44441938,T3,[['Greenwich']],1.0,1.0,Greenwich
+44441938,T4,[['Shields']],1.0,1.0,Shields
+44441938,T5,[['Liverpool']],1.0,1.0,Liverpool
+44441938,T7,[['Liverpool']],1.0,1.0,Liverpool
+44441938,T8,[['London']],1.0,1.0,London
+44441938,T9,[['London']],1.0,1.0,London
+44441938,T10,[['Southampton']],1.0,1.0,Southampton
+44441938,T11,[['Bremen']],1.0,1.0,Bremen
+44441938,T13,[['Bremen']],1.0,1.0,Bremen
+44441938,T14,[['London']],1.0,1.0,London
+44441938,T15,[['London']],1.0,1.0,London
+44441938,T16,"[['New'], ['York']]",1.0,1.0,New York
+44441938,T17,[['Shields']],1.0,1.0,Shields
+44441938,T19,[['Shields']],1.0,1.0,Shields
+44441938,T20,[['London']],1.0,1.0,London
+44441938,T21,[['London']],1.0,1.0,London
+44441938,T22,[['Bergen']],1.0,1.0,Bergen
+44441938,T23,[['Sydney']],1.0,1.0,Sydney
+44441938,T25,[['Sunderland']],1.0,1.0,Sunderland
+44441938,T26,"[['St.'], ['Kitts']]",1.0,1.0,St. Kitts
+44441938,T27,[['Bombay']],1.0,1.0,Bombay
+44441938,T28,"[['81994'], ['Stockholm']]",1.0,1.0,81994 Stockholm
+44441938,T29,[['Boston']],1.0,1.0,Boston
+44441939,T1,[['London']],1.0,1.0,London
+44441939,T2,[['Whitby']],1.0,1.0,Whitby
+44441939,T3,[['Dantzic']],1.0,1.0,Dantzic
+44441939,T4,[['Gottenburg']],1.0,1.0,Gottenburg
+44441939,T5,[['London']],1.0,1.0,London
+44441939,T7,[['Liverpool']],1.0,1.0,Liverpool
+44441939,T8,[['81699']],1.0,1.0,81699
+44441939,T9,[['Liverpool']],1.0,1.0,Liverpool
+44441939,T10,[['London']],1.0,1.0,London
+44441939,T11,[['Hamburg']],1.0,1.0,Hamburg
+44441939,T13,[['Liverpool']],1.0,1.0,Liverpool
+44441939,T14,[['00']],1.0,1.0,00
+44441939,T15,[['Copenhagen']],1.0,1.0,Copenhagen
+44441939,T16,[['Liverpool']],1.0,1.0,Liverpool
+44441939,T17,[['Liverpool']],1.0,1.0,Liverpool
+44441939,T19,[['London']],1.0,1.0,London
+44441939,T20,[['London']],1.0,1.0,London
+44441939,T21,[['Porsgrund']],1.0,1.0,Porsgrund
+44441939,T22,[['Southampton']],1.0,1.0,Southampton
+44441939,T23,[['London']],1.0,1.0,London
+44441939,T25,[['London']],1.0,1.0,London
+44441939,T26,[['Hull']],1.0,1.0,Hull
+44441939,T27,[['00']],1.0,1.0,00
+44441939,T28,[['81724']],1.0,1.0,81724
+44441939,T29,[['London']],1.0,1.0,London
+44441940,T1,"[['New'], ['York']]",1.0,1.0,New York
+44441940,T2,[['Mauritius']],1.0,1.0,Mauritius
+44441940,T3,[['Liverpool']],1.0,1.0,Liverpool
+44441940,T4,[['Liverpool']],1.0,1.0,Liverpool
+44441940,T5,[['London']],1.0,1.0,London
+44441940,T7,[['00']],1.0,1.0,00
+44441940,T8,[['Glasgow']],1.0,1.0,Glasgow
+44441940,T9,[['London']],1.0,1.0,London
+44441940,T10,"[['New'], ['York']]",1.0,1.0,New York
+44441940,T11,[['London']],1.0,1.0,London
+44441940,T13,[['Lisbon']],1.0,1.0,Lisbon
+44441940,T14,[['80930']],1.0,1.0,80930
+44441940,T15,[['Gottenburg']],1.0,1.0,Gottenburg
+44441940,T16,[['Gottenburg']],1.0,1.0,Gottenburg
+44441940,T17,[['81819']],1.0,1.0,81819
+44441940,T19,[['London']],1.0,1.0,London
+44441940,T20,[['HCS']],1.0,1.0,HCS
+44441940,T21,[['Liverpool']],1.0,1.0,Liverpool
+44441940,T22,[['Shields']],1.0,1.0,Shields
+44441940,T23,[['Liverpool']],1.0,1.0,Liverpool
+44441940,T25,[['London']],1.0,1.0,London
+44441940,T26,[['Calcutta']],1.0,1.0,Calcutta
+44441940,T27,[['Dantzic']],1.0,1.0,Dantzic
+44441940,T28,[['London']],1.0,1.0,London
+44441940,T29,[['Petersburg']],1.0,1.0,Petersburg
+44441941,T1,[['Halifax']],1.0,1.0,Halifax
+44441941,T2,[['Cork']],1.0,1.0,Cork
+44441941,T3,[['Sunderland']],1.0,1.0,Sunderland
+44441941,T4,[['Hartlepool']],1.0,1.0,Hartlepool
+44441941,T5,[['Hartlepool']],1.0,1.0,Hartlepool
+44441941,T7,[['Sunderland']],1.0,1.0,Sunderland
+44441941,T8,[['London']],1.0,1.0,London
+44441941,T9,"[['New'], ['York']]",1.0,1.0,New York
+44441941,T10,[['Glasgow']],1.0,1.0,Glasgow
+44441941,T11,[['Whitehaven']],1.0,1.0,Whitehaven
+44441941,T13,[['Baltimore']],1.0,1.0,Baltimore
+44441941,T14,[['Gottenburg']],1.0,1.0,Gottenburg
+44441941,T15,[['Liverpool']],1.0,1.0,Liverpool
+44441941,T16,[['Southampton']],1.0,1.0,Southampton
+44441941,T17,[['Liverpool']],1.0,1.0,Liverpool
+44441941,T19,[['Liverpool']],1.0,1.0,Liverpool
+44441941,T20,[['Dantzic']],1.0,1.0,Dantzic
+44441941,T21,[['Dantzic']],1.0,1.0,Dantzic
+44441941,T22,[['Dantzic']],1.0,1.0,Dantzic
+44441941,T23,[['Dantzic']],1.0,1.0,Dantzic
+44441941,T25,[['Dantzic']],1.0,1.0,Dantzic
+44441941,T26,"[['New'], ['York']]",1.0,1.0,New York
+44441941,T27,[['London']],1.0,1.0,London
+44441941,T28,[['London']],1.0,1.0,London
+44441941,T29,[['Drobak']],1.0,1.0,Drobak
+44441943,T1,[['Liverpool']],1.0,1.0,Liverpool
+44441943,T2,[['London']],1.0,1.0,London
+44441943,T3,[['Cardiff']],1.0,1.0,Cardiff
+44441943,T4,[['Sunderland']],1.0,1.0,Sunderland
+44441943,T5,[['Dover']],1.0,1.0,Dover
+44441943,T7,[['Sunderland']],1.0,1.0,Sunderland
+44441943,T8,[['Liverpool']],1.0,1.0,Liverpool
+44441943,T9,[['Glasgow']],1.0,1.0,Glasgow
+44441943,T10,[['Norkoping']],1.0,1.0,Norkoping
+44441943,T11,[['Greenwich']],1.0,1.0,Greenwich
+44441943,T13,[['Shields']],1.0,1.0,Shields
+44441943,T14,[['London']],1.0,1.0,London
+44441943,T15,[['Liverpool']],1.0,1.0,Liverpool
+44441943,T16,[['Stockholm']],1.0,1.0,Stockholm
+44441943,T17,[['London']],1.0,1.0,London
+44441943,T19,[['Sunderland']],1.0,1.0,Sunderland
+44441943,T20,[['Exeter']],1.0,1.0,Exeter
+44441943,T21,[['Hartlepool']],1.0,1.0,Hartlepool
+44441943,T22,[['Sunderland']],1.0,1.0,Sunderland
+44441943,T23,[['Barking']],1.0,1.0,Barking
+44441943,T25,[['Drammen']],1.0,1.0,Drammen
+44441943,T26,[['80079']],1.0,1.0,80079
+44441943,T27,[['Seves']],1.0,1.0,Seves
+44441943,T28,[['Dort']],1.0,1.0,Dort
+44441943,T29,[['Liverpool']],1.0,1.0,Liverpool
+44441944,T1,[['Dantsic']],1.0,1.0,Dantsic
+44441944,T2,"[['Port'], ['Madoc']]",1.0,1.0,Port Madoc
+44441944,T3,[['London']],1.0,1.0,London
+44441944,T4,[['Shields']],1.0,1.0,Shields
+44441944,T5,[['Dantsic']],1.0,1.0,Dantsic
+44441944,T7,[['London']],1.0,1.0,London
+44441944,T8,[['80082']],1.0,1.0,80082
+44441944,T9,[['London']],1.0,1.0,London
+44441944,T10,[['Dantsic']],1.0,1.0,Dantsic
+44441944,T11,[['Dantsic']],1.0,1.0,Dantsic
+44441944,T13,[['Colombia']],1.0,1.0,Colombia
+44441944,T14,[['99']],1.0,1.0,99
+44441944,T15,[['Stralsund']],1.0,1.0,Stralsund
+44441944,T16,[['London']],1.0,1.0,London
+44441944,T17,[['Liverpool']],1.0,1.0,Liverpool
+44441944,T19,[['Dantsic']],1.0,1.0,Dantsic
+44441944,T20,[['London']],1.0,1.0,London
+44441944,T21,[['Southampton']],1.0,1.0,Southampton
+44441944,T22,[['Bahia']],1.0,1.0,Bahia
+44441944,T23,[['Shields']],1.0,1.0,Shields
+44441944,T25,[['Rotterdam']],1.0,1.0,Rotterdam
+44441944,T26,[['Porsgrund']],1.0,1.0,Porsgrund
+44441944,T27,[['Dantsic']],1.0,1.0,Dantsic
+44441944,T28,[['London']],1.0,1.0,London
+44441944,T29,[['London']],1.0,1.0,London
+44441945,T1,[['Dantsic']],1.0,1.0,Dantsic
+44441945,T2,"[['Boston'], ['U.S.']]",1.0,1.0,Boston U.S.
+44441945,T3,[['Hamburgh']],1.0,1.0,Hamburgh
+44441945,T4,[['Hamburgh']],1.0,1.0,Hamburgh
+44441945,T5,[['London']],1.0,1.0,London
+44441945,T7,"[['New'], ['York']]",1.0,1.0,New York
+44441945,T8,[['Lerwick']],1.0,1.0,Lerwick
+44441945,T9,[['London']],1.0,1.0,London
+44441945,T10,[['Goole']],1.0,1.0,Goole
+44441945,T11,[['Hull']],1.0,1.0,Hull
+44441945,T13,[['Liverpool']],1.0,1.0,Liverpool
+44441945,T14,[['Westervik']],1.0,1.0,Westervik
+44441945,T15,[['Sunderland']],1.0,1.0,Sunderland
+44441945,T16,[['Dantsic']],1.0,1.0,Dantsic
+44441945,T17,[['Stettin']],1.0,1.0,Stettin
+44441945,T19,[['Stettin']],1.0,1.0,Stettin
+44441945,T20,[['London']],1.0,1.0,London
+44441945,T21,[['London']],1.0,1.0,London
+44441945,T22,[['80615']],1.0,1.0,80615
+44441945,T23,[['Shields']],1.0,1.0,Shields
+44441945,T25,[['Workum']],1.0,1.0,Workum
+44441945,T26,[['00']],1.0,1.0,00
+44441945,T27,[['Drobak']],1.0,1.0,Drobak
+44441945,T28,[['76345']],1.0,1.0,76345
+44441945,T29,[['Frederickstadt']],1.0,1.0,Frederickstadt
+44441946,T1,[['Frederickstadt']],1.0,1.0,Frederickstadt
+44441946,T2,[['Shields']],1.0,1.0,Shields
+44441946,T3,[['Melbourne']],1.0,1.0,Melbourne
+44441946,T4,[['79785']],1.0,1.0,79785
+44441946,T5,[['London']],1.0,1.0,London
+44441946,T7,[['00']],1.0,1.0,00
+44441946,T8,[['Sunderland']],1.0,1.0,Sunderland
+44441946,T9,[['London']],1.0,1.0,London
+44441946,T10,[['Stromstadt']],1.0,1.0,Stromstadt
+44441946,T11,[['Christiana']],1.0,1.0,Christiana
+44441946,T13,[['London']],1.0,1.0,London
+44441946,T14,[['Ystad']],1.0,1.0,Ystad
+44441946,T15,[['Gefle']],1.0,1.0,Gefle
+44441946,T16,[['Gefle']],1.0,1.0,Gefle
+44441946,T17,[['00']],1.0,1.0,00
+44441946,T19,[['Sunderland']],1.0,1.0,Sunderland
+44441946,T20,[['H.M.S.']],1.0,1.0,H.M.S.
+44441946,T21,"[['Discharged'], ['(...)el?'], ['this'], ['morning']]",1.0,1.0,Discharged (...)el? this morning
+44441946,T22,[['Sunderland']],1.0,1.0,Sunderland
+44441946,T23,[['Sunderland']],1.0,1.0,Sunderland
+44441946,T25,[['Frederickstadt']],1.0,1.0,Frederickstadt
+44441946,T26,[['Calmar']],1.0,1.0,Calmar
+44441946,T27,[['Liverpool']],1.0,1.0,Liverpool
+44441946,T28,[['London']],1.0,1.0,London
+44441946,T29,[['Liverpool']],1.0,1.0,Liverpool
+44441947,T1,"[['New'], ['York']]",1.0,1.0,New York
+44441947,T2,"[['Boston'], ['U.S.']]",1.0,1.0,Boston U.S.
+44441947,T3,[['Lerwick']],1.0,1.0,Lerwick
+44441947,T4,[['Cardiff']],1.0,1.0,Cardiff
+44441947,T5,[['Shields']],1.0,1.0,Shields
+44441947,T7,[['London']],1.0,1.0,London
+44441947,T8,[['Brohestar']],1.0,1.0,Brohestar
+44441947,T9,[['Arendal']],1.0,1.0,Arendal
+44441947,T10,[['Frederickshall']],1.0,1.0,Frederickshall
+44441947,T11,[['Melbourne']],1.0,1.0,Melbourne
+44441947,T13,[['London']],1.0,1.0,London
+44441947,T14,[['Liverpool']],1.0,1.0,Liverpool
+44441947,T15,[['Mecklenburg']],1.0,1.0,Mecklenburg
+44441947,T16,[['Whitehaven']],1.0,1.0,Whitehaven
+44441947,T17,[['Banff']],1.0,1.0,Banff
+44441947,T19,[['Gravesend']],1.0,1.0,Gravesend
+44441947,T20,[['Aarhus']],1.0,1.0,Aarhus
+44441947,T21,"[['New'], ['York']]",1.0,1.0,New York
+44441947,T22,[['Abo']],1.0,1.0,Abo
+44441947,T23,"[['New'], ['York']]",1.0,1.0,New York
+44441947,T25,"[['Invalided'], ['H.M.S.']]",1.0,1.0,Invalided H.M.S.
+44441947,T26,[['Shields']],1.0,1.0,Shields
+44441947,T27,[['Belgen']],1.0,1.0,Belgen
+44441947,T28,[['London']],1.0,1.0,London
+44441947,T29,[['76763']],1.0,1.0,76763
+44441948,T1,[['Shields']],1.0,1.0,Shields
+44441948,T2,[['Gefle']],1.0,1.0,Gefle
+44441948,T3,[['Odense']],1.0,1.0,Odense
+44441948,T4,[['79624']],1.0,1.0,79624
+44441948,T5,[['Copenhagen']],1.0,1.0,Copenhagen
+44441948,T7,[['Copenhagen']],1.0,1.0,Copenhagen
+44441948,T8,[['Oldenburg']],1.0,1.0,Oldenburg
+44441948,T9,[['Flensburg']],1.0,1.0,Flensburg
+44441948,T10,[['Sunderland']],1.0,1.0,Sunderland
+44441948,T11,[['London']],1.0,1.0,London
+44441948,T13,[['Dantsic']],1.0,1.0,Dantsic
+44441948,T14,[['Goole']],1.0,1.0,Goole
+44441948,T15,[['H.M.S.']],1.0,1.0,H.M.S.
+44441948,T16,[['Stettin']],1.0,1.0,Stettin
+44441948,T17,[['Baltrum']],1.0,1.0,Baltrum
+44441948,T19,[['00']],1.0,1.0,00
+44441948,T20,[['London']],1.0,1.0,London
+44441948,T21,[['London']],1.0,1.0,London
+44441948,T22,[['London']],1.0,1.0,London
+44441948,T23,[['Whitby']],1.0,1.0,Whitby
+44441948,T25,[['London']],1.0,1.0,London
+44441948,T26,[['Trieste']],1.0,1.0,Trieste
+44441948,T27,[['Cardiff']],1.0,1.0,Cardiff
+44441948,T28,[['Liverpool']],1.0,1.0,Liverpool
+44441948,T29,[['London']],1.0,1.0,London
+44441949,T1,[['Abo']],1.0,1.0,Abo
+44441949,T2,[['London']],1.0,1.0,London
+44441949,T3,[['London']],1.0,1.0,London
+44441949,T4,[['Wells']],1.0,1.0,Wells
+44441949,T5,[['Livepool']],1.0,1.0,Livepool
+44441949,T7,[['London']],1.0,1.0,London
+44441949,T8,[['Liverpool']],1.0,1.0,Liverpool
+44441949,T9,[['London']],1.0,1.0,London
+44441949,T10,[['London']],1.0,1.0,London
+44441949,T11,[['81091']],1.0,1.0,81091
+44441949,T13,[['Stockholm']],1.0,1.0,Stockholm
+44441949,T14,"[['New'], ['York']]",1.0,1.0,New York
+44441949,T15,[['London']],1.0,1.0,London
+44441949,T16,[['Sunderland']],1.0,1.0,Sunderland
+44441949,T17,[['Shields']],1.0,1.0,Shields
+44441949,T19,[['London']],1.0,1.0,London
+44441949,T20,[['Plymouth']],1.0,1.0,Plymouth
+44441949,T21,[['Dover']],1.0,1.0,Dover
+44441949,T22,[['Stettin']],1.0,1.0,Stettin
+44441949,T23,[['Bahia']],1.0,1.0,Bahia
+44441949,T25,[['London']],1.0,1.0,London
+44441949,T26,"[['Halifax'], ['N.S.']]",1.0,1.0,Halifax N.S.
+44441949,T27,[['Triest']],1.0,1.0,Triest
+44441949,T28,[['Dantzic']],1.0,1.0,Dantzic
+44441949,T29,[['London']],1.0,1.0,London
+44441951,T1,[['London']],1.0,1.0,London
+44441951,T2,[['London']],1.0,1.0,London
+44441951,T3,[['Antwerp']],1.0,1.0,Antwerp
+44441951,T4,[['Baltimore']],1.0,1.0,Baltimore
+44441951,T5,[['London']],1.0,1.0,London
+44441951,T7,[['Rotterdam']],1.0,1.0,Rotterdam
+44441951,T8,[['Liverpool']],1.0,1.0,Liverpool
+44441951,T9,[['Liverpool']],1.0,1.0,Liverpool
+44441951,T10,"[['New'], ['York']]",1.0,1.0,New York
+44441951,T11,[['London']],1.0,1.0,London
+44441951,T13,[['Liverpool']],1.0,1.0,Liverpool
+44441951,T14,[['London']],1.0,1.0,London
+44441951,T15,[['80876']],1.0,1.0,80876
+44441951,T16,"[['H.M.S.'], ['Invalidated'], ['29th'], ['March']]",1.0,1.0,H.M.S. Invalidated 29th March
+44441951,T17,[['Lisbon']],1.0,1.0,Lisbon
+44441951,T19,[['Liverpool']],1.0,1.0,Liverpool
+44441951,T20,[['London']],1.0,1.0,London
+44441951,T21,[['82057']],1.0,1.0,82057
+44441951,T22,[['London']],1.0,1.0,London
+44441951,T23,[['London']],1.0,1.0,London
+44441951,T25,[['00']],1.0,1.0,00
+44441951,T26,[['Shields']],1.0,1.0,Shields
+44441951,T27,[['Plymouth']],1.0,1.0,Plymouth
+44441951,T28,[['Clay']],1.0,1.0,Clay
+44441951,T29,[['Liverpool']],1.0,1.0,Liverpool
+44441952,T1,[['London']],1.0,1.0,London
+44441952,T2,[['London']],1.0,1.0,London
+44441952,T3,[['London']],1.0,1.0,London
+44441952,T4,[['Rochester']],1.0,1.0,Rochester
+44441952,T5,[['London']],1.0,1.0,London
+44441952,T7,[['Sunderland']],1.0,1.0,Sunderland
+44441952,T8,[['London']],1.0,1.0,London
+44441952,T9,[['Mermel']],1.0,1.0,Mermel
+44441952,T10,[['Sunderland']],1.0,1.0,Sunderland
+44441952,T11,[['London']],1.0,1.0,London
+44441952,T13,[['London']],1.0,1.0,London
+44441952,T14,[['London']],1.0,1.0,London
+44441952,T15,[['London']],1.0,1.0,London
+44441952,T16,[['London']],1.0,1.0,London
+44441952,T17,[['Copenhagen']],1.0,1.0,Copenhagen
+44441952,T19,[['82224']],1.0,1.0,82224
+44441952,T20,[['Flensburg']],1.0,1.0,Flensburg
+44441952,T21,[['London']],1.0,1.0,London
+44441952,T22,[['Philadelphia']],1.0,1.0,Philadelphia
+44441952,T23,[['Seaham']],1.0,1.0,Seaham
+44441952,T25,[['Stettin']],1.0,1.0,Stettin
+44441952,T26,[['72181']],1.0,1.0,72181
+44441952,T27,[['Odense']],1.0,1.0,Odense
+44441952,T28,[['Shields']],1.0,1.0,Shields
+44441952,T29,[['Newry']],1.0,1.0,Newry
+44441953,T1,[['79356']],1.0,1.0,79356
+44441953,T2,[['Holstein']],1.0,1.0,Holstein
+44441953,T3,[['London']],1.0,1.0,London
+44441953,T4,[['Seaham']],1.0,1.0,Seaham
+44441953,T5,[['Abo']],1.0,1.0,Abo
+44441953,T7,[['00']],1.0,1.0,00
+44441953,T8,[['Copenhagen']],1.0,1.0,Copenhagen
+44441953,T9,[['Hartlepool']],1.0,1.0,Hartlepool
+44441953,T10,[['Guernsey']],1.0,1.0,Guernsey
+44441953,T11,[['Jersey']],1.0,1.0,Jersey
+44441953,T13,[['Cork']],1.0,1.0,Cork
+44441953,T14,[['Singapore']],1.0,1.0,Singapore
+44441953,T15,[['Lisbon']],1.0,1.0,Lisbon
+44441953,T16,[['London']],1.0,1.0,London
+44441953,T17,"[['New'], ['York']]",1.0,1.0,New York
+44441953,T19,[['London']],1.0,1.0,London
+44441953,T20,[['Shields']],1.0,1.0,Shields
+44441953,T21,[['Riga']],1.0,1.0,Riga
+44441953,T22,[['Stettin']],1.0,1.0,Stettin
+44441953,T23,[['Ipswich']],1.0,1.0,Ipswich
+44441953,T25,[['Shields']],1.0,1.0,Shields
+44441953,T26,[['Shields']],1.0,1.0,Shields
+44441953,T27,[['Lisbon']],1.0,1.0,Lisbon
+44441953,T28,[['Lisbon']],1.0,1.0,Lisbon
+44441953,T29,[['Jamaica']],1.0,1.0,Jamaica
+44441954,T1,[['Lisbon']],1.0,1.0,Lisbon
+44441954,T2,[['London']],1.0,1.0,London
+44441954,T3,[['Gefle']],1.0,1.0,Gefle
+44441954,T4,"[['New'], ['York']]",1.0,1.0,New York
+44441954,T5,[['London']],1.0,1.0,London
+44441954,T7,[['Bridgewater']],1.0,1.0,Bridgewater
+44441954,T8,[['London']],1.0,1.0,London
+44441954,T9,[['Colchester']],1.0,1.0,Colchester
+44441954,T10,[['Lintz']],1.0,1.0,Lintz
+44441954,T11,[['79727']],1.0,1.0,79727
+44441954,T13,[['78136']],1.0,1.0,78136
+44441954,T14,[['80473']],1.0,1.0,80473
+44441954,T15,[['Mecklenburg']],1.0,1.0,Mecklenburg
+44441954,T16,[['London']],1.0,1.0,London
+44441954,T17,[['Shields']],1.0,1.0,Shields
+44441954,T19,[['Frederickstad']],1.0,1.0,Frederickstad
+44441954,T20,[['Southampton']],1.0,1.0,Southampton
+44441954,T21,[['Lisbon']],1.0,1.0,Lisbon
+44441954,T22,[['00']],1.0,1.0,00
+44441954,T23,[['Flevnosand']],1.0,1.0,Flevnosand
+44441954,T25,[['London']],1.0,1.0,London
+44441954,T26,"[['St.'], ['Johns']]",1.0,1.0,St. Johns
+44441954,T27,[['Tunsberg']],1.0,1.0,Tunsberg
+44441954,T28,[['London']],1.0,1.0,London
+44441954,T29,[['London']],1.0,1.0,London
+44441955,T1,[['00']],1.0,1.0,00
+44441955,T2,[['Rostock']],1.0,1.0,Rostock
+44441955,T3,[['Dantsic']],1.0,1.0,Dantsic
+44441955,T4,[['Arendal']],1.0,1.0,Arendal
+44441955,T5,"[['New'], ['York']]",1.0,1.0,New York
+44441955,T7,[['81486']],1.0,1.0,81486
+44441955,T8,"[['New'], ['Orleans']]",1.0,1.0,New Orleans
+44441955,T9,[['Wells']],1.0,1.0,Wells
+44441955,T10,[['Liverpool']],1.0,1.0,Liverpool
+44441955,T11,[['Liverpool']],1.0,1.0,Liverpool
+44441955,T13,[['Barking']],1.0,1.0,Barking
+44441955,T14,[['London']],1.0,1.0,London
+44441955,T15,[['00']],1.0,1.0,00
+44441955,T16,[['Shields']],1.0,1.0,Shields
+44441955,T17,[['80217']],1.0,1.0,80217
+44441955,T19,[['80828']],1.0,1.0,80828
+44441955,T20,[['London']],1.0,1.0,London
+44441955,T21,[['London']],1.0,1.0,London
+44441955,T22,[['Liverpool']],1.0,1.0,Liverpool
+44441955,T23,[['Copenhagen']],1.0,1.0,Copenhagen
+44441955,T25,[['Baltimore']],1.0,1.0,Baltimore
+44441955,T26,"[['New'], ['York']]",1.0,1.0,New York
+44441955,T27,[['London']],1.0,1.0,London
+44441955,T28,[['Gravesend']],1.0,1.0,Gravesend
+44441955,T29,[['Sunderland']],1.0,1.0,Sunderland
+44441956,T1,[['Aberdeen']],1.0,1.0,Aberdeen
+44441956,T2,[['Liverpool']],1.0,1.0,Liverpool
+44441956,T3,[['London']],1.0,1.0,London
+44441956,T4,[['London']],1.0,1.0,London
+44441956,T5,[['London']],1.0,1.0,London
+44441956,T7,[['London']],1.0,1.0,London
+44441956,T8,[['Guernsey']],1.0,1.0,Guernsey
+44441956,T9,[['Sunderland']],1.0,1.0,Sunderland
+44441956,T10,[['Liverpool']],1.0,1.0,Liverpool
+44441956,T11,"[['82278'], ['Discharged'], ['21st'], ['(...)nst']]",1.0,1.0,82278 Discharged 21st (...)nst
+44441956,T13,[['Hull']],1.0,1.0,Hull
+44441956,T14,[['London']],1.0,1.0,London
+44441956,T15,[['Liverpool']],1.0,1.0,Liverpool
+44441956,T16,[['Liverpool']],1.0,1.0,Liverpool
+44441956,T17,[['Whitby']],1.0,1.0,Whitby
+44441956,T19,[['London']],1.0,1.0,London
+44441956,T20,[['Cardiff']],1.0,1.0,Cardiff
+44441956,T21,[['Cardiff']],1.0,1.0,Cardiff
+44441956,T22,[['Sandifiord']],1.0,1.0,Sandifiord
+44441956,T23,[['London']],1.0,1.0,London
+44441956,T25,[['Odessa']],1.0,1.0,Odessa
+44441956,T26,[['London']],1.0,1.0,London
+44441956,T27,[['Moos']],1.0,1.0,Moos
+44441956,T28,[['00']],1.0,1.0,00
+44441956,T29,[['London']],1.0,1.0,London
+44441957,T1,[['London']],1.0,1.0,London
+44441957,T2,[['London']],1.0,1.0,London
+44441957,T3,[['London']],1.0,1.0,London
+44441957,T4,[['Newport']],1.0,1.0,Newport
+44441957,T5,[['London']],1.0,1.0,London
+44441957,T7,[['Hartlepool']],1.0,1.0,Hartlepool
+44441957,T8,[['79163']],1.0,1.0,79163
+44441957,T9,[['Sunderland']],1.0,1.0,Sunderland
+44441957,T10,[['Liverpool']],1.0,1.0,Liverpool
+44441957,T11,[['Hartlepool']],1.0,1.0,Hartlepool
+44441957,T13,[['London']],1.0,1.0,London
+44441957,T14,[['London']],1.0,1.0,London
+44441957,T15,"[['New'], ['York']]",1.0,1.0,New York
+44441957,T16,[['Jersey']],1.0,1.0,Jersey
+44441957,T17,[['London']],1.0,1.0,London
+44441957,T19,[['London']],1.0,1.0,London
+44441957,T20,[['Dantsic']],1.0,1.0,Dantsic
+44441957,T21,[['Stockholm']],1.0,1.0,Stockholm
+44441957,T22,[['Hull']],1.0,1.0,Hull
+44441957,T23,"[['3'], ['Months'], ['in'], ['Patient']]",1.0,1.0,3 Months in Patient
+44441957,T25,"[['Boston'], ['U.S.']]",1.0,1.0,Boston U.S.
+44441957,T26,"[['Bombay'], ['Invalided']]",1.0,1.0,Bombay Invalided
+44441957,T27,[['Stettin']],1.0,1.0,Stettin
+44441957,T28,[['Dantzig']],1.0,1.0,Dantzig
+44441957,T29,[['Dantzig']],1.0,1.0,Dantzig
+44441958,T1,[['Southampton']],1.0,1.0,Southampton
+44441958,T2,[['London']],1.0,1.0,London
+44441958,T3,[['H.M.S.']],1.0,1.0,H.M.S.
+44441958,T4,[['London']],1.0,1.0,London
+44441958,T5,[['Shields']],1.0,1.0,Shields
+44441958,T7,"[['Boston'], ['U.S.']]",1.0,1.0,Boston U.S.
+44441958,T8,"[['New'], ['York']]",1.0,1.0,New York
+44441958,T9,"[['New'], ['York']]",1.0,1.0,New York
+44441958,T10,[['London']],1.0,1.0,London
+44441958,T11,[['Whitby']],1.0,1.0,Whitby
+44441958,T13,[['Marseilles']],1.0,1.0,Marseilles
+44441958,T14,[['Hamburg']],1.0,1.0,Hamburg
+44441958,T15,[['Rostock']],1.0,1.0,Rostock
+44441958,T16,[['Fraserburgh']],1.0,1.0,Fraserburgh
+44441958,T17,[['78859']],1.0,1.0,78859
+44441958,T19,[['H.M.S.']],1.0,1.0,H.M.S.
+44441958,T20,[['London']],1.0,1.0,London
+44441958,T21,[['82309']],1.0,1.0,82309
+44441958,T22,[['Gefle']],1.0,1.0,Gefle
+44441958,T23,[['Liverpool']],1.0,1.0,Liverpool
+44441958,T25,[['Stettin']],1.0,1.0,Stettin
+44441958,T26,"[['New'], ['York']]",1.0,1.0,New York
+44441958,T27,[['Emden']],1.0,1.0,Emden
+44441958,T28,[['Malaga']],1.0,1.0,Malaga
+44441958,T29,[['Shields']],1.0,1.0,Shields
+44442507,T1,[['Stockholm']],1.0,1.0,Stockholm
+44442507,T2,[['Guernsey']],1.0,1.0,Guernsey
+44442507,T3,[['Ostend']],1.0,1.0,Ostend
+44442507,T4,[['Rouen']],1.0,1.0,Rouen
+44442507,T5,[['Dantyre']],1.0,1.0,Dantyre
+44442507,T7,[['Calcutta']],1.0,1.0,Calcutta
+44442507,T8,[['Amsterdam']],1.0,1.0,Amsterdam
+44442507,T9,[['London']],1.0,1.0,London
+44442507,T10,[['Boston']],1.0,1.0,Boston
+44442507,T11,[['London']],1.0,1.0,London
+44442507,T13,[['Rochester']],1.0,1.0,Rochester
+44442507,T14,[['London']],1.0,1.0,London
+44442507,T15,[['Sunderland']],1.0,1.0,Sunderland
+44442507,T16,[['London']],1.0,1.0,London
+44442507,T17,[['Stockholm']],1.0,1.0,Stockholm
+44442507,T19,[['Leith']],1.0,1.0,Leith
+44442507,T20,[['Nantes']],1.0,1.0,Nantes
+44442507,T21,"[['New'], ['York']]",1.0,1.0,New York
+44442507,T22,[['Cromer']],1.0,1.0,Cromer
+44442507,T23,[['London']],1.0,1.0,London
+44442507,T25,[['Sletion']],1.0,1.0,Sletion
+44442507,T26,[['London']],1.0,1.0,London
+44442507,T27,"[['New'], ['York']]",1.0,1.0,New York
+44442507,T28,[['92865']],1.0,1.0,92865
+44442507,T29,[['Shields']],1.0,1.0,Shields
+44662739,T1,[['22766']],1.0,1.0,22766
+44662739,T2,[['38897']],1.0,1.0,38897
+44662739,T3,[['[Ellipsis]']],1.0,1.0,[Ellipsis]
+44662739,T4,[['London']],1.0,1.0,London
+44662739,T5,[['Shields']],1.0,1.0,Shields
+44662739,T7,"[['St'], [""John's""]]",1.0,1.0,St John's
+44662739,T8,[['39586']],1.0,1.0,39586
+44662739,T9,"[['St'], [""John's""]]",1.0,1.0,St John's
+44662739,T10,"[['Hull'], ['Navy']]",1.0,1.0,Hull Navy
+44662739,T11,[['40467']],1.0,1.0,40467
+44662739,T13,[['London']],1.0,1.0,London
+44662739,T14,[['Cardiff']],1.0,1.0,Cardiff
+44662739,T15,[['London']],1.0,1.0,London
+44662739,T16,"[['Hull'], ['Navy']]",1.0,1.0,Hull Navy
+44662739,T17,[['40536']],1.0,1.0,40536
+44662739,T19,[['00']],1.0,1.0,00
+44662739,T20,[['Shields']],1.0,1.0,Shields
+44662739,T21,[['33722']],1.0,1.0,33722
+44662739,T22,[['Liverpool']],1.0,1.0,Liverpool
+44662739,T23,"[['Worcum'], ['Holl']]",1.0,1.0,Worcum Holl
+44662739,T25,[['32006']],1.0,1.0,32006
+44662739,T26,[['London']],1.0,1.0,London
+44662739,T27,[['London']],1.0,1.0,London
+44662739,T28,[['Bombay']],1.0,1.0,Bombay
+44662739,T29,[['Liverpool']],1.0,1.0,Liverpool

@@ -37,6 +37,22 @@ page_args=(-S -o QTEST.csv -t 0.5)
 rm -f output/{views_,}QTEST.csv
 ./aggregate.py ${page_args[@]} -r testinput/round1 && diff -qs golden_3_QTEST.csv output/QTEST.csv && diff -qs golden_views_3_QTEST.csv output/views_QTEST.csv || { echo FAIL; exit 1; }
 
+#Continue by making one page almost, but not quite, complete. Output should be the same.
+rm -f output/QTEST.csv #Deliberately keep the previous views file
+./aggregate.py ${page_args[@]} -r testinput/round4 && diff -qs golden_3_QTEST.csv output/QTEST.csv && diff -qs golden_views_3_QTEST.csv output/views_QTEST.csv || { echo FAIL; exit 1; }
+
+#Then complete the page. Now we should get it in the output and in the views file.
+rm -f output/QTEST.csv #Deliberately keep the previous views file
+./aggregate.py ${page_args[@]} -r testinput/round5 && diff -qs golden_4_QTEST.csv output/QTEST.csv && diff -qs golden_views_4_QTEST.csv output/views_QTEST.csv || { echo FAIL; exit 1; }
+
+#Repeat, with the effect of that views file simulated. views file should be unchanged, output should be empty again.
+rm -f output/QTEST.csv #Deliberately keep the previous views file
+./aggregate.py ${page_args[@]} -r testinput/round6 && diff -qs golden_3_QTEST.csv output/QTEST.csv && diff -qs golden_views_4_QTEST.csv output/views_QTEST.csv || { echo FAIL; exit 1; }
+
+#Complete one more page. Both outputs should now contain that page.
+rm -f output/QTEST.csv #Deliberately keep the previous views file
+./aggregate.py ${page_args[@]} -r testinput/round7 && diff -qs golden_5_QTEST.csv output/QTEST.csv && diff -qs golden_views_5_QTEST.csv output/views_QTEST.csv || { echo FAIL; exit 1; }
+
 rm -f output/{views_,}QTEST.csv
 ./coverage.pl ${args[@]} -r testinput/round1 && echo PASS || { echo FAIL; false; }
 
