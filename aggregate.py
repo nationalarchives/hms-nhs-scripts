@@ -370,6 +370,7 @@ def main():
         selections = ast.literal_eval(votes)
         if len(selections) != 1: raise Exception()
         return(sum(selections[0].values()))
+      df['votes'] = df[datacol].apply(votecounter)
       if not args.unfinished:
         df = df[df[datacol].apply(votecounter) >= RETIREMENT_COUNT]
 
@@ -403,7 +404,7 @@ def main():
     if data['ztype'] == TEXT_T:
       views.append(df['data.number_views'].rename(data['name']))
     elif data['ztype'] == DROP_T:
-      views.append(df[datacol].apply(votecounter).rename(data['name']))
+      views.append(df['votes'].rename(data['name']))
     df = df[datacol].rename(data['name']).to_frame() #Keep just the data column, renaming it to something meaningful and keeping it a DF rather than a Series
 
     #Convert dropdowns to their values
