@@ -1,4 +1,13 @@
 #!/bin/bash
+
+TRANCHE=0
+while getopts "t" x; do
+  case "$x" in
+    t) TRANCHE=1 ;;
+    *) echo "Bad args"; exit 1;;
+  esac
+done
+
 args=(-S -u -b -o QTEST.csv -t 0.5)
 
 ./strip_processed.py -s .cleaned -t extracttest/testtranche_views.csv extracttest/testtranche_input.csv || { echo FAIL; exit 1; }
@@ -20,6 +29,11 @@ mkdir -p output
 
 rm -f output/{views_,}QTEST.csv
 ./aggregate.py ${args[@]} -r testdata/baseline && diff -qs testdata/golden/golden_QTEST.csv output/QTEST.csv && diff -qs testdata/golden/golden_views_QTEST.csv output/views_QTEST.csv || { echo FAIL; exit 1; }
+
+rm -f output/{views_,}QTEST.csv
+./coverage.pl ${args[@]} -r testdata/baseline && echo PASS || { echo FAIL; exit 1; }
+
+if [ $TRANCHE -eq 0 ]; then exit; fi
 
 #Round2 gives input as if views_QTEST.csv had been applied. The result should be output as before, but with the complete=True rows missing from QTEST.csv.
 #views_QTEST.csv should be exactly the same as before.
@@ -53,8 +67,7 @@ rm -f output/QTEST.csv #Deliberately keep the previous views file
 rm -f output/QTEST.csv #Deliberately keep the previous views file
 ./aggregate.py ${page_args[@]} -r testdata/additional_page_tranche && diff -qs testdata/golden/golden_5_QTEST.csv output/QTEST.csv && diff -qs testdata/golden/golden_views_5_QTEST.csv output/views_QTEST.csv || { echo FAIL; exit 1; }
 
-rm -f output/{views_,}QTEST.csv
-./coverage.pl ${args[@]} -r testdata/baseline && echo PASS || { echo FAIL; false; }
+echo PASS
 
 echo 'If you want to run code coverage tool:'
 echo coverage run --branch --source=. ./aggregate.py ${args[@]}
