@@ -132,7 +132,6 @@ def pretty_candidates(candidates, best_guess = None):
   for k, v in Counter(container).items():
     if re.search(r'@\d+$', k) or k == '----------':
       raise Exception(f'Reserved pattern in input: {k}')
-    if re.search(r'@\d+$', k): raise Exception('Reserved pattern in input')
     if v == 1: retval.append(k)
     else: retval.append(f'{k} @{v}')
   return '\n'.join(retval)
