@@ -223,13 +223,13 @@ def years_at_sea_resolver(candidates, row, data, datacol):
     if len(numbers) != 2:
       flow_report('Wrong number of "years at sea" entries (or bad separator)', row.name, originals)
       bad[row.name] += 1
-      return pretty_candidates(candidates)
+      return pretty_candidates(candidates, row['data.consensus_text'])
     try:
       (navy, merchant) = [float(x) for x in numbers]
     except ValueError:
       flow_report('Non-float argument in "years at sea"', row.name, originals)
       bad[row.name] += 1
-      return pretty_candidates(candidates)
+      return pretty_candidates(candidates, row['data.consensus_text'])
     navies.append(navy)
     merchants.append(merchant)
   navy_results     = category_resolver(collections.Counter(navies),    args.dropdown_threshold, row.name, data['name'])
@@ -251,7 +251,7 @@ def years_at_sea_resolver(candidates, row, data, datacol):
     elif len(navy_results) != 1: flow_report('Unresolvable (navy side)', row.name, originals)
     else: flow_report('Unresolvable (merchant side)', row.name, originals)
     bad[row.name] += 1
-    return pretty_candidates(candidates)
+    return pretty_candidates(candidates, row['data.consensus_text'])
 
 def string_resolver(row, data, datacol):
   #Start with a special case -- if port sailed out of is set and we are volume 1, autoresolve to blank
