@@ -60,6 +60,9 @@ parser.add_argument('--reduced', '-r',
 parser.add_argument('--blanks', '-b',
                     action = 'store_true',
                     help = 'Include pages with missing values')
+parser.add_argument('--uncertainty',
+                    action = 'store_true',
+                    help = 'Treat certain patterns as indicating presence of an uncertain transcription and requiring manual review')
 parser.add_argument('--no_stamp', '-S',
                     action = 'store_true',
                     help = 'Do not stamp the output with information about the script used to generate it')
@@ -115,6 +118,32 @@ def get_subject_reference(subject):
   else: raise Exception(f'"{fnam}" does not match regular expression')
 
 
+#Candidates is a list of strings
+#Each string shoud correspond to a single text box from the workflows
+def uncertainty(candidates):
+  if not args.uncertainty: return False
+
+  assert isinstance(candidates, list), candidates
+  patterns = [
+    r'\[.*\]',
+    r'\(.*[\.?].*\)',
+    r'\?+',
+    r'^[^\d]*\.[^ $]'
+  ]
+  for candidate in candidates:
+    assert isinstance(candidate, str)
+    for pattern in patterns:
+      if re.search(pattern, candidate):
+        if args.verbose >= 1:
+          print(f'U: {pattern}: {candidate} ({"::".join(candidates)})')
+        return True
+  return False
+
+
+def unaligned(aligned_text):
+  return list(map(lambda x: ' '.join(x).strip(), zip(*aligned_text)))
+
+
 def pretty_candidates(candidates, best_guess = None):
   container = candidates
   if isinstance(candidates, str):
@@ -122,7 +151,7 @@ def pretty_candidates(candidates, best_guess = None):
     assert isinstance(container, list)
 
   if isinstance(container, list):
-    container = map(lambda x: ' '.join(x).strip(), zip(*container))
+    container = unaligned(container)
   elif isinstance(container, dict):
     container = [f'{k}: {v}' for k, v in candidates.items()]
   else:
@@ -187,6 +216,9 @@ def years_at_sea_resolver(candidates, row, data, datacol):
   originals = [''.join(x) for x in zip(*candidates)]
   navies = []
   merchants = []
+
+  if uncertainty(originals): return pretty_candidates(candidates, row['data.consensus_text'])
+
   for numbers in [x.split(';') for x in originals]:
     if len(numbers) != 2:
       flow_report('Wrong number of "years at sea" entries (or bad separator)', row.name, originals)
@@ -233,7 +265,7 @@ def string_resolver(row, data, datacol):
         flow_report('port sailed out of in volume 1 (first)', row.name, row['data.aligned_text'])
         autoresolved[row.name] = { data['name']: None }
         return ''
-  if row['data.consensus_score'] / row['data.number_views'] < args.text_threshold:
+  if uncertainty(unaligned(ast.literal_eval(row['data.aligned_text']))) or row['data.consensus_score'] / row['data.number_views'] < args.text_threshold:
     flow_report('Did not pass threshold', row.name, row['data.aligned_text'])
     bad[row.name] += 1
     return pretty_candidates(row['data.aligned_text'], row['data.consensus_text'])
@@ -257,6 +289,9 @@ def date_resolver(row, data):
       return pretty_candidates(row['data.aligned_text'], row['data.consensus_text'])
 
     candidates = candidates[0]
+
+    if uncertainty(candidates): return pretty_candidates(row['data.aligned_text'], row['data.consensus_text'])
+
     #https://stackoverflow.com/a/18029112 has a trick for reading arbitrary date formats while rejecting ambiguous cases
     #We just need to use the documented format, but we can be a bit forgiving
     try:
@@ -291,6 +326,8 @@ def number_resolver(row, data, datacol):
     return pretty_candidates(row['data.aligned_text'], row['data.consensus_text'])
 
   candidates = candidates[0]
+
+  if uncertainty(candidates): return pretty_candidates(row['data.aligned_text'], row['data.consensus_text'])
 
   #If there are any non-numerals in the input, just return it to resolve manually
   try:

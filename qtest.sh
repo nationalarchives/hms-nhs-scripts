@@ -1,10 +1,12 @@
 #!/bin/bash
 
 EXTRACT=1
+UNCERTAIN=0
 TRANCHE=0
-while getopts "Et" x; do
+while getopts "Eut" x; do
   case "$x" in
     E) EXTRACT=0 ;;
+    u) UNCERTAIN=1 ;;
     t) TRANCHE=1 ;;
     *) echo "Bad args"; exit 1;;
   esac
@@ -30,6 +32,12 @@ if [ $EXTRACT -eq 1 ]; then
 fi
 
 mkdir -p output
+
+if [ $UNCERTAIN -ne 0 ]; then
+  echo "** Uncertainty test **"
+  rm -f output/{views_,}QTEST.csv
+  ./aggregate.py ${args[@]} -r testdata/baseline --uncertain && diff -qs testdata/golden/golden_QTEST_uncertain.csv output/QTEST.csv && diff -qs testdata/golden/golden_views_QTEST.csv output/views_QTEST.csv || { echo FAIL; exit 1; }
+fi
 
 echo "** Baseline aggregate test **"
 rm -f output/{views_,}QTEST.csv
