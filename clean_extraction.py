@@ -46,6 +46,9 @@ def normalise_case(text):
     result = re.sub(r'\bAb\b', 'AB', result)
     result = re.sub(r'\bNj\b', 'NJ', result)
 
+    #Allow for Mc/Mac
+    result = re.sub(r'\b(Ma?c)([a-z])', lambda x: f'{x[1]}{x[2].upper()}', result)
+
     #Common exceptions
     result = re.sub(r'\bUpon\b', 'upon', result)
 

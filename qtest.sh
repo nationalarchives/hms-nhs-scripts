@@ -18,6 +18,9 @@ if [ $EXTRACT -eq 1 ]; then
   ./strip_processed.py -s .cleaned -t extracttest/testtranche_views.csv extracttest/testtranche_input.csv || { echo FAIL; exit 1; }
   diff -s extracttest/testtranche.golden.csv extracttest/testtranche_input.csv.cleaned || { echo FAIL; exit 1; }
 
+  diff -s extracttest/test18613_stdout.golden <(./clean_extraction.py extracttest/test18613.csv 18613) || { echo FAIL; exit 1; }
+  diff -s extracttest/test18613.golden.csv extracttest/test18613.csv.cleaned || { echo FAIL; exit 1; }
+
   diff -s extracttest/test18617_stdout.golden <(./clean_extraction.py extracttest/test18617.csv 18617) || { echo FAIL; exit 1; }
   diff -s extracttest/test18617.golden.csv extracttest/test18617.csv.cleaned || { echo FAIL; exit 1; }
 
