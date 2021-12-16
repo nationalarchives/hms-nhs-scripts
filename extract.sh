@@ -79,7 +79,7 @@ for i in {0..12}; do
       ./strip_processed.py -t tranches/views.csv "`extraction_name $i`" > "${outdir}/strip_seen_${id[$i]}.log" 2>&1 &&
       cp "`extraction_name $i`.new" "`extraction_name $i`"; } &&
     if [ "${datatype[$i]}" == "$text_t" ]; then
-      { ./clean_extraction.py "`extraction_name $i`" > "${outdir}/postextract_${id[$i]}.log" ${id[$i]} 2>&1 &&
+      { ./clean_extraction.py "`extraction_name $i`" ${id[$i]} > "${outdir}/postextract_${id[$i]}.log" 2>&1 &&
          mv "`extraction_name $i`" "`extraction_name $i`.original" &&
          cp "`extraction_name $i`.cleaned" "`extraction_name $i`"; }
     else
