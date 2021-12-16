@@ -250,7 +250,7 @@ subject_id,task,data.aligned_text,data.number_views,data.consensus_score,data.co
 44121928,T28,"[['HMS', 'HMS', 'HMS'], ['Spartiate', 'Spartiate', 'Spartiate']]",3,3.0,HMS Spartiate
 44121928,T29,"[['Kitty', 'Kitty', 'Kitty']]",3,3.0,Kitty
 44290143,T1,"[['Euphrates','Euphrates','Euphrates']]",3,3.0,Euphrates
-44290143,T2,"[['HCS','HCS','HCS'], ['Sir','Sir','Sir], ['David','David','David'], ['Scott','Scott','Scott']]",3,3.0,HCS Sir David Scott
+44290143,T2,"[['HCS','HCS','HCS'], ['Sir','Sir','Sir'], ['David','David','David'], ['Scott','Scott','Scott']]",3,3.0,HCS Sir David Scott
 44290143,T3,"[['HCS','HCS','HCS'], ['Prince','Prince','Prince'], ['Regent','Regent','Regent']]",3,3.0,HCS Prince Regent
 44290143,T4,"[['Hill'], ['S'], ['Wellesley']]",1,1.0,Hill S Wellesley
 44290143,T5,"[['Ullysses'], ['F']]",1,1.0,Ullysses F

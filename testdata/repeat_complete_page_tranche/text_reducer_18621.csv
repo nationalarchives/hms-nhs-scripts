@@ -225,7 +225,7 @@ subject_id,task,data.aligned_text,data.number_views,data.consensus_score,data.co
 44121920,T28,[['Grecian']],1,1.0,Grecian
 44121920,T29,[['Chace']],1,1.0,Chace
 44290143,T1,"[['Euphrates','Euphrates','Euphrates']]",3,3.0,Euphrates
-44290143,T2,"[['HCS','HCS','HCS'], ['Sir','Sir','Sir], ['David','David','David'], ['Scott','Scott','Scott']]",3,3.0,HCS Sir David Scott
+44290143,T2,"[['HCS','HCS','HCS'], ['Sir','Sir','Sir'], ['David','David','David'], ['Scott','Scott','Scott']]",3,3.0,HCS Sir David Scott
 44290143,T3,"[['HCS','HCS','HCS'], ['Prince','Prince','Prince'], ['Regent','Regent','Regent']]",3,3.0,HCS Prince Regent
 44290143,T4,"[['Hill'], ['S'], ['Wellesley']]",1,1.0,Hill S Wellesley
 44290143,T5,"[['Ullysses'], ['F']]",1,1.0,Ullysses F
