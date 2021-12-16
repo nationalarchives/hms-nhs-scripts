@@ -14,7 +14,7 @@ tranche_df = pd.read_csv(args.tranche, index_col = [0, 1])
 
 for extraction in args.extraction:
   #Read in the extractions and drop all classifications relating to completed tasks
-  extraction_df = pd.read_csv(extraction, na_filter = False, index_col = False)
+  extraction_df = pd.read_csv(extraction, na_filter = False, index_col = False, dtype = {'data.text': str, 'data.value': str})
   extraction_cols = list(extraction_df.columns)
   extraction_df = extraction_df.set_index(['subject_id', 'task'])
   extraction_df = extraction_df.join(tranche_df['complete'], how = 'left')
