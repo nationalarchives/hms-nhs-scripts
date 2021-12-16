@@ -74,9 +74,9 @@ for i in {0..12}; do
     set -o pipefail
     { panoptes_aggregation config "${indir}"/hms-nhs-the-nautical-health-service-workflows.csv ${id[$i]} -v ${version[$i]} -m ${minor[$i]} -d "${outdir}"               > "${outdir}/config_${id[$i]}.log"  2>&1 && config_postproc $i; } &&
     { panoptes_aggregation extract "${indir}/${name[$i]}" "${outdir}"/Extractor_config_workflow_${id[$i]}_V${version[$i]}.${minor[$i]}.yaml -d "${outdir}" -o ${id[$i]} > "${outdir}/extract_${id[$i]}.log" 2>&1; } &&
-    { ./strip_processed.py -t tranches/empty_views.csv "`extraction_name $i`" && diff -q "`extraction_name $i`" "`extraction_name $i`.new" &&
+    { ./strip_processed.py -t tranches/empty_views.csv "`extraction_name $i`" > "${outdir}/strip_identity_tranform_test_${id[$i]}.log" 2>&1 && diff -q "`extraction_name $i`" "`extraction_name $i`.new" &&
       cp "`extraction_name $i`" "`extraction_name $i`.full" &&
-      ./strip_processed.py -t tranches/views.csv "`extraction_name $i`" &&
+      ./strip_processed.py -t tranches/views.csv "`extraction_name $i`" > "${outdir}/strip_seen_${id[$i]}.log" 2>&1 &&
       cp "`extraction_name $i`.new" "`extraction_name $i`"; } &&
     if [ "${datatype[$i]}" == "$text_t" ]; then
       { ./clean_extraction.py "`extraction_name $i`" > "${outdir}/postextract_${id[$i]}.log" ${id[$i]} 2>&1 &&
