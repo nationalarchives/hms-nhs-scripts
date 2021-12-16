@@ -90,18 +90,12 @@ def clean_18617(text):
 
 #Years at Sea
 def clean_18619(years):
-  separator = re.search(r'[;:,]', years)
-  if separator: separator = separator[0]
-  else: return years
-  numbers = [x.strip() for x in years.split(separator)]
-  if len(numbers) != 2: return years
-
   def round_to_month(x):
     try:
       float(x)
     except ValueError:
       if re.match(r'^[oO0 ]*$', x): x = '0'
-      else: return ''
+      else: return x
     parts = re.match(r'(.*)\.(.*)$', x)
     if parts:
       integer_part = parts[1]
@@ -177,6 +171,13 @@ def clean_18619(years):
       assert len(x) != 0 #The regexp near the beginning will replace empty strings with 0
       return f'{int(x):02}'
 
+  separator = re.search(r'[;:,]', years)
+  if separator: separator = separator[0]
+  else:
+    if len(years.strip()) == 0: return ''
+    else: return round_to_month(years)
+  numbers = [x.strip() for x in years.split(separator)]
+  if len(numbers) != 2: return years
   return ';'.join([round_to_month(x) for x in numbers])
 
 
