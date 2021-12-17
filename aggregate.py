@@ -60,9 +60,9 @@ parser.add_argument('--reduced', '-r',
                     default = 'aggregation',
                     dest = 'dir',
                     help = 'Directory containing data reduced by Panoptes scripts.')
-parser.add_argument('--blanks', '-b',
-                    action = 'store_true',
-                    help = 'Include pages with missing values')
+#parser.add_argument('--blanks', '-b',
+#                    action = 'store_true',
+#                    help = 'Include pages with missing values')
 parser.add_argument('--uncertainty',
                     action = 'store_true',
                     help = 'Treat certain patterns as indicating presence of an uncertain transcription and requiring manual review')
@@ -520,15 +520,39 @@ def main():
   #Tag or remove the rows with badness
   joined.insert(0, 'Problems', '')
   joined['Problems'] = joined.apply(has_blanks, axis = 'columns')
-  if not args.blanks:
-    incomplete_subjects = list(joined[joined.Problems != ''].index.get_level_values('subject_id').unique())
+
+  #At the moment I get to a complete page by looking at subject_id level.
+  #If anything under that subject_id is blank, I discard that subject id.
+  #However, sometimes fields are actually input as blank, so this leads me to
+  #discard pages that are actually complete.
+  #So, instead of this, use the information in joined_views to identify complete pages.
+  #Output them whether or not they have blanks, tagging the blanks in Problems.
+  #if not args.blanks:
+  #  incomplete_subjects = list(joined[joined.Problems != ''].index.get_level_values('subject_id').unique())
+  #  removed = joined.query(f'subject_id in @incomplete_subjects')
+ #   for key in removed.index.to_numpy():
+ #     bad.pop(key, None)
+ #     autoresolved.pop(key, None)
+ #   joined = joined.query(f'subject_id not in @incomplete_subjects')
+ #   joined_views = joined_views.query(f'subject_id not in @incomplete_subjects')
+ # track('* Badness identified')
+
+  if not args.unfinished:
+    incomplete_subjects = []
+    complete_subjects = []
+    for sid in joined_views.index.get_level_values('subject_id').unique():
+      if joined_views.loc[[sid]]['complete'].all():
+        complete_subjects.append(sid)
+      else:
+        incomplete_subjects.append(sid)
     removed = joined.query(f'subject_id in @incomplete_subjects')
     for key in removed.index.to_numpy():
       bad.pop(key, None)
       autoresolved.pop(key, None)
-    joined = joined.query(f'subject_id not in @incomplete_subjects')
-    joined_views = joined_views.query(f'subject_id not in @incomplete_subjects')
-  track('* Badness identified')
+    joined = joined.query(f'subject_id in @complete_subjects')
+    joined_views = joined_views.query(f'subject_id in @complete_subjects')
+    track('* Badness identified')
+
 
   #Tag unresolved unresolved fields
   #TODO This part does not feel like the Pandas way
