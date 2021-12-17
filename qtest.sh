@@ -12,7 +12,7 @@ while getopts "Eut" x; do
   esac
 done
 
-args=(-S -u -b -o QTEST.csv -t 0.5 --timing)
+args=(-S -u -o QTEST.csv -t 0.5 --timing)
 
 if [ $EXTRACT -eq 1 ]; then
   ./strip_processed.py -s .cleaned -t extracttest/testtranche_views.csv extracttest/testtranche_input.csv || { echo FAIL; exit 1; }
