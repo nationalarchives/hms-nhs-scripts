@@ -47,9 +47,12 @@ parser.add_argument('--verbose', '-v',
 parser.add_argument('--timing',
                     action = 'store_true',
                     help = 'Give timing information for phases in the program')
+parser.add_argument('--output_dir',
+                    default = 'output',
+                    help = 'Set output dir (must already exists, defaults to "output")')
 parser.add_argument('--output', '-o',
                     default = 'joined.csv',
-                    help = 'Set name of output file (will always go in output/ dir)')
+                    help = 'Set name of output file (use --output_dir to change the output directory)')
 parser.add_argument('--exports', '-e',
                     default = 'exports',
                     help = 'Directory of exports from the Zooniverse project')
@@ -580,7 +583,7 @@ def main():
 
 
   #This feels ridiculous, but works in conjunction with maxcolwidth.sh to check for columns too wide for Excel
-  joined.to_csv(path_or_buf = f'output/lenchecker.csv', index = False, sep = '@')
+  joined.to_csv(path_or_buf = f'{args.output_dir}/lenchecker.csv', index = False, sep = '@')
 
   #Dump output
   if not args.no_stamp:
@@ -589,7 +592,7 @@ def main():
     commit = subprocess.run(['git', 'rev-parse', 'HEAD'], capture_output = True, check = True).stdout
     joined['Commit'] =[commit] * len(joined.index)
     joined['Args'] = [' '.join(sys.argv)] * len(joined.index)
-  joined.to_csv(path_or_buf = f'output/{args.output}', index = False)
+  joined.to_csv(path_or_buf = f'{args.output_dir}/{args.output}', index = False)
 
   #Update views file
   #A row that is complete in the old views file cannot be in the new views data because any data
@@ -601,7 +604,7 @@ def main():
   # * Keep rows in the old file that have complete is True
   # * Replace rows from the old file that have complete is False
   # * Add rows that do not exist in the old file
-  views_file = f'output/views_{args.output}'
+  views_file = f'{args.output_dir}/views_{args.output}'
   if os.path.exists(views_file):
     old_views = pd.read_csv(views_file, index_col = [0, 1])
     joined_views = joined_views.append(old_views[old_views['complete']], verify_integrity = True).sort_index()
