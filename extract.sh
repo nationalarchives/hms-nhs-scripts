@@ -68,6 +68,15 @@ function extraction_name {
 rm -rf "${outdir}"
 mkdir  "${outdir}"
 
+#Log number of lines in input files. This should allow me to recreate the exact same result by slicing the end off future downloads.
+tranchedir="tranches/`date -u +%Y%m%d%H%M_GMT`"
+mkdir "$tranchedir" || { echo "Failed to create tranchedir $tranchdir"; exit 1; }
+wc -l exports/* > "${tranchedir}"/lines.txt || { echo FAIL; exit 1; }
+
+#Grab the last few classification ids as well, just in case
+tail  exports/* | sed 's/,.*$//' > "${tranchedir}"/last_classifications.txt || { echo FAIL; exit 1; }
+
+#Now start extracting the data
 processes=()
 for i in {0..12}; do
   {
