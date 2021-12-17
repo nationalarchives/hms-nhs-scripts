@@ -76,6 +76,16 @@ wc -l exports/* > "${tranchedir}"/lines.txt || { echo FAIL; exit 1; }
 #Grab the last few classification ids as well, just in case
 tail  exports/* | sed 's/,.*$//' > "${tranchedir}"/last_classifications.txt || { echo FAIL; exit 1; }
 
+#Record git info about the script used to do the extraction
+#In the normal run of things I would expect this to be the same as that used for aggregate.py
+#But it is possible for the two to diverge, so let's record both
+git remote -v              > "${tranchedir}"/generated_by
+echo -n 'origin/main '    >> "${tranchedir}"/generated_by
+git rev-parse origin/main >> "${tranchedir}"/generated_by
+echo -n 'HEAD        '    >> "${tranchedir}"/generated_by
+git rev-parse HEAD        >> "${tranchedir}"/generated_by
+git status                >> "${tranchedir}"/generated_by
+
 #Now start extracting the data
 processes=()
 for i in {0..12}; do
