@@ -112,6 +112,11 @@ for p in ${processes[@]}; do
 done
 if [ $final_errcode -eq 0 ]; then
   echo "All done, no errors"
+  echo "Suggested next invocations:"
+  echo "./aggregate.py --timing --outdir ${tranchedir} -r ${outdir} --uncertainty -t 0.5"
+  echo "cp ${tranchedir}/views_joined.csv tranches/views.csv"
+  echo "git add tranches"
+  echo "git commit -m'Latest data extraction'"
 else
   echo "Errors: look for *** above" >&2
 fi
