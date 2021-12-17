@@ -607,7 +607,12 @@ def main():
   views_file = f'{args.output_dir}/views_{args.output}'
   if os.path.exists(views_file):
     old_views = pd.read_csv(views_file, index_col = [0, 1])
-    joined_views = joined_views.append(old_views[old_views['complete']], verify_integrity = True).sort_index()
+    try:
+      joined_views = joined_views.append(old_views[old_views['complete']], verify_integrity = True).sort_index()
+    except ValueError as e:
+      print("Caught a ValueError. If this is overlapping values in the index, probably", file = sys.stderr)
+      print("means that you have rerun an aggregation for which you already had a views file.", file = sys.stderr)
+      raise e
   joined_views.to_csv(path_or_buf = views_file)
 
   track('* All done')
