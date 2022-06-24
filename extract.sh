@@ -12,16 +12,16 @@ indir=exports
 name=(1-admission-number-classifications.csv
       2-date-of-entry-classifications.csv
       3-name-classifications.csv
-      4-quality-classifications.csv
+      quality-dd-classifications.csv
       5-age-classifications.csv
-      6-place-of-birth-classifications.csv
-      7-port-sailed-out-of-classifications.csv
-      8-years-at-sea-classifications.csv
-      9-last-services-classifications.csv
-      10-under-what-circumstances-admitted-or-nature-of-complaint-classifications.csv
-      11-date-of-discharge-classifications.csv
-      12-how-disposed-of-classifications.csv
-      13-number-of-days-victualled-classifications.csv
+      7-place-of-birth-nationality-classifications.csv
+      10-where-from-classifications.csv
+      years-at-sea-classifications.csv
+      8-ship-ship-or-place-of-employment-last-ship-classifications.csv
+      11-nature-of-complaint-classifications.csv
+      12-date-of-discharge-classifications.csv
+      how-disposed-of-dd-classifications.csv
+      14-number-of-days-in-hospital-classifications.csv
 )
          id=(  18611   18612   18613   18614   18616   18617   18618   18619   18621   18622   18623   18624   18625)
     version=(      3       3       3       3       3       3       3       3       3       3       3       3       3)
