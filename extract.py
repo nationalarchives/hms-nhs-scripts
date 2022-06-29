@@ -191,7 +191,8 @@ def main():
     p.join()
     if p.exitcode != 0: exit_code = p.exitcode
     print(f'{p.name} completed with exit code {p.exitcode}')
-  sys.exit(exit_code)
+  if exit_code != 0:
+    sys.exit(exit_code)
 
   print('''
 All done, no errors
