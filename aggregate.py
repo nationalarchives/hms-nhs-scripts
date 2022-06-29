@@ -469,7 +469,7 @@ def main():
 
     #Convert dropdowns to their values
     if(data['ztype'] == DROP_T):
-      labelfile = f'{args.dir}/Task_labels_workflow_{wid}_V{data["major"]}.{data["minor"]}.yaml'
+      labelfile = f'{args.dir}/Task_labels_workflow_{wid}_V{data["version"]}.yaml'
       with open(labelfile) as f:
         labels = yaml.full_load(f)
       def decode_dropdown(row):
