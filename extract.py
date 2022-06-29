@@ -119,26 +119,32 @@ def config_check_reduction_identity(w_id, versions, ztype):
 We rely upon these being the same to allow us to concatenate the extractions and reduce them together.''')
 
 def panoptes_extract(w_id, versions, ztype, export_csv, extraction_name):
-  with open(extraction_name, 'wb') as concatenated_file:
-    for major, minor in versions:
-      runit([
-        'panoptes_aggregation', 'extract',
-        f'{args.exports}/{export_csv}',
-        f'{args.output_dir}/Extractor_config_workflow_{w_id}_V{major}.{minor}.yaml',
-        '-d', args.output_dir,
-        '-o', f'{w_id}_V{major}_{minor}' #anything following a '.' in here appears to get discarded, so use _ instead
-        ],
-        f'{args.output_dir}/extract_{w_id}_V{major}.{minor}.log'
-      )
-      with open(f'{args.output_dir}/{ztype}_extractor_{w_id}_V{major}_{minor}.csv', 'rb') as f:
+  outputs = []
+  for major, minor in versions:
+    runit([
+      'panoptes_aggregation', 'extract',
+      f'{args.exports}/{export_csv}',
+      f'{args.output_dir}/Extractor_config_workflow_{w_id}_V{major}.{minor}.yaml',
+      '-d', args.output_dir,
+      '-o', f'{w_id}_V{major}_{minor}' #anything following a '.' in here appears to get discarded, so use _ instead
+      ],
+      f'{args.output_dir}/extract_{w_id}_V{major}.{minor}.log'
+    )
+    outputs.append(f'{args.output_dir}/{ztype}_extractor_{w_id}_V{major}_{minor}.csv')
+  shutil.copy(outputs.pop(0), extraction_name)
+  with open(extraction_name, 'a') as concatenated_file:
+    for output in outputs:
+      with open(output, 'r') as f:
+        f.readline() #do not copy extra header lines
         shutil.copyfileobj(f, concatenated_file)
 
-def strip_processed(w_id, views, extraction_name, logname):
+
+def strip_processed(w_id, views, extraction_name, logname, *extra_args):
   runit([
     './strip_processed.py',
     '-t', views,
     extraction_name
-    ],
+    ] + list(extra_args),
     f'{args.output_dir}/{logname}_{w_id}.log'
   )
 
@@ -181,7 +187,7 @@ def panoptes(w_id, w_data):
   panoptes_extract(w_id, versions, ztype, export_csv, extraction_name)
 
   #Because we are working on the output of panoptes_extract, we are no longer version-sensitive
-  strip_processed(w_id, 'tranches/empty_views.csv', extraction_name, 'strip_identity_tranform_test')
+  strip_processed(w_id, 'tranches/empty_views.csv', extraction_name, 'strip_identity_tranform_test', '--no_sort')
   subprocess.run(['diff', '-q', extraction_name, f'{extraction_name}.new'], check = True, capture_output = True)
   shutil.copyfile(extraction_name, f'{extraction_name}.full')
   
