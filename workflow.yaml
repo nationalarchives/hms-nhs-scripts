@@ -74,7 +74,9 @@ launch_workflows:
     nptype: *INT64
     ztype: *TEXT_T
   18612:
-    version: 3.1
+    version:
+      - 3.1
+      - 4.1
     name: date of entry
     export: 2-date-of-entry-classifications.csv
     nptype: *DATE
@@ -134,7 +136,9 @@ launch_workflows:
     nptype: *DATE
     ztype: *TEXT_T
   18624:
-    version: 3.1
+    version:
+      - 3.1
+      - 6.4
     name: how disposed of
     export: how-disposed-of-dd-classifications.csv
     nptype: *STR
