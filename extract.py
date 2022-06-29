@@ -4,6 +4,7 @@ import os
 import re
 import git
 import sys
+import math
 import yaml
 import shutil
 import argparse
@@ -34,6 +35,16 @@ def parse_args():
                       help = 'Verbose output')
   global args
   args = parser.parse_args()
+
+def get_version(v):
+  if not type(v) is float:
+    raise Exception()
+  minor, major = math.modf(v)
+  minor = f'{minor:.10g}' #10 significant digits should be enough for any version number, right?
+  if not minor[0:2] == '0.':
+    raise Exception()
+  minor = minor[2:]
+  return (int(major), int(minor))
 
 def runit(subproc_args, logfile):
   stringified_args = list(map(lambda x: str(x) if type(x) is int else x, subproc_args))
@@ -131,8 +142,8 @@ def panoptes_reduce(w_id, major, minor, ztype, extraction_name):
   )
 
 def panoptes(w_id, w_data):
-  major = w_data['major']
-  minor = w_data['minor']
+  major, minor = get_version(w_data['version'])
+
   ztype = w_data['ztype']['type']
   export_csv = w_data['export']
   extraction_name = f'{args.output_dir}/{ztype}_extractor_{w_id}.csv'
