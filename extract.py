@@ -7,6 +7,7 @@ import sys
 import math
 import yaml
 import shutil
+import filecmp
 import argparse
 import subprocess
 from datetime import datetime, timezone
@@ -87,35 +88,50 @@ def tranche_info():
     print('HEAD       ', g.rev_parse('HEAD'), file = f)
     print(g.status(), file = f)
 
-def panoptes_config(w_id, major, minor):
-  runit([
-    'panoptes_aggregation', 'config',
-    f'{args.exports}/hms-nhs-the-nautical-health-service-workflows.csv', w_id,
-    '-v', major,
-    '-m', minor,
-    '-d', args.output_dir
-    ],
-    f'{args.output_dir}/config_{w_id}.log'
-  )
+def panoptes_config(w_id, versions):
+  for major, minor in versions:
+    runit([
+      'panoptes_aggregation', 'config',
+      f'{args.exports}/hms-nhs-the-nautical-health-service-workflows.csv', w_id,
+      '-v', major,
+      '-m', minor,
+      '-d', args.output_dir
+      ],
+      f'{args.output_dir}/config_{w_id}_V{major}.{minor}.log'
+    )
 
-def config_fixups(w_id, major, minor):
-  if w_id == 18624:
-    with open(f'{args.output_dir}/Task_labels_workflow_{w_id}_V{major}.{minor}.yaml') as f:
-      lines = f.readlines()
-    with open(f'{args.output_dir}/Task_labels_workflow_{w_id}_V{major}.{minor}.yaml', 'w') as f:
-      for line in lines:
-        print(re.sub('To a Ship Cured', 'To a/his Ship Cured', line), file = f, end = '')
+def config_fixups(w_id, versions):
+  for major, minor in versions:
+    if w_id == 18624 and major == 3 and minor == 1:
+      with open(f'{args.output_dir}/Task_labels_workflow_{w_id}_V{major}.{minor}.yaml') as f:
+        lines = f.readlines()
+      with open(f'{args.output_dir}/Task_labels_workflow_{w_id}_V{major}.{minor}.yaml', 'w') as f:
+        for line in lines:
+          print(re.sub('To a Ship Cured', 'To a/his Ship Cured', line), file = f, end = '')
 
-def panoptes_extract(w_id, major, minor, export_csv):
-  runit([
-    'panoptes_aggregation', 'extract',
-    f'{args.exports}/{export_csv}',
-    f'{args.output_dir}/Extractor_config_workflow_{w_id}_V{major}.{minor}.yaml',
-    '-d', args.output_dir,
-    '-o', w_id
-    ],
-    f'{args.output_dir}/extract_{w_id}.log'
-  )
+def config_check_reduction_identity(w_id, versions, ztype):
+  configs = [f'{args.output_dir}/Reducer_config_workflow_{w_id}_V{x[0]}.{x[1]}_{ztype}_extractor.yaml' for x in versions]
+  if len(configs) > 1:
+    base_config = configs.pop()
+    for config in configs:
+      if not filecmp.cmp(base_config, config, shallow = False):
+        raise Exception('''Reduction configuration files for different versions of the same workflow differ.
+We rely upon these being the same to allow us to concatenate the extractions and reduce them together.''')
+
+def panoptes_extract(w_id, versions, ztype, export_csv, extraction_name):
+  with open(extraction_name, 'wb') as concatenated_file:
+    for major, minor in versions:
+      runit([
+        'panoptes_aggregation', 'extract',
+        f'{args.exports}/{export_csv}',
+        f'{args.output_dir}/Extractor_config_workflow_{w_id}_V{major}.{minor}.yaml',
+        '-d', args.output_dir,
+        '-o', f'{w_id}_V{major}_{minor}' #anything following a '.' in here appears to get discarded, so use _ instead
+        ],
+        f'{args.output_dir}/extract_{w_id}_V{major}.{minor}.log'
+      )
+      with open(f'{args.output_dir}/{ztype}_extractor_{w_id}_V{major}_{minor}.csv', 'rb') as f:
+        shutil.copyfileobj(f, concatenated_file)
 
 def strip_processed(w_id, views, extraction_name, logname):
   runit([
@@ -132,7 +148,8 @@ def clean_extraction(w_id, ztype, extraction_name):
     shutil.move(extraction_name, f'{extraction_name}.original')
     shutil.copy(f'{extraction_name}.cleaned', extraction_name)
 
-def panoptes_reduce(w_id, major, minor, ztype, extraction_name):
+def panoptes_reduce(w_id, versions, ztype, extraction_name):
+  major, minor = versions[0] #We already check in panoptes_config_identity that all reduction configs are the same
   result = runit([
     'panoptes_aggregation', 'reduce',
     '-F', 'last',
@@ -145,17 +162,25 @@ def panoptes_reduce(w_id, major, minor, ztype, extraction_name):
   )
 
 def panoptes(w_id, w_data):
-  major, minor = get_version(w_data['version'])
-
+  if type(w_data['version']) is list:
+    versions = list(map(get_version, w_data['version']))
+  else:
+    versions = [get_version(w_data['version'])]
   ztype = w_data['ztype']['type']
   export_csv = w_data['export']
+
+  #The name of the concatenation of all extractions for this workflow id
   extraction_name = f'{args.output_dir}/{ztype}_extractor_{w_id}.csv'
 
-  panoptes_config(w_id, major, minor)
-  config_fixups(w_id, major, minor)
+  #These functions iterate per-version
+  panoptes_config(w_id, versions)
+  config_fixups(w_id, versions)
+  config_check_reduction_identity(w_id, versions, ztype)
 
-  panoptes_extract(w_id, major, minor, export_csv)
+  #This iterates per-version, but concatenates its results into a single output
+  panoptes_extract(w_id, versions, ztype, export_csv, extraction_name)
 
+  #Because we are working on the output of panoptes_extract, we are no longer version-sensitive
   strip_processed(w_id, 'tranches/empty_views.csv', extraction_name, 'strip_identity_tranform_test')
   subprocess.run(['diff', '-q', extraction_name, f'{extraction_name}.new'], check = True, capture_output = True)
   shutil.copyfile(extraction_name, f'{extraction_name}.full')
@@ -165,7 +190,10 @@ def panoptes(w_id, w_data):
 
   clean_extraction(w_id, ztype, extraction_name)
 
-  panoptes_reduce(w_id, major, minor, ztype, extraction_name)
+  #Special case -- this could be version sensitive, as panoptes_config provides the reduction
+  #configuration that it uses. However, config_check_reduction_identity confirms that all
+  #reduction configs are the same, so in practice this is not version sensitive.
+  panoptes_reduce(w_id, versions, ztype, extraction_name)
 
 
 def main():
