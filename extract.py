@@ -33,6 +33,9 @@ def parse_args():
   parser.add_argument('--verbose', '-v',
                       action = 'store_true',
                       help = 'Verbose output')
+  parser.add_argument('--no_tranche',
+                      action = 'store_true',
+                      help = 'Do not generate tranche info')
   global args
   args = parser.parse_args()
 
@@ -170,7 +173,7 @@ def main():
   procs = []
 
   parse_args()
-  tranche_info()
+  if not args.no_tranche: tranche_info()
 
   with open(args.workflow_defs) as f:
     global workflow_defs
