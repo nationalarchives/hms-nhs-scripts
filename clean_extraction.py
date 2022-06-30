@@ -209,7 +209,10 @@ def unstring_number(text):
     else: return ''
   return result
 
-
+#TODO: There are some dates with 0s in one of the d/m/y fields. This function does not consider this case.
+#The effect that I observe is that some goldens have the day as 29 while others have it as 30. Perhaps
+#depends on which version of dateutil we are picking up, or possibly on some dependency of dateutil.
+#Inconsistent transformations are Bad. Need to make some sort of decision about how to handle this case.
 def unstring_date(text):
   text = strip(text)
   try: result = re.sub(r'[oO0]+', '0', text)
