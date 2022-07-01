@@ -484,7 +484,9 @@ def main():
           for selection, votes in selections.items():
             if selection == 'None': result[None] = votes
             else:
-              label = list(labels[f'T{row.name[1]}.selects.0.options.*.{selection}.label'].values())[0]
+              label_list = list(labels[f'T{row.name[1]}.selects.0.options.*.{selection}.label'].values())
+              if len(label_list) != 1: raise Exception('\n'.join(['Assumption that label_list always contains 1 element is broken'] + label_list))
+              label = label_list[0]
               label = label[label.find('=') + 1:].strip()
               result[label] = votes
           if len(result) == 1:
