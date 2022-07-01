@@ -109,14 +109,33 @@ def config_fixups(w_id, versions):
         for line in lines:
           print(re.sub('To a Ship Cured', 'To a/his Ship Cured', line), file = f, end = '')
 
-def config_check_reduction_identity(w_id, versions, ztype):
-  configs = [f'{args.output_dir}/Reducer_config_workflow_{w_id}_V{x[0]}.{x[1]}_{ztype}_extractor.yaml' for x in versions]
-  if len(configs) > 1:
-    base_config = configs.pop()
-    for config in configs:
-      if not filecmp.cmp(base_config, config, shallow = False):
-        raise Exception('''Reduction configuration files for different versions of the same workflow differ.
+#Check that outputs are identical. Saves thinking if at least reductions and tasks are.
+#TODO: I do not compare the extraction files here, because they will certainly differ by the version number to extract.
+#      It anyway may be fine for them to differ if everything else is identical -- the extractions are per-version,
+#      but the other config files are used in operations that are per-workflow (so per-multiple-versions).
+#      Still, it would be nice to confirm that the extraction files are identical apart from version number.
+#      This is the tuple entry for those files:
+#      ('Extraction', [f'{args.output_dir}/Extractor_config_workflow_{w_id}_V{x[0]}.{x[1]}.yaml' for x in versions]),
+# TODO: I do not compare the task labels here because they can contain differences that do not matter to aggregate.py.
+#       All that matters for aggregate.py is that the labels are identical which, at time of writing, they are.
+#       Still, it would be nice to confirm that the task label files are identical apart from unimportant differences.
+#      ('Task label', [f'{args.output_dir}/Task_labels_workflow_{w_id}_V{x[0]}.{x[1]}.yaml' for x in versions]),
+# FIXME: I also need to confirm that the differences in the task files do not affect the reduction script.
+#        However, as the only difference is in a hex string used as a dictionary key, and as those dictionary keys do
+#        not appear anywhere in the extracted CSV file, hopefully I am OK. There could still be a problem if, say, the
+#        hex string is a hash of the label that is used in some way.
+def config_check_identity(w_id, versions, ztype):
+  for config_type, configs in (
+    ('Reduction',  [f'{args.output_dir}/Reducer_config_workflow_{w_id}_V{x[0]}.{x[1]}_{ztype}_extractor.yaml' for x in versions]),
+  ):
+    if len(configs) > 1:
+      base_config = configs.pop()
+      for config in configs:
+        if not filecmp.cmp(base_config, config, shallow = False):
+          raise Exception(f'''{config_type} configuration files for different versions of workflow {w_id} differ.
 We rely upon these being the same to allow us to concatenate the extractions and reduce them together.''')
+        elif args.verbose:
+          print(f'{config_type} configuration files for different versions of workflow {w_id} are identical.')
 
 def panoptes_extract(w_id, versions, ztype, export_csv, extraction_name):
   outputs = []
@@ -181,7 +200,7 @@ def panoptes(w_id, w_data):
   #These functions iterate per-version
   panoptes_config(w_id, versions)
   config_fixups(w_id, versions)
-  config_check_reduction_identity(w_id, versions, ztype)
+  config_check_identity(w_id, versions, ztype)
 
   #This iterates per-version, but concatenates its results into a single output
   panoptes_extract(w_id, versions, ztype, export_csv, extraction_name)
