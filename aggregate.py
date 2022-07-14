@@ -462,8 +462,22 @@ def main():
 
     #Tidy up columns
     if data['ztype'] == TEXT_T:
-      views.append(df['data.number_views'].rename(data['name']))
+      #The text reducer does not count blank entries as viewed.
+      #This can mess up our calculation for including something in the output.
+      #So we count rows in the extractor instead.
+      #(It would make sense to use the retirement count in ...-subjects.csv, but that doesn't seem to have all of the information (perhaps because it is a snapshot of the subjects now, so any removed subjects become unavailable?)
+      #(Alternative implementation: we could identify finished subjects by looking at 'retired' in the subject metadata logged in the exports file, and then perhaps the 'already_seen' flag in there can be used to catch repeat classifications -- depending upon exactly what that flag means. That is likely to be more simple and more efficient.)
+      #This is only needed for TEXT_T, as the dropdown reducer does give us a count of all votes, even where the volunteer did not vote (logged as a vote for None)
+      extractor_df = pd.read_csv(args.dir + '/' + f'text_extractor_{wid}.csv',
+                              index_col = KEYS, #i.e. subject_id and task, so that we are indexed the same way as the data
+                              usecols = KEYS + ['classification_id'], #classification_id MUST be present, so we can use it to count the total.
+                              converters = {'task': lambda x: x[1:]} #drop the T, so that index matches
+                             )
+      raw_count = extractor_df['classification_id'].groupby(KEYS).count() #counts all rows
+      views.append(raw_count.rename(data['name']))
     elif data['ztype'] == DROP_T:
+      #Blank entries for dropdowns appear to come out as type 'None' with n votes --
+      #so they are counted and we do not need to do the above text_extractor trick
       views.append(df['votes'].rename(data['name']))
     df = df[datacol].rename(data['name']).to_frame() #Keep just the data column, renaming it to something meaningful and keeping it a DF rather than a Series
 
