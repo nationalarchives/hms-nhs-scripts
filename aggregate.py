@@ -13,6 +13,7 @@ import subprocess
 import inspect
 import os
 import time
+import csv
 from collections import defaultdict, Counter
 
 #For debugging
@@ -668,7 +669,7 @@ def main():
     commit = subprocess.run(['git', 'rev-parse', 'HEAD'], capture_output = True, check = True).stdout
     joined['Commit'] =[commit] * len(joined.index)
     joined['Args'] = [' '.join(sys.argv)] * len(joined.index)
-  joined.to_csv(path_or_buf = f'{args.output_dir}/{args.output}', index = False)
+  joined.to_csv(path_or_buf = f'{args.output_dir}/{args.output}', index = False, quoting = csv.QUOTE_NONNUMERIC)
 
   #Update views file
   #A row that is complete in the old views file cannot be in the new views data because any data
