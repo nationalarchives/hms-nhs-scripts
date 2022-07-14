@@ -46,6 +46,11 @@ CSV file, this one suitable for ingest into RMG's cataloguing system.
 * gentestinput.sh: Script for generating the initial contents of testinput/ (now testdata/)
 * golden_0.5.csv: Reference file for qtest.sh (testing the first CSV output)
 * output/: Directory where output of aggregate.py goes
+* output/joined.csv: The main output containing reconciled transcriptions
+* output/lenchecker.csv: An attempt at crudely making sure we won't lose data when translated through spreadsheets
+* output/nonunique.csv: Total views minus 'unique logged-in user' count for each field where this value is non-zero (i.e. at least one user id has classified this record at least twice). Computed for text fields only. May be relevant to how reliable we consider affected transcriptions, as they are reduced from less unique users than the retirement count.
+* output/views_joined.csv: Total views for each field in each row. Used in tranching, but may also be relevant for validity checking.
+* output/removed.csv: Rows that were excluded from joined.csv for not having sufficient views. Mainly (entirely?) for development use.
 
 ### Catalogue (produce second CSV file) ###
 * templatizer.py: Generates the second CSV output
