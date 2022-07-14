@@ -475,6 +475,13 @@ def main():
                               usecols = KEYS + ['classification_id', 'user_id'], #classification_id MUST be present, so we can use to count the total. user_id needed for counting logged-in users.
                               converters = {'task': lambda x: x[1:]} #drop the T, so that index matches
                              )
+
+      #Sanity check -- the uncleaned (but tranche-processed) extraction file should contain the same classification ids
+      extractor_new_series = pd.read_csv(args.dir + '/' + f'text_extractor_{wid}.csv.new', index_col = KEYS, usecols = KEYS + ['classification_id'], converters = {'task': lambda x: x[1:]})['classification_id']
+      assert len(extractor_new_series) == len(extractor_df['classification_id'])
+      extractor_new_series_comparison = extractor_new_series.reset_index(drop = True).eq(extractor_df['classification_id'].reset_index(drop = True))
+      assert extractor_new_series_comparison.all(), extractor_new_series_comparison
+
       #First work out whether logged in users have performed repeat classifications on any subjects, so that we can log that this has happened
       id_group = extractor_df['user_id'].groupby(KEYS) #for user_id-aware counting
       repeat_classifications = id_group.count() - id_group.nunique() #entirely ignoring nans (these functions ignore them), as we can't necessarily rely on the IP address so we want to set aside anonymous users here
