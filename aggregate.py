@@ -385,8 +385,9 @@ def main():
   TEXT_T = workflow['definitions']['TEXT_T']
   DROP_T = workflow['definitions']['DROP_T']
 
-  #Declare array to store record of what we have processed
+  #Declare array to store record of what we have processed, and another to store records with repeat views by a given user
   views = []
+  nonunique_views = []
 
   track('Processing workflows')
   for wid, data in workflow[args.workflows].items():
@@ -468,16 +469,27 @@ def main():
       #(It would make sense to use the retirement count in ...-subjects.csv, but that doesn't seem to have all of the information (perhaps because it is a snapshot of the subjects now, so any removed subjects become unavailable?)
       #(Alternative implementation: we could identify finished subjects by looking at 'retired' in the subject metadata logged in the exports file, and then perhaps the 'already_seen' flag in there can be used to catch repeat classifications -- depending upon exactly what that flag means. That is likely to be more simple and more efficient.)
       #This is only needed for TEXT_T, as the dropdown reducer does give us a count of all votes, even where the volunteer did not vote (logged as a vote for None)
+      #We also take the opportunity to log cases where a logged-in user has classified the same subject more than once (we could try to do this for anonymous users as well, but I'm not sure about the IP hashes)
       extractor_df = pd.read_csv(args.dir + '/' + f'text_extractor_{wid}.csv',
                               index_col = KEYS, #i.e. subject_id and task, so that we are indexed the same way as the data
-                              usecols = KEYS + ['classification_id'], #classification_id MUST be present, so we can use it to count the total.
+                              usecols = KEYS + ['classification_id', 'user_id'], #classification_id MUST be present, so we can use to count the total. user_id needed for counting logged-in users.
                               converters = {'task': lambda x: x[1:]} #drop the T, so that index matches
                              )
+      #First work out whether logged in users have performed repeat classifications on any subjects, so that we can log that this has happened
+      id_group = extractor_df['user_id'].groupby(KEYS) #for user_id-aware counting
+      repeat_classifications = id_group.count() - id_group.nunique() #entirely ignoring nans (these functions ignore them), as we can't necessarily rely on the IP address so we want to set aside anonymous users here
+      repeat_classifications = repeat_classifications[repeat_classifications != 0]
+      if len(repeat_classifications) != 0:
+        subj_group = repeat_classifications.groupby('subject_id')
+        assert subj_group.nunique().eq(1).all() #Each task within a given subject should have the same number of classifications
+        nonunique_views.append(subj_group.first().rename(data['name'])) #This is storing the raw count minus the unique count for every repeat-classified subject in the current field
+
       raw_count = extractor_df['classification_id'].groupby(KEYS).count() #counts all rows
       views.append(raw_count.rename(data['name']))
     elif data['ztype'] == DROP_T:
       #Blank entries for dropdowns appear to come out as type 'None' with n votes --
       #so they are counted and we do not need to do the above text_extractor trick
+      #TODO: Add a unique users check to this one, similar to the one for text types above
       views.append(df['votes'].rename(data['name']))
     df = df[datacol].rename(data['name']).to_frame() #Keep just the data column, renaming it to something meaningful and keeping it a DF rather than a Series
 
@@ -524,6 +536,17 @@ def main():
   first = views.pop(0).to_frame()
   joined_views = first.join(views, how='outer')
   track('* Views joined')
+
+  #This just gives us some record of whether the same user repeat-classified.
+  #Potentially important data, but not a requested feature.
+  #At time of writing, only implemented for text workflows.
+  #Might not be tranche-safe.
+  #In principle could be established later by running for the full dataset... though
+  #identifying the affected pages becomes difficult if the relevant data is missing from
+  #the subjects file.
+  if len(nonunique_views):
+    first = nonunique_views.pop(0).to_frame()
+    first.join(nonunique_views, how='outer').to_csv(f'{args.output_dir}/nonunique.csv')
 
   #Search for transcription problmes
   joined.apply(has_transcriptionisms, axis = 'columns')
