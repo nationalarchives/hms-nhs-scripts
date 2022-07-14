@@ -589,6 +589,7 @@ def main():
       else:
         incomplete_subjects.append(sid)
     removed = joined.query(f'subject_id in @incomplete_subjects')
+    removed.to_csv(f'{args.output_dir}/removed.csv')
     for key in removed.index.to_numpy():
       bad.pop(key, None)
       autoresolved.pop(key, None)
