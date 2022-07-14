@@ -177,7 +177,7 @@ def panoptes_reduce(w_id, versions, ztype, extraction_name):
   major, minor = versions[0] #We already check in panoptes_config_identity that all reduction configs are the same
   result = runit([
     'panoptes_aggregation', 'reduce',
-    '-F', 'last',
+    '-F', 'all',
     '-d', args.output_dir,
     '-o', w_id,
     extraction_name,
