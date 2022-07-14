@@ -639,6 +639,7 @@ def main():
     joined.loc[[sid], 'subject'] = f'=HYPERLINK("{location}"; "{sid}")'
     joined.loc[[sid], 'volume'] = vol
     joined.loc[[sid], 'page']   = page
+    joined.loc[[sid], 'raw_subject'] = sid #this is sometimes helpful during development
   track('* Subjects identified')
 
 
