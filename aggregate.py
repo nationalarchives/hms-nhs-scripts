@@ -76,6 +76,7 @@ parser.add_argument('--flow_report', '-f',
                             'Used in conjunction with coverage.sh to make sure that test inputs are testing all paths.'
                            )
                    )
+parser.add_argument('--dump_interims', action = 'store_true')
 args = parser.parse_args()
 subjects = pd.read_csv(f'{args.exports}/hms-nhs-the-nautical-health-service-subjects.csv',
                          usecols   = ['subject_id', 'metadata', 'locations'])
@@ -532,6 +533,8 @@ def main():
     track(f'* {reduced_file} done', regardless = True)
 
   track('Generating output', regardless = True)
+  if args.dump_interims:
+    for i, c in enumerate(columns): c.to_csv(f'{args.output_dir}/col_{i}.csv')
   #Combine the separate workflows into a single dataframe
   #Assumption: Task numbers always refer to the same row in each workflow
   #            If this assumption does not hold, we can perform a mapping
@@ -540,10 +543,14 @@ def main():
   first = columns.pop(0)
   joined = first.join(columns, how='outer')
   track('* Data joined')
+  if args.dump_interims: joined.to_csv(f'{args.output_dir}/initial_joined.csv')
 
+  if args.dump_interims:
+    for i, v in enumerate(views): v.to_csv(f'{args.output_dir}/views_col_{i}.csv')
   first = views.pop(0).to_frame()
   joined_views = first.join(views, how='outer')
   track('* Views joined')
+  if args.dump_interims: joined_views.to_csv(f'{args.output_dir}/initial_joined_views.csv')
 
   #This just gives us some record of whether the same user repeat-classified.
   #Potentially important data, but not a requested feature.
@@ -559,6 +566,7 @@ def main():
   #Search for transcription problmes
   joined.apply(has_transcriptionisms, axis = 'columns')
   track('* Transcriptionisms identified')
+  if args.dump_interims: joined.to_csv(f'{args.output_dir}/joined_has_transcriptionisms.csv')
 
   def complete(row):
     if get_subject_reference(row.name[0])[0] == 1:
@@ -567,10 +575,12 @@ def main():
       return row.ge(RETIREMENT_COUNT).all()
   joined_views['complete'] = joined_views.apply(lambda row: complete(row), axis = 'columns')
   track('* Complete views identified')
+  if args.dump_interims: joined_views.to_csv(f'{args.output_dir}/joined_views_complete.csv')
 
   #Tag or remove the rows with badness
   joined.insert(0, 'Problems', '')
   joined['Problems'] = joined.apply(has_blanks, axis = 'columns')
+  if args.dump_interims: joined.to_csv(f'{args.output_dir}/joined_problems.csv')
 
   #At the moment I get to a complete page by looking at subject_id level.
   #If anything under that subject_id is blank, I discard that subject id.
@@ -604,6 +614,9 @@ def main():
     joined = joined.query(f'subject_id in @complete_subjects')
     joined_views = joined_views.query(f'subject_id in @complete_subjects')
     track('* Badness identified')
+    if args.dump_interims:
+      joined.to_csv(f'{args.output_dir}/joined_unfinished.csv')
+      joined_views.to_csv(f'{args.output_dir}/joined_views_unfinished.csv')
 
 
   #Tag unresolved unresolved fields
@@ -615,6 +628,7 @@ def main():
     else:
       joined.at[b, 'Problems'] = f'At least {bad[b]} unresolved fields'
   track('* Unresolved identified')
+  if args.dump_interims: joined.to_csv(f'{args.output_dir}/joined_unresolved.csv')
 
   #Translate subjects ids into original filenames
   #Assumption: the metadata is invariant across all of the entries for each subject_id
@@ -649,6 +663,7 @@ def main():
     joined.loc[[sid], 'page']   = page
     joined.loc[[sid], 'raw_subject'] = sid #this is sometimes helpful during development
   track('* Subjects identified')
+  if args.dump_interims: joined.to_csv(f'{args.output_dir}/joined_subjects_identified.csv')
 
 
   #Record where there was autoresolution
@@ -657,6 +672,7 @@ def main():
   for index, value in autoresolved.items():
     joined.at[index, 'Autoresolved'] = '; '.join(value.keys())
   track('* Autos identified')
+  if args.dump_interims: joined.to_csv(f'{args.output_dir}/joined_autos.csv')
 
 
   #This feels ridiculous, but works in conjunction with maxcolwidth.sh to check for columns too wide for Excel
