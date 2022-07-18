@@ -24,6 +24,7 @@ from collections import defaultdict, Counter
 bad = defaultdict(int) #Keys of bad are indices of rows in the final dataframe
 autoresolved = {} #Keys of autoresolved are indices of rows in the final dataframe
 subjects = None #Initialised after arg parsing
+KEYS = ['subject_id', 'task'] #Columns to use in all cases
 
 parser = argparse.ArgumentParser()
 parser.add_argument('workflows',
@@ -192,6 +193,40 @@ def has_transcriptionisms(row):
   #TODO: Should use the info in workflows.yaml to drop the number columns, rather than listing them all by name:
   if row.drop(['admission number', 'age', 'years at sea', 'number of days victualled']).str.contains('^0+$').any():
     bad[row.name] += 1
+
+
+def count_text_views(wid):
+  #The text reducer does not count blank entries as viewed.
+  #This can mess up our calculation for including something in the output.
+  #So we count rows in the extractor instead.
+  #(It would make sense to use the retirement count in ...-subjects.csv, but that doesn't seem to have all of the information (perhaps because it is a snapshot of the subjects now, so any removed subjects become unavailable?)
+  #(Alternative implementation: we could identify finished subjects by looking at 'retired' in the subject metadata logged in the exports file, and then perhaps the 'already_seen' flag in there can be used to catch repeat classifications -- depending upon exactly what that flag means. That is likely to be more simple and more efficient.)
+  #This is only needed for TEXT_T, as the dropdown reducer does give us a count of all votes, even where the volunteer did not vote (logged as a vote for None)
+  #We also take the opportunity to log cases where a logged-in user has classified the same subject more than once (we could try to do this for anonymous users as well, but I'm not sure about the IP hashes)
+  extractor_df = pd.read_csv(args.dir + '/' + f'text_extractor_{wid}.csv',
+                          index_col = KEYS, #i.e. subject_id and task, so that we are indexed the same way as the data
+                          usecols = KEYS + ['classification_id', 'user_id'], #classification_id MUST be present, so we can use to count the total. user_id needed for counting logged-in users.
+                          converters = {'task': lambda x: x[1:]} #drop the T, so that index matches
+                         )
+
+  #Sanity check -- the uncleaned (but tranche-processed) extraction file should contain the same classification ids
+  extractor_new_series = pd.read_csv(args.dir + '/' + f'text_extractor_{wid}.csv.new', index_col = KEYS, usecols = KEYS + ['classification_id'], converters = {'task': lambda x: x[1:]})['classification_id']
+  assert len(extractor_new_series) == len(extractor_df['classification_id'])
+  extractor_new_series_comparison = extractor_new_series.reset_index(drop = True).eq(extractor_df['classification_id'].reset_index(drop = True))
+  assert extractor_new_series_comparison.all(), extractor_new_series_comparison
+
+  #First work out whether logged in users have performed repeat classifications on any subjects, so that we can log that this has happened
+  nonunique_views = None
+  id_group = extractor_df['user_id'].groupby(KEYS) #for user_id-aware counting
+  repeat_classifications = id_group.count() - id_group.nunique() #entirely ignoring nans (these functions ignore them), as we can't necessarily rely on the IP address so we want to set aside anonymous users here
+  repeat_classifications = repeat_classifications[repeat_classifications != 0]
+  if len(repeat_classifications) != 0:
+    subj_group = repeat_classifications.groupby('subject_id')
+    assert subj_group.nunique().eq(1).all() #Each task within a given subject should have the same number of classifications
+    nonunique_views = subj_group.first() #This is storing the raw count minus the unique count for every repeat-classified subject in the current field
+
+  raw_count = extractor_df['classification_id'].groupby(KEYS).count() #counts all rows
+  return (raw_count, nonunique_views)
 
 
 #Recieve:
@@ -376,7 +411,6 @@ def text_resolver(row, **kwargs):
 def main():
   global args, bad, autoresolved #Be explicit that these are global
 
-  KEYS = ['subject_id', 'task']
   RETIREMENT_COUNT = 3 #I believe that this is the same for all workflows at all times. Can be parameterised in workflows.yaml if need be.
 
   with open('workflow.yaml') as f:
@@ -463,43 +497,17 @@ def main():
       df[datacol] = df.apply(drop_resolver, axis = 'columns')
     else: raise Exception()
 
-    #Tidy up columns
     if data['ztype'] == TEXT_T:
-      #The text reducer does not count blank entries as viewed.
-      #This can mess up our calculation for including something in the output.
-      #So we count rows in the extractor instead.
-      #(It would make sense to use the retirement count in ...-subjects.csv, but that doesn't seem to have all of the information (perhaps because it is a snapshot of the subjects now, so any removed subjects become unavailable?)
-      #(Alternative implementation: we could identify finished subjects by looking at 'retired' in the subject metadata logged in the exports file, and then perhaps the 'already_seen' flag in there can be used to catch repeat classifications -- depending upon exactly what that flag means. That is likely to be more simple and more efficient.)
-      #This is only needed for TEXT_T, as the dropdown reducer does give us a count of all votes, even where the volunteer did not vote (logged as a vote for None)
-      #We also take the opportunity to log cases where a logged-in user has classified the same subject more than once (we could try to do this for anonymous users as well, but I'm not sure about the IP hashes)
-      extractor_df = pd.read_csv(args.dir + '/' + f'text_extractor_{wid}.csv',
-                              index_col = KEYS, #i.e. subject_id and task, so that we are indexed the same way as the data
-                              usecols = KEYS + ['classification_id', 'user_id'], #classification_id MUST be present, so we can use to count the total. user_id needed for counting logged-in users.
-                              converters = {'task': lambda x: x[1:]} #drop the T, so that index matches
-                             )
-
-      #Sanity check -- the uncleaned (but tranche-processed) extraction file should contain the same classification ids
-      extractor_new_series = pd.read_csv(args.dir + '/' + f'text_extractor_{wid}.csv.new', index_col = KEYS, usecols = KEYS + ['classification_id'], converters = {'task': lambda x: x[1:]})['classification_id']
-      assert len(extractor_new_series) == len(extractor_df['classification_id'])
-      extractor_new_series_comparison = extractor_new_series.reset_index(drop = True).eq(extractor_df['classification_id'].reset_index(drop = True))
-      assert extractor_new_series_comparison.all(), extractor_new_series_comparison
-
-      #First work out whether logged in users have performed repeat classifications on any subjects, so that we can log that this has happened
-      id_group = extractor_df['user_id'].groupby(KEYS) #for user_id-aware counting
-      repeat_classifications = id_group.count() - id_group.nunique() #entirely ignoring nans (these functions ignore them), as we can't necessarily rely on the IP address so we want to set aside anonymous users here
-      repeat_classifications = repeat_classifications[repeat_classifications != 0]
-      if len(repeat_classifications) != 0:
-        subj_group = repeat_classifications.groupby('subject_id')
-        assert subj_group.nunique().eq(1).all() #Each task within a given subject should have the same number of classifications
-        nonunique_views.append(subj_group.first().rename(data['name'])) #This is storing the raw count minus the unique count for every repeat-classified subject in the current field
-
-      raw_count = extractor_df['classification_id'].groupby(KEYS).count() #counts all rows
-      views.append(raw_count.rename(data['name']))
+      view_counts, nonunique_counts = count_text_views(wid)
+      views.append(view_counts.rename(data['name']))
+      if nonunique_counts is not None:
+        nonunique_views.append(nonunique_counts.rename(data['name']))
     elif data['ztype'] == DROP_T:
       #Blank entries for dropdowns appear to come out as type 'None' with n votes --
-      #so they are counted and we do not need to do the above text_extractor trick
-      #TODO: Add a unique users check to this one, similar to the one for text types above
+      #so they are counted and we do not need to do the work in count_text_views to count everything
+      #TODO: Add a unique users check to this one, similar to the one in count_text_views
       views.append(df['votes'].rename(data['name']))
+
     df = df[datacol].rename(data['name']).to_frame() #Keep just the data column, renaming it to something meaningful and keeping it a DF rather than a Series
 
     #Convert dropdowns to their values
