@@ -399,8 +399,10 @@ def text_resolver(row, **kwargs):
   data = kwargs['data']
   datacol = kwargs['datacol']
 
-  if pd.isnull(row['data.consensus_score']) or pd.isnull(row['data.number_views']):
-    assert args.unfinished #This condition should only come up if -u is set
+  #This means either that no-one has classified it, or that all classifications were empty strings
+  #Either way, return a blank
+  if pd.isnull(row['data.number_views']):
+    if not pd.isnull(row['data.consensus_score']): raise Exception('Broken assumption')
     return ''
 
   if data['nptype'] == str: return string_resolver(row, data, datacol)
@@ -443,43 +445,42 @@ def main():
       print(f'Error while reading {reduced_file}')
       raise
 
-    #Handle conflicts
-    if(data['ztype'] == TEXT_T):
-      if not args.unfinished:
-        #Drop all classifications that are based on an insufficient number of views
-        df.drop(df[df['data.number_views'] < RETIREMENT_COUNT].index, inplace = True)
-        df.dropna(subset = ['data.number_views'], inplace = True)
-
-      #Report on rows with different counts
-      if args.verbose >= 1:
-        overcount = df[df['data.number_views'] > RETIREMENT_COUNT]
-        print(f'  Completed rows: {len(df.index)} (of which {len(overcount.index)} overcounted)')
-        if args.verbose >= 3 and not overcount.empty: print(overcount)
-        undercount = df[df['data.number_views'] < RETIREMENT_COUNT]
-        print(f'  Undercounted rows: {len(undercount.index)}')
-        if args.verbose >= 3 and not undercount.empty: print(undercount)
-
-      df[datacol] = df.apply(text_resolver, axis = 'columns', data = data, datacol = datacol)
-      #TODO: For these kinds of strings, may well be better to treat them like dropdowns and just take two thirds identical as permitting auto-resolve
-    elif(data['ztype'] == DROP_T):
-      #Drop all classifications that are based on an insufficient number of views
+    #count views
+    if data['ztype'] == TEXT_T:
+      current_views, nonunique_counts = count_text_views(wid)
+      if nonunique_counts is not None:
+        nonunique_views.append(nonunique_counts.rename(data['name']))
+    elif data['ztype'] == DROP_T:
+      #Blank entries for dropdowns appear to come out as type 'None' with n votes --
+      #so they are counted and we do not need to do the work in count_text_views to count everything
+      #TODO: Add a unique users check to this one, similar to the one in count_text_views
       def votecounter(votes):
         selections = ast.literal_eval(votes)
         if len(selections) != 1: raise Exception()
         return(sum(selections[0].values()))
-      df['votes'] = df[datacol].apply(votecounter)
-      if not args.unfinished:
-        df = df[df['votes'] >= RETIREMENT_COUNT]
+      current_views = df[datacol].apply(votecounter)
+    current_views = current_views.rename(data['name'])
+    views.append(current_views)
 
-      #Report on rows with different counts
-      if args.verbose >= 1:
-        overcount = df[df['votes'] > RETIREMENT_COUNT]
-        print(f'  Completed rows: {len(df.index)} (of which {len(overcount.index)} overcounted)')
-        if args.verbose >= 3 and not overcount.empty: print(overcount)
-        undercount = df[df['votes'] < RETIREMENT_COUNT]
-        print(f'  Undercounted rows: {len(undercount.index)}')
-        if args.verbose >= 3 and not undercount.empty: print(undercount)
+    #drop all classifications based on insufficient number of views
+    if not args.unfinished:
+      #Drop all classifications that are based on an insufficient number of views
+      df.drop(current_views[current_views < RETIREMENT_COUNT].index, inplace = True)
 
+    #Report on rows with different counts
+    if args.verbose >= 1:
+      overcount = df.loc[current_views[current_views > RETIREMENT_COUNT].index]
+      print(f'  Completed rows: {len(df.index)} (of which {len(overcount.index)} overcounted)')
+      if args.verbose >= 3 and not overcount.empty: print(overcount)
+      undercount = df.loc[current_views[current_views < RETIREMENT_COUNT].index]
+      print(f'  Undercounted rows: {len(undercount.index)}')
+      if args.verbose >= 3 and not undercount.empty: print(undercount)
+
+    #Handle conflicts
+    if(data['ztype'] == TEXT_T):
+      df[datacol] = df.apply(text_resolver, axis = 'columns', data = data, datacol = datacol)
+      #TODO: For these kinds of strings, may well be better to treat them like dropdowns and just take two thirds identical as permitting auto-resolve
+    elif(data['ztype'] == DROP_T):
       #Process classifications for output
       def drop_resolver(row):
         #row is a single-element array, containing one dictionary
@@ -496,17 +497,6 @@ def main():
         return str([result])
       df[datacol] = df.apply(drop_resolver, axis = 'columns')
     else: raise Exception()
-
-    if data['ztype'] == TEXT_T:
-      view_counts, nonunique_counts = count_text_views(wid)
-      views.append(view_counts.rename(data['name']))
-      if nonunique_counts is not None:
-        nonunique_views.append(nonunique_counts.rename(data['name']))
-    elif data['ztype'] == DROP_T:
-      #Blank entries for dropdowns appear to come out as type 'None' with n votes --
-      #so they are counted and we do not need to do the work in count_text_views to count everything
-      #TODO: Add a unique users check to this one, similar to the one in count_text_views
-      views.append(df['votes'].rename(data['name']))
 
     df = df[datacol].rename(data['name']).to_frame() #Keep just the data column, renaming it to something meaningful and keeping it a DF rather than a Series
 
