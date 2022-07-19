@@ -300,7 +300,7 @@ def years_at_sea_resolver(candidates, row, data, datacol):
 def string_resolver(row, data, datacol):
   #Start with a special case -- if port sailed out of is set and we are volume 1, autoresolve to blank
   if data['name'] == 'port sailed out of' and get_subject_reference(row.name[0])[0] == 1:
-    if row['data.number_views'] > 0:
+    if row['data.number_views'] > 0: #This means that we only fill in the blank (and flag auto-resolution) if it was surprisingly non-blank
       if row.name in autoresolved:
         flow_report('port sailed out of in volume 1 (later)', row.name, row['data.aligned_text'])
         autoresolved[row.name][data['name']] = None
@@ -314,7 +314,7 @@ def string_resolver(row, data, datacol):
     bad[row.name] += 1
     return pretty_candidates(row['data.aligned_text'], row['data.consensus_text'])
   else:
-    if row['data.consensus_score'] != row['data.number_views']: #data has been autoresolved
+    if row['data.consensus_score'] != row['data.number_views']: #data has been autoresolved (ignoring any empty strings)
       if row.name in autoresolved:
         flow_report('Later autoresolve', row.name, row['data.aligned_text'])
         autoresolved[row.name][data['name']] = None
