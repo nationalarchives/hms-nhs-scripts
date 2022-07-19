@@ -381,6 +381,11 @@ def main():
 
   RETIREMENT_COUNT = 3 #I believe that this is the same for all workflows at all times. Can be parameterised in workflows.yaml if need be.
 
+  try: os.mkdir(args.output_dir)
+  except FileExistsError:
+    print(f"Output directory '{args.output_dir}' already exists.\nPlease delete it before running this script, or use --output_dir to output to a different directory.", file = sys.stderr)
+    sys.exit(1)
+
   with open('workflow.yaml') as f:
     workflow = yaml.load(f, Loader = yaml.Loader)
 
