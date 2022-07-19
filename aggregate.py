@@ -78,6 +78,10 @@ parser.add_argument('--flow_report', '-f',
                            )
                    )
 parser.add_argument('--dump_interims', action = 'store_true')
+parser.add_argument('--row_factor',
+                    type = int,
+                    help = 'Percentage of total rows to read. Repeatable across runs, for faster testing cycles.'
+                   )
 args = parser.parse_args()
 subjects = pd.read_csv(f'{args.exports}/hms-nhs-the-nautical-health-service-subjects.csv',
                          usecols   = ['subject_id', 'metadata', 'locations'])
@@ -466,6 +470,15 @@ def main():
     if not args.unfinished:
       #Drop all classifications that are based on an insufficient number of views
       df.drop(current_views[current_views < RETIREMENT_COUNT].index, inplace = True)
+
+    #User can shrink the number of rows to be read, for faster runs.
+    #This will be used for run-to-run output comparison, so must be repeatable.
+    #Taking every nth row might give a better overall sample of the data than just taking head or tail.
+    #But if people tend to classify the same records at around the same time, every nth row might result in few complete classifications.
+    #Note that this does not affect the views count for TEXT_T, which is always based on the entire text_exporter file. This means the results are spurious in that rows are admitted even if they no longer have enough views to be considered complete, but the point of this feature is just to be able to compare for unexpected output changes.
+    #Must do this *after* dropping rows, because of the separation of this from the views file
+    if args.row_factor:
+      df = df.iloc[::int(100 / args.row_factor)]
 
     #Report on rows with different counts
     if args.verbose >= 1:
