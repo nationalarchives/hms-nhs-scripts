@@ -111,23 +111,6 @@ def track(msg, **kwargs):
     print(msg)
 track.last = 0
 
-#Translate subject ids into (vol, page) tuple
-#Assumption: the metadata is invariant across all of the entries for each subject_id
-def get_subject_reference(subject):
-  global subjects
-  metadata = subjects.query(f'subject_id == {subject}').iloc[0]['metadata']
-  fnam = json.loads(metadata)['Filename']
-  match = re.fullmatch('.*_(\d+)-(\d+)(?: \d)?\.jpg', fnam)
-  if match:
-    (vol, page) = [int(x) for x in match.groups()]
-    if   vol == 1: page -= 21
-    elif vol == 2: page -= 28
-    elif vol == 6: raise Exception('Surprisingly met volume 6')
-    else: page -= 3
-    return (vol, page)
-  else: raise Exception(f'"{fnam}" does not match regular expression')
-
-
 #Candidates is a list of strings
 #Each string shoud correspond to a single text box from the workflows
 def uncertainty(candidates):
@@ -174,16 +157,6 @@ def pretty_candidates(candidates, best_guess = None):
     if v == 1: retval.append(k)
     else: retval.append(f'{k} @{v}')
   return '\n'.join(retval)
-
-
-#"Port sailed out of" is not in volume 1, so doesn't count as a blank there
-def has_blanks(row):
-  without_port_sailed = row.drop('port sailed out of')
-  if without_port_sailed.isnull().values.any(): return 'Blank(s)' #Something other than 'port sailed out of' is blank, so there are definitely blanks
-  if pd.isnull(row['port sailed out of']): #if this is volume 1, this doesn't count as a blank. otherwise, it does.
-    volume = get_subject_reference(row.name[0])[0]
-    if volume != 1: return 'Blank(s)'
-  return ''
 
 
 #We can find these by looking for square brackets and for misplaced zeros
@@ -298,17 +271,6 @@ def years_at_sea_resolver(candidates, row, data, datacol):
     return pretty_candidates(candidates, row['data.consensus_text'])
 
 def string_resolver(row, data, datacol):
-  #Start with a special case -- if port sailed out of is set and we are volume 1, autoresolve to blank
-  if data['name'] == 'port sailed out of' and get_subject_reference(row.name[0])[0] == 1:
-    if row['data.number_views'] > 0: #This means that we only fill in the blank (and flag auto-resolution) if it was surprisingly non-blank
-      if row.name in autoresolved:
-        flow_report('port sailed out of in volume 1 (later)', row.name, row['data.aligned_text'])
-        autoresolved[row.name][data['name']] = None
-        return ''
-      else:
-        flow_report('port sailed out of in volume 1 (first)', row.name, row['data.aligned_text'])
-        autoresolved[row.name] = { data['name']: None }
-        return ''
   if uncertainty(unaligned(ast.literal_eval(row['data.aligned_text']))) or row['data.consensus_score'] / row['data.number_views'] < args.text_threshold:
     flow_report('Did not pass threshold', row.name, row['data.aligned_text'])
     bad[row.name] += 1
@@ -428,11 +390,13 @@ def main():
   DROP_T = workflow['definitions']['DROP_T']
 
   #Declare array to store record of what we have processed, and another to store records with repeat views by a given user
+  workflow_columns = []
   views = []
   nonunique_views = []
 
   track('Processing workflows')
   for wid, data in workflow[args.workflows].items():
+    workflow_columns.append(data['name'])
     datacol = data['ztype']['name']
     conflict_keys = []
     reduced_file = f'{args.dir}/{data["ztype"]["type"]}_reducer_{wid}.csv'
@@ -579,18 +543,74 @@ def main():
   track('* Transcriptionisms identified')
   if args.dump_interims: joined.to_csv(f'{args.output_dir}/joined_has_transcriptionisms.csv')
 
-  def complete(row):
-    if get_subject_reference(row.name[0])[0] == 1:
-      return row.drop('port sailed out of').ge(RETIREMENT_COUNT).all()
+  #Translate subjects ids into original filenames
+  #Assumption: the metadata is invariant across all of the entries for each subject_id
+  subj_info_cols = {
+    'subject': {},
+    'volume': {},
+    'page': {},
+    'raw_subject': {},
+  }
+  joined.insert(0, 'subject', '')
+  joined.insert(1, 'volume', '')
+  joined.insert(2, 'page', '')
+  joined.insert(len(joined.columns), 'raw_subject', '')
+  for sid in joined.index.get_level_values('subject_id').unique():
+    metadata = subjects.query(f'subject_id == {sid}').iloc[0]['metadata']
+    fnam = json.loads(metadata)['Filename']
+    match = re.fullmatch('.*_(\d+)-(\d+)(?: \d)?\.jpg', fnam)
+    if match:
+      (vol, page) = [int(x) for x in match.groups()]
+      if   vol == 1: page -= 21
+      elif vol == 2: page -= 28
+      elif vol == 6: raise Exception('Surprisingly met volume 6')
+      else: page -= 3
+    else: raise Exception(f'"{fnam}" does not match regular expression')
+
+    #Figure out URL of page image
+    location = subjects.query(f'subject_id == {sid}').iloc[0]['locations']
+    location = json.loads(location)
+    assert len(location) == 1
+    location = location.values()
+    location = next(iter(location))
+    assert isinstance(location, str)
+
+    subj_info_cols['subject'][sid] = f'=HYPERLINK("{location}"; "{sid}")'
+    subj_info_cols['volume'][sid] = vol
+    subj_info_cols['page'][sid] = page
+    subj_info_cols['raw_subject'][sid] = sid
+  for level_name, value in subj_info_cols.items():
+    for sid, subj_info in value.items():
+      joined.loc[[sid], level_name] = subj_info
+
+  #Identify volume 1's subject ids, for special handling around 'port sailed out of'
+  vol_1_subj_ids = list(set(joined[joined['volume'] == 1].index.get_level_values(0)))
+
+  track('* Subjects identified')
+  if args.dump_interims: joined.to_csv(f'{args.output_dir}/joined_subjects_identified.csv')
+
+  #Handle the 'port sailed out of' special case
+  bad_ports = joined.loc[vol_1_subj_ids]['port sailed out of'][joined.loc[vol_1_subj_ids]['port sailed out of'].notnull()].index
+  for bad_port in bad_ports:
+    if bad_port in autoresolved:
+      flow_report('port sailed out of in volume 1 (later)', bad_port, joined.loc[bad_port])
+      autoresolved[bad_port]['port sailed out of'] = None
     else:
-      return row.ge(RETIREMENT_COUNT).all()
-  joined_views['complete'] = joined_views.apply(lambda row: complete(row), axis = 'columns')
+      flow_report('port sailed out of in volume 1 (first)', bad_port, joined.loc[bad_port])
+      autoresolved[bad_port] = { 'port sailed out of': None }
+  joined.loc[bad_ports,['port sailed out of']] = ''
+  track('* Years at sea fixed up')
+
+  joined_views['complete'] = joined_views[workflow_columns].ge(RETIREMENT_COUNT).all(axis = 1)
+  joined_views.loc[vol_1_subj_ids,['complete']] = joined_views.loc[vol_1_subj_ids][workflow_columns].drop('port sailed out of', axis = 1).ge(RETIREMENT_COUNT).all(axis = 1)
   track('* Complete views identified')
   if args.dump_interims: joined_views.to_csv(f'{args.output_dir}/joined_views_complete.csv')
 
   #Tag or remove the rows with badness
-  joined.insert(0, 'Problems', '')
-  joined['Problems'] = joined.apply(has_blanks, axis = 'columns')
+  joined.insert(3, 'Problems', '')
+  joined['Problems'] = joined[workflow_columns].isnull().values.any(axis = 1)
+  joined.loc[vol_1_subj_ids,['Problems']] = joined.loc[vol_1_subj_ids][workflow_columns].drop('port sailed out of', axis = 1).isnull().values.any(axis = 1)
+  joined['Problems'] = joined['Problems'].map({True: 'Blank(s)', False: ''})
   if args.dump_interims: joined.to_csv(f'{args.output_dir}/joined_problems.csv')
 
   #At the moment I get to a complete page by looking at subject_id level.
@@ -641,47 +661,12 @@ def main():
   track('* Unresolved identified')
   if args.dump_interims: joined.to_csv(f'{args.output_dir}/joined_unresolved.csv')
 
-  #Translate subjects ids into original filenames
-  #Assumption: the metadata is invariant across all of the entries for each subject_id
-  joined.insert(0, 'subject', '')
-  joined.insert(1, 'volume', '')
-  joined.insert(2, 'page', '')
-  for sid in joined.index.get_level_values('subject_id').unique():
-    #This is what I should do here. But enabling it produces a peculiar warning,
-    #so sticking with duplicate vol/page calculation code for now.
-    #(vol, page) = get_subject_reference(sid)
-    metadata = subjects.query(f'subject_id == {sid}').iloc[0]['metadata']
-    fnam = json.loads(metadata)['Filename']
-    match = re.fullmatch('.*_(\d+)-(\d+)(?: \d)?\.jpg', fnam)
-    if match:
-      (vol, page) = [int(x) for x in match.groups()]
-      if   vol == 1: page -= 21
-      elif vol == 2: page -= 28
-      elif vol == 6: raise Exception('Surprisingly met volume 6')
-      else: page -= 3
-    else: raise Exception(f'"{fnam}" does not match regular expression')
-
-    #Figure out URL of page image
-    location = subjects.query(f'subject_id == {sid}').iloc[0]['locations']
-    location = json.loads(location)
-    assert len(location) == 1
-    location = location.values()
-    location = next(iter(location))
-    assert isinstance(location, str)
-
-    joined.loc[[sid], 'subject'] = f'=HYPERLINK("{location}"; "{sid}")'
-    joined.loc[[sid], 'volume'] = vol
-    joined.loc[[sid], 'page']   = page
-    joined.loc[[sid], 'raw_subject'] = sid #this is sometimes helpful during development
-  track('* Subjects identified')
-  if args.dump_interims: joined.to_csv(f'{args.output_dir}/joined_subjects_identified.csv')
-
 
   #Record where there was autoresolution
   joined.insert(len(joined.columns), 'Autoresolved', '')
   #TODO: Again, doesn't feel like Pandas
   for index, value in autoresolved.items():
-    joined.at[index, 'Autoresolved'] = '; '.join(value.keys())
+    joined.at[index, 'Autoresolved'] = '; '.join(filter(lambda x: x in value.keys(), workflow_columns))
   track('* Autos identified')
   if args.dump_interims: joined.to_csv(f'{args.output_dir}/joined_autos.csv')
 
