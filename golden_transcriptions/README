@@ -1,0 +1,29 @@
+delivered/ contains the transcriptions as delivered to me
+modified/ contains updated versions of those transcriptions, as follows:
+* Replaced one unreadable character with '...' as I have guessed that it is an elipsis
+* Fix the number format for 'years at sea' (mostly adding leading 0s)
+* Fix a typo in the 'quality' entry for 'Ordinary Seaman'
+* Fix some 'how disposed of' entries to match the available labels
+
+This can then be compared to script output by doing something like:
+* csvtool cols 1,3,4,7-19 DSH_1-4_Golden_Transcriptions.csv DSH_7_Golden_Transcriptions.csv DSH_12_Golden_Transcription.csv DSH_18_Golden_Transcription.csv | sed '1s/^subject_id,/subject,/' | csvformat -U 2 | grep -v '^"","","","","","","","","","","","","","","",""$' | grep -v '^"subject_id","volume","page","admission number","date of entry","name","quality","age","place of birth","port sailed out of","years at sea","last services","under what circumstances admitted (or nature of complaint)","date of discharge","how disposed of","number of days victualled"$' | tr '[:upper:]' '[:lower:]' | sed 's/  \+/ /g' > ../GOLDEN
+* cd ..
+* grep -q '\^' output/joined.csv && echo 'Found a ^, need a different line ending char'
+* csvsql --no-inference --tables foo --query 'select * from foo where raw_subject=44121904 or raw_subject=44121906 or raw_subject=44121907 or raw_subject=44290143 or raw_subject=44293717 or raw_subject=44377680 or raw_subject=44398522 or raw_subject=44431354 or raw_subject=44444317' output/joined.csv | csvtool cols 18,2,3,5-17 - | sed '1s/^raw_subject,/subject,/' | csvformat -M ^ -U 2 | tr '\n^' '^\n' | tr '[:upper:]' '[:lower:]' > OUTPUT
+* tkdiff GOLDEN OUTPUT
+
+The steps in each of the above incantations are:
+csvtool cols 1,3,4,7-19 DSH_1-4_Golden_Transcriptions.csv DSH_7_Golden_Transcriptions.csv DSH_12_Golden_Transcription.csv DSH_18_Golden_Transcription.csv #Select the data columns from the golden transcriptions which are meaninfully filled in
+sed '1s/^subject_id,/subject,/' #fix up the first column header
+csvformat -U 2 #enquote everything (so that we get consistent quoting behaviour)
+grep -v '^"","","","","","","","","","","","","","","",""$' #remove blank lines (there are 3 of these in DSH_1-4_Golden_Transcriptions.csv, which I assume are just page separators -- would make sense to confirm this and just delete them in modified/
+grep -v '^"subject_id","volume","page","admission number","date of entry","name","quality","age","place of birth","port sailed out of","years at sea","last services","under what circumstances admitted (or nature of complaint)","date of discharge","how disposed of","number of days victualled"$' #delete extra headers -- we're concatenating CSV files, so we get the header from each one. Note that this will not delete the *first* header line because we modified one of the field names earlier
+tr '[:upper:]' '[:lower:]' #translate all characters into lower case -- case differences might be important, but we'll treat them as noise here
+sed 's/  \+/ /g' #translate runs of multiple spaces into one space -- avoids whitespace diffs
+
+csvsql --no-inference --tables foo --query 'select * from foo where raw_subject=44121904 or raw_subject=44121906 or raw_subject=44121907 or raw_subject=44290143 or raw_subject=44293717 or raw_subject=44377680 or raw_subject=44398522 or raw_subject=44431354 or raw_subject=44444317' output/joined.csv #Get the subjects used in the golden transcriptions. The --no-inference bit is to avoid transforming ints into floats (which then appends .0 in the output, creating a spurious diff)
+csvtool cols 18,2,3,5-17 - #Get the columns that will match the goldens
+sed '1s/^raw_subject,/subject,/' #Fix up the name of that first header to match goldens
+csvformat -M ^ -U 2 #Follow same quoting rules as goldens. Also, convert line ending character to ^ (grep having confirmed that ^ does not appear in joined.csv) -- this is so that the tr step, next, will work.
+tr '\n^' '^\n' #In one step this: (1) converts newlines into ^ -- newlines should only be in cells where we are offering irreconcilable transcriptions to the reviewers. We want them on one line to make the diff readable. (2) converts ^ into newlines -- so now our line endings are newlines again
+| tr '[:upper:]' '[:lower:]' #Again, case differences are considered noise here
