@@ -1,6 +1,7 @@
+export ROOTME="`git rev-parse --show-toplevel`"
 alias c-sql='csvsql --tables foo --query'
 export WORKFLOW_RANGE='workflow_id > 18610 and workflow_id < 18626'
-export SUBJECTS='exports/hms-nhs-the-nautical-health-service-subjects.csv' #Note that the subjects file can be really misleading -- current guess is that some subjects have been removed from the project since they were classified
+export SUBJECTS="${ROOTME}/exports/hms-nhs-the-nautical-health-service-subjects.csv" #Note that the subjects file can be really misleading -- current guess is that some subjects have been removed from the project since they were classified
 
 #e.g. log_total_time 25.log -- for use with logs created with --timing
 function log_total_time {
