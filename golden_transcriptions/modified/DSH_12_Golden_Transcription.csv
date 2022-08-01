@@ -1,6 +1,6 @@
 subject_id,task,volume,page,Autoresolved,Problems,admission number,date of entry,name,quality,age,place of birth,port sailed out of,years at sea,last services,under what circumstances admitted (or nature of complaint),date of discharge,how disposed of,number of days victualled,Repo,Commit,Args
 44431354,1,12,1,,,64100,11-06-1851,John Graham,Apprentice,16,"Washington, Durham",Shields,00; 01,Elizabeth,Abscess,21-06-1851,To a/his Ship Cured,11,,,
-44431354,2,12,1,,,64101,11-06-1851,Thomas Lightfoot,Able Seaman,26,Selby,61153,00; 10.5,Cobden,Orchitis,24-06-1851,Seven Day Order,17,,,
+44431354,2,12,1,,,64101,11-06-1851,Thomas Lightfoot,Able Seaman,26,Selby,61153,00; 10.5,Cobden,Orchitis,27-06-1851,Seven Day Order,17,,,
 44431354,3,12,1,,,64102,12-06-1851,John Richardson,Apprentice,19,Whitby,Whitby,00; 02.25,Goddens,Febricula,23-06-1851,Request Convalescent,12,,,
 44431354,4,12,1,,,64103,12-06-1851,John Gubb,Able Seaman,42,"Combe Martin, Devon",59410,00; 33,Charlotte,Pneumonia,02-08-1851,Request Cured,52,,,
 44431354,5,12,1,,,64104,13-06-1851,Henry Carter,Apprentice,17,Barking,Barking,00; 03,Milton,Boils,16-06-1851,To a/his Ship Cured,4,,,
@@ -23,4 +23,4 @@ subject_id,task,volume,page,Autoresolved,Problems,admission number,date of entry
 44431354,26,12,1,,,64121,14-06-1851,William Evans,Ordinary Seaman,18,"Sketty, Glamorgan",Swansea,00; 01,Milicent,Ulcerated Leg,30-06-1851,Request Convalescent,17,,,
 44431354,27,12,1,,,64122,14-06-1851,Vincenzo Bussich,Able Seaman,40,Trieste,Trieste,00; 23,Istvan F,Febricula,28-06-1851,To a/his Ship Cured,15,,,
 44431354,28,12,1,,,64123,14-06-1851,George Osman,Stoker,28,"Marchwood, Hampshire",Southampton,00; 09.5,Teviot Steam Vessel RWJM,Affection of Kidnies,19-06-1851,To a/his Ship Cured,6,,,
-44431354,29,12,1,,,64124,14-06-1851,Thomas Lamming,Ordinary Seaman,18,"Boston, Lincolnshire",62812,00; 01.5,Strangers,Venereal,15-07-1851,Request Cured,94,,,
+44431354,29,12,1,,,64124,14-06-1851,Thomas Lamming,Ordinary Seaman,18,"Boston, Lincolnshire",62812,00; 01.5,Strangers,Venereal,15-09-1851,Request Cured,94,,,
