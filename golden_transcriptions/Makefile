@@ -19,7 +19,9 @@ $(COLS): $(golden_targets) $(output_targets)
 
 #Split golden into per-column files
 $(golden_targets): GOLDEN_%: GOLDEN
-	csvsql --no-inference --tables foo --query 'select subject,"admission number",ifnull("$(subst LB,$(lb),$(subst RB,$(rb),$(subst _, ,$*)))","00") as "$(subst LB,$(lb),$(subst RB,$(rb),$(subst _, ,$*)))" from foo' $< | csvformat -U 2 > $@
+	csvsql --no-inference --tables foo --query 'select subject,"admission number",ifnull("$(subst LB,$(lb),$(subst RB,$(rb),$(subst _, ,$*)))","00") as "$(subst LB,$(lb),$(subst RB,$(rb),$(subst _, ,$*)))" from foo' $< | csvformat -U 2 > $@.tmp
+	csvsql --no-inference --tables foo --query 'select subject,"admission number",replace("$(subst LB,$(lb),$(subst RB,$(rb),$(subst _, ,$*)))",",","") as "$(subst LB,$(lb),$(subst RB,$(rb),$(subst _, ,$*)))" from foo' $@.tmp | csvformat -U 2 > $@
+	rm $@.tmp
 
 #Split output into per-column files
 $(output_targets): OUTPUT_%: OUTPUT
