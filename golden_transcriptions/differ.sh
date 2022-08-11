@@ -1,9 +1,11 @@
 #!/bin/bash
 
 SEPARATOR='^'
-while getopts "s:" x; do
+FRIENDLY=0
+while getopts "s:f" x; do
   case "$x" in
     s) SEPARATOR="$OPTARG";;
+    f) FRIENDLY=1;;
     *) echo "Bad args"; exit 1;;
   esac
 done
@@ -33,7 +35,11 @@ Invisible    Number of right-hand differences, minus the number of unrec and bla
 Invisible %  100 * Invisible/Length
 
 EOF
-echo 'Length  Left  Right  Unrec  Blank  Invisible  Invisible %    Field'
+if [ $FRIENDLY -eq 0 ]; then
+  echo 'Length  Left  Right  Unrec  Blank  Invisible  Invisible %    Field'
+else
+  echo 'Length  Left  Right  Unrec  Blank  Invisible'
+fi
 for golden in GOLDEN_*; do
   base="${golden#GOLDEN_}"
   output="OUTPUT_${base}"
@@ -44,6 +50,10 @@ for golden in GOLDEN_*; do
   right_blank="`grep '^>' diff_${base} | sed 's/^> //' | csvtool col 3 - | grep '^[[:blank:]]*$' | wc -l`"
   length="`cat $golden | wc -l`"
   invisible=$((right - right_unreconciled - right_blank))
-  percent=`echo "100 * $invisible / $length" | bc`
-  printf '%6u  %4u  %5u  %5u  %5u  %9u  %11u    %s\n' $length $left $right $right_unreconciled $right_blank $invisible $percent $base
+  if [ $FRIENDLY -eq 0 ]; then
+    percent=`echo "100 * $invisible / $length" | bc`
+    printf '%6u  %4u  %5u  %5u  %5u  %9u  %11u    %s\n' $length $left $right $right_unreconciled $right_blank $invisible $percent $base
+  else
+    printf '%6u  %4u  %5u  %5u  %5u  %9u\n'             $length $left $right $right_unreconciled $right_blank $invisible
+  fi
 done
