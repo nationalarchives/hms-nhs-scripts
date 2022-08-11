@@ -47,7 +47,7 @@ for golden in GOLDEN_*; do
   left="`grep  '^<' diff_${base} | wc -l`"
   right="`grep '^<' diff_${base} | wc -l`"
   right_unreconciled="`grep '^>' diff_${base} | grep -F $SEPARATOR | wc -l`"
-  right_blank="`grep '^>' diff_${base} | sed 's/^> //' | csvtool col 3 - | grep '^[[:blank:]]*$' | wc -l`"
+  right_blank="`grep '^>' diff_${base} | sed 's/^> //' | csvtool col 3 - | grep '^00$' | wc -l`"
   length="`cat $golden | wc -l`"
   invisible=$((right - right_unreconciled - right_blank))
   if [ $FRIENDLY -eq 0 ]; then
