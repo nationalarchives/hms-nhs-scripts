@@ -33,7 +33,6 @@ GOLDEN: modified/DSH_1-4_Golden_Transcriptions.csv \
 	csvtool cols 1,3,4,7-19 $^ | \
 	sed '1s/^subject_id,/subject,/' | \
 	csvformat -U 2 | \
-	grep -v '^"","","","","","","","","","","","","","","",""$$' | \
 	grep -v '^"subject_id","volume","page","admission number","date of entry","name","quality","age","place of birth","port sailed out of","years at sea","last services","under what circumstances admitted (or nature of complaint)","date of discharge","how disposed of","number of days victualled"$$' | \
 	tr '[:upper:]' '[:lower:]' | \
 	sed 's/  \+/ /g' > $@
