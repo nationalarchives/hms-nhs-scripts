@@ -19,11 +19,11 @@ $(COLS): $(golden_targets) $(output_targets)
 
 #Split golden into per-column files
 $(golden_targets): GOLDEN_%: GOLDEN
-	csvsql --no-inference --tables foo --query 'select subject,"admission number","$(subst LB,$(lb),$(subst RB,$(rb),$(subst _, ,$*)))" from foo' $< | csvformat -U 2 > $@
+	csvsql --no-inference --tables foo --query 'select subject,"admission number",ifnull("$(subst LB,$(lb),$(subst RB,$(rb),$(subst _, ,$*)))","00") as "$(subst LB,$(lb),$(subst RB,$(rb),$(subst _, ,$*)))" from foo' $< | csvformat -U 2 > $@
 
 #Split output into per-column files
 $(output_targets): OUTPUT_%: OUTPUT
-	csvsql --no-inference --tables foo --query 'select subject,"admission number","$(subst LB,$(lb),$(subst RB,$(rb),$(subst _, ,$*)))" from foo' $< | csvformat -U 2 > $@
+	csvsql --no-inference --tables foo --query 'select subject,"admission number",ifnull("$(subst LB,$(lb),$(subst RB,$(rb),$(subst _, ,$*)))","00") as "$(subst LB,$(lb),$(subst RB,$(rb),$(subst _, ,$*)))" from foo' $< | csvformat -U 2 > $@
 
 #See README for explanation of what is going on here
 GOLDEN: modified/DSH_1-4_Golden_Transcriptions.csv \
