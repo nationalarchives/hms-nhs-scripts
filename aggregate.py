@@ -137,7 +137,7 @@ def unaligned(aligned_text):
   return list(map(lambda x: ' '.join(x).strip(), zip(*aligned_text)))
 
 
-def pretty_candidates(candidates, best_guess = None):
+def pretty_candidates(candidates, best_guess = '<No best guess>'):
   container = candidates
   if isinstance(candidates, str):
     container = ast.literal_eval(candidates)
@@ -150,7 +150,7 @@ def pretty_candidates(candidates, best_guess = None):
   else:
     raise Exception(f"Unexpected data type {type(container)} while prettifying candidates")
 
-  retval = [ best_guess, '----------' ] if best_guess else []
+  retval = [ best_guess, '----------' ]
   for k, v in Counter(container).items():
     if re.search(r'@\d+$', k) or k == '----------':
       raise Exception(f'Reserved pattern in input: {k}')
