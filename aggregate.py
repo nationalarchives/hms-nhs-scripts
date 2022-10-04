@@ -51,7 +51,7 @@ parser.add_argument('--timing',
                     help = 'Give timing information for phases in the program')
 parser.add_argument('--output_dir',
                     default = 'output',
-                    help = 'Set output dir (must already exists, defaults to "output")')
+                    help = 'Set output dir (defaults to "output", must not already exist)')
 parser.add_argument('--output', '-o',
                     default = 'joined.csv',
                     help = 'Set name of output file (use --output_dir to change the output directory)')
