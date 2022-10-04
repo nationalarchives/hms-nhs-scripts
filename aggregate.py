@@ -612,7 +612,7 @@ def main():
   if args.dump_interims: joined_views.to_csv(f'{args.output_dir}/joined_views_complete.csv')
 
   #Tag or remove the rows with badness
-  joined.insert(3, 'Problems', '')
+  joined.insert(len(joined.columns), 'Problems', '')
   joined['Problems'] = joined[workflow_columns].isnull().values.any(axis = 1)
   joined.loc[vol_1_subj_ids,['Problems']] = joined.loc[vol_1_subj_ids][workflow_columns].drop('port sailed out of', axis = 1).isnull().values.any(axis = 1)
   joined['Problems'] = joined['Problems'].map({True: 'Blank(s)', False: ''})
