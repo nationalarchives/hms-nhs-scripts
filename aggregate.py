@@ -551,15 +551,15 @@ def main():
   #Translate subjects ids into original filenames
   #Assumption: the metadata is invariant across all of the entries for each subject_id
   subj_info_cols = {
+    'original': {},
     'subject': {},
     'volume': {},
     'page': {},
-    'raw_subject': {},
   }
-  joined.insert(0, 'subject', '')
-  joined.insert(1, 'volume', '')
-  joined.insert(2, 'page', '')
-  joined.insert(len(joined.columns), 'raw_subject', '')
+  joined.insert(0, 'original', '')
+  joined.insert(1, 'subject', '')
+  joined.insert(2, 'volume', '')
+  joined.insert(3, 'page', '')
   for sid in joined.index.get_level_values('subject_id').unique():
     metadata = subjects.query(f'subject_id == {sid}').iloc[0]['metadata']
     fnam = json.loads(metadata)['Filename']
@@ -580,10 +580,10 @@ def main():
     location = next(iter(location))
     assert isinstance(location, str)
 
-    subj_info_cols['subject'][sid] = f'=HYPERLINK("{location}"; "{sid}")'
+    subj_info_cols['original'][sid] = location
+    subj_info_cols['subject'][sid] = sid
     subj_info_cols['volume'][sid] = vol
     subj_info_cols['page'][sid] = page
-    subj_info_cols['raw_subject'][sid] = sid
   for level_name, value in subj_info_cols.items():
     for sid, subj_info in value.items():
       joined.loc[[sid], level_name] = subj_info
