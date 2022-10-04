@@ -686,6 +686,7 @@ def main():
     commit = subprocess.run(['git', 'rev-parse', 'HEAD'], capture_output = True, check = True).stdout
     joined['Commit'] =[commit] * len(joined.index)
     joined['Args'] = [' '.join(sys.argv)] * len(joined.index)
+  joined['§°—’“”…；£ªéºöœü'] = '' #TODO: Find a better way to force Google Sheets to recognise the character encoding as UTF-8
   joined.to_csv(path_or_buf = f'{args.output_dir}/{args.output}', index = False, quoting = csv.QUOTE_NONNUMERIC)
 
   #Update views file
