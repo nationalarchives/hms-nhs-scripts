@@ -79,7 +79,7 @@ parser.add_argument('--flow_report', '-f',
                    )
 parser.add_argument('--dump_interims', action = 'store_true')
 parser.add_argument('--row_factor',
-                    type = int,
+                    type = float,
                     help = 'Percentage of total rows to read. Repeatable across runs, for faster testing cycles.'
                    )
 args = parser.parse_args()
