@@ -311,7 +311,7 @@ def date_resolver(row, data):
       if row.name in autoresolved and data['name'] in autoresolved[row.name]: flow_report('Autoresolved', row.name, row['data.aligned_text'])
       else: flow_report('Unanimous', row.name, row['data.aligned_text'])
       date = next(iter(candidates))
-      return date.strftime('%d-%m-%Y')
+      return date.strftime('%b %d %Y')
     else:
       flow_report('Unresolvable', row.name, row['data.aligned_text'])
       bad[row.name] += 1
