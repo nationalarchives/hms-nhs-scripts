@@ -144,14 +144,14 @@ def pretty_candidates(candidates, best_guess = '<No best guess>'):
     assert isinstance(container, list)
 
   if isinstance(container, list):
-    container = unaligned(container)
+    container_count = Counter(unaligned(container))
   elif isinstance(container, dict):
-    container = [f'{k}: {v}' for k, v in candidates.items()]
+    container_count = {str(k): v for k, v in candidates.items()}
   else:
     raise Exception(f"Unexpected data type {type(container)} while prettifying candidates")
 
   retval = [ best_guess, '----------' ]
-  for k, v in Counter(container).items():
+  for k, v in container_count.items():
     if re.search(r'@\d+$', k) or k == '----------':
       raise Exception(f'Reserved pattern in input: {k}')
     if v == 1: retval.append(k)
