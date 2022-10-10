@@ -1,0 +1,28 @@
+,subject,volume,page,admission number,date of entry,name,quality,age,place of birth,port sailed out of,years at sea,last services,under what circumstances admitted (or nature of complaint),date of discharge,how disposed of,number of days victualled,Problems,Autoresolved,Repo,Commit,Args,§°—’“”…；£ªéºöœü
+https://panoptes-uploads.zooniverse.org/subject_location/bc7a0eb0-3241-4787-98f3-bcf61e5eaee9.jpeg,44121883,1,91,7175,May 05 1827,Edward Lawrence,Able Seaman,25,Bemester,,00; 07,Malta,Ulcered Leg,Jun 04 1827,Request Cured,31,,admission number; name; place of birth; date of discharge,b'origin\thttps://github.com/nationalarchives/hms-nhs-scripts.git (fetch)\norigin\thttps://github.com/nationalarchives/hms-nhs-scripts.git (push)\n',b'e045135190384b8107b6a9048c149549fa986f19\n',./aggregate.py -t 0.3,
+https://panoptes-uploads.zooniverse.org/subject_location/bc7a0eb0-3241-4787-98f3-bcf61e5eaee9.jpeg,44121883,1,91,"7176.0
+----------
+7176.0 @5
+7171.0
+7150.0
+4146.0",May 05 1827,Thomas Grant,Able Seaman,42,Scotland,,08; 17,Lady McNaughton Naughten,Fractured Leg,Jul 21 1827,Request Cured,"70.0
+----------
+70.0 @3
+78.0 @2",At least 2 unresolved fields,name; last services,b'origin\thttps://github.com/nationalarchives/hms-nhs-scripts.git (fetch)\norigin\thttps://github.com/nationalarchives/hms-nhs-scripts.git (push)\n',b'e045135190384b8107b6a9048c149549fa986f19\n',./aggregate.py -t 0.3,
+https://panoptes-uploads.zooniverse.org/subject_location/bc7a0eb0-3241-4787-98f3-bcf61e5eaee9.jpeg,44121883,1,91,7190,May 08 1827,William R. Williams,"<No best guess>
+----------
+Missing/illegible entry
+Other
+Carpenter",38,Wrotherfield,,20; 00,HMS Hyperion - Discharged April,Rheumatic Gout,May 21 1827,Request Cured,14,At least 1 unresolved fields,admission number; name; place of birth; last services; under what circumstances admitted (or nature of complaint); date of discharge; number of days victualled,b'origin\thttps://github.com/nationalarchives/hms-nhs-scripts.git (fetch)\norigin\thttps://github.com/nationalarchives/hms-nhs-scripts.git (push)\n',b'e045135190384b8107b6a9048c149549fa986f19\n',./aggregate.py -t 0.3,
+https://panoptes-uploads.zooniverse.org/subject_location/bc7a0eb0-3241-4787-98f3-bcf61e5eaee9.jpeg,44121883,1,91,7193,May 09 1827,Nicholas Dobson,Able Seaman,"62.0
+----------
+12.0
+33.0 @2
+62.0 @4",Sunderland,,00; 50,Abeona,Rheumatism,Jun 14 1827,Request Cured,37,At least 1 unresolved fields,admission number; name,b'origin\thttps://github.com/nationalarchives/hms-nhs-scripts.git (fetch)\norigin\thttps://github.com/nationalarchives/hms-nhs-scripts.git (push)\n',b'e045135190384b8107b6a9048c149549fa986f19\n',./aggregate.py -t 0.3,
+https://panoptes-uploads.zooniverse.org/subject_location/bc7a0eb0-3241-4787-98f3-bcf61e5eaee9.jpeg,44121883,1,91,7194,May 09 1827,Thomas Boweles,Able Seaman,18,Newcastle,,00; 06,Commerce,Venereal,Aug 20 1827,Shipped,104,,admission number; name; age,b'origin\thttps://github.com/nationalarchives/hms-nhs-scripts.git (fetch)\norigin\thttps://github.com/nationalarchives/hms-nhs-scripts.git (push)\n',b'e045135190384b8107b6a9048c149549fa986f19\n',./aggregate.py -t 0.3,
+https://panoptes-uploads.zooniverse.org/subject_location/bc7a0eb0-3241-4787-98f3-bcf61e5eaee9.jpeg,44121883,1,91,7195,May 09 1827,Mark Dunn,Able Seaman,23,North Shields,,00; 07,Hope,Venereal,May 21 1827,Shipped,13,,admission number; age; under what circumstances admitted (or nature of complaint); date of discharge,b'origin\thttps://github.com/nationalarchives/hms-nhs-scripts.git (fetch)\norigin\thttps://github.com/nationalarchives/hms-nhs-scripts.git (push)\n',b'e045135190384b8107b6a9048c149549fa986f19\n',./aggregate.py -t 0.3,
+https://panoptes-uploads.zooniverse.org/subject_location/bc7a0eb0-3241-4787-98f3-bcf61e5eaee9.jpeg,44121883,1,91,7196,May 09 1827,William Hammell,Able Seaman,20,Shadwell,,00; 07,Commerce,Ague,May 14 1827,Request Cured,6,,admission number; name; age; place of birth,b'origin\thttps://github.com/nationalarchives/hms-nhs-scripts.git (fetch)\norigin\thttps://github.com/nationalarchives/hms-nhs-scripts.git (push)\n',b'e045135190384b8107b6a9048c149549fa986f19\n',./aggregate.py -t 0.3,
+https://panoptes-uploads.zooniverse.org/subject_location/bc7a0eb0-3241-4787-98f3-bcf61e5eaee9.jpeg,44121883,1,91,7197,May 09 1827,John Steward,Able Seaman,27,Greenock,,00; 16,Layton,Injured Foot,Jun 25 1827,Shipped,"40.0
+----------
+40.0 @3
+48.0 @2",At least 1 unresolved fields,admission number; age; place of birth; under what circumstances admitted (or nature of complaint),b'origin\thttps://github.com/nationalarchives/hms-nhs-scripts.git (fetch)\norigin\thttps://github.com/nationalarchives/hms-nhs-scripts.git (push)\n',b'e045135190384b8107b6a9048c149549fa986f19\n',./aggregate.py -t 0.3,
