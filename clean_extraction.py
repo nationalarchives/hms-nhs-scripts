@@ -228,6 +228,14 @@ def unstring_date(text):
 
   result = re.sub(r'\s*=\s*', '-', result)
 
+  parts = [strip(x) for x in re.split(r'[-/\.]', result)]
+  if len(parts) != 3:
+    sys.stderr.write(f'Warning: blanked unparseable date {result} (originally {text}) (too many parts)\n')
+    return ''
+  day, month, year = [int(x) for x in parts]
+  if day == 0 or month == 0 or year == 0:
+    result = f'{day:02}-{month:02}-{year:04}'
+
   #dateutil.parser.parse is thrown off by leading zeros if that results in too many digits in a field
   result = re.sub(r'-0+', '-', result)
   result = re.sub(r'^0+', '', result)
