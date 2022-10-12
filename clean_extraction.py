@@ -236,17 +236,46 @@ def unstring_date(text):
   if day == 0 or month == 0 or year == 0:
     result = f'{day:02}-{month:02}-{year:04}'
 
-  #dateutil.parser.parse is thrown off by leading zeros if that results in too many digits in a field
-  result = re.sub(r'-0+', '-', result)
-  result = re.sub(r'^0+', '', result)
+  #Handle some recoverable year errors, recalling that the records cover 1826 to 1930
+  if len(year) == 1:
+    sys.stderr.write(f'Warning: converted single-digit-year {year} into 190{year}\n')
+    year = f'190{year}'
+  elif len(year) == 2:
+    if int(year) > 30:
+      sys.stderr.write(f'Warning: corrected two-digit year in date {result} to 18{year}\n')
+      year = f'18{year}'
+    elif int(year) < 26:
+      sys.stderr.write(f'Warning: corrected two-digit year in date {result} to 19{year}\n')
+      year = f'19{year}'
+    else:
+      sys.stderr.write(f'Warning: blanking date {result} (originally {text}) with two-digit year that cannot be resolved to a century\n')
+      return ''
+  elif len(year) == 3:
+    if year[0] == 8 or year[0] == 9:
+      sys.stderr.write(f'Warning: adding leading 1 to 3-digit date {result} (originally {text}) that starts with 8 or 9\n')
+      year = f'1{year}'
 
-  try: result = dateutil.parser.parse(result, dayfirst = True)
-  except (TypeError, ValueError): return ''
-  if result.year > 9999: return text
-  if result.year < 1800: return text
-  if result.year > 1900: result = datetime.datetime(int(f'18{str(result.year)[2:4]}'), result.month, result.day)
-  return result.strftime('%d-%m-%Y')
+  if len(year) != 4:
+    sys.stderr.write(f'Warning: blanked date {result} (originally {text}) due to unparseable year {year}\n')
+    return ''
+  if year[0:2] == '20':
+    sys.stderr.write(f'Warning: corrected modern year {year} in date {result} to 19th century\n')
+    year = f'18{year[2:]}'
+  result = f'{int(day):02}-{int(month):02}-{year}'
 
+  #ensure that we have ended up with a parseable date in the expected format
+  try:
+    datetime.datetime.strptime(result, '%d-%m-%Y')
+  except:
+    try:
+      datetime.datetime.strptime(result, '%m-%d-%Y')
+      sys.stderr.write(f'Warning: swapped month and date in otherwise-unparseable date {result} (originally {text})\n')
+      return f'{int(month):02}-{int(day):02}-{year}'
+    except:
+      sys.stderr.write(f'Warning: blanked unparseable date {result} (originally {text}) (datetime.datetime.strptime cannot parse)\n')
+      return ''
+
+  return result
 
 def main():
   funcmap = {
