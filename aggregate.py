@@ -67,7 +67,7 @@ parser.add_argument('--reduced', '-r',
 #                    help = 'Include pages with missing values')
 parser.add_argument('--uncertainty',
                     action = 'store_true',
-                    help = 'Treat certain patterns as indicating presence of an uncertain transcription and requiring manual review')
+                    help = 'Treat certain patterns as indicating presence of an uncertain transcription and requiring manual review. May result in a lot of additional manual work as this is a pre-reconciliation check: reconciled algorithms may reconcile-out the uncertainty markers. The script also already flags these patterns in reconciled strings: this is less work to clean up but relies upon believing that auto-reconciliation has coped OK with uncertainty markers in the original transcriptions.')
 parser.add_argument('--no_stamp', '-S',
                     action = 'store_true',
                     help = 'Do not stamp the output with information about the script used to generate it')
@@ -165,8 +165,17 @@ def pretty_candidates(candidates, best_guess = '<No best guess>'):
 #rows that contain at least one of them
 def has_transcriptionisms(row):
   if row.name in bad: return
-  if row.str.contains('[\[\]]').any():
-    bad[row.name] = 1
+  #Note that it may be that only part of the uncertainty identifier has survived autoresolution.
+  #For this reason, we cannot use the exact same patterns as in the pre-resultion function 'uncertainty'.
+  for pattern in [
+    r'[\[\]\{\}]', #Any sort of bracket (apart from round, which come up too much in correct contexts)
+    r'\.\.', #More than one '.' in succession
+    r'\?' #A question mark
+    #r'[^\d]*\.[^ \d$]', #A single dot that (a) does not appear to be part of a number and (b) does not appear to be a full stop. Did away with this one as it matches dots in abbreviations and initials -- far too noisy.
+  ]:
+    if row.str.contains(pattern).any():
+      bad[row.name] = 1
+      return
   #TODO: Should use the info in workflows.yaml to drop the number columns, rather than listing them all by name:
   if row.drop(['admission number', 'age', 'years at sea', 'number of days victualled']).str.contains('^0+$').any():
     bad[row.name] += 1
