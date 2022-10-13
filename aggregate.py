@@ -298,8 +298,17 @@ def date_resolver(row, data):
 
     if uncertainty(candidates): return pretty_candidates(row['data.aligned_text'], row['data.consensus_text'])
 
+    #Check the candidates for any with a zero-field. Pass through for manual check if this happens.
+    for x in candidates:
+      parts = [int(y) for y in re.split(r'[-/\.]', x)]
+      if len(parts) != 3 or 0 in parts:
+        flow_report('Zero-field (or bad field count)', row.name, row['data.aligned_text'])
+        bad[row.name] += 1
+        return pretty_candidates(row['data.aligned_text'], row['data.consensus_text'])
+
     #https://stackoverflow.com/a/18029112 has a trick for reading arbitrary date formats while rejecting ambiguous cases
     #We just need to use the documented format, but we can be a bit forgiving
+    #TODO: Improve date handling, see https://github.com/nationalarchives/hms-nhs-scripts/issues/11
     try:
       candidates = [dateutil.parser.parse(d, dayfirst = True) for d in candidates] #yearfirst defaults to False
     except (TypeError, ValueError): #Something is wrong, resolve manually

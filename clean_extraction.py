@@ -228,6 +228,13 @@ def unstring_date(text):
 
   result = re.sub(r'\s*=\s*', '-', result)
 
+  #Blank out if the date has any 0-component (or not-exactly-3 components)
+  #In either case, give up, return the original text, and hope that the zeros get through to the aggregator, which will flag them
+  #TODO: Better solutions are possible, see https://github.com/nationalarchives/hms-nhs-scripts/issues/11
+  parts = [int(x) for x in re.split(r'[-/\.]', result)]
+  if 0 in parts:
+    return '-'.join([str(x) for x in parts]) #Just return this, preserving the zeros. The aggregator checks the candidates for those containing zeros. (The date parser, below, does not respect zero-fields.)
+
   #dateutil.parser.parse is thrown off by leading zeros if that results in too many digits in a field
   result = re.sub(r'-0+', '-', result)
   result = re.sub(r'^0+', '', result)
