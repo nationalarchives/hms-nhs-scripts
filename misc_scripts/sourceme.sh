@@ -1,5 +1,5 @@
 export ROOTME="`git rev-parse --show-toplevel`"
-alias c-sql='csvsql --tables foo --query'
+alias c-sql='csvsql --tables foo --query' #DANGER: expects double quotes around fields with spaces inside the query string (so --query 'select "admission number"...' works)
 export WORKFLOW_RANGE='workflow_id > 18610 and workflow_id < 18626'
 export SUBJECTS="${ROOTME}/exports/hms-nhs-the-nautical-health-service-subjects.csv" #Note that the subjects file can be really misleading -- current guess is that some subjects have been removed from the project since they were classified
 
@@ -55,13 +55,13 @@ function meld_brief {
 
 function subject_lookup {
   for x in "$@"; do
-    csvsql --tables foo --query "select * from foo where subject_id=${x} and ${WORKFLOW_RANGE}" $SUBJECTS
+    csvsql --tables foo --query "select * from foo where subject_id=${x} and ${WORKFLOW_RANGE}" $SUBJECTS #DANGER: expects double quotes around fields with spaces inside the query string (so --query 'select "admission number"...' works)
   done
 }
 
 function subject_metadata {
   for x in "$@"; do
-    csvsql --tables foo --query "select distinct metadata,locations from foo where subject_id=${x} and ${WORKFLOW_RANGE}" $SUBJECTS
+    csvsql --tables foo --query "select distinct metadata,locations from foo where subject_id=${x} and ${WORKFLOW_RANGE}" $SUBJECTS #DANGER: expects double quotes around fields with spaces inside the query string (so --query 'select "admission number"...' works)
   done
 }
 
