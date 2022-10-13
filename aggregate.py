@@ -234,7 +234,10 @@ def years_at_sea_resolver(candidates, row, data, datacol):
   navies = []
   merchants = []
 
-  if uncertainty(originals): return pretty_candidates(candidates, row['data.consensus_text'])
+  if uncertainty(originals):
+    flow_report('Uncertain transcriber', row.name, row['data.aligned_text'])
+    bad[row.name] += 1
+    return pretty_candidates(candidates, row['data.consensus_text'])
 
   for numbers in [x.split(';') for x in originals]:
     if len(numbers) != 2:
@@ -271,7 +274,11 @@ def years_at_sea_resolver(candidates, row, data, datacol):
     return pretty_candidates(candidates, row['data.consensus_text'])
 
 def string_resolver(row, data, datacol):
-  if uncertainty(unaligned(ast.literal_eval(row['data.aligned_text']))) or row['data.consensus_score'] / row['data.number_views'] < args.text_threshold:
+  if uncertainty(unaligned(ast.literal_eval(row['data.aligned_text']))):
+    flow_report('Uncertain transcriber', row.name, row['data.aligned_text'])
+    bad[row.name] += 1
+    return pretty_candidates(row['data.aligned_text'], row['data.consensus_text'])
+  if row['data.consensus_score'] / row['data.number_views'] < args.text_threshold:
     flow_report('Did not pass threshold', row.name, row['data.aligned_text'])
     bad[row.name] += 1
     return pretty_candidates(row['data.aligned_text'], row['data.consensus_text'])
@@ -296,7 +303,10 @@ def date_resolver(row, data):
 
     candidates = candidates[0]
 
-    if uncertainty(candidates): return pretty_candidates(row['data.aligned_text'], row['data.consensus_text'])
+    if uncertainty(candidates):
+      flow_report('Uncertain transcriber', row.name, row['data.aligned_text'])
+      bad[row.name] += 1
+      return pretty_candidates(row['data.aligned_text'], row['data.consensus_text'])
 
     #Check the candidates for any with a zero-field. Pass through for manual check if this happens.
     for x in candidates:
@@ -342,7 +352,10 @@ def number_resolver(row, data, datacol):
 
   candidates = candidates[0]
 
-  if uncertainty(candidates): return pretty_candidates(row['data.aligned_text'], row['data.consensus_text'])
+  if uncertainty(candidates):
+    flow_report('Uncertain transcriber', row.name, row['data.aligned_text'])
+    bad[row.name] += 1
+    return pretty_candidates(row['data.aligned_text'], row['data.consensus_text'])
 
   #If there are any non-numerals in the input, just return it to resolve manually
   try:
