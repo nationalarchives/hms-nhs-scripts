@@ -2,10 +2,14 @@
 
 PASSCOUNT=0
 FAILCOUNT=0
+VERBOSE=0
 
 function diff_test {
   local testcase="$1"
   shift
+  if [[ $VERBOSE -eq 1 ]]; then
+    echo "../mimsify.py "$@" -o output/"$testcase".txt input/"$testcase".csv 2>&1 | diff -q - expected/"$testcase".err > /dev/null 2>&1"
+  fi
   ../mimsify.py "$@" -o output/"$testcase".txt input/"$testcase".csv 2>&1 | diff -q - expected/"$testcase".err > /dev/null 2>&1
   if [[ $? -ne 0 ]]; then
     echo "FAIL (bad messages) $testcase $@"
@@ -21,6 +25,14 @@ function diff_test {
     ((FAILCOUNT++))
   fi
 }
+
+while getopts "v" x; do
+  case "$x" in
+    v) VERBOSE=1;;
+    *) echo "Bad args"; exit 1;;
+  esac
+done
+shift $((OPTIND-1))
 
 BASEDIR="`dirname $0`"
 cd $BASEDIR
