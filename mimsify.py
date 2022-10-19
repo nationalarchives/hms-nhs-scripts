@@ -30,7 +30,7 @@ def normalize(row):
     #sanity check for expected-blank "port sailed out of"
     if field == 'port sailed out of' and row['volume'] == '1':
       if row[field] != '':
-        sys.stderr.write(f'Warning: non-blank "{row[field]}" in "port sailed out of" in volume 1. At row {row_count + 1} of {args.input}\n')
+        sys.stderr.write(f'Warning: non-blank "{row[field]}" in "port sailed out of" in volume 1, at row {row_count + 1} of {args.input}\n')
 
     if not args.no_blanks_warnings:
       if row[field] == '':
@@ -48,7 +48,7 @@ def normalize(row):
         sub = re.sub(r'[\n\r]+', ' OR ', sub) #replace newlines with OR
         normalized_row[field] = sub
       else:
-        sys.stderr.write(f'Unresolved "{field}" at line {row_count + 1} of {args.input}\n')
+        sys.stderr.write(f'Error: unresolved "{field}" at line {row_count + 1} of {args.input}\n')
         sys.exit(1)
     else:
       if field == 'date of entry' or field == 'date of discharge': #convert dates to expected format
@@ -57,7 +57,7 @@ def normalize(row):
             tmp = datetime.strptime(row[field], '%b %d %Y')
             normalized_row[field] = tmp.strftime('%d-%m-%Y')
           except ValueError:
-            sys.stderr.write(f'Warning: bad date format \"{row[field]}\". Should be like "Apr 01 1800".\n')
+            sys.stderr.write(f'Error: bad date format "{row[field]}" in "{field}" at line {row_count + 1} of {args.input}. Should be like "Apr 01 1800".\n')
             normalized_row[field] = row[field]
         else:
           normalized_row[field] = ''
@@ -71,7 +71,7 @@ def normalize(row):
       #Elsewhere, they might actually be in the original text, so warn about these cases.
       #With a different "mimsy separator" we would not have this problem
       if field != 'years at sea' and field != 'Autoresolved':
-        sys.stderr.write(f'Warning: replaced semicolons in "{row[field]}" (See "{field}" at row {row_count + 1} of {args.input})\n')
+        sys.stderr.write(f'Warning: replaced semicolons in "{row[field]}" in "{field}" at row {row_count + 1} of {args.input}\n')
   return normalized_row
 
 def next_page():
@@ -149,5 +149,5 @@ with open(args.input) as source:
 
       target.write('\n') #Put in a trailing newline, if only to make testing simpler
   except:
-    sys.stderr.write(f'Exception while parsing row {row_count + 1} of {args.input}\n\n')
+    sys.stderr.write(f'Error: exception while parsing row {row_count + 1} of {args.input}\n\n')
     raise

@@ -217,7 +217,7 @@ Warning: blank in "port sailed out of" at row 4055 of input/phase_one.csv (volum
 Warning: blank in "port sailed out of" at row 4060 of input/phase_one.csv (volume 2, page 63)
 Warning: blank in "port sailed out of" at row 4061 of input/phase_one.csv (volume 2, page 63)
 Warning: blank in "port sailed out of" at row 4070 of input/phase_one.csv (volume 2, page 63)
-Warning: replaced semicolons in "Fever; Fever/Rheumatism" (See "under what circumstances admitted (or nature of complaint)" at row 4074 of input/phase_one.csv)
+Warning: replaced semicolons in "Fever; Fever/Rheumatism" in "under what circumstances admitted (or nature of complaint)" at row 4074 of input/phase_one.csv
 Warning: blank in "port sailed out of" at row 4082 of input/phase_one.csv (volume 2, page 64)
 Warning: blank in "port sailed out of" at row 4091 of input/phase_one.csv (volume 2, page 64)
 Warning: blank in "port sailed out of" at row 4093 of input/phase_one.csv (volume 2, page 64)
@@ -3678,7 +3678,7 @@ Warning: blank in "port sailed out of" at row 24149 of input/phase_one.csv (volu
 Warning: blank in "port sailed out of" at row 24168 of input/phase_one.csv (volume 5, page 206)
 Warning: blank in "port sailed out of" at row 24170 of input/phase_one.csv (volume 5, page 206)
 Warning: blank in "port sailed out of" at row 24173 of input/phase_one.csv (volume 5, page 206)
-Warning: replaced semicolons in "Wilberforce Steam Vess; (Passenger)" (See "last services" at row 24216 of input/phase_one.csv)
+Warning: replaced semicolons in "Wilberforce Steam Vess; (Passenger)" in "last services" at row 24216 of input/phase_one.csv
 Warning: blank in "how disposed of" at row 24258 of input/phase_one.csv (volume 7, page 4)
 Warning: blank in "port sailed out of" at row 24437 of input/phase_one.csv (volume 7, page 11)
 Warning: blank in "port sailed out of" at row 24453 of input/phase_one.csv (volume 7, page 12)
@@ -6009,7 +6009,7 @@ Warning: blank in "port sailed out of" at row 40897 of input/phase_one.csv (volu
 Warning: blank in "port sailed out of" at row 40901 of input/phase_one.csv (volume 10, page 185)
 Warning: blank in "port sailed out of" at row 40902 of input/phase_one.csv (volume 10, page 186)
 Warning: blank in "port sailed out of" at row 40935 of input/phase_one.csv (volume 10, page 187)
-Warning: replaced semicolons in "Wk; Mss Iphigenia" (See "last services" at row 40940 of input/phase_one.csv)
+Warning: replaced semicolons in "Wk; Mss Iphigenia" in "last services" at row 40940 of input/phase_one.csv
 Warning: blank in "under what circumstances admitted (or nature of complaint)" at row 40954 of input/phase_one.csv (volume 10, page 188)
 Warning: blank in "port sailed out of" at row 40959 of input/phase_one.csv (volume 10, page 188)
 Warning: blank in "port sailed out of" at row 40963 of input/phase_one.csv (volume 10, page 188)
@@ -7983,7 +7983,7 @@ Warning: blank in "port sailed out of" at row 61400 of input/phase_one.csv (volu
 Warning: blank in "port sailed out of" at row 61401 of input/phase_one.csv (volume 14, page 83)
 Warning: blank in "last services" at row 61401 of input/phase_one.csv (volume 14, page 83)
 Warning: blank in "port sailed out of" at row 61402 of input/phase_one.csv (volume 14, page 84)
-Warning: replaced semicolons in ";" (See "port sailed out of" at row 61415 of input/phase_one.csv)
+Warning: replaced semicolons in ";" in "port sailed out of" at row 61415 of input/phase_one.csv
 Warning: blank in "last services" at row 61415 of input/phase_one.csv (volume 14, page 84)
 Warning: blank in "port sailed out of" at row 61416 of input/phase_one.csv (volume 14, page 84)
 Warning: blank in "port sailed out of" at row 61417 of input/phase_one.csv (volume 14, page 84)
@@ -8017,7 +8017,7 @@ Warning: blank in "port sailed out of" at row 61660 of input/phase_one.csv (volu
 Warning: blank in "port sailed out of" at row 61661 of input/phase_one.csv (volume 14, page 94)
 Warning: blank in "port sailed out of" at row 61663 of input/phase_one.csv (volume 14, page 94)
 Warning: blank in "port sailed out of" at row 61670 of input/phase_one.csv (volume 14, page 94)
-Warning: replaced semicolons in "76319; London" (See "port sailed out of" at row 61679 of input/phase_one.csv)
+Warning: replaced semicolons in "76319; London" in "port sailed out of" at row 61679 of input/phase_one.csv
 Warning: blank in "port sailed out of" at row 61680 of input/phase_one.csv (volume 14, page 95)
 Warning: blank in "port sailed out of" at row 61682 of input/phase_one.csv (volume 14, page 95)
 Warning: blank in "port sailed out of" at row 61684 of input/phase_one.csv (volume 14, page 95)
@@ -8027,7 +8027,7 @@ Warning: blank in "port sailed out of" at row 61691 of input/phase_one.csv (volu
 Warning: blank in "port sailed out of" at row 61727 of input/phase_one.csv (volume 14, page 97)
 Warning: blank in "port sailed out of" at row 61786 of input/phase_one.csv (volume 14, page 99)
 Warning: blank in "port sailed out of" at row 61794 of input/phase_one.csv (volume 14, page 99)
-Warning: replaced semicolons in "78230; Neith" (See "port sailed out of" at row 61811 of input/phase_one.csv)
+Warning: replaced semicolons in "78230; Neith" in "port sailed out of" at row 61811 of input/phase_one.csv
 Warning: blank in "port sailed out of" at row 61816 of input/phase_one.csv (volume 14, page 100)
 Warning: blank in "port sailed out of" at row 61817 of input/phase_one.csv (volume 14, page 100)
 Warning: blank in "port sailed out of" at row 61826 of input/phase_one.csv (volume 14, page 100)
@@ -8456,7 +8456,7 @@ Warning: blank in "port sailed out of" at row 66855 of input/phase_one.csv (volu
 Warning: blank in "port sailed out of" at row 66868 of input/phase_one.csv (volume 15, page 68)
 Warning: blank in "port sailed out of" at row 66875 of input/phase_one.csv (volume 15, page 68)
 Warning: blank in "port sailed out of" at row 66885 of input/phase_one.csv (volume 15, page 69)
-Warning: replaced semicolons in ";" (See "port sailed out of" at row 66897 of input/phase_one.csv)
+Warning: replaced semicolons in ";" in "port sailed out of" at row 66897 of input/phase_one.csv
 Warning: blank in "port sailed out of" at row 66907 of input/phase_one.csv (volume 15, page 70)
 Warning: blank in "port sailed out of" at row 66912 of input/phase_one.csv (volume 15, page 70)
 Warning: blank in "port sailed out of" at row 66922 of input/phase_one.csv (volume 15, page 70)
@@ -8609,7 +8609,7 @@ Warning: blank in "port sailed out of" at row 68696 of input/phase_one.csv (volu
 Warning: blank in "port sailed out of" at row 68714 of input/phase_one.csv (volume 15, page 142)
 Warning: blank in "port sailed out of" at row 68718 of input/phase_one.csv (volume 15, page 142)
 Warning: blank in "port sailed out of" at row 68729 of input/phase_one.csv (volume 15, page 143)
-Warning: replaced semicolons in ";" (See "port sailed out of" at row 68754 of input/phase_one.csv)
+Warning: replaced semicolons in ";" in "port sailed out of" at row 68754 of input/phase_one.csv
 Warning: blank in "port sailed out of" at row 68756 of input/phase_one.csv (volume 15, page 144)
 Warning: blank in "port sailed out of" at row 68757 of input/phase_one.csv (volume 15, page 144)
 Warning: blank in "port sailed out of" at row 68759 of input/phase_one.csv (volume 15, page 144)
@@ -8881,7 +8881,7 @@ Warning: replaced semicolons in "Vul Facii
 Vul Facii
 V[..]; Fascii
 Fuminculus
-Vulnus Faciei" (See "under what circumstances admitted (or nature of complaint)" at row 71525 of input/phase_one.csv)
+Vulnus Faciei" in "under what circumstances admitted (or nature of complaint)" at row 71525 of input/phase_one.csv
 Warning: blank in "port sailed out of" at row 71533 of input/phase_one.csv (volume 16, page 13)
 Warning: blank in "port sailed out of" at row 71536 of input/phase_one.csv (volume 16, page 13)
 Warning: blank in "port sailed out of" at row 71606 of input/phase_one.csv (volume 16, page 16)
@@ -8919,7 +8919,7 @@ Warning: blank in "port sailed out of" at row 71955 of input/phase_one.csv (volu
 Warning: blank in "port sailed out of" at row 71963 of input/phase_one.csv (volume 16, page 30)
 Warning: blank in "port sailed out of" at row 71968 of input/phase_one.csv (volume 16, page 30)
 Warning: blank in "port sailed out of" at row 71972 of input/phase_one.csv (volume 16, page 30)
-Warning: replaced semicolons in ";" (See "last services" at row 71972 of input/phase_one.csv)
+Warning: replaced semicolons in ";" in "last services" at row 71972 of input/phase_one.csv
 Warning: blank in "port sailed out of" at row 72013 of input/phase_one.csv (volume 16, page 32)
 Warning: blank in "port sailed out of" at row 72019 of input/phase_one.csv (volume 16, page 32)
 Warning: blank in "port sailed out of" at row 72023 of input/phase_one.csv (volume 16, page 32)
@@ -9285,7 +9285,7 @@ Warning: blank in "port sailed out of" at row 76365 of input/phase_one.csv (volu
 Warning: blank in "port sailed out of" at row 76384 of input/phase_one.csv (volume 16, page 207)
 Warning: blank in "port sailed out of" at row 76385 of input/phase_one.csv (volume 16, page 207)
 Warning: blank in "port sailed out of" at row 76387 of input/phase_one.csv (volume 16, page 207)
-Warning: replaced semicolons in "Sy ; Iritis" (See "under what circumstances admitted (or nature of complaint)" at row 76390 of input/phase_one.csv)
+Warning: replaced semicolons in "Sy ; Iritis" in "under what circumstances admitted (or nature of complaint)" at row 76390 of input/phase_one.csv
 Warning: blank in "port sailed out of" at row 76404 of input/phase_one.csv (volume 16, page 208)
 Warning: blank in "under what circumstances admitted (or nature of complaint)" at row 76410 of input/phase_one.csv (volume 16, page 208)
 Warning: blank in "port sailed out of" at row 76412 of input/phase_one.csv (volume 16, page 208)
@@ -9418,7 +9418,7 @@ Warning: blank in "port sailed out of" at row 77932 of input/phase_one.csv (volu
 Warning: blank in "port sailed out of" at row 77948 of input/phase_one.csv (volume 17, page 27)
 Warning: blank in "port sailed out of" at row 77954 of input/phase_one.csv (volume 17, page 28)
 Warning: blank in "port sailed out of" at row 77957 of input/phase_one.csv (volume 17, page 28)
-Warning: replaced semicolons in "Dif; Cel; Inflammation" (See "under what circumstances admitted (or nature of complaint)" at row 77964 of input/phase_one.csv)
+Warning: replaced semicolons in "Dif; Cel; Inflammation" in "under what circumstances admitted (or nature of complaint)" at row 77964 of input/phase_one.csv
 Warning: blank in "port sailed out of" at row 77972 of input/phase_one.csv (volume 17, page 28)
 Warning: blank in "port sailed out of" at row 77976 of input/phase_one.csv (volume 17, page 28)
 Warning: blank in "port sailed out of" at row 77990 of input/phase_one.csv (volume 17, page 29)
@@ -10509,7 +10509,7 @@ Warning: blank in "port sailed out of" at row 86831 of input/phase_one.csv (volu
 Warning: blank in "port sailed out of" at row 86832 of input/phase_one.csv (volume 18, page 146)
 Warning: blank in "port sailed out of" at row 86833 of input/phase_one.csv (volume 18, page 146)
 Warning: blank in "port sailed out of" at row 86834 of input/phase_one.csv (volume 18, page 146)
-Warning: replaced semicolons in "Alfred House; Alias Rouse" (See "name" at row 86835 of input/phase_one.csv)
+Warning: replaced semicolons in "Alfred House; Alias Rouse" in "name" at row 86835 of input/phase_one.csv
 Warning: blank in "port sailed out of" at row 86835 of input/phase_one.csv (volume 18, page 146)
 Warning: blank in "port sailed out of" at row 86836 of input/phase_one.csv (volume 18, page 146)
 Warning: blank in "port sailed out of" at row 86837 of input/phase_one.csv (volume 18, page 146)
@@ -11533,7 +11533,7 @@ Warning: blank in "port sailed out of" at row 87834 of input/phase_one.csv (volu
 Warning: blank in "port sailed out of" at row 87835 of input/phase_one.csv (volume 18, page 186)
 Warning: blank in "port sailed out of" at row 87836 of input/phase_one.csv (volume 18, page 186)
 Warning: blank in "port sailed out of" at row 87837 of input/phase_one.csv (volume 18, page 186)
-Warning: replaced semicolons in "Alfred Gomez; Conroy" (See "name" at row 87838 of input/phase_one.csv)
+Warning: replaced semicolons in "Alfred Gomez; Conroy" in "name" at row 87838 of input/phase_one.csv
 Warning: blank in "port sailed out of" at row 87838 of input/phase_one.csv (volume 18, page 186)
 Warning: blank in "port sailed out of" at row 87839 of input/phase_one.csv (volume 18, page 186)
 Warning: blank in "last services" at row 87839 of input/phase_one.csv (volume 18, page 186)
@@ -11666,7 +11666,7 @@ Warning: blank in "port sailed out of" at row 87965 of input/phase_one.csv (volu
 Warning: blank in "port sailed out of" at row 87966 of input/phase_one.csv (volume 18, page 191)
 Warning: blank in "port sailed out of" at row 87967 of input/phase_one.csv (volume 18, page 191)
 Warning: blank in "port sailed out of" at row 87968 of input/phase_one.csv (volume 18, page 191)
-Warning: replaced semicolons in "Thomas Allen; Allery" (See "name" at row 87969 of input/phase_one.csv)
+Warning: replaced semicolons in "Thomas Allen; Allery" in "name" at row 87969 of input/phase_one.csv
 Warning: blank in "port sailed out of" at row 87969 of input/phase_one.csv (volume 18, page 191)
 Warning: blank in "port sailed out of" at row 87970 of input/phase_one.csv (volume 18, page 191)
 Warning: blank in "port sailed out of" at row 87971 of input/phase_one.csv (volume 18, page 191)
@@ -11679,7 +11679,7 @@ Warning: blank in "port sailed out of" at row 87978 of input/phase_one.csv (volu
 Warning: blank in "port sailed out of" at row 87979 of input/phase_one.csv (volume 18, page 192)
 Warning: blank in "port sailed out of" at row 87980 of input/phase_one.csv (volume 18, page 192)
 Warning: blank in "port sailed out of" at row 87981 of input/phase_one.csv (volume 18, page 192)
-Warning: replaced semicolons in "Alfred Curry; alias Alfred Conroy" (See "name" at row 87982 of input/phase_one.csv)
+Warning: replaced semicolons in "Alfred Curry; alias Alfred Conroy" in "name" at row 87982 of input/phase_one.csv
 Warning: blank in "port sailed out of" at row 87983 of input/phase_one.csv (volume 18, page 192)
 Warning: blank in "port sailed out of" at row 87984 of input/phase_one.csv (volume 18, page 192)
 Warning: blank in "port sailed out of" at row 87985 of input/phase_one.csv (volume 18, page 192)
@@ -11842,7 +11842,7 @@ Warning: blank in "port sailed out of" at row 88152 of input/phase_one.csv (volu
 Warning: blank in "port sailed out of" at row 88154 of input/phase_one.csv (volume 18, page 199)
 Warning: blank in "port sailed out of" at row 88155 of input/phase_one.csv (volume 18, page 199)
 Warning: blank in "port sailed out of" at row 88156 of input/phase_one.csv (volume 18, page 199)
-Warning: replaced semicolons in "George Bye; Bye" (See "name" at row 88160 of input/phase_one.csv)
+Warning: replaced semicolons in "George Bye; Bye" in "name" at row 88160 of input/phase_one.csv
 Warning: blank in "port sailed out of" at row 88160 of input/phase_one.csv (volume 18, page 199)
 Warning: blank in "port sailed out of" at row 88161 of input/phase_one.csv (volume 18, page 199)
 Warning: blank in "port sailed out of" at row 88162 of input/phase_one.csv (volume 18, page 199)

@@ -1,6 +1,6 @@
-Warning: bad date format "March 21 1827". Should be like "Apr 01 1800".
-Warning: bad date format "a bad date". Should be like "Apr 01 1800".
-Warning: bad date format "03-21-1827". Should be like "Apr 01 1800".
-Warning: bad date format "13-04-1827". Should be like "Apr 01 1800".
+Error: bad date format "March 21 1827" in "date of entry" at line 2 of input/dates.csv. Should be like "Apr 01 1800".
+Error: bad date format "a bad date" in "date of discharge" at line 2 of input/dates.csv. Should be like "Apr 01 1800".
+Error: bad date format "03-21-1827" in "date of entry" at line 3 of input/dates.csv. Should be like "Apr 01 1800".
+Error: bad date format "13-04-1827" in "date of discharge" at line 3 of input/dates.csv. Should be like "Apr 01 1800".
 Warning: blank in "date of entry" at row 6 of input/dates.csv (volume 1, page 81)
 Warning: blank in "date of discharge" at row 6 of input/dates.csv (volume 1, page 81)

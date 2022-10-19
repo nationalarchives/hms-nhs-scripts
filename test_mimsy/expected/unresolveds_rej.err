@@ -1,3 +1,3 @@
-Unresolved "admission number" at line 3 of input/unresolveds_rej.csv
-Exception while parsing row 3 of input/unresolveds_rej.csv
+Error: unresolved "admission number" at line 3 of input/unresolveds_rej.csv
+Error: exception while parsing row 3 of input/unresolveds_rej.csv
 
