@@ -637,7 +637,7 @@ def main():
       flow_report('port sailed out of in volume 1 (first)', bad_port, joined.loc[bad_port])
       autoresolved[bad_port] = { 'port sailed out of': None }
   joined.loc[bad_ports,['port sailed out of']] = ''
-  track('* Years at sea fixed up')
+  track('* "Port sailed out of" fixed up')
 
   joined_views['complete'] = joined_views[workflow_columns].ge(RETIREMENT_COUNT).all(axis = 1)
   joined_views.loc[vol_1_subj_ids,['complete']] = joined_views.loc[vol_1_subj_ids][workflow_columns].drop('port sailed out of', axis = 1).ge(RETIREMENT_COUNT).all(axis = 1)
