@@ -98,7 +98,7 @@ parser.add_argument('--output', '-o',
 parser.add_argument('--skip', '-s',
                     nargs = '*',
                     default = [],
-                    help = 'A field to skip. For example, --skip "years at sea" will leave out the "years at sea" field. Use --list to see all fields.')
+                    help = 'A field to skip. For example, --skip "years at sea" will leave out the "years at sea" field. Use --list to see all fields. Note that it is important to enquote the field names if they contain spaces.')
 parser.add_argument('--list', '-l',
                     action = 'store_true',
                     help = 'Apply any skips, list fields and exit')

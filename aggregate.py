@@ -30,18 +30,40 @@ parser = argparse.ArgumentParser()
 parser.add_argument('workflows',
                     nargs = '?',
                     default = 'launch_workflows',
-                    help = 'Label for workflows to process (see workflows.yaml).')
+                    help = 'Label for workflows to process (see workflow.yaml).')
+parser.add_argument('--output_dir',
+                    default = 'output',
+                    help = 'Set output dir (default: "output"). Must not already exist.')
+parser.add_argument('--output', '-o',
+                    default = 'joined.csv',
+                    help = 'Set name of output file (default: "joined.csv"). Use --output_dir to change the output directory.')
+parser.add_argument('--exports', '-e',
+                    default = 'exports',
+                    help = 'Directory of exports from the Zooniverse project (default: "exports")')
+parser.add_argument('--reduced', '-r',
+                    default = 'aggregation',
+                    dest = 'dir',
+                    help = 'Directory containing data reduced by Panoptes scripts (default: "aggregation")')
 parser.add_argument('--text_threshold', '-t',
                     type = float,
                     default = 0.9,
-                    help = 'Text consensus threshold')
+                    help = 'Text consensus threshold, from 0 to 1. (Default: 0.9)')
 parser.add_argument('--dropdown_threshold', '-d',
                     type = float,
                     default = 0.66,
-                    help = 'Dropdown consensus threshold')
+                    help = 'Dropdown consensus threshold, from 0 to 1. (Default: 0.66)')
 parser.add_argument('--unfinished', '-u',
                     action = 'store_true',
                     help = 'Include cases with insufficient number of classifications')
+#parser.add_argument('--blanks', '-b',
+#                    action = 'store_true',
+#                    help = 'Include pages with missing values')
+parser.add_argument('--uncertainty',
+                    action = 'store_true',
+                    help = 'Treat certain patterns as indicating presence of an uncertain transcription and requiring manual review. May result in a lot of additional manual work as this is a pre-reconciliation check: reconciled algorithms may reconcile-out the uncertainty markers. The script always flags similar patterns in reconciled strings: this is less work to clean up but relies upon believing that auto-reconciliation has coped OK with uncertainty markers in the original transcriptions.')
+parser.add_argument('--no_stamp', '-S',
+                    action = 'store_true',
+                    help = 'Do not stamp the output with information about the script used to generate it')
 parser.add_argument('--verbose', '-v',
                     type = int,
                     default = 0,
@@ -49,35 +71,15 @@ parser.add_argument('--verbose', '-v',
 parser.add_argument('--timing',
                     action = 'store_true',
                     help = 'Give timing information for phases in the program')
-parser.add_argument('--output_dir',
-                    default = 'output',
-                    help = 'Set output dir (defaults to "output", must not already exist)')
-parser.add_argument('--output', '-o',
-                    default = 'joined.csv',
-                    help = 'Set name of output file (use --output_dir to change the output directory)')
-parser.add_argument('--exports', '-e',
-                    default = 'exports',
-                    help = 'Directory of exports from the Zooniverse project')
-parser.add_argument('--reduced', '-r',
-                    default = 'aggregation',
-                    dest = 'dir',
-                    help = 'Directory containing data reduced by Panoptes scripts.')
-#parser.add_argument('--blanks', '-b',
-#                    action = 'store_true',
-#                    help = 'Include pages with missing values')
-parser.add_argument('--uncertainty',
-                    action = 'store_true',
-                    help = 'Treat certain patterns as indicating presence of an uncertain transcription and requiring manual review. May result in a lot of additional manual work as this is a pre-reconciliation check: reconciled algorithms may reconcile-out the uncertainty markers. The script also already flags these patterns in reconciled strings: this is less work to clean up but relies upon believing that auto-reconciliation has coped OK with uncertainty markers in the original transcriptions.')
-parser.add_argument('--no_stamp', '-S',
-                    action = 'store_true',
-                    help = 'Do not stamp the output with information about the script used to generate it')
 parser.add_argument('--flow_report', '-f',
                     action = 'store_true',
                     help = ('Show information about paths taken through program.\n'
                             'Used in conjunction with coverage.sh to make sure that test inputs are testing all paths.'
                            )
                    )
-parser.add_argument('--dump_interims', action = 'store_true')
+parser.add_argument('--dump_interims',
+                    action = 'store_true',
+                    help = 'Dump out CSV files at intermediate stages of processing. Helpful for testing and debugging.')
 parser.add_argument('--row_factor',
                     type = float,
                     help = 'Percentage of total rows to read. Repeatable across runs, for faster testing cycles.'

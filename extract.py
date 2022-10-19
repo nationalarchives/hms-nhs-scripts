@@ -21,16 +21,16 @@ def parse_args():
   parser = argparse.ArgumentParser()
   parser.add_argument('--workflow_defs',
                       default = 'workflow.yaml',
-                      help = 'File defining the workflows')
+                      help = 'File defining the workflows (default: workflow.yaml)')
   parser.add_argument('--workflows',
                       default = 'launch_workflows',
-                      help = 'Label for workflows to process (see workflows.yaml)')
+                      help = 'Label for workflows to process (default: launch_workflows). See workflow.yaml.')
   parser.add_argument('--exports', '-e',
                       default = 'exports',
-                      help = 'Directory of exports from the Zooniverse project')
+                      help = 'Directory of exports from the Zooniverse project (default: exports)')
   parser.add_argument('--output_dir',
                       default = 'aggregation',
-                      help = 'Set output dir')
+                      help = 'Set output dir (default: aggregation)')
   parser.add_argument('--verbose', '-v',
                       action = 'store_true',
                       help = 'Verbose output')
@@ -253,10 +253,10 @@ def main():
 
   print('''
 All done, no errors
-Suggested next invocations:
-./aggregate.py --timing --outdir ${tranchedir} -r ${outdir} --uncertainty -t 0.5
+Suggested next invocation:
+./aggregate.py -r ${outdir} -t 0.3
 cp ${tranchedir}/views_joined.csv tranches/views.csv
-git add tranches
-git commit -m'Latest data extraction'
 ''')
+#git add tranches
+#git commit -m'Latest data extraction'
 main()
