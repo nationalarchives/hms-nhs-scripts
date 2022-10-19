@@ -708,6 +708,8 @@ def main():
   track('* Autos identified')
   if args.dump_interims: joined.to_csv(f'{args.output_dir}/joined_autos.csv')
 
+  #joined.csv is complete: now sort it
+  joined = joined.sort_values(['volume', 'page'], kind = 'stable') #stable so that we maintain the row order within the page
 
   #This feels ridiculous, but works in conjunction with maxcolwidth.sh to check for columns too wide for Excel
   joined.replace(to_replace = '\n', value = 'N', regex = True).to_csv(path_or_buf = f'{args.output_dir}/lenchecker.csv', index = False, sep = '~')
