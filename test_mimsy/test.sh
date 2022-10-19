@@ -3,6 +3,7 @@
 PASSCOUNT=0
 FAILCOUNT=0
 VERBOSE=0
+SKIP_PHASE_ONE_TEST=0
 
 function diff_test {
   local testcase="$1"
@@ -26,9 +27,10 @@ function diff_test {
   fi
 }
 
-while getopts "v" x; do
+while getopts "vP" x; do
   case "$x" in
     v) VERBOSE=1;;
+    P) SKIP_PHASE_ONE_TEST=1;;
     *) echo "Bad args"; exit 1;;
   esac
 done
@@ -55,7 +57,7 @@ diff_test dates #make sure we get errors for various "wrong format" dates, and t
 
 #If everything passes, test the whole of phase one. The reference output has not been
 #checked for correctness, the point of this one is just to catch inadvertent changes.
-if [[ $FAILCOUNT -eq 0 ]]; then diff_test phase_one --unresolved; fi
+if [[ $FAILCOUNT -eq 0 && $SKIP_PHASE_ONE_TEST -ne 1 ]]; then diff_test phase_one --unresolved; fi
 
 echo "Passed $PASSCOUNT of $((PASSCOUNT + FAILCOUNT)) tests"
 exit $FAILCOUNT
