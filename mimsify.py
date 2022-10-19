@@ -25,6 +25,7 @@ FIELDS = [
 def normalize(row):
   normalized_row = {}
   for field in FIELDS:
+    row[field] = row[field].strip()
 
     #sanity check for expected-blank "port sailed out of"
     if field == 'port sailed out of' and row['volume'] == '1':
@@ -52,7 +53,12 @@ def normalize(row):
     else:
       if field == 'date of entry' or field == 'date of discharge': #convert dates to expected format
         if row[field] != '':
-          normalized_row[field] = datetime.strptime(row[field], '%b %d %Y').strftime('%d-%m-%Y')
+          try:
+            tmp = datetime.strptime(row[field], '%b %d %Y')
+            normalized_row[field] = tmp.strftime('%d-%m-%Y')
+          except ValueError:
+            sys.stderr.write(f'Warning: bad date format \"{row[field]}\". Should be like "Apr 01 1800".\n')
+            normalized_row[field] = row[field]
         else:
           normalized_row[field] = ''
       else:

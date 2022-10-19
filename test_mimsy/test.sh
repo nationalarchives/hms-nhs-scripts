@@ -39,6 +39,7 @@ diff_test skip_no --skip "admission number" #make sure nothing surprising happen
 diff_test skip_victualled --skip "number of days victualled" #make sure nothing surprising happens if we skip the final field
 diff_test skip_two --skip "date of entry" "quality" #make sure we can skip more than one field
 diff_test skip_neighbours --skip "age" "place of birth" #make sure nothing surprising happens if we remove adjacent columns
+diff_test dates #make sure we get errors for various "wrong format" dates, and that we cope OK with odd spacing. This also serves as a test that stripping of all input fields words.
 
 #If everything passes, test the whole of phase one. The reference output has not been
 #checked for correctness, the point of this one is just to catch inadvertent changes.
