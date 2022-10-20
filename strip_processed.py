@@ -22,7 +22,9 @@ for extraction in args.extraction:
   extraction_cols = list(extraction_df.columns)
   extraction_df = extraction_df.set_index(['subject_id', 'task'])
   extraction_df = extraction_df.join(tranche_df['complete'], how = 'left')
+  full_len = len(extraction_df)
   extraction_df = extraction_df[extraction_df['complete'] != True] #odd logic to handle NaN correctly
+  stripped_len = len(extraction_df)
 
   #Restore to original format.
   #If no classifications were complete in previous tranche(s) and we do not sort (or if the
@@ -35,3 +37,5 @@ for extraction in args.extraction:
 
   extraction_df['task'] = 'T' + extraction_df['task'].astype(str)
   extraction_df.to_csv(path_or_buf = f'{extraction}{args.suffix}', float_format = '%.99g', index = False)
+
+  print(f"Removed {full_len - stripped_len} rows in ({'unsorted' if args.no_sort else 'sorted'}) {extraction}{args.suffix}")
