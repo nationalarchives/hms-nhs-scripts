@@ -12,12 +12,25 @@ parser.add_argument('--no_sort', action = 'store_true', help = 'By default, this
 args = parser.parse_args()
 
 tranche_df = pd.read_csv(args.tranche, index_col = ['subject_id', 'task'],
-                         usecols = ['subject_id', 'task', 'complete'])
+                         usecols = ['subject_id', 'task', 'complete'],
+                         dtype = {'subject_id': int, 'task': int, 'complete': bool})
 
 for extraction in args.extraction:
   #Read in the extractions and drop all classifications relating to completed tasks
-  extraction_df = pd.read_csv(extraction, na_filter = False, index_col = False, dtype = {'data.text': str, 'data.value': str},
-                              converters = {'task': lambda x: x[1:]} ) #Here the task has leading T, but in tranche_df it does not
+  extraction_df = pd.read_csv(extraction, na_filter = False, index_col = False, dtype = {
+      'classification_id': int,
+      'user_name': str,
+      'user_id': str,
+      'workflow_id': int,
+      'created_at': str,
+      'subject_id': int,
+      'extractor': str,
+      'data.text': str,
+      'data.gold_standard': str,
+      'data.value': str,
+      'data.aggregation_version': str
+    },
+    converters = {'task': lambda x: str(x)[1:]} ) #Here the task has leading T, but in tranche_df it does not
   extraction_df['task'] = extraction_df['task'].astype('int32')
   extraction_cols = list(extraction_df.columns)
   extraction_df = extraction_df.set_index(['subject_id', 'task'])
