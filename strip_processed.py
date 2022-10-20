@@ -4,11 +4,11 @@ import pandas as pd
 import argparse
 import os
 
-parser = argparse.ArgumentParser()
-parser.add_argument('extraction', nargs = '+')
-parser.add_argument('--tranche', '-t')
-parser.add_argument('--suffix', '-s', default = '.new')
-parser.add_argument('--no_sort', action = 'store_true')
+parser = argparse.ArgumentParser(description = 'This script removed previously-processed data from the extractions file, saving us from regenerating it.')
+parser.add_argument('extraction', nargs = '+', help = 'Extractions file as produced by "panoptes_aggregation extract"')
+parser.add_argument('--tranche', '-t', help = 'File containing record of views for each row in each subject')
+parser.add_argument('--suffix', '-s', default = '.new', help = 'Suffix to put on output extractions file: the output file will have the same name as the input extractions file, with this suffix appended. Default: ".new".')
+parser.add_argument('--no_sort', action = 'store_true', help = 'By default, this script sorts the output extractions file by classification_id and task number. Set this option to output the extractions file in the same order as the input file. If -t specifies no previously complete rows and --no_sort is set, then the input and output files are identical.')
 args = parser.parse_args()
 
 tranche_df = pd.read_csv(args.tranche, index_col = ['subject_id', 'task'],
