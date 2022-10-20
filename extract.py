@@ -36,7 +36,7 @@ def parse_args():
                       help = 'Verbose output')
   parser.add_argument('--no_tranche',
                       action = 'store_true',
-                      help = 'Do not generate tranche info')
+                      help = 'Do not generate tranche info. This does not prevent use of existing tranche info to eliminate previously-completed rows.')
   global args
   args = parser.parse_args()
 
@@ -87,6 +87,8 @@ def tranche_info():
     print('origin/main', g.rev_parse('origin/main'), file = f)
     print('HEAD       ', g.rev_parse('HEAD'), file = f)
     print(g.status(), file = f)
+
+  return tranchedir
 
 def panoptes_config(w_id, versions):
   for major, minor in versions:
@@ -206,17 +208,21 @@ def panoptes(w_id, w_data):
   panoptes_extract(w_id, versions, ztype, export_csv, extraction_name)
 
   #Because we are working on the output of panoptes_extract, we are no longer version-sensitive
+
+  #This is a built-in check that strip_processed.py seems to be working as expected -- this should be an identity transform
   strip_processed(w_id, 'tranches/empty_views.csv', extraction_name, 'strip_identity_tranform_test', '--no_sort')
   subprocess.run(['diff', '-q', extraction_name, f'{extraction_name}.new'], check = True, capture_output = True)
+
   shutil.copyfile(extraction_name, f'{extraction_name}.full')
   
+  #Whereas this will actually remove previously-completed rows of data
   strip_processed(w_id, 'tranches/views.csv', extraction_name, 'strip_seen')
   shutil.copyfile(f'{extraction_name}.new', extraction_name)
 
   clean_extraction(w_id, ztype, extraction_name)
 
   #Special case -- this could be version sensitive, as panoptes_config provides the reduction
-  #configuration that it uses. However, config_check_reduction_identity confirms that all
+  #configuration that it uses. However, config_check_identity confirms that all
   #reduction configs are the same, so in practice this is not version sensitive.
   panoptes_reduce(w_id, versions, ztype, extraction_name)
 
@@ -230,7 +236,7 @@ def main():
   except FileExistsError:
     print(f"Output directory '{args.output_dir}' already exists.\nPlease delete it before running this script, or use --output_dir to output to a different directory.", file = sys.stderr)
     sys.exit(1)
-  if not args.no_tranche: tranche_info()
+  if not args.no_tranche: tranchedir = tranche_info()
 
   with open(args.workflow_defs) as f:
     global workflow_defs
@@ -251,12 +257,12 @@ def main():
   if exit_code != 0:
     sys.exit(exit_code)
 
-  print('''
+  print(f'''
 All done, no errors
 Suggested next invocation:
-./aggregate.py -r ${outdir} -t 0.3
-cp ${tranchedir}/views_joined.csv tranches/views.csv
-''')
+./aggregate.py -r {args.output_dir} -t 0.3''')
+  if not args.no_tranche: print(f'cp output/views_joined.csv tranches/views.csv')
 #git add tranches
 #git commit -m'Latest data extraction'
+
 main()
