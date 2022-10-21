@@ -70,11 +70,11 @@ def strip_crossref(text):
   #If it is there, log it and strip it
   global adminrefs
   result = text
-  number = re.search(r'\d+$', result)
+  number = re.search(r'\b\d+\s*$', result)
   if number:
-    adminrefs.add(int(number[0]))
-    result = re.sub(r'\s*\d+', '', result)
-    result = re.sub(r'\s+[Nn]o\.?$', '', result)
+    adminrefs.add(f'{number[0]} from cell(s) reading "{text}"')
+    #result = re.sub(r'\s*\d+\s*$', '', result)
+    #result = re.sub(r'\s+[Nn]o\.?$', '', result)
   return result
 
 
@@ -265,6 +265,6 @@ def main():
     df['data.text'] = df['data.text'].map(funcmap[cleanfunc])
     df.to_csv(path_or_buf = f'{infile}.cleaned', index = False)
 
-  print('Possible crossrefs:', sorted(adminrefs))
+  print('Possible crossrefs:', adminrefs)
 
 main()
