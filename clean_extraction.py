@@ -261,7 +261,20 @@ def main():
   }
 
   for infile, cleanfunc in zip(sys.argv[1::2], sys.argv[2::2]):
-    df = pd.read_csv(infile, keep_default_na = False, dtype = { 'data.text': str }, skip_blank_lines = False)
+    df = pd.read_csv(infile, keep_default_na = False, dtype = {
+      'classification_id': str,
+      'user_name': str,
+      'user_id': str,
+      'workflow_id': str,
+      'task': str,
+      'created_at': str,
+      'subject_id': str,
+      'extractor': str,
+      'data.text': str,
+      'data.value': str,
+      'data.gold_standard': str,
+      'data.aggregation_version': str
+    }, skip_blank_lines = False)
     df['data.text'] = df['data.text'].map(funcmap[cleanfunc])
     df.to_csv(path_or_buf = f'{infile}.cleaned', index = False)
 
