@@ -257,12 +257,15 @@ def main():
   if exit_code != 0:
     sys.exit(exit_code)
 
-  print(f'''
-All done, no errors
-Suggested next invocation:
+  print('All done, no errors')
+  if args.no_tranche:
+    print(f'''Suggested next invocation:
 ./aggregate.py -r {args.output_dir} -t 0.3''')
-  if not args.no_tranche: print(f'cp output/views_joined.csv tranches/views.csv')
-#git add tranches
-#git commit -m'Latest data extraction'
+  else:
+    print(f'''Suggested next invocations:
+git add tranches
+git commit -m'Latest data extraction'
+./aggregate.py -r {args.output_dir} -t 0.3''')
+#cp output/views_joined.csv tranches/views.csv #This one only applies if we want to encourage people to use the untested feature to skip over previously completed rows. Adding and committing "tranches", on the other hand, records reproduction information that we should keep.
 
 main()
