@@ -209,10 +209,6 @@ def unstring_number(text):
     else: return ''
   return result
 
-#TODO: There are some dates with 0s in one of the d/m/y fields. This function does not consider this case.
-#The effect that I observe is that some goldens have the day as 29 while others have it as 30. Perhaps
-#depends on which version of dateutil we are picking up, or possibly on some dependency of dateutil.
-#Inconsistent transformations are Bad. Need to make some sort of decision about how to handle this case.
 def unstring_date(text):
   text = strip(text)
   try: result = re.sub(r'[oO0]+', '0', text)
@@ -241,10 +237,10 @@ def unstring_date(text):
 
   try: result = dateutil.parser.parse(result, dayfirst = True)
   except (TypeError, ValueError): return ''
-  if result.year > 9999: return text
-  if result.year < 1800: return text
+  if result.year > 9999: return text #TODO: Change to 2200
+  if result.year < 1800: return text #TODO: Change to mimimum date in data set
   if result.year > 1900: result = datetime.datetime(int(f'18{str(result.year)[2:4]}'), result.month, result.day)
-  return result.strftime('%d-%m-%Y')
+  return result.strftime('%d-%m-%Y') #TODO: Change to maximum date in dataset (in phase two, this will be in the early 20th century)
 
 
 def main():
