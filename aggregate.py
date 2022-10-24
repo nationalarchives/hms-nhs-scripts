@@ -54,7 +54,7 @@ parser.add_argument('--dropdown_threshold', '-d',
                     help = 'Dropdown consensus threshold, from 0 to 1. (Default: 0.66)')
 parser.add_argument('--unfinished', '-u',
                     action = 'store_true',
-                    help = 'Include cases with insufficient number of classifications')
+                    help = 'Include classifications with insufficient number of views and pages with incomplete or missing rows')
 #parser.add_argument('--blanks', '-b',
 #                    action = 'store_true',
 #                    help = 'Include pages with missing values')
@@ -671,7 +671,8 @@ def main():
     incomplete_subjects = []
     complete_subjects = []
     for sid in joined_views.index.get_level_values('subject_id').unique():
-      if joined_views.loc[[sid]]['complete'].all():
+      page_completes = joined_views.loc[[sid]]['complete']
+      if page_completes.all() and len(page_completes) == 25:
         complete_subjects.append(sid)
       else:
         incomplete_subjects.append(sid)
