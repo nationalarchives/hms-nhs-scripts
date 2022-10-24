@@ -464,6 +464,7 @@ def main():
       current_views = df[datacol].apply(votecounter)
     current_views = current_views.rename(data['name'])
     views.append(current_views)
+    if args.dump_interims: current_views.to_csv(f'{args.output_dir}/current_views_{data["name"].replace(" ", "_")}.csv')
 
     #drop all classifications based on insufficient number of views
     if not args.unfinished:
