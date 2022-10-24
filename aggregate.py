@@ -55,9 +55,6 @@ parser.add_argument('--dropdown_threshold', '-d',
 parser.add_argument('--unfinished', '-u',
                     action = 'store_true',
                     help = 'Include classifications with insufficient number of views and pages with incomplete or missing rows')
-#parser.add_argument('--blanks', '-b',
-#                    action = 'store_true',
-#                    help = 'Include pages with missing values')
 parser.add_argument('--uncertainty',
                     action = 'store_true',
                     help = 'Treat certain patterns as indicating presence of an uncertain transcription and requiring manual review. May result in a lot of additional manual work as this is a pre-reconciliation check: reconciled algorithms may reconcile-out the uncertainty markers. The script always flags similar patterns in reconciled strings: this is less work to clean up but relies upon believing that auto-reconciliation has coped OK with uncertainty markers in the original transcriptions.')
@@ -651,22 +648,6 @@ def main():
   joined['Problems'] = joined['Problems'].map({True: 'Blank(s)', False: ''})
   if args.dump_interims: joined.to_csv(f'{args.output_dir}/joined_problems.csv')
   track('* Badness identified')
-
-  #At the moment I get to a complete page by looking at subject_id level.
-  #If anything under that subject_id is blank, I discard that subject id.
-  #However, sometimes fields are actually input as blank, so this leads me to
-  #discard pages that are actually complete.
-  #So, instead of this, use the information in joined_views to identify complete pages.
-  #Output them whether or not they have blanks, tagging the blanks in Problems.
-  #if not args.blanks:
-  #  incomplete_subjects = list(joined[joined.Problems != ''].index.get_level_values('subject_id').unique())
-  #  removed = joined.query(f'subject_id in @incomplete_subjects')
- #   for key in removed.index.to_numpy():
- #     bad.pop(key, None)
- #     autoresolved.pop(key, None)
- #   joined = joined.query(f'subject_id not in @incomplete_subjects')
- #   joined_views = joined_views.query(f'subject_id not in @incomplete_subjects')
- # track('* Badness identified')
 
   if not args.unfinished:
     incomplete_subjects = []
