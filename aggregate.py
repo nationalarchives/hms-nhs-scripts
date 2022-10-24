@@ -711,8 +711,8 @@ def main():
   #joined.csv is complete: now sort it
   joined = joined.sort_values(['volume', 'page'], kind = 'stable') #stable so that we maintain the row order within the page
 
-  #This feels ridiculous, but works in conjunction with maxcolwidth.sh to check for columns too wide for Excel
-  joined.replace(to_replace = '\n', value = 'N', regex = True).to_csv(path_or_buf = f'{args.output_dir}/lenchecker.csv', index = False, sep = '~')
+  #This feels ridiculous, but works in conjunction with maxcolwidth.sh to check for columns too wide for Excel or Sheets. We use ^ as the separator because it happens to work -- a non-printing char would be better, but to_csv does not permit them.
+  joined.replace(to_replace = '\n', value = 'N', regex = True).to_csv(path_or_buf = f'{args.output_dir}/lenchecker.csv', index = False, sep = '^')
 
   #Dump output
   if not args.no_stamp:
