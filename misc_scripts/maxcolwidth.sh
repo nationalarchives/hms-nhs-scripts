@@ -1,6 +1,6 @@
 #!/bin/bash
 
-checkdir="${1:-output}"
+checkdir="`dirname $0`/../${1:-output}"
 checkfile="${2:-joined.csv}"
 grep -q '~' "${checkdir}/${checkfile}"
 if [ $? -eq 0 ]; then
