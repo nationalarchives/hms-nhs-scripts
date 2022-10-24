@@ -664,7 +664,6 @@ def main():
       bad.pop(key, None)
       autoresolved.pop(key, None)
     joined = joined.query(f'subject_id in @complete_subjects')
-    joined_views = joined_views.query(f'subject_id in @complete_subjects')
     if args.dump_interims:
       joined.to_csv(f'{args.output_dir}/joined_unfinished.csv')
       joined_views.to_csv(f'{args.output_dir}/joined_views_unfinished.csv')
