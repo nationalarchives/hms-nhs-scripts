@@ -434,6 +434,7 @@ def main():
   workflow_columns = []
   views = []
   nonunique_views = []
+  removed = []
 
   track('Processing workflows')
   for wid, data in workflow[args.workflows].items():
@@ -469,13 +470,17 @@ def main():
         return(sum(selections[0].values()))
       current_views = df[datacol].apply(votecounter)
     current_views = current_views.rename(data['name'])
-    views.append(current_views)
     if args.dump_interims: current_views.to_csv(f'{args.output_dir}/current_views_{shellify(data["name"])}.csv')
 
-    #drop all classifications based on insufficient number of views
     if not args.unfinished:
       #Drop all classifications that are based on an insufficient number of views
-      df.drop(current_views[current_views < RETIREMENT_COUNT].index, inplace = True)
+      unfinished_idx = current_views[current_views < RETIREMENT_COUNT].index
+      removed.append(df.loc[unfinished_idx][datacol].rename(data['name'])) #TODO Double-check data vs copy here, but I think .loc is OK (and then if datacol is a ref, it is a ref to something that exists nowhere else and thus is safe)
+      df = df.drop(unfinished_idx)
+      current_views = current_views.drop(unfinished_idx)
+      if args.dump_interims: removed[-1].to_csv(f'{args.output_dir}/removed_{shellify(data["name"])}.csv')
+      if args.verbose >= 1 and len(removed[-1]) != 0: print(f'  Removed {len(removed[-1])} classifications from {data["name"]} due to unreached retirement count')
+      if args.verbose >= 3: print(removed[-1])
 
     #User can shrink the number of rows to be read, for faster runs.
     #This will be used for run-to-run output comparison, so must be repeatable.
@@ -491,9 +496,10 @@ def main():
       overcount = df.loc[current_views[current_views > RETIREMENT_COUNT].index]
       print(f'  Completed rows: {len(df.index)} (of which {len(overcount.index)} overcounted)')
       if args.verbose >= 3 and not overcount.empty: print(overcount)
-      undercount = df.loc[current_views[current_views < RETIREMENT_COUNT].index]
-      print(f'  Undercounted rows: {len(undercount.index)}')
-      if args.verbose >= 3 and not undercount.empty: print(undercount)
+      if args.unfinished:
+        undercount = df.loc[current_views[current_views < RETIREMENT_COUNT].index]
+        print(f'  Undercounted rows: {len(undercount.index)}')
+        if args.verbose >= 3 and not undercount.empty: print(undercount)
 
     #Handle conflicts
     if(data['ztype'] == TEXT_T):
@@ -547,6 +553,7 @@ def main():
       df[data['name']] = df.apply(decode_dropdown, axis = 'columns')
 
     columns.append(df)
+    views.append(current_views)
     track(f'* {reduced_file} ({data["name"]}) done', regardless = True)
 
   track('Generating output', regardless = True)
@@ -569,6 +576,14 @@ def main():
   track('* Views joined')
   if args.dump_interims: joined_views.to_csv(f'{args.output_dir}/initial_joined_views.csv')
 
+  first = removed.pop(0).to_frame()
+  first.join(removed, how='outer').to_csv(f'{args.output_dir}/incomplete_rows.csv')
+  track('* Removed fields logged')
+
+  if len(joined.index.symmetric_difference(joined_views.index)) != 0:
+    print('Indexes of joined and joined_views are not symmetric. The following entries are in only one index:', file = sys.stderr)
+    print(joined.index.symmetric_difference(joined_views.index), file = sys.stderr)
+    raise Exception('joined index differed from joined_views index\n' + joined.index.difference(joined_views.index))
   #This just gives us some record of whether the same user repeat-classified.
   #Potentially important data, but not a requested feature.
   #At time of writing, only implemented for text workflows.
@@ -666,11 +681,13 @@ def main():
         complete_subjects.append(sid)
       else:
         incomplete_subjects.append(sid)
-    removed = joined.query(f'subject_id in @incomplete_subjects')
-    removed.to_csv(f'{args.output_dir}/removed.csv')
-    for key in removed.index.to_numpy():
+
+    incomplete_joined = joined.query(f'subject_id in @incomplete_subjects')
+    incomplete_joined.to_csv(f'{args.output_dir}/incomplete_pages.csv')
+    for key in incomplete_joined.index.unique().to_numpy():
       bad.pop(key, None)
       autoresolved.pop(key, None)
+
     joined = joined.query(f'subject_id in @complete_subjects')
     if args.dump_interims:
       joined.to_csv(f'{args.output_dir}/joined_unfinished.csv')
