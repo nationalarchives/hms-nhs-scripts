@@ -650,6 +650,7 @@ def main():
   joined.loc[vol_1_subj_ids,['Problems']] = joined.loc[vol_1_subj_ids][workflow_columns].drop('port sailed out of', axis = 1).isnull().values.any(axis = 1)
   joined['Problems'] = joined['Problems'].map({True: 'Blank(s)', False: ''})
   if args.dump_interims: joined.to_csv(f'{args.output_dir}/joined_problems.csv')
+  track('* Badness identified')
 
   #At the moment I get to a complete page by looking at subject_id level.
   #If anything under that subject_id is blank, I discard that subject id.
@@ -683,10 +684,10 @@ def main():
       autoresolved.pop(key, None)
     joined = joined.query(f'subject_id in @complete_subjects')
     joined_views = joined_views.query(f'subject_id in @complete_subjects')
-    track('* Badness identified')
     if args.dump_interims:
       joined.to_csv(f'{args.output_dir}/joined_unfinished.csv')
       joined_views.to_csv(f'{args.output_dir}/joined_views_unfinished.csv')
+    track('* Incompletes removed')
 
 
   #Tag unresolved unresolved fields
