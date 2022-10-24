@@ -85,6 +85,9 @@ args = parser.parse_args()
 subjects = pd.read_csv(f'{args.exports}/hms-nhs-the-nautical-health-service-subjects.csv',
                          usecols   = ['subject_id', 'metadata', 'locations'])
 
+#Small utility function to make shell-friendly filenames
+def shellify(string):
+  return re.compile(r'[ \(\)]').sub('_', string)
 
 def flow_report(msg, row_id, value):
   if not args.flow_report: return
@@ -464,7 +467,7 @@ def main():
       current_views = df[datacol].apply(votecounter)
     current_views = current_views.rename(data['name'])
     views.append(current_views)
-    if args.dump_interims: current_views.to_csv(f'{args.output_dir}/current_views_{data["name"].replace(" ", "_")}.csv')
+    if args.dump_interims: current_views.to_csv(f'{args.output_dir}/current_views_{shellify(data["name"])}.csv')
 
     #drop all classifications based on insufficient number of views
     if not args.unfinished:
@@ -545,7 +548,7 @@ def main():
 
   track('Generating output', regardless = True)
   if args.dump_interims:
-    for i, c in enumerate(columns): c.to_csv(f'{args.output_dir}/col_{i}.csv')
+    for c in columns: c.to_csv(f'{args.output_dir}/{shellify(c.columns[0])}.csv')
   #Combine the separate workflows into a single dataframe
   #Assumption: Task numbers always refer to the same row in each workflow
   #            If this assumption does not hold, we can perform a mapping
@@ -557,7 +560,7 @@ def main():
   if args.dump_interims: joined.to_csv(f'{args.output_dir}/initial_joined.csv')
 
   if args.dump_interims:
-    for i, v in enumerate(views): v.to_csv(f'{args.output_dir}/views_col_{i}.csv')
+    for v in views: v.to_csv(f'{args.output_dir}/views_{shellify(v.name)}.csv')
   first = views.pop(0).to_frame()
   joined_views = first.join(views, how='outer')
   track('* Views joined')
