@@ -487,9 +487,10 @@ def main():
     #Taking every nth row might give a better overall sample of the data than just taking head or tail.
     #But if people tend to classify the same records at around the same time, every nth row might result in few complete classifications.
     #Note that this does not affect the views count for TEXT_T, which is always based on the entire text_exporter file. This means the results are spurious in that rows are admitted even if they no longer have enough views to be considered complete, but the point of this feature is just to be able to compare for unexpected output changes.
-    #Must do this *after* dropping rows, because of the separation of this from the views file
     if args.row_factor:
+      assert(len(df.index.symmetric_difference(current_views.index)) == 0)
       df = df.iloc[::int(100 / args.row_factor)]
+      current_views = current_views.loc[df.index]
 
     #Report on rows with different counts
     if args.verbose >= 1:
