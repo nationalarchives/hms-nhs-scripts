@@ -475,7 +475,7 @@ def main():
     if not args.unfinished:
       #Drop all classifications that are based on an insufficient number of views
       unfinished_idx = current_views[current_views < RETIREMENT_COUNT].index
-      removed.append(df.loc[unfinished_idx][datacol].rename(data['name'])) #TODO Double-check data vs copy here, but I think .loc is OK (and then if datacol is a ref, it is a ref to something that exists nowhere else and thus is safe)
+      removed.append(df.loc[unfinished_idx][datacol].rename(data['name'])) #We never write to this, so don't really mind if this is a reference or a copy (though copy would be less fragile!)
       df = df.drop(unfinished_idx)
       current_views = current_views.drop(unfinished_idx)
       if args.dump_interims: removed[-1].to_csv(f'{args.output_dir}/removed_{shellify(data["name"])}.csv')
