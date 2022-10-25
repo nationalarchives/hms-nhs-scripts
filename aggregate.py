@@ -547,7 +547,7 @@ def main():
       df[data['name']] = df.apply(decode_dropdown, axis = 'columns')
 
     columns.append(df)
-    track(f'* {reduced_file} done', regardless = True)
+    track(f'* {reduced_file} ({data["name"]}) done', regardless = True)
 
   track('Generating output', regardless = True)
   if args.dump_interims:
