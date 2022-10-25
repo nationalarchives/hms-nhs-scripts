@@ -656,6 +656,7 @@ def main():
     else:
       flow_report('port sailed out of in volume 1 (first)', bad_port, joined.loc[bad_port])
       autoresolved[bad_port] = { 'port sailed out of': None }
+  if args.verbose >= 1 and len(bad_ports) != 0: print(f'  {len(bad_ports)} rows in volume 1 incorrectly had a port')
   joined.loc[bad_ports,['port sailed out of']] = ''
   track('* "Port sailed out of" fixed up')
 
