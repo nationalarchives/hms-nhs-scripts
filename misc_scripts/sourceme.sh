@@ -100,3 +100,14 @@ function gen_subjects_per_workflow_from_classifications {
   done
   wait
 }
+
+function versions_per_volume {
+  for export in `yq -r '.launch_workflows[].export' workflow.yaml`; do #for each exports file
+    echo "$export" #tell me what I am working with
+    c-sql 'select workflow_version,subject_data from foo' "${ROOTME}/exports/${export}" | #get the workflow version and the subject data
+      sed 's/^\([^,]\+\),.*""Filename"":""\([^"]\+\).*/\1,\2/' | #Do a hacky thing with sed to simplify us down to the workflow_version,filename
+      sed 's/^\([^,]\+\),.*_\([^-]\+\)-.*/\2,\1/' | #Do another thing with sed to replace the filename with the volume number (and swap the fields for easier sorting)
+      sort -g | uniq
+    echo
+  done
+}
