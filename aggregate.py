@@ -58,6 +58,9 @@ parser.add_argument('--unfinished', '-u',
 parser.add_argument('--uncertainty',
                     action = 'store_true',
                     help = 'Treat certain patterns as indicating presence of an uncertain transcription and requiring manual review. May result in a lot of additional manual work as this is a pre-reconciliation check: reconciled algorithms may reconcile-out the uncertainty markers. The script always flags similar patterns in reconciled strings: this is less work to clean up but relies upon believing that auto-reconciliation has coped OK with uncertainty markers in the original transcriptions.')
+parser.add_argument('--no_transcriptionisms',
+                    action = 'store_true',
+                    help = 'Skip "always on" post-reconciliation check for patterns indicating transcription uncertainty. This saves a lot of time so can be helpful in development.')
 parser.add_argument('--no_stamp', '-S',
                     action = 'store_true',
                     help = 'Do not stamp the output with information about the script used to generate it')
@@ -578,9 +581,10 @@ def main():
     first.join(nonunique_views, how='outer').to_csv(f'{args.output_dir}/nonunique.csv')
 
   #Search for transcription problmes
-  joined.apply(has_transcriptionisms, axis = 'columns')
-  track('* Transcriptionisms identified')
-  if args.dump_interims: joined.to_csv(f'{args.output_dir}/joined_has_transcriptionisms.csv')
+  if not args.no_transcriptionisms:
+    joined.apply(has_transcriptionisms, axis = 'columns')
+    track('* Transcriptionisms identified')
+    if args.dump_interims: joined.to_csv(f'{args.output_dir}/joined_has_transcriptionisms.csv')
 
   #Translate subjects ids into original filenames
   #Assumption: the metadata is invariant across all of the entries for each subject_id
