@@ -672,14 +672,16 @@ def main():
   if args.dump_interims: joined.to_csv(f'{args.output_dir}/joined_problems.csv')
   track('* Badness identified')
 
+  #TODO: Where is the best place for this sanity check?
+  #      The following code does assume unique indices, I think for the first time, so here for now
+  #      But immediately after these dataframes are joined together might be a better point
+  if not joined.index.equals(joined_views.index): raise Exception('joined index differs from joined_views index (equals)')
+  if not joined.index.is_unique: raise Exception('joined and joined_views have non-unique indices') #True for both as we have just established that they are (order-independent) identical
   if not args.unfinished:
     incomplete_subjects = []
-    complete_subjects = []
     for sid in joined_views.index.get_level_values('subject_id').unique():
       page_completes = joined_views.loc[[sid]]['complete']
-      if page_completes.all() and len(page_completes) == 25:
-        complete_subjects.append(sid)
-      else:
+      if (not page_completes.all()) or not(len(page_completes) == 25):
         incomplete_subjects.append(sid)
 
     incomplete_joined = joined.query(f'subject_id in @incomplete_subjects')
@@ -688,7 +690,7 @@ def main():
       bad.pop(key, None)
       autoresolved.pop(key, None)
 
-    joined = joined.query(f'subject_id in @complete_subjects')
+    joined = joined.drop(incomplete_joined.index)
     if args.dump_interims:
       joined.to_csv(f'{args.output_dir}/joined_unfinished.csv')
       joined_views.to_csv(f'{args.output_dir}/joined_views_unfinished.csv')
