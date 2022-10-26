@@ -581,10 +581,12 @@ def main():
   first.join(removed, how='outer').to_csv(f'{args.output_dir}/incomplete_rows.csv')
   track('* Removed fields logged')
 
-  if len(joined.index.symmetric_difference(joined_views.index)) != 0:
-    print('Indexes of joined and joined_views are not symmetric. The following entries are in only one index:', file = sys.stderr)
+  if not joined.index.equals(joined_views.index):
+    print('Indexes of joined and joined_views are not equal. The indexes may have a different order. The following entries are in only one index:', file = sys.stderr)
     print(joined.index.symmetric_difference(joined_views.index), file = sys.stderr)
-    raise Exception('joined index differed from joined_views index\n' + joined.index.difference(joined_views.index))
+    raise Exception('joined index differed from joined_views index\n')
+  if not joined.index.unique:
+    raise Exception('joined and joined_views have non-unique index')
   #This just gives us some record of whether the same user repeat-classified.
   #Potentially important data, but not a requested feature.
   #At time of writing, only implemented for text workflows.
@@ -675,11 +677,11 @@ def main():
   dump_interim(joined, 'joined_problems')
   track('* Badness identified')
 
-  #TODO: Where is the best place for this sanity check?
-  #      The following code does assume unique indices, I think for the first time, so here for now
-  #      But immediately after these dataframes are joined together might be a better point
+  #The following code assumes equal indices, so confirm that this is still the case.
+  #(We earlier checked for equality and uniqueness. We do not do anything that should
+  #change uniqueness, but it is worth checking that any removals have happened in both
+  #dataframes.
   if not joined.index.equals(joined_views.index): raise Exception('joined index differs from joined_views index (equals)')
-  if not joined.index.is_unique: raise Exception('joined and joined_views have non-unique indices') #True for both as we have just established that they are (order-independent) identical
   if not args.unfinished:
     incomplete_subjects = []
     for sid in joined_views.index.get_level_values('subject_id').unique():
