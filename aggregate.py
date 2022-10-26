@@ -24,7 +24,15 @@ from collections import defaultdict, Counter
 bad = defaultdict(int) #Keys of bad are indices of rows in the final dataframe
 autoresolved = {} #Keys of autoresolved are indices of rows in the final dataframe
 subjects = None #Initialised after arg parsing
-KEYS = ['subject_id', 'task'] #Columns to use in all cases
+
+#Columns to use in all cases, with the rules for reading them in
+KEYS = ['subject_id', 'task']
+#Use these converters/dtypes when reading from aggregation
+KEYS_CONVERTERS = {'task': lambda x: int(str(x)[1:])} #drop the T, so that index matches
+KEYS_DTYPES = {'subject_id': int}
+#Use these converters/dtypes when reading from a previous run (i.e. the old_views file)
+KEYS_CONVERTERS_2 = {}
+KEYS_DTYPES_2 = {'subject_id': int, 'task': int}
 
 parser = argparse.ArgumentParser()
 parser.add_argument('workflows',
@@ -86,7 +94,8 @@ parser.add_argument('--row_factor',
                    )
 args = parser.parse_args()
 subjects = pd.read_csv(f'{args.exports}/hms-nhs-the-nautical-health-service-subjects.csv',
-                         usecols   = ['subject_id', 'metadata', 'locations'])
+                         usecols   = ['subject_id', 'metadata', 'locations'],
+                         dtype = {'subject_id': int, 'metadata': str, 'locations': str})
 
 def dump_interim(pandas_thing, fnam):
   if args.dump_interims:
@@ -198,11 +207,12 @@ def count_text_views(wid):
   extractor_df = pd.read_csv(args.dir + '/' + f'text_extractor_{wid}.csv',
                           index_col = KEYS, #i.e. subject_id and task, so that we are indexed the same way as the data
                           usecols = KEYS + ['classification_id', 'user_id'], #classification_id MUST be present, so we can use to count the total. user_id needed for counting logged-in users.
-                          converters = {'task': lambda x: x[1:]} #drop the T, so that index matches
+                          converters = KEYS_CONVERTERS,
+                          dtype = { **KEYS_DTYPES, 'classification_id': int, 'user_id': float } #user_id is float so that blanks can be NaN
                          )
 
   #Sanity check -- the uncleaned (but tranche-processed) extraction file should contain the same classification ids
-  extractor_new_series = pd.read_csv(args.dir + '/' + f'text_extractor_{wid}.csv.new', index_col = KEYS, usecols = KEYS + ['classification_id'], converters = {'task': lambda x: x[1:]})['classification_id']
+  extractor_new_series = pd.read_csv(args.dir + '/' + f'text_extractor_{wid}.csv.new', index_col = KEYS, usecols = KEYS + ['classification_id'], converters = KEYS_CONVERTERS, dtype = {**KEYS_DTYPES, 'classification_id': int})['classification_id']
   assert len(extractor_new_series) == len(extractor_df['classification_id'])
   extractor_new_series_comparison = extractor_new_series.reset_index(drop = True).eq(extractor_df['classification_id'].reset_index(drop = True))
   assert extractor_new_series_comparison.all(), extractor_new_series_comparison
@@ -442,16 +452,20 @@ def main():
   for wid, data in workflow[args.workflows].items():
     workflow_columns.append(data['name'])
     datacol = data['ztype']['name']
-    conflict_keys = []
+    conflict_keys = {}
     reduced_file = f'{args.dir}/{data["ztype"]["type"]}_reducer_{wid}.csv'
-    if data['ztype'] == TEXT_T:
-      conflict_keys = ['data.aligned_text', 'data.number_views', 'data.consensus_score']
+    if data['ztype'] == TEXT_T: #data that we use to make decisions about how well reconciliation worked
+      conflict_keys = {
+        'data.aligned_text': str,
+        'data.number_views': float, #TODO: I cannot see how this would be other than an int, but Pandas insists that it must be treated as float -- maybe due to NaNs??
+        'data.consensus_score': float
+      }
     try:
       df = pd.read_csv(reduced_file,
                        index_col = KEYS,
-                       usecols   = KEYS + [datacol] + conflict_keys,
-                       converters = {'task': lambda x: x[1:]}, #Could replace this with something that returns 1 through 25 over and over
-                       dtype     = {datacol: str},
+                       usecols   = KEYS + [datacol] + list(conflict_keys.keys()),
+                       converters = KEYS_CONVERTERS,
+                       dtype = {**KEYS_DTYPES, datacol: str, **conflict_keys},
                        skip_blank_lines = False)
     except:
       print(f'Error while reading {reduced_file}')
@@ -749,7 +763,7 @@ def main():
   # * Add rows that do not exist in the old file
   views_file = f'{args.output_dir}/views_{args.output}'
   if os.path.exists(views_file):
-    old_views = pd.read_csv(views_file, index_col = [0, 1])
+    old_views = pd.read_csv(views_file, index_col = KEYS, converters = KEYS_CONVERTERS_2, dtype = {**{k: int for k in workflow_columns}, **KEYS_DTYPES_2, 'complete': bool})
     try:
       joined_views = joined_views.append(old_views[old_views['complete']], verify_integrity = True).sort_index()
     except ValueError as e:
