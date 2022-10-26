@@ -55,11 +55,11 @@ parser.add_argument('--reduced', '-r',
 parser.add_argument('--text_threshold', '-t',
                     type = float,
                     default = 0.9,
-                    help = 'Text consensus threshold, from 0 to 1. (Default: 0.9)')
+                    help = 'Text consensus threshold, from 0 to 1. This is only used for "true text" fields -- so not for dropdowns, numbers or dates. (Default: 0.9)')
 parser.add_argument('--dropdown_threshold', '-d',
                     type = float,
                     default = 0.66,
-                    help = 'Dropdown consensus threshold, from 0 to 1. (Default: 0.66)')
+                    help = 'Dropdown consensus threshold, from 0 to 1. This is used for all "non-text" fields, so applies to dates and numbers as well as dropdowns. (Default: 0.66)')
 parser.add_argument('--unfinished', '-u',
                     action = 'store_true',
                     help = 'Include classifications with insufficient number of views and pages with incomplete or missing rows')
@@ -344,6 +344,7 @@ def date_resolver(row, data):
     #https://stackoverflow.com/a/18029112 has a trick for reading arbitrary date formats while rejecting ambiguous cases
     #We just need to use the documented format, but we can be a bit forgiving
     #TODO: Improve date handling, see https://github.com/nationalarchives/hms-nhs-scripts/issues/11
+    #TODO: This seems a bit redundant with data cleaning, might be able to make this bit faster by skipping the date parsing.
     try:
       candidates = [dateutil.parser.parse(d, dayfirst = True) for d in candidates] #yearfirst defaults to False
     except (TypeError, ValueError): #Something is wrong, resolve manually
@@ -473,8 +474,10 @@ def main():
 
     #count views
     if data['ztype'] == TEXT_T:
+      #For Zooniverse-text fields, we must count rows in the extractor to get an accurate number of views.
+      #This is because the reducer discards empty entries, but we consider these to be legitimate views.
       current_views, nonunique_counts = count_text_views(wid)
-      if nonunique_counts is not None:
+      if nonunique_counts is not None: #We also count repeat classifications by the same (logged-in) user
         nonunique_views.append(nonunique_counts.rename(data['name']))
     elif data['ztype'] == DROP_T:
       #Blank entries for dropdowns appear to come out as type 'None' with n votes --
