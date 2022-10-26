@@ -88,9 +88,10 @@ args = parser.parse_args()
 subjects = pd.read_csv(f'{args.exports}/hms-nhs-the-nautical-health-service-subjects.csv',
                          usecols   = ['subject_id', 'metadata', 'locations'])
 
-#Small utility function to make shell-friendly filenames
-def shellify(string):
-  return re.compile(r'[ \(\)]').sub('_', string)
+def dump_interim(pandas_thing, fnam):
+  if args.dump_interims:
+    fnam = re.compile(r'[ \(\)]').sub('_', fnam)
+    pandas_thing.to_csv(f'{args.output_dir}/interims/{fnam}.csv')
 
 def flow_report(msg, row_id, value):
   if not args.flow_report: return
@@ -421,6 +422,7 @@ def main():
   except FileExistsError:
     print(f"Output directory '{args.output_dir}' already exists.\nPlease delete it before running this script, or use --output_dir to output to a different directory.", file = sys.stderr)
     sys.exit(1)
+  if args.dump_interims: os.mkdir(f'{args.output_dir}/interims')
 
   with open('workflow.yaml') as f:
     workflow = yaml.load(f, Loader = yaml.Loader)
@@ -470,7 +472,7 @@ def main():
         return(sum(selections[0].values()))
       current_views = df[datacol].apply(votecounter)
     current_views = current_views.rename(data['name'])
-    if args.dump_interims: current_views.to_csv(f'{args.output_dir}/current_views_{shellify(data["name"])}.csv')
+    dump_interim(current_views, f'current_views_{data["name"]}')
 
     if not args.unfinished:
       #Drop all classifications that are based on an insufficient number of views
@@ -478,7 +480,7 @@ def main():
       removed.append(df.loc[unfinished_idx][datacol].rename(data['name'])) #We never write to this, so don't really mind if this is a reference or a copy (though copy would be less fragile!)
       df = df.drop(unfinished_idx)
       current_views = current_views.drop(unfinished_idx)
-      if args.dump_interims: removed[-1].to_csv(f'{args.output_dir}/removed_{shellify(data["name"])}.csv')
+      dump_interim(removed[-1], f'removed_{data["name"]}')
       if args.verbose >= 1 and len(removed[-1]) != 0: print(f'  Removed {len(removed[-1])} classifications from {data["name"]} due to unreached retirement count')
       if args.verbose >= 3: print(removed[-1])
 
@@ -558,8 +560,7 @@ def main():
     track(f'* {reduced_file} ({data["name"]}) done', regardless = True)
 
   track('Generating output', regardless = True)
-  if args.dump_interims:
-    for c in columns: c.to_csv(f'{args.output_dir}/{shellify(c.columns[0])}.csv')
+  for c in columns: dump_interim(c, c.columns[0])
   #Combine the separate workflows into a single dataframe
   #Assumption: Task numbers always refer to the same row in each workflow
   #            If this assumption does not hold, we can perform a mapping
@@ -568,14 +569,13 @@ def main():
   first = columns.pop(0)
   joined = first.join(columns, how='outer')
   track('* Data joined')
-  if args.dump_interims: joined.to_csv(f'{args.output_dir}/initial_joined.csv')
+  dump_interim(joined, 'initial_joined')
 
-  if args.dump_interims:
-    for v in views: v.to_csv(f'{args.output_dir}/views_{shellify(v.name)}.csv')
+  for v in views: dump_interim(v, f'views_{v.name}')
   first = views.pop(0).to_frame()
   joined_views = first.join(views, how='outer')
   track('* Views joined')
-  if args.dump_interims: joined_views.to_csv(f'{args.output_dir}/initial_joined_views.csv')
+  dump_interim(joined_views, 'initial_joined_views')
 
   first = removed.pop(0).to_frame()
   first.join(removed, how='outer').to_csv(f'{args.output_dir}/incomplete_rows.csv')
@@ -600,7 +600,7 @@ def main():
   if not args.no_transcriptionisms:
     joined.apply(has_transcriptionisms, axis = 'columns')
     track('* Transcriptionisms identified')
-    if args.dump_interims: joined.to_csv(f'{args.output_dir}/joined_has_transcriptionisms.csv')
+    dump_interim(joined, 'joined_has_transcriptionisms')
 
   #Translate subjects ids into original filenames
   #Assumption: the metadata is invariant across all of the entries for each subject_id
@@ -646,7 +646,7 @@ def main():
   vol_1_subj_ids = list(set(joined[joined['volume'] == 1].index.get_level_values(0)))
 
   track('* Subjects identified')
-  if args.dump_interims: joined.to_csv(f'{args.output_dir}/joined_subjects_identified.csv')
+  dump_interim(joined, 'joined_subjects_identified')
 
   #Handle the 'port sailed out of' special case
   bad_ports = joined.loc[vol_1_subj_ids]['port sailed out of'][joined.loc[vol_1_subj_ids]['port sailed out of'].notnull()].index
@@ -664,14 +664,14 @@ def main():
   joined_views['complete'] = joined_views[workflow_columns].ge(RETIREMENT_COUNT).all(axis = 1)
   joined_views.loc[vol_1_subj_ids,['complete']] = joined_views.loc[vol_1_subj_ids][workflow_columns].drop('port sailed out of', axis = 1).ge(RETIREMENT_COUNT).all(axis = 1)
   track('* Complete views identified')
-  if args.dump_interims: joined_views.to_csv(f'{args.output_dir}/joined_views_complete.csv')
+  dump_interim(joined_views, 'joined_views_complete')
 
   #Tag or remove the rows with badness
   joined.insert(len(joined.columns), 'Problems', '')
   joined['Problems'] = joined[workflow_columns].isnull().values.any(axis = 1)
   joined.loc[vol_1_subj_ids,['Problems']] = joined.loc[vol_1_subj_ids][workflow_columns].drop('port sailed out of', axis = 1).isnull().values.any(axis = 1)
   joined['Problems'] = joined['Problems'].map({True: 'Blank(s)', False: ''})
-  if args.dump_interims: joined.to_csv(f'{args.output_dir}/joined_problems.csv')
+  dump_interim(joined, 'joined_problems')
   track('* Badness identified')
 
   #TODO: Where is the best place for this sanity check?
@@ -693,9 +693,8 @@ def main():
       autoresolved.pop(key, None)
 
     joined = joined.drop(incomplete_joined.index)
-    if args.dump_interims:
-      joined.to_csv(f'{args.output_dir}/joined_unfinished.csv')
-      joined_views.to_csv(f'{args.output_dir}/joined_views_unfinished.csv')
+    dump_interim(joined, 'joined_unfinished')
+    dump_interim(joined_views, 'joined_views_unfinished')
     track('* Incompletes removed')
 
 
@@ -708,7 +707,7 @@ def main():
     else:
       joined.at[b, 'Problems'] = f'At least {bad[b]} unresolved fields'
   track('* Unresolved identified')
-  if args.dump_interims: joined.to_csv(f'{args.output_dir}/joined_unresolved.csv')
+  dump_interim(joined, 'joined_unresolved')
 
 
   #Record where there was autoresolution
@@ -717,7 +716,7 @@ def main():
   for index, value in autoresolved.items():
     joined.at[index, 'Autoresolved'] = '; '.join(filter(lambda x: x in value.keys(), workflow_columns))
   track('* Autos identified')
-  if args.dump_interims: joined.to_csv(f'{args.output_dir}/joined_autos.csv')
+  dump_interim(joined, 'joined_autos')
 
   #joined.csv is complete: now sort it
   joined = joined.sort_values(['volume', 'page'], kind = 'stable') #stable so that we maintain the row order within the page
