@@ -471,6 +471,7 @@ def main():
     except:
       print(f'Error while reading {reduced_file}')
       raise
+    assert df.index.unique
 
     #count views
     if data['ztype'] == TEXT_T:
@@ -490,6 +491,7 @@ def main():
       current_views = df[datacol].apply(votecounter)
     current_views = current_views.rename(data['name'])
     dump_interim(current_views, f'current_views_{data["name"]}')
+    assert current_views.index.equals(df.index) #redundant for dropdowns, where it is derived from df, but text strictly comes from a different source. Note that we have already asserted that df.index is unique, so if this asserion passes then current_views.index is also necessarily unique
 
     if not args.unfinished:
       #Drop all classifications that are based on an insufficient number of views
