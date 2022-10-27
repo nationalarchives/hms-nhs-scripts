@@ -617,6 +617,25 @@ def main():
     first = nonunique_views.pop(0).to_frame()
     first.join(nonunique_views, how='outer').to_csv(f'{args.output_dir}/nonunique.csv')
 
+  #Drop rows that appear to be blank
+  #TODO: Look up the types, rather than using my knowledge of them
+  #FIXME: Maybe better to detect blanks while parsing the columns -- though this approach has the benefit of being able to work across a filter
+  #       boundary. It would be nice to understand what was the input that produced the things that we are matching here.
+  #       Lets wait and see how it holds up on phase 2. This works fine for phase 1, which just has a few blank lines at the end (I checked the ends
+  #       of all of the other volumes, just to make sure that they were full all the way down.)
+  #FIXME: Move this to after we drop incomplete rows. Should mean that I do not have to think about NaN fields here
+  #FIXME: Still need to sort out what to do with Autoresolved, Problems in this case. Probably want to put '<blank line>' in the autoresolved field
+  #       (except if running with --unfinished, but in that case I do not mind funky output so much)
+  # Probably good to have these rows blank in joined.csv, which this achieves.
+  #TODO: The mimsifier should then just drop them.
+  blank_rows = joined['years at sea'].str.fullmatch('00\n----------\n00\n00\b*;\b*00').to_frame()
+  for x in ['admission number','age','number of days victualled']: blank_rows = blank_rows.join(joined[x].eq(0))
+  for x in ['date of entry', 'date of discharge']: blank_rows.join(joined[x] == '')
+  for x in ['name', 'place of birth', 'port sailed out of', 'last services', 'under what circumstances admitted (or nature of complaint)']: blank_rows = blank_rows.join(joined[x].str.fullmatch(r'[0\b]*'))
+  for x in ['quality', 'how disposed of']: blank_rows.join(joined[x].str.fullmatch(r'(None|Missing/illegible entry|[^\n]*\n----------(\nNone( @\d+)?)?(\nMissing/illegible entry(@ \d+)?)?)'))
+  breakpoint()
+  joined[blank_rows.all(axis=1)] = ''
+
   #Search for transcription problmes
   if not args.no_transcriptionisms:
     joined.apply(has_transcriptionisms, axis = 'columns')
