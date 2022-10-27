@@ -65,6 +65,18 @@ function subject_metadata {
   done
 }
 
+function subject_volume {
+  for x in "$@"; do
+    echo -n "$x: "
+    csvsql --tables foo --query "select metadata from foo where subject_id=${x} limit 1" "$SUBJECTS" |
+      sed 1d | #remove the header
+      tr -s '"' | #squash the '""' into '"'
+      sed "s/.\(.*\)./echo '\1' | jq -r .Filename/" | #Convert the result into a legitimate jq incantation to get the filename -- note that this must be done line by line and that we need to replace the leading and trailing " with ' -- though right now we limit to 1 result anyway
+      sh | #Execute said legitimate incantation
+      sed 's/.*_\([[:digit:]]\+\)-.*/\1/' #Get the volume number from the filename string
+    done
+}
+
 #Note that the subjects file can be really misleading -- current guess is that some subjects have been removed from the project since they were classified
 function gen_subjects_per_workflow {
   for x in `seq 18611 18614` `seq 18616 18619` `seq 18621 18625`; do
