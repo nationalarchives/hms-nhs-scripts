@@ -1,13 +1,15 @@
 #!/bin/bash
 #bc trick: https://stackoverflow.com/a/451204
+BASEDIR="`dirname $0`/../"
+mkdir -p "$BASEDIR"/testing/output
 
 for x in 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9; do
-  ./aggregate.py launch_workflows -v -1 --output_dir quick_threshold_test_${x} -t $x "$@" &
+  "$BASEDIR"/aggregate.py launch_workflows -v -1 --output_dir "$BASEDIR"/testing/output/quick_threshold_test_${x} -t $x "$@" &
 done
 
 wait
 
-for x in quick_threshold_test_*/joined.csv; do
+for x in "$BASEDIR"/testing/output/quick_threshold_test_*/joined.csv; do
   disagreeing_rows=$(printf '%6d'  `csvtool namedcol Problems $x | grep nresolved | wc -l`)
   disagreeing_cells=$(printf '%6d' `csvtool namedcol Problems $x | grep nresolved | sed 's/^.* \?\([[:digit:]]\+\) unresolved fields$/\1/' | paste -s -d+ - | bc`)
   complete=$(printf '%6d' `csvtool namedcol Problems $x | grep -c '^$'`)
