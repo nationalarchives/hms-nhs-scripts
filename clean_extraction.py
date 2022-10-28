@@ -211,8 +211,7 @@ def unstring_number(text):
 
 def unstring_date(text):
   text = strip(text)
-  try: result = re.sub(r'[oO0]+', '0', text)
-  except TypeError: return ''
+  result = re.sub(r'[oO0]+', '0', text)
 
   #TODO: If year is missing or badly formatted, we should be able to infer it from the volume.
   #      This would also allow us to handle dates in 'wordy' (e.g. 'July 17') format.
