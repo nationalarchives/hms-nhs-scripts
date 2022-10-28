@@ -9,15 +9,15 @@ function diff_test {
   local testcase="$1"
   shift
   if [[ $VERBOSE -eq 1 ]]; then
-    echo "../mimsify.py "$@" -o output/"$testcase".txt input/"$testcase".csv 2>&1 | diff -q - expected/"$testcase".err > /dev/null 2>&1"
+    echo "../mimsify.py "$@" -o output/mimsy/"$testcase".txt input/mimsy/"$testcase".csv 2>&1 | diff -q - expected/mimsy/"$testcase".err > /dev/null 2>&1"
   fi
-  ../mimsify.py "$@" -o output/"$testcase".txt input/"$testcase".csv 2>&1 | diff -q - expected/"$testcase".err > /dev/null 2>&1
+  ../mimsify.py "$@" -o output/mimsy/"$testcase".txt input/mimsy/"$testcase".csv 2>&1 | diff -q - expected/mimsy/"$testcase".err > /dev/null 2>&1
   if [[ $? -ne 0 ]]; then
     echo "FAIL (bad messages) $testcase $@"
     ((FAILCOUNT++))
     return
   fi
-  diff -q expected/"$testcase".txt output/"$testcase".txt > /dev/null
+  diff -q expected/mimsy/"$testcase".txt output/mimsy/"$testcase".txt > /dev/null
   if [[ $? -eq 0 ]]; then
     echo "PASS  diff_test $testcase $@"
     ((PASSCOUNT++))
@@ -37,8 +37,8 @@ done
 shift $((OPTIND-1))
 
 BASEDIR="`dirname $0`"
+mkdir "$BASEDIR"/output/mimsy || { echo "`realpath ${BASEDIR}`/output/mimsy already exists: please remove and retry" 2>&1; exit 1; }
 cd $BASEDIR
-mkdir output || { echo "`realpath ${BASEDIR}`/output already exists: please remove and retry" 2>&1; exit 1; }
 
 diff_test good_page #test basic functionality. this also tests that blanks are accepted in "port sailed out of" when "volume" is 1
 diff_test unresolveds_rej #test that unresolveds are rejected. this one fails, so it is fine that there is a trailing space and no terminating line ending
