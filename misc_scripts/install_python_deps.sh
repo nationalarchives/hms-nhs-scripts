@@ -1,4 +1,5 @@
 #!/bin/bash
+#At one time I needed this to get an install together. No longer seems to be needed.
 WHEEL=panoptes_aggregation-3.6.0-py3-none-any.whl
 METADATA=panoptes_aggregation-3.6.0.dist-info/METADATA
 

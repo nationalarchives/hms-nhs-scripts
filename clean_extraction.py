@@ -278,6 +278,6 @@ def main():
     df['data.text'] = df['data.text'].map(funcmap[cleanfunc])
     df.to_csv(path_or_buf = f'{infile}.cleaned', index = False)
 
-  print('Possible crossrefs:', adminrefs)
+  print('Possible crossrefs:', sorted(adminrefs))
 
 main()

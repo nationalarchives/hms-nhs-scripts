@@ -95,8 +95,7 @@ def panoptes_config(w_id, versions):
     runit([
       'panoptes_aggregation', 'config',
       f'{args.exports}/hms-nhs-the-nautical-health-service-workflows.csv', w_id,
-      '-v', major,
-      '-m', minor,
+      '-v', f'{major}.{minor}',
       '-d', args.output_dir
       ],
       f'{args.output_dir}/config_{w_id}_V{major}.{minor}.log'
