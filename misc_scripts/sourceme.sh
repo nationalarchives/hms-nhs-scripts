@@ -123,3 +123,30 @@ function versions_per_volume {
     echo
   done
 }
+
+#Dump contents of logs that are littered with progress bar outputs
+function _dump_progress_logs {
+  sed "/${1}: .*| ETA: /d" "${4}"/"${3}"*.log | sed "/^${1}: 100% |#\{${2}\}| Time:  /d"
+}
+
+function dump_extract_logs {
+  _dump_progress_logs Extracting 45 extract "$@"
+}
+
+function dump_reduce_logs {
+  _dump_progress_logs Reducing 47 reduce "$@"
+}
+
+#Compare extract.py output dirs, ignoring the two types of log that dump progress bars. Instead, sed-filter those, and diff the output of that.
+function cmp_agg {
+  diff -qr "$1" "$2" | grep -v '^Files .* and .*/\(extract\|reduce\)_[^/]*\.log differ$'
+  for logtype in extract reduce; do
+    diff <(dump_${logtype}_logs "$1") <(dump_${logtype}_logs "$2")
+    if [ $? -eq 0 ]; then #If the extract/reduce logs are identical, tell me of anything dodgy in them
+      if [ `wc -l <(dump_${logtype}_logs "$1") | tail -n1 | sed 's/^[[:blank:]]*\([[:digit:]]\+\) .*/\1/'` -ne 0 ]; then
+        echo "Dubious line(s) in {${1},${2}}/${logtype}*.log"
+        dump_${logtype}_logs "$1"
+      fi
+    fi
+  done
+}
