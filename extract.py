@@ -54,8 +54,14 @@ def runit(subproc_args, logfile):
   stringified_args = list(map(lambda x: str(x) if type(x) is int else x, subproc_args))
   if args.verbose:
     print(logfile + ':', ' '.join(stringified_args))
-  with open(logfile, 'w') as f:
-    subprocess.run(stringified_args, stdout = f, stderr = subprocess.STDOUT, check = True) 
+  try:
+    with open(logfile, 'w') as f:
+      subprocess.run(stringified_args, stdout = f, stderr = subprocess.STDOUT, check = True)
+  except subprocess.CalledProcessError as e:
+    print(f'*** The following command failed with exit code {e.returncode}:', file = sys.stderr)
+    print('   ', ' '.join(e.cmd), file = sys.stderr)
+    with open(logfile, 'r') as f: print(''.join(['    ' + x for x in f.readlines()]), file = sys.stderr)
+    raise e
 
 def tranche_info():
   #Log number of lines in input files. This should allow me to recreate the exact same result by slicing the end off future downloads.
