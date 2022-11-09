@@ -73,7 +73,7 @@ function subject_volume {
       tr -s '"' | #squash the '""' into '"'
       sed "s/.\(.*\)./echo '\1' | jq -r .Filename/" | #Convert the result into a legitimate jq incantation to get the filename -- note that this must be done line by line and that we need to replace the leading and trailing " with ' -- though right now we limit to 1 result anyway
       sh | #Execute said legitimate incantation
-      sed 's/.*_\([[:digit:]]\+\)-.*/\1/' #Get the volume number from the filename string
+      sed 's/.*_\([[:digit:]]\+\)-\([[:digit:]]\+\).*/v. \1, p. (uncorrected) \2/' #Get the volume number and (uncorrected) page number from the filename string
     done
 }
 
