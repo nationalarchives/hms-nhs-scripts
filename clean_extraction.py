@@ -244,19 +244,19 @@ def unstring_date(text):
 
 def main():
   funcmap = {
-    '18611': unstring_number,
-    '18612': unstring_date,
-    '18613': clean_text,
-    #'18614': dropdown, nothing to normalise
-    '18616': unstring_number,
+    '18611': unstring_number, #admission number
+    '18612': unstring_date, #date of entry
+    '18613': clean_text, #name
+    #'18614': #quality -- dropdown, nothing to normalise
+    '18616': unstring_number, #age
     '18617': clean_18617, #place of birth -- some special handling for extra words
-    '18618': clean_text,
+    '18618': clean_text, #port sailed out of (becomes "where from" in phase2)
     '18619': clean_18619, #years at sea -- some special handling for splitting the fields and rounding to 0.08
     '18621': clean_18621, #last services -- some special handling for ship name abbreviations
-    '18622': clean_text,
-    '18623': unstring_date,
-    #'18624': dropdown, nothing to normalise,
-    '18625': unstring_number, #number or date, just strip
+    '18622': clean_text, #under what circumstances admitted
+    '18623': unstring_date, #date of discharge
+    #'18624': #how disposed of -- dropdown, nothing to normalise
+    '18625': unstring_number, #number of days victualled
   }
 
   for infile, cleanfunc in zip(sys.argv[1::2], sys.argv[2::2]):
