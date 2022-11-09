@@ -55,14 +55,11 @@ def parse_args():
   args = parser.parse_args()
 
 def get_version(v):
-  if not type(v) is float:
-    raise Exception()
-  minor, major = math.modf(v)
-  minor = f'{minor:.10g}' #10 significant digits should be enough for any version number, right?
-  if not minor[0:2] == '0.':
-    raise Exception()
-  minor = minor[2:]
-  return (int(major), int(minor))
+  #We pick out the parts with string operations, rather than converting to float, because of versions like "19.60"
+  m = re.fullmatch(r'(\d+)\.(\d+)', v)
+  if not m:
+    raise Exception(f'Version {v} is not in major.minor format')
+  return (int(m[1]), int(m[2]))
 
 def runit(subproc_args, logfile):
   stringified_args = list(map(lambda x: str(x) if type(x) is int else x, subproc_args))

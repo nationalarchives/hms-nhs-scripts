@@ -24,7 +24,7 @@ development_workflows:
     nptype: *STR
     ztype: *TEXT_T
   18112:
-    version: 5.8
+    version: "5.8"
     name: rank/rating
     nptype: *STR
     ztype: *DROP_T
@@ -57,7 +57,7 @@ development_workflows:
     nptype: *DATE
     ztype: *TEXT_T
   18120:
-    version: 1.1
+    version: "1.1"
     name: how disposed
     nptype: *STR
     ztype: *DROP_T
@@ -68,83 +68,83 @@ development_workflows:
 
 launch_workflows:
   18611:
-    version: 3.1
+    version: "3.1"
     name: admission number
     export: 1-admission-number-classifications.csv
     nptype: *INT64
     ztype: *TEXT_T
   18612:
     version:
-      - 3.1
-      - 4.1
+      - "3.1"
+      - "4.1"
     name: date of entry
     export: 2-date-of-entry-classifications.csv
     nptype: *DATE
     ztype: *TEXT_T
   18613:
-    version: 3.1
+    version: "3.1"
     name: name
     export: 3-name-classifications.csv
     nptype: *STR
     ztype: *TEXT_T
   18614:
-    version: 3.1
+    version: "3.1"
     name: quality
     export: quality-dd-classifications.csv
     nptype: *STR
     ztype: *DROP_T
   18616:
-    version: 3.1
+    version: "3.1"
     name: age
     export: 5-age-classifications.csv
     nptype: *INT64
     ztype: *TEXT_T
   18617:
-    version: 3.1
+    version: "3.1"
     name: place of birth
     export: 7-place-of-birth-nationality-classifications.csv
     nptype: *STR
     ztype: *TEXT_T
   18618:
-    version: 3.1
+    version: "3.1"
     name: port sailed out of
     export: 10-where-from-classifications.csv
     nptype: *STR
     ztype: *TEXT_T
   18619:
-    version: 3.1
+    version: "3.1"
     name: years at sea
     export: years-at-sea-classifications.csv
     nptype: *INT64
     ztype: *TEXT_T
   18621:
-    version: 3.1
+    version: "3.1"
     name: last services
     export: 8-ship-ship-or-place-of-employment-last-ship-classifications.csv
     nptype: *STR
     ztype: *TEXT_T
   18622:
-    version: 3.1
+    version: "3.1"
     name: under what circumstances admitted (or nature of complaint)
     export: 11-nature-of-complaint-classifications.csv
     nptype: *STR
     ztype: *TEXT_T
   18623:
-    version: 3.1
+    version: "3.1"
     name: date of discharge
     export: 12-date-of-discharge-classifications.csv
     nptype: *DATE
     ztype: *TEXT_T
   18624:
     version:
-      - 3.1
-      - 6.4
+      - "3.1"
+      - "6.4"
     name: how disposed of
     export: how-disposed-of-dd-classifications.csv
     nptype: *STR
     ztype: *DROP_T
   18625:
-    version: 3.1
+    version: "3.1"
     name: number of days victualled
     export: 14-number-of-days-in-hospital-classifications.csv
     nptype: *INT64
