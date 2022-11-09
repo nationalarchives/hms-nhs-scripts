@@ -52,4 +52,4 @@ for extraction in args.extraction:
   outname = extraction.split(".", 1)[0] + args.suffix
   extraction_df.to_csv(outname, float_format = '%.99g', index = False)
 
-  print(f"Removed {full_len - stripped_len} rows in ({'unsorted' if args.no_sort else 'sorted'}) in {outname}.")
+  print(f"Removed {full_len - stripped_len} rows from {extraction}. Output ({'unsorted' if args.no_sort else 'sorted'}) in {outname}.")
