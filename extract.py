@@ -238,7 +238,7 @@ def main():
     workflow_defs = yaml.load(f, Loader = yaml.Loader)
 
   for w_id, w_data in workflow_defs[args.workflows].items():
-    p_name = f'panoptes-wid-{w_id}'
+    p_name = f'panoptes-wid-{w_id}-{w_data["name"].replace(" ", "_")}'
     p = Process(target = panoptes, name = p_name, args = (w_id, w_data))
     p.start()
     if args.verbose:
