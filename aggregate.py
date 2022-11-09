@@ -212,10 +212,10 @@ def count_text_views(wid):
                          )
 
   #Sanity check -- the uncleaned (but tranche-processed) extraction file should contain the same classification ids
-  extractor_new_series = pd.read_csv(args.dir + '/' + f'text_extractor_{wid}.csv.new', index_col = KEYS, usecols = KEYS + ['classification_id'], converters = KEYS_CONVERTERS, dtype = {**KEYS_DTYPES, 'classification_id': int})['classification_id']
-  assert len(extractor_new_series) == len(extractor_df['classification_id'])
-  extractor_new_series_comparison = extractor_new_series.reset_index(drop = True).eq(extractor_df['classification_id'].reset_index(drop = True))
-  assert extractor_new_series_comparison.all(), extractor_new_series_comparison
+  extractor_stripped_series = pd.read_csv(args.dir + '/' + f'text_extractor_{wid}.stripped.csv', index_col = KEYS, usecols = KEYS + ['classification_id'], converters = KEYS_CONVERTERS, dtype = {**KEYS_DTYPES, 'classification_id': int})['classification_id']
+  assert len(extractor_stripped_series) == len(extractor_df['classification_id'])
+  extractor_stripped_series_comparison = extractor_stripped_series.reset_index(drop = True).eq(extractor_df['classification_id'].reset_index(drop = True))
+  assert extractor_stripped_series_comparison.all(), extractor_stripped_series_comparison
 
   #First work out whether logged in users have performed repeat classifications on any subjects, so that we can log that this has happened
   nonunique_views = None

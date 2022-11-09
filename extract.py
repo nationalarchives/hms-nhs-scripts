@@ -151,37 +151,34 @@ def panoptes_extract(w_id, versions, ztype, export_csv, extraction_name):
       f'{args.output_dir}/extract_{w_id}_V{major}.{minor}.log'
     )
     outputs.append(f'{args.output_dir}/{ztype}_extractor_{w_id}_V{major}_{minor}.csv')
-  shutil.copy(outputs.pop(0), extraction_name)
-  with open(extraction_name, 'a') as concatenated_file:
+  shutil.copy(outputs.pop(0), extraction_name + '.full.csv')
+  with open(extraction_name + '.full.csv', 'a') as concatenated_file:
     for output in outputs:
       with open(output, 'r') as f:
         f.readline() #do not copy extra header lines
         shutil.copyfileobj(f, concatenated_file)
 
-
-def strip_processed(w_id, views, extraction_name, logname, *extra_args):
+def strip_processed(w_id, views, input_name, logname, *extra_args):
   runit([
     './strip_processed.py',
     '-t', views,
-    extraction_name
+    input_name
     ] + list(extra_args),
     f'{args.output_dir}/{logname}_{w_id}.log'
   )
 
-def clean_extraction(w_id, ztype, extraction_name):
+def clean_extraction(w_id, ztype, input_name):
   if ztype == workflow_defs['definitions']['TEXT_T']['type']:
-    runit(['./clean_extraction.py', extraction_name, w_id], f'{args.output_dir}/postextract_{w_id}.log')
-    shutil.move(extraction_name, f'{extraction_name}.original')
-    shutil.copy(f'{extraction_name}.cleaned', extraction_name)
+    runit(['./clean_extraction.py', input_name, w_id], f'{args.output_dir}/postextract_{w_id}.log')
 
-def panoptes_reduce(w_id, versions, ztype, extraction_name):
+def panoptes_reduce(w_id, versions, ztype, input_name):
   major, minor = versions[0] #We already check in panoptes_config_identity that all reduction configs are the same
   result = runit([
     'panoptes_aggregation', 'reduce',
     '-F', 'all',
     '-d', args.output_dir,
     '-o', w_id,
-    extraction_name,
+    input_name,
     f'{args.output_dir}/Reducer_config_workflow_{w_id}_V{major}.{minor}_{ztype}_extractor.yaml'
     ],
     f'{args.output_dir}/reduce_{w_id}.log'
@@ -196,34 +193,34 @@ def panoptes(w_id, w_data):
   export_csv = w_data['export']
 
   #The name of the concatenation of all extractions for this workflow id
-  extraction_name = f'{args.output_dir}/{ztype}_extractor_{w_id}.csv'
+  extraction_name = f'{args.output_dir}/{ztype}_extractor_{w_id}'
 
   #These functions iterate per-version
   panoptes_config(w_id, versions)
   config_fixups(w_id, versions)
   config_check_identity(w_id, versions, ztype)
 
-  #This iterates per-version, but concatenates its results into a single output
-  panoptes_extract(w_id, versions, ztype, export_csv, extraction_name)
+  #This iterates per-version, but concatenates its results into a single output {extraction_name}.full.csv
+  panoptes_extract(w_id, versions, ztype, export_csv, extraction_name) #creates {extraction_name}.full.csv
 
   #Because we are working on the output of panoptes_extract, we are no longer version-sensitive
 
   #This is a built-in check that strip_processed.py seems to be working as expected -- this should be an identity transform
-  strip_processed(w_id, 'tranches/empty_views.csv', extraction_name, 'strip_identity_tranform_test', '--no_sort')
-  subprocess.run(['diff', '-q', extraction_name, f'{extraction_name}.new'], check = True, capture_output = True)
+  strip_processed(w_id, 'tranches/empty_views.csv', f'{extraction_name}.full.csv', 'strip_identity_tranform_test', '--no_sort') #creates {extraction_name}.stripped.csv
+  subprocess.run(['diff', '-q', f'{extraction_name}.full.csv', f'{extraction_name}.stripped.csv'], check = True, capture_output = True)
 
-  shutil.copyfile(extraction_name, f'{extraction_name}.full')
-  
   #Whereas this will actually remove previously-completed rows of data
-  strip_processed(w_id, 'tranches/views.csv', extraction_name, 'strip_seen')
-  shutil.copyfile(f'{extraction_name}.new', extraction_name)
+  strip_processed(w_id, 'tranches/views.csv', f'{extraction_name}.full.csv', 'strip_seen') #creates {extraction_name}.stripped.csv
 
-  clean_extraction(w_id, ztype, extraction_name)
+  clean_extraction(w_id, ztype, extraction_name + '.stripped.csv') #creates {extraction_name}.cleaned.csv
+
+  #All extraction phases have run, copy the final output to the expected filename for extractions
+  shutil.copyfile(f'{extraction_name}.cleaned.csv', extraction_name + '.csv')
 
   #Special case -- this could be version sensitive, as panoptes_config provides the reduction
   #configuration that it uses. However, config_check_identity confirms that all
   #reduction configs are the same, so in practice this is not version sensitive.
-  panoptes_reduce(w_id, versions, ztype, extraction_name)
+  panoptes_reduce(w_id, versions, ztype, extraction_name + '.csv')
 
 
 def main():

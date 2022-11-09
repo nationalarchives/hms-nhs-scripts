@@ -260,6 +260,7 @@ def main():
   }
 
   for infile, cleanfunc in zip(sys.argv[1::2], sys.argv[2::2]):
+    outfile = f'{infile.split(".", 1)[0]}.cleaned.csv'
     df = pd.read_csv(infile, keep_default_na = False, dtype = {
       'classification_id': str,
       'user_name': str,
@@ -275,7 +276,7 @@ def main():
       'data.aggregation_version': str
     }, skip_blank_lines = False)
     df['data.text'] = df['data.text'].map(funcmap[cleanfunc])
-    df.to_csv(path_or_buf = f'{infile}.cleaned', index = False)
+    df.to_csv(outfile, index = False)
 
   print('Possible crossrefs:', sorted(adminrefs))
 

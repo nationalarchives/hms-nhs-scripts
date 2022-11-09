@@ -7,7 +7,7 @@ import os
 parser = argparse.ArgumentParser(description = 'This script removed previously-processed data from the extractions file, saving us from regenerating it.')
 parser.add_argument('extraction', nargs = '+', help = 'Extractions file as produced by "panoptes_aggregation extract"')
 parser.add_argument('--tranche', '-t', help = 'File containing record of views for each row in each subject')
-parser.add_argument('--suffix', '-s', default = '.new', help = 'Suffix to put on output extractions file: the output file will have the same name as the input extractions file, with this suffix appended. Default: ".new".')
+parser.add_argument('--suffix', '-s', default = '.stripped.csv', help = 'Suffix to put on output extractions file: the output file will be named as the input file, but with this as its name extension. Default: ".stripped.csv".')
 parser.add_argument('--no_sort', action = 'store_true', help = 'By default, this script sorts the output extractions file by classification_id and task number. Set this option to output the extractions file in the same order as the input file. If -t specifies no previously complete rows and --no_sort is set, then the input and output files are identical.')
 args = parser.parse_args()
 
@@ -49,6 +49,7 @@ for extraction in args.extraction:
   extraction_df = extraction_df.reindex(columns = extraction_cols)
 
   extraction_df['task'] = 'T' + extraction_df['task'].astype(str)
-  extraction_df.to_csv(path_or_buf = f'{extraction}{args.suffix}', float_format = '%.99g', index = False)
+  outname = extraction.split(".", 1)[0] + args.suffix
+  extraction_df.to_csv(outname, float_format = '%.99g', index = False)
 
-  print(f"Removed {full_len - stripped_len} rows in ({'unsorted' if args.no_sort else 'sorted'}) {extraction}{args.suffix}")
+  print(f"Removed {full_len - stripped_len} rows in ({'unsorted' if args.no_sort else 'sorted'}) in {outname}.")
