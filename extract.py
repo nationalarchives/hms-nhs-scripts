@@ -30,9 +30,9 @@ def parse_args():
   parser.add_argument('--workflow_defs',
                       default = 'workflow.yaml',
                       help = 'File defining the workflows (default: workflow.yaml)')
-  parser.add_argument('--workflows',
+  parser.add_argument('--workflow_set',
                       default = 'launch_workflows',
-                      help = 'Label for workflows to process (default: launch_workflows). See workflow.yaml.')
+                      help = 'Label for set of workflows to process (default: launch_workflows). See workflow.yaml.')
   parser.add_argument('--exports', '-e',
                       default = 'exports',
                       help = 'Directory of exports from the Zooniverse project (default: exports)')
@@ -265,7 +265,7 @@ def main():
     global workflow_defs
     workflow_defs = yaml.load(f, Loader = yaml.Loader)
 
-  for w_id, w_data in workflow_defs[args.workflows].items():
+  for w_id, w_data in workflow_defs[args.workflow_set].items():
     p_name = f'panoptes-wid-{w_id}-{w_data["name"].replace(" ", "_")}'
     p = Process(target = panoptes, name = p_name, args = (w_id, w_data))
     p.start()

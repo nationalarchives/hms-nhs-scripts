@@ -35,10 +35,13 @@ KEYS_CONVERTERS_2 = {}
 KEYS_DTYPES_2 = {'subject_id': int, 'task': int}
 
 parser = argparse.ArgumentParser()
-parser.add_argument('workflows',
+parser.add_argument('workflow_set',
                     nargs = '?',
                     default = 'launch_workflows',
-                    help = 'Label for workflows to process (see workflow.yaml).')
+                    help = 'Label for set of workflows to process (default: launch_workflows). See workflow.yaml.')
+parser.add_argument('--workflow_defs',
+                    default = 'workflow.yaml',
+                    help = 'File defining the workflows (default: workflow.yaml)')
 parser.add_argument('--output_dir',
                     default = 'output',
                     help = 'Set output dir (default: "output"). Must not already exist.')
@@ -435,7 +438,7 @@ def main():
     sys.exit(1)
   if args.dump_interims: os.mkdir(f'{args.output_dir}/interims')
 
-  with open('workflow.yaml') as f:
+  with open(args.workflow_defs) as f:
     workflow = yaml.load(f, Loader = yaml.Loader)
 
   #Read in the reduced data.
@@ -450,7 +453,7 @@ def main():
   removed = []
 
   track('Processing workflows')
-  for wid, data in workflow[args.workflows].items():
+  for wid, data in workflow[args.workflow_set].items():
     workflow_columns.append(data['name'])
     datacol = data['ztype']['name']
     conflict_keys = {}
