@@ -233,6 +233,7 @@ def main():
     sys.exit(1)
   if not args.no_tranche: tranchedir = tranche_info()
 
+  os.nice(5) #Increase our niceness before we start hammering out processes
   with open(args.workflow_defs) as f:
     global workflow_defs
     workflow_defs = yaml.load(f, Loader = yaml.Loader)
