@@ -2,6 +2,7 @@
 
 import os
 import re
+import csv
 import git
 import sys
 import math
@@ -10,6 +11,7 @@ import shutil
 import filecmp
 import argparse
 import subprocess
+from collections import Counter
 from datetime import datetime, timezone
 from multiprocessing import Process
 from enum import Enum
@@ -201,10 +203,18 @@ def panoptes_reduce(w_id, versions, ztype, input_name):
   )
 
 def panoptes(w_id, w_data):
-  if type(w_data['version']) is list:
-    versions = list(map(get_version, w_data['version']))
-  else:
-    versions = [get_version(w_data['version'])]
+  if 'version' in w_data:
+    if type(w_data['version']) is list:
+      versions = list(map(get_version, w_data['version']))
+    else:
+      versions = [get_version(w_data['version'])]
+  else: #get all actually-used versions by looking in the export file. Report on what is found.
+    with open(f"{args.exports}/{w_data['export']}", 'r') as export_file:
+      reader = csv.DictReader(export_file)
+      counted_versions = Counter([x['workflow_version'] for x in reader])
+      print(f'No workflow version(s) given for {w_id} ({w_data["name"]}). Will use the following detected workflow version(s):')
+      print('\n'.join([f'{k:>10}: {v:>8} instances' for k, v in counted_versions.items()]))
+      versions = [get_version(x) for x in counted_versions.keys()]
   ztype = w_data['ztype']['type']
   export_csv = w_data['export']
 
