@@ -168,8 +168,7 @@ def strip_processed(w_id, views, input_name, logname, *extra_args):
   )
 
 def clean_extraction(w_id, ztype, input_name):
-  if ztype == workflow_defs['definitions']['TEXT_T']['type']:
-    runit(['./clean_extraction.py', input_name, w_id], f'{args.output_dir}/postextract_{w_id}.log')
+  runit(['./clean_extraction.py', input_name, w_id], f'{args.output_dir}/postextract_{w_id}.log')
 
 def panoptes_reduce(w_id, versions, ztype, input_name):
   major, minor = versions[0] #We already check in panoptes_config_identity that all reduction configs are the same

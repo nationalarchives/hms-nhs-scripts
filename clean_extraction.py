@@ -2,6 +2,7 @@
 import pandas as pd
 import re
 import sys
+import shutil
 from decimal import Decimal, ROUND_HALF_UP
 import dateutil
 import datetime
@@ -275,8 +276,12 @@ def main():
       'data.gold_standard': str,
       'data.aggregation_version': str
     }, skip_blank_lines = False)
-    df['data.text'] = df['data.text'].map(funcmap[cleanfunc])
-    df.to_csv(outfile, index = False)
+    if 'data.text' in df.columns:
+      df['data.text'] = df['data.text'].map(funcmap[cleanfunc])
+      df.to_csv(outfile, index = False)
+    elif 'data.value' in df.columns:
+      shutil.copyfile(infile, outfile)
+    else: raise Exception
 
   print('Possible crossrefs:', sorted(adminrefs))
 
