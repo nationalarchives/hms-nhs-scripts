@@ -12,10 +12,18 @@ import argparse
 import subprocess
 from datetime import datetime, timezone
 from multiprocessing import Process
+from enum import Enum
 
 #globals
 args = None
 workflow_defs = None
+class Phase(Enum):
+  CONFIG = 'config'
+  EXTRACT = 'extract'
+  STRIP_PROCESSED = 'strip'
+  CLEAN = 'clean'
+  REDUCE = 'reduce'
+DEFAULT_PHASES = [x.value for x in Phase]
 
 def parse_args():
   parser = argparse.ArgumentParser()
@@ -37,6 +45,12 @@ def parse_args():
   parser.add_argument('--no_tranche',
                       action = 'store_true',
                       help = 'Do not generate tranche info. This does not prevent use of existing tranche info to eliminate previously-completed rows.')
+  parser.add_argument('--phase',
+                      nargs = '*',
+                      choices = DEFAULT_PHASES,
+                      default = DEFAULT_PHASES,
+                      help = 'Run only certain phases of the extractor. This has a high risk of producing poor-quality data and is a developer-only option. Particularly note that only certain phase orderings will work. This only selects phases, it does not affect phase order. If all phases are specified then that is equivalent to not specifying this option at all. If this option is specified then the aggregation/ dir is expected to already exist.')
+
   global args
   args = parser.parse_args()
 
@@ -201,31 +215,37 @@ def panoptes(w_id, w_data):
   extraction_name = f'{args.output_dir}/{ztype}_extractor_{w_id}'
 
   #These functions iterate per-version
-  panoptes_config(w_id, versions)
-  config_fixups(w_id, versions)
-  config_check_identity(w_id, versions, ztype)
+  if Phase.CONFIG.value in args.phase:
+    panoptes_config(w_id, versions)
+    config_fixups(w_id, versions)
+    config_check_identity(w_id, versions, ztype)
 
   #This iterates per-version, but concatenates its results into a single output {extraction_name}.full.csv
-  panoptes_extract(w_id, versions, ztype, export_csv, extraction_name) #creates {extraction_name}.full.csv
+  if Phase.EXTRACT.value in args.phase:
+    panoptes_extract(w_id, versions, ztype, export_csv, extraction_name) #creates {extraction_name}.full.csv
 
   #Because we are working on the output of panoptes_extract, we are no longer version-sensitive
 
   #This is a built-in check that strip_processed.py seems to be working as expected -- this should be an identity transform
-  strip_processed(w_id, 'tranches/empty_views.csv', f'{extraction_name}.full.csv', 'strip_identity_tranform_test', '--no_sort') #creates {extraction_name}.stripped.csv
-  subprocess.run(['diff', '-q', f'{extraction_name}.full.csv', f'{extraction_name}.stripped.csv'], check = True, capture_output = True)
+  if Phase.STRIP_PROCESSED.value in args.phase:
+    strip_processed(w_id, 'tranches/empty_views.csv', f'{extraction_name}.full.csv', 'strip_identity_tranform_test', '--no_sort') #creates {extraction_name}.stripped.csv
+    subprocess.run(['diff', '-q', f'{extraction_name}.full.csv', f'{extraction_name}.stripped.csv'], check = True, capture_output = True)
 
-  #Whereas this will actually remove previously-completed rows of data
-  strip_processed(w_id, 'tranches/views.csv', f'{extraction_name}.full.csv', 'strip_seen') #creates {extraction_name}.stripped.csv
+    #Whereas this will actually remove previously-completed rows of data
+    strip_processed(w_id, 'tranches/views.csv', f'{extraction_name}.full.csv', 'strip_seen') #creates {extraction_name}.stripped.csv
 
-  clean_extraction(w_id, ztype, extraction_name + '.stripped.csv') #creates {extraction_name}.cleaned.csv
 
-  #All extraction phases have run, copy the final output to the expected filename for extractions
-  shutil.copyfile(f'{extraction_name}.cleaned.csv', extraction_name + '.csv')
+  if Phase.CLEAN.value in args.phase:
+    clean_extraction(w_id, ztype, extraction_name + '.stripped.csv') #creates {extraction_name}.cleaned.csv
+
+    #All extraction phases have run, copy the final output to the expected filename for extractions
+    shutil.copyfile(f'{extraction_name}.cleaned.csv', extraction_name + '.csv')
 
   #Special case -- this could be version sensitive, as panoptes_config provides the reduction
   #configuration that it uses. However, config_check_identity confirms that all
   #reduction configs are the same, so in practice this is not version sensitive.
-  panoptes_reduce(w_id, versions, ztype, extraction_name + '.csv')
+  if Phase.REDUCE.value in args.phase:
+    panoptes_reduce(w_id, versions, ztype, extraction_name + '.csv')
 
 
 def main():
@@ -233,10 +253,14 @@ def main():
   procs = []
 
   parse_args()
-  try: os.mkdir(args.output_dir)
-  except FileExistsError:
-    print(f"Output directory '{args.output_dir}' already exists.\nPlease delete it before running this script, or use --output_dir to output to a different directory.", file = sys.stderr)
-    sys.exit(1)
+  if set(args.phase) == set(DEFAULT_PHASES):
+    try: os.mkdir(args.output_dir)
+    except FileExistsError:
+      print(f"Output directory '{args.output_dir}' already exists.\nPlease delete it before running this script, or use --output_dir to output to a different directory.", file = sys.stderr)
+      sys.exit(1)
+  else:
+    print('Running phases ' + ', '.join(filter(lambda x: x in args.phase, DEFAULT_PHASES))) #Comprehension to preserve phase order, rather than getting arbitrary CLI order
+    print('Warning: Running a sub-set of all phases, likely on dirty data. Not recommended for a production run.', file = sys.stderr)
   if not args.no_tranche: tranchedir = tranche_info()
 
   os.nice(5) #Increase our niceness before we start hammering out processes
