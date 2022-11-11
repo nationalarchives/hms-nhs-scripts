@@ -36,6 +36,13 @@ def create_subjects_df(exports_subj_file, cache_file, supplements_dict = None, d
     assert isinstance(location, str)
     return location
 
+  def dump_page_ranges(base_df):
+    vol_page_series = base_df.set_index('volume')['page']
+    for v in sorted(vol_page_series.index.unique()):
+      low = vol_page_series.loc[v].min()
+      high = vol_page_series.loc[v].max()
+      print(f'Volume {v:2} runs from p. {low:3} to p. {high:3}')
+
   def dump_missing(base_df, gaps_message, no_gaps_message):
     vol_page_series = base_df.set_index('volume')['page']
     messages = []
@@ -64,6 +71,7 @@ def create_subjects_df(exports_subj_file, cache_file, supplements_dict = None, d
   if drop_raw:
     subjects = subjects.drop(['metadata', 'locations'], axis = 1)
 
+  dump_page_ranges(subjects)
   dump_missing(subjects, 'Missing pages *before* applying supplements', 'No missing pages *before* applying supplements')
   if supplements_dict:
     values = defaultdict(list)
