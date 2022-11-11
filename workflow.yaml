@@ -10,6 +10,8 @@ definitions:
   INT64: &INT64 !!python/name:pandas.core.arrays.integer.Int64Dtype
   DATE: &DATE !!python/name:datetime.date
 
+export: 'hms-nhs-the-nautical-health-service-workflows.csv'
+
 subjects:
   export: 'hms-nhs-the-nautical-health-service-subjects.csv'
   supplements:

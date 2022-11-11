@@ -116,7 +116,7 @@ def panoptes_config(w_id, versions):
   for major, minor in versions:
     runit([
       'panoptes_aggregation', 'config',
-      f'{args.exports}/hms-nhs-the-nautical-health-service-workflows.csv', w_id,
+      f'{args.exports}/{workflow_defs["export"]}', w_id,
       '-v', f'{major}.{minor}',
       '-d', args.output_dir
       ],
