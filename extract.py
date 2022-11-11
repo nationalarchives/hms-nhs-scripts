@@ -25,6 +25,7 @@ class Phase(Enum):
   CONFIG = 'config'
   EXTRACT = 'extract'
   STRIP_PROCESSED = 'strip'
+  PICK_VOLUMES = 'pick'
   CLEAN = 'clean'
   POST_EXTRACT = 'post_extract'
   REDUCE = 'reduce'
@@ -189,6 +190,16 @@ def strip_processed(w_id, views, input_name, logname, *extra_args):
     f'{args.output_dir}/{logname}_{w_id}.log'
   )
 
+def pick_volumes(w_id, input_name):
+  runit([
+    './pick_volumes.py', input_name,
+    '--first_volume', workflow_defs[args.workflow_set]['first_volume'],
+    '--final_volume', workflow_defs[args.workflow_set]['final_volume'],
+    '--subjects_cache', f'{args.output_dir}/subjects_metadata.csv'
+    ],
+    f'{args.output_dir}/pick_volumes_{w_id}.log'
+  )
+
 def clean_extraction(w_id, ztype, input_name):
   runit(['./clean_extraction.py', input_name, w_id], f'{args.output_dir}/postextract_{w_id}.log')
 
@@ -244,9 +255,11 @@ def panoptes(w_id, w_data):
     #Whereas this will actually remove previously-completed rows of data
     strip_processed(w_id, 'tranches/views.csv', f'{extraction_name}.full.csv', 'strip_seen') #creates {extraction_name}.stripped.csv
 
+  if Phase.PICK_VOLUMES.value in args.phase:
+    pick_volumes(w_id, extraction_name + '.stripped.csv') #creates {extraction_name}.vols.csv
 
   if Phase.CLEAN.value in args.phase:
-    clean_extraction(w_id, ztype, extraction_name + '.stripped.csv') #creates {extraction_name}.cleaned.csv
+    clean_extraction(w_id, ztype, extraction_name + '.vols.csv') #creates {extraction_name}.cleaned.csv
 
   if Phase.POST_EXTRACT.value in args.phase:
     #All extraction phases have run, copy the final output to the expected filename for extractions
@@ -282,7 +295,7 @@ def main():
   if Phase.SUBJECTS.value in args.phase:
     subjects.create_subjects_df(f'{args.exports}/{workflow_defs["subjects"]["export"]}', f'{args.output_dir}/subjects_metadata.csv', workflow_defs['subjects']['supplements'] if 'supplements' in workflow_defs['subjects'] else None)
 
-  for w_id, w_data in workflow_defs[args.workflow_set].items():
+  for w_id, w_data in workflow_defs[args.workflow_set]['workflows'].items():
     p_name = f'panoptes-wid-{w_id}-{w_data["name"].replace(" ", "_")}'
     p = Process(target = panoptes, name = p_name, args = (w_id, w_data))
     p.start()

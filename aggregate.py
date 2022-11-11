@@ -211,11 +211,11 @@ def count_text_views(wid):
                           dtype = { **KEYS_DTYPES, 'classification_id': int, 'user_id': float } #user_id is float so that blanks can be NaN
                          )
 
-  #Sanity check -- the uncleaned (but tranche-processed) extraction file should contain the same classification ids
-  extractor_stripped_series = pd.read_csv(args.dir + '/' + f'text_extractor_{wid}.stripped.csv', index_col = KEYS, usecols = KEYS + ['classification_id'], converters = KEYS_CONVERTERS, dtype = {**KEYS_DTYPES, 'classification_id': int})['classification_id']
-  assert len(extractor_stripped_series) == len(extractor_df['classification_id'])
-  extractor_stripped_series_comparison = extractor_stripped_series.reset_index(drop = True).eq(extractor_df['classification_id'].reset_index(drop = True))
-  assert extractor_stripped_series_comparison.all(), extractor_stripped_series_comparison
+  #Sanity check -- the uncleaned (but tranche-and-volume-processed) extraction file should contain the same classification ids
+  extractor_vols_series = pd.read_csv(args.dir + '/' + f'text_extractor_{wid}.vols.csv', index_col = KEYS, usecols = KEYS + ['classification_id'], converters = KEYS_CONVERTERS, dtype = {**KEYS_DTYPES, 'classification_id': int})['classification_id']
+  assert len(extractor_vols_series) == len(extractor_df['classification_id'])
+  extractor_vols_series_comparison = extractor_vols_series.reset_index(drop = True).eq(extractor_df['classification_id'].reset_index(drop = True))
+  assert extractor_vols_series_comparison.all(), extractor_vols_series_comparison
 
   #First work out whether logged in users have performed repeat classifications on any subjects, so that we can log that this has happened
   nonunique_views = None
@@ -450,7 +450,7 @@ def main():
   removed = []
 
   track('Processing workflows')
-  for wid, data in workflow[args.workflow_set].items():
+  for wid, data in workflow[args.workflow_set]['workflows'].items():
     workflow_columns.append(data['name'])
     datacol = data['ztype']['name']
     conflict_keys = {}
