@@ -24,6 +24,7 @@ class Phase(Enum):
   EXTRACT = 'extract'
   STRIP_PROCESSED = 'strip'
   CLEAN = 'clean'
+  POST_EXTRACT = 'post_extract'
   REDUCE = 'reduce'
 DEFAULT_PHASES = [x.value for x in Phase]
 
@@ -245,6 +246,7 @@ def panoptes(w_id, w_data):
   if Phase.CLEAN.value in args.phase:
     clean_extraction(w_id, ztype, extraction_name + '.stripped.csv') #creates {extraction_name}.cleaned.csv
 
+  if Phase.POST_EXTRACT.value in args.phase:
     #All extraction phases have run, copy the final output to the expected filename for extractions
     shutil.copyfile(f'{extraction_name}.cleaned.csv', extraction_name + '.csv')
 
