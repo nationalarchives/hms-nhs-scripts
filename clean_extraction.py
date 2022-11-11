@@ -258,6 +258,11 @@ def main():
     '18623': unstring_date, #date of discharge
     #'18624': #how disposed of -- dropdown, nothing to normalise
     '18625': unstring_number, #number of days victualled
+    #phase 2 follows -- but only where it introduces new ID numbers #TODO: Look into whether any of these need special processing
+    '18344': clean_text, #creed
+    '18347': clean_text, #of what port -- so basically the same as 18618?
+    '18454': clean_text, #quality
+    '20285': clean_text, #how disposed of
   }
 
   for infile, cleanfunc in zip(sys.argv[1::2], sys.argv[2::2]):

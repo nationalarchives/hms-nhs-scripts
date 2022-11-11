@@ -99,7 +99,7 @@ args = parser.parse_args()
 
 def dump_interim(pandas_thing, fnam):
   if args.dump_interims:
-    fnam = re.compile(r'[ \(\)]').sub('_', fnam)
+    fnam = re.compile(r'[ \(\)/]').sub('_', fnam)
     pandas_thing.to_csv(f'{args.output_dir}/interims/{fnam}.csv')
 
 def flow_report(msg, row_id, value):
@@ -173,12 +173,14 @@ def pretty_candidates(candidates, best_guess = '<No best guess>'):
     else: retval.append(f'{k} @{v}')
   return '\n'.join(retval)
 
+def get_number_flows(workflows):
+  return [x['name'] for x in filter(lambda y: y['nptype'] == pd.Int64Dtype, workflows[args.workflow_set]['workflows'].values())]
 
 #We can find these by looking for square brackets and for misplaced zeros
 #But square brackets will show up in every cell that was already flagged as bad
 #So we give up on counting the bad cells, and just make sure that we flag all
 #rows that contain at least one of them
-def has_transcriptionisms(row):
+def has_transcriptionisms(row, number_flows):
   if row.name in bad: return
   #Note that it may be that only part of the uncertainty identifier has survived autoresolution.
   #For this reason, we cannot use the exact same patterns as in the pre-resultion function 'uncertainty'.
@@ -192,7 +194,7 @@ def has_transcriptionisms(row):
       bad[row.name] = 1
       return
   #TODO: Should use the info in workflows.yaml to drop the number columns, rather than listing them all by name:
-  if row.drop(['admission number', 'age', 'years at sea', 'number of days victualled']).str.contains('^0+$').any():
+  if row.drop(number_flows).str.contains('^0+$').any():
     bad[row.name] += 1
 
 
@@ -491,7 +493,44 @@ def main():
       current_views = df[datacol].apply(votecounter)
     current_views = current_views.rename(data['name'])
     dump_interim(current_views, f'current_views_{data["name"]}')
-    assert current_views.index.equals(df.index) #redundant for dropdowns, where it is derived from df, but text strictly comes from a different source. Note that we have already asserted that df.index is unique, so if this asserion passes then current_views.index is also necessarily unique
+    if not current_views.index.equals(df.index): #redundant for dropdowns, where it is derived from df, but text strictly comes from a different source.
+                                                 #we have already asserted that df.index is unique, so if they are equal then current_views.index is also necessarily unique
+                                                 #if we make it out of the body of this if statement, the indices will now be equal (and therefore unique)
+      c_set = set(current_views.index)
+      i_set = set(df.index)
+      if c_set - i_set != set(): #I do not know what would cause such a case, consider it if it comes up
+        raise Exception('current_views contains entries that are missing in full dataframe')
+      elif i_set - c_set != set(): #There are entries in the full df that are missing from current_views. This can happen if rows have never been classified
+                                   #So far, it looks like this can happen if there are "extra" rows available in phase2 that have been left blank because they are not actually on the page
+                                   #FIXME: Should I be catching this at cleaning time? It looks like the users may be supposed to enter "No rows" in this case.
+                                   #       If so, it may be sufficient to reduce all of this to a test for index inequality, as in the enclosing if statement.
+                                   #       Note that this requires fixing up the reductions file, as the whole problem here is that these rows have not been classified.
+                                   #       At present, cleaning is a pre-reduction step, so would need to think about the wisdom of that. For now, I think catch it here
+                                   #       and hope that reconciliation just sorts this out (which it should, if enough people are entering "No rows").
+        spares = list(i_set - c_set)
+        spares_df = df.loc[spares]
+        df = df.drop(spares)
+        if not current_views.index.equals(df.index): raise Exception() #The drop above should have fixed this
+        if not spares_df.isna().all(axis = None): #If any of these entries are non-null then I do not know what is happening, figure it out if it ever comes up
+          raise Exception('df has non-null entries that are missing from current_views')
+        if args.verbose == 0: #This feels like a bug condition, so always warn about it
+          print(f'  Warning: auto-removed {len(spares)} unclassified tasks in {data["name"]}', file = sys.stderr) #I believe that these work out as cases where "No row" was not entered. See the rest of this code block.
+        if args.verbose >= 1:
+          print(f'  Removed {len(spares)} null tasks from {data["name"]} due to absent classifications')
+        if args.verbose >= 3:
+          print(f'  The following task numbers in {data["name"]} are un-entered:')
+          spare_ids = sorted({x[0] for x in spares})
+          subjects_spares_df = get_subjects_df(f'{args.dir}/subjects_metadata.csv').loc[spare_ids][['volume','page','location']] #FIXME: Reading the subjects file from disk every time we get here -- if we keep this code, then we could read the subjects file once at the beginning of this script. It is treated as read-only, so it can safely be global.
+          for subject_id in spare_ids:
+            vol, page, url = subjects_spares_df.loc[subject_id]
+            tasks = spares_df.loc[subject_id].index
+            if len(tasks) == 1: #Single-line output where possible, can halve the vertical space used
+              print(f'  In vol. {vol:2}, p. {page:3}: T{tasks[0]}  (subject id: {subject_id} [{url}])')
+            else:
+              print(f'  In vol. {vol:2}, p. {page:3} (subject id: {subject_id} [{url}])')
+              print(f'    {", ".join(["T" + str(x) for x in sorted(tasks)])}')
+      else: #I guess they could be in different orders?
+        raise Exception('Indices are non-equal but contain the same entries')
 
     if not args.unfinished:
       #Drop all classifications that are based on an insufficient number of views
@@ -619,7 +658,7 @@ def main():
 
   #Search for transcription problmes
   if not args.no_transcriptionisms:
-    joined.apply(has_transcriptionisms, axis = 'columns')
+    joined.apply(has_transcriptionisms, axis = 'columns', args = (get_number_flows(workflow),))
     track('* Transcriptionisms identified')
     dump_interim(joined, 'joined_has_transcriptionisms')
 
@@ -629,29 +668,34 @@ def main():
   track('* Subjects identified')
   dump_interim(joined, 'joined_subjects_identified')
 
-  #Handle the 'port sailed out of' special case
-  bad_ports = joined.loc[vol_1_subj_ids]['port sailed out of'][joined.loc[vol_1_subj_ids]['port sailed out of'].notnull()].index
-  for bad_port in bad_ports:
-    if bad_port in autoresolved:
-      flow_report('port sailed out of in volume 1 (later)', bad_port, joined.loc[bad_port])
-      autoresolved[bad_port]['port sailed out of'] = None
-    else:
-      flow_report('port sailed out of in volume 1 (first)', bad_port, joined.loc[bad_port])
-      autoresolved[bad_port] = { 'port sailed out of': None }
-  if args.verbose >= 1 and len(bad_ports) != 0: print(f'  {len(bad_ports)} rows in volume 1 incorrectly had a port')
-  joined.loc[bad_ports,['original','volume','page','port sailed out of']].to_csv(f'{args.output_dir}/ports_removed.csv')
-  joined.loc[bad_ports,['port sailed out of']] = ''
-  track('* "Port sailed out of" fixed up')
+  #Handle the 'port sailed out of' special case -- but only if the relevant volume exists
+  #This should really be defined in the YAML file somehow, or otherwise made data-driven
+  vol_1_subj_ids = list(set(joined[joined['volume'] == 1].index.get_level_values(0)))
+  if len(vol_1_subj_ids) != 0:
+    bad_ports = joined.loc[vol_1_subj_ids]['port sailed out of'][joined.loc[vol_1_subj_ids]['port sailed out of'].notnull()].index
+    for bad_port in bad_ports:
+      if bad_port in autoresolved:
+        flow_report('port sailed out of in volume 1 (later)', bad_port, joined.loc[bad_port])
+        autoresolved[bad_port]['port sailed out of'] = None
+      else:
+        flow_report('port sailed out of in volume 1 (first)', bad_port, joined.loc[bad_port])
+        autoresolved[bad_port] = { 'port sailed out of': None }
+    if args.verbose >= 1 and len(bad_ports) != 0: print(f'  {len(bad_ports)} rows in volume 1 incorrectly had a port')
+    joined.loc[bad_ports,['original','volume','page','port sailed out of']].to_csv(f'{args.output_dir}/ports_removed.csv')
+    joined.loc[bad_ports,['port sailed out of']] = ''
+    track('* "Port sailed out of" fixed up')
 
   joined_views['complete'] = joined_views[workflow_columns].ge(RETIREMENT_COUNT).all(axis = 1)
-  joined_views.loc[vol_1_subj_ids,['complete']] = joined_views.loc[vol_1_subj_ids][workflow_columns].drop('port sailed out of', axis = 1).ge(RETIREMENT_COUNT).all(axis = 1)
+  if len(vol_1_subj_ids) != 0:
+    joined_views.loc[vol_1_subj_ids,['complete']] = joined_views.loc[vol_1_subj_ids][workflow_columns].drop('port sailed out of', axis = 1).ge(RETIREMENT_COUNT).all(axis = 1)
   track('* Complete views identified')
   dump_interim(joined_views, 'joined_views_complete')
 
   #Tag or remove the rows with badness
   joined.insert(len(joined.columns), 'Problems', '')
   joined['Problems'] = joined[workflow_columns].isnull().values.any(axis = 1)
-  joined.loc[vol_1_subj_ids,['Problems']] = joined.loc[vol_1_subj_ids][workflow_columns].drop('port sailed out of', axis = 1).isnull().values.any(axis = 1)
+  if len(vol_1_subj_ids) != 0:
+    joined.loc[vol_1_subj_ids,['Problems']] = joined.loc[vol_1_subj_ids][workflow_columns].drop('port sailed out of', axis = 1).isnull().values.any(axis = 1)
   joined['Problems'] = joined['Problems'].map({True: 'Blank(s)', False: ''})
   dump_interim(joined, 'joined_problems')
   track('* Badness identified')

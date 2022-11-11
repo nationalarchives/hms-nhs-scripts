@@ -208,3 +208,80 @@ launch_workflows:
       export: 14-number-of-days-in-hospital-classifications.csv
       nptype: *INT64
       ztype: *TEXT_T
+
+#Here we do not attempt to use version limiting at all, but rather pull in all versions and rely upon volume limiting
+#TOOD: Are we pulling in any versions that were never part of a live workflow? (they might still have test classifications)
+phase2:
+  first_volume: 19
+  final_volume: 34
+  workflows:
+    18611:
+      name: admission number
+      export: 1-admission-number-classifications.csv
+      nptype: *INT64
+      ztype: *TEXT_T
+    18612:
+      name: date of entry
+      export: 2-date-of-entry-classifications.csv
+      nptype: *DATE
+      ztype: *TEXT_T
+    18613:
+      name: name
+      export: 3-name-classifications.csv
+      nptype: *STR
+      ztype: *TEXT_T
+    18454:
+      name: quality
+      export: 4-quality-classifications.csv
+      nptype: *STR
+      ztype: *TEXT_T
+    18616:
+      name: age
+      export: 5-age-classifications.csv
+      nptype: *INT64
+      ztype: *TEXT_T
+    18344:
+      name: creed
+      export: 6-creed-classifications.csv
+      nptype: *STR
+      ztype: *TEXT_T
+    18617:
+      name: place of birth/nationality
+      export: 7-place-of-birth-nationality-classifications.csv
+      nptype: *STR
+      ztype: *TEXT_T
+    18621:
+      name: ship/ship or place of employment/last ship
+      export: 8-ship-ship-or-place-of-employment-last-ship-classifications.csv
+      nptype: *STR
+      ztype: *TEXT_T
+    18347:
+      name: of what port/port of registration
+      export: 9-of-what-port-port-of-registration-classifications.csv
+      nptype: *STR
+      ztype: *TEXT_T
+    18618:
+      name: where from
+      export: 10-where-from-classifications.csv
+      nptype: *STR
+      ztype: *TEXT_T
+    18622:
+      name: nature of complaint
+      export: 11-nature-of-complaint-classifications.csv
+      nptype: *STR
+      ztype: *TEXT_T
+    18623:
+      name: date of discharge
+      export: 12-date-of-discharge-classifications.csv
+      nptype: *DATE
+      ztype: *TEXT_T
+    20285:
+      name: how disposed of
+      export: 13-how-disposed-of-classifications.csv
+      nptype: *STR
+      ztype: *TEXT_T
+    18625:
+      name: number of days in hospital
+      export: 14-number-of-days-in-hospital-classifications.csv
+      nptype: *INT64
+      ztype: *TEXT_T
