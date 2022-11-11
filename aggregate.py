@@ -545,10 +545,7 @@ def main():
     elif(data['ztype'] == DROP_T):
       #Process classifications for output
       def drop_resolver(row):
-        #row is a single-element array, containing one dictionary
-        selections = ast.literal_eval(row[datacol])
-        if len(selections) != 1: raise Exception()
-        result = category_resolver(selections[0], args.dropdown_threshold, row.name, data['name'])
+        result = category_resolver(row[datacol], args.dropdown_threshold, row.name, data['name'])
         if len(result) == 1:
           if row.name in autoresolved and data['name'] in autoresolved[row.name]:
             flow_report('Autoresolved', row.name, row['data.value'])
@@ -557,6 +554,12 @@ def main():
           flow_report('Unresolvable', row.name, row['data.value'])
           bad[row.name] += 1
         return str([result])
+      #Dropdowns contain a single-element array, which contains a dictionary.
+      #Start by resolving that down to just a dictonary, vector-style
+      df[datacol] = df[datacol].apply(ast.literal_eval)
+      if not df[datacol].str.len().eq(1).all(): raise Exception()
+      df[datacol] = df[datacol].apply(lambda x: x[0])
+      #Then do the rest of the work
       df[datacol] = df.apply(drop_resolver, axis = 'columns')
     else: raise Exception()
 
