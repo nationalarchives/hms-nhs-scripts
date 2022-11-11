@@ -36,9 +36,7 @@ KEYS_DTYPES_2 = {'subject_id': int, 'task': int}
 
 parser = argparse.ArgumentParser()
 parser.add_argument('workflow_set',
-                    nargs = '?',
-                    default = 'launch_workflows',
-                    help = 'Label for set of workflows to process (default: launch_workflows). See workflow.yaml.')
+                    help = 'Label for set of workflows to process. See workflow.yaml. "phase1" and "phase2" are good values.')
 parser.add_argument('--workflow_defs',
                     default = 'workflow.yaml',
                     help = 'File defining the workflows (default: workflow.yaml)')

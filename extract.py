@@ -33,12 +33,11 @@ DEFAULT_PHASES = [x.value for x in Phase]
 
 def parse_args():
   parser = argparse.ArgumentParser()
+  parser.add_argument('workflow_set',
+                      help = 'Label for set of workflows to process. See workflow.yaml. "phase1" and "phase2" are good values.')
   parser.add_argument('--workflow_defs',
                       default = 'workflow.yaml',
                       help = 'File defining the workflows (default: workflow.yaml)')
-  parser.add_argument('--workflow_set',
-                      default = 'launch_workflows',
-                      help = 'Label for set of workflows to process (default: launch_workflows). See workflow.yaml.')
   parser.add_argument('--exports', '-e',
                       default = 'exports',
                       help = 'Directory of exports from the Zooniverse project (default: exports)')
