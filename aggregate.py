@@ -174,28 +174,6 @@ def pretty_candidates(candidates, best_guess = '<No best guess>'):
 def get_number_flows(workflows):
   return [x['name'] for x in filter(lambda y: y['nptype'] == pd.Int64Dtype, workflows[args.workflow_set]['workflows'].values())]
 
-#We can find these by looking for square brackets and for misplaced zeros
-#But square brackets will show up in every cell that was already flagged as bad
-#So we give up on counting the bad cells, and just make sure that we flag all
-#rows that contain at least one of them
-def has_transcriptionisms(row, number_flows):
-  if row.name in bad: return
-  #Note that it may be that only part of the uncertainty identifier has survived autoresolution.
-  #For this reason, we cannot use the exact same patterns as in the pre-resultion function 'uncertainty'.
-  for pattern in [
-    r'[\[\]\{\}]', #Any sort of bracket (apart from round, which come up too much in correct contexts)
-    r'\.\.', #More than one '.' in succession
-    r'\?' #A question mark
-    #r'[^\d]*\.[^ \d$]', #A single dot that (a) does not appear to be part of a number and (b) does not appear to be a full stop. Did away with this one as it matches dots in abbreviations and initials -- far too noisy.
-  ]:
-    if row.str.contains(pattern).any():
-      bad[row.name] = 1
-      return
-  #TODO: Should use the info in workflows.yaml to drop the number columns, rather than listing them all by name:
-  if row.drop(number_flows).str.contains('^0+$').any():
-    bad[row.name] += 1
-
-
 def count_text_views(wid):
   #The text reducer does not count blank entries as viewed.
   #This can mess up our calculation for including something in the output.
@@ -654,9 +632,36 @@ def main():
     first = nonunique_views.pop(0).to_frame()
     first.join(nonunique_views, how='outer').to_csv(f'{args.output_dir}/nonunique.csv')
 
-  #Search for transcription problmes
+  #Search for transcription problems
+  #We can find these by looking for square brackets and for misplaced zeros
+  #But square brackets will show up in every cell that was already flagged as bad
+  #So we give up on counting the bad cells, and just make sure that we flag all
+  #rows that contain at least one of them
   if not args.no_transcriptionisms:
-    joined.apply(has_transcriptionisms, axis = 'columns', args = (get_number_flows(workflow),))
+    #This is carefully arranged to replicate the original behaviour
+    #TODO I can probably get a proper count now, or even identify the bad columns
+    def set_bad_1(x):
+      if not x.name in bad: bad[x.name] = 1
+    def inc_bad_1(x):
+      if not x.name in bad: bad[x.name] += 1
+
+    tmp_bad = pd.Series(data = False, index = joined.index)
+    for c in joined.drop(get_number_flows(workflow), axis = 1).columns:
+      tmp_bad = tmp_bad | joined[c].str.contains('^0+$')
+    tmp_bad[tmp_bad].to_frame().apply(inc_bad_1, axis = 1)
+
+    #Note that it may be that only part of the uncertainty identifier has survived autoresolution.
+    #For this reason, we cannot use the exact same patterns as in the pre-resultion function 'uncertainty'.
+    tmp_bad = pd.Series(data = False, index = joined.index)
+    for pattern in [
+      r'[\[\]\{\}]', #Any sort of bracket (apart from round, which come up too much in correct contexts)
+      r'\.\.', #More than one '.' in succession
+      r'\?' #A question mark
+      #r'[^\d]*\.[^ \d$]', #A single dot that (a) does not appear to be part of a number and (b) does not appear to be a full stop. Did away with this one as it matches dots in abbreviations and initials -- far too noisy.
+    ]:
+      for c in joined.columns:
+        tmp_bad = tmp_bad | joined[c].str.contains(pattern)
+    tmp_bad[tmp_bad].to_frame().apply(set_bad_1, axis = 1)
     track('* Transcriptionisms identified')
     dump_interim(joined, 'joined_has_transcriptionisms')
 
