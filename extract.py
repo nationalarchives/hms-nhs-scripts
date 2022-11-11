@@ -7,6 +7,7 @@ import git
 import sys
 import math
 import yaml
+import pandas as pd
 import shutil
 import filecmp
 import argparse
@@ -54,7 +55,7 @@ def parse_args():
                       nargs = '*',
                       choices = DEFAULT_PHASES,
                       default = DEFAULT_PHASES,
-                      help = 'Run only certain phases of the extractor. This has a high risk of producing poor-quality data and is a developer-only option. Particularly note that only certain phase orderings will work. This only selects phases, it does not affect phase order. If all phases are specified then that is equivalent to not specifying this option at all. If this option is specified then the aggregation/ dir is expected to already exist.')
+                      help = 'Run only certain phases of the extractor. This has a high risk of producing poor-quality data and is a developer-only option. Particularly note that only certain phase orderings will work, and that \'subjects\' is a "split" phase, governing two different blocks of code at different points in the sequence. This option only selects the phases to run, it does not affect phase order or the number of times that each phase is run. If all phases are specified then that is equivalent to not specifying this option at all. If this option is specified then the aggregation/ dir is expected to already exist.')
 
   global args
   args = parser.parse_args()
@@ -296,7 +297,8 @@ def main():
     workflow_defs = yaml.load(f, Loader = yaml.Loader)
 
   if Phase.SUBJECTS.value in args.phase:
-    subjects.create_subjects_df(f'{args.exports}/{workflow_defs["subjects"]["export"]}', f'{args.output_dir}/subjects_metadata.csv', workflow_defs['subjects']['supplements'] if 'supplements' in workflow_defs['subjects'] else None)
+    subjects_dfs = {}
+    (subjects_dfs['subjects'], subjects_dfs['supplements'], subjects_dfs['duplicates']) = subjects.create_subjects_df(f'{args.exports}/{workflow_defs["subjects"]["export"]}', f'{args.output_dir}/subjects_metadata.csv', workflow_defs['subjects']['supplements'] if 'supplements' in workflow_defs['subjects'] else None)
 
   for w_id, w_data in workflow_defs[args.workflow_set]['workflows'].items():
     p_name = f'panoptes-wid-{w_id}-{w_data["name"].replace(" ", "_")}'
@@ -312,6 +314,25 @@ def main():
     print(f'{p.name} completed with exit code {p.exitcode}')
   if exit_code != 0:
     sys.exit(exit_code)
+
+  if Phase.SUBJECTS.value in args.phase:
+    #Subject metadata checks
+    #Check whether more than one of each duplicate set is referenced
+    #TODO Check whether supplements are referenced
+    used_subject_ids = set()
+    for extraction_name in [get_extraction_name(x[0], x[1]) for x in workflow_defs[args.workflow_set]['workflows'].items()]:
+      used_subject_ids.update(pd.read_csv(f'{extraction_name}.csv',
+                                          usecols = ['subject_id'],
+                                          dtype = {'subject_id': int}).squeeze('columns').values)
+    dups_found = False
+    for entry in subjects_dfs['duplicates'].index.unique():
+      found = []
+      for s_id in subjects_dfs['duplicates']['subject_id'].loc[entry]:
+        if s_id in used_subject_ids: found.append(s_id)
+      if len(found) > 1:
+        dups_found = True
+        print(f'Error: Volume {entry[0]:2} p. {entry[1]:3} is classified under multiple subject ids: {", ".join(found)}', file = sys.stderr)
+    if dups_found: sys.exit(1)
 
   print('All done, no errors')
   if args.no_tranche:
