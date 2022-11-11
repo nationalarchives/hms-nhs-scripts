@@ -317,13 +317,12 @@ def main():
 
   if Phase.SUBJECTS.value in args.phase:
     #Subject metadata checks
-    #Check whether more than one of each duplicate set is referenced
-    #TODO Check whether supplements are referenced
     used_subject_ids = set()
     for extraction_name in [get_extraction_name(x[0], x[1]) for x in workflow_defs[args.workflow_set]['workflows'].items()]:
       used_subject_ids.update(pd.read_csv(f'{extraction_name}.csv',
                                           usecols = ['subject_id'],
                                           dtype = {'subject_id': int}).squeeze('columns').values)
+    #Check whether more than one of each duplicate set is referenced
     dups_found = False
     for entry in subjects_dfs['duplicates'].index.unique():
       found = []
@@ -333,6 +332,13 @@ def main():
         dups_found = True
         print(f'Error: Volume {entry[0]:2} p. {entry[1]:3} is classified under multiple subject ids: {", ".join(found)}', file = sys.stderr)
     if dups_found: sys.exit(1)
+
+    #Check whether supplements are referenced
+    for subject_id, subject_data in subjects_dfs['supplements'].iterrows():
+      if subject_id in used_subject_ids:
+        print(f'Supplementary subject {subject_id} (vol. {subject_data.volume:2}, p. {subject_data.page:3}) has at least one classification')
+      else:
+        print(f'Supplementary subject {subject_id} (vol. {subject_data.volume:2}, p. {subject_data.page:3}) has no classifications')
 
   print('All done, no errors')
   if args.no_tranche:
