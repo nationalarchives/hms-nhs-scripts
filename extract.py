@@ -66,6 +66,10 @@ def get_version(v):
     raise Exception(f'Version {v} is not in major.minor format')
   return (int(m[1]), int(m[2]))
 
+#The base name of the concatenation of all extractions for this workflow id
+def get_extraction_name(w_id, w_data):
+  return f'{args.output_dir}/{w_data["ztype"]["type"]}_extractor_{w_id}'
+
 def runit(subproc_args, logfile):
   stringified_args = list(map(lambda x: str(x) if type(x) is int else x, subproc_args))
   if args.verbose:
@@ -231,8 +235,8 @@ def panoptes(w_id, w_data):
   ztype = w_data['ztype']['type']
   export_csv = w_data['export']
 
-  #The name of the concatenation of all extractions for this workflow id
-  extraction_name = f'{args.output_dir}/{ztype}_extractor_{w_id}'
+  #The base name of the concatenation of all extractions for this workflow id
+  extraction_name = get_extraction_name(w_id, w_data)
 
   #These functions iterate per-version
   if Phase.CONFIG.value in args.phase:
