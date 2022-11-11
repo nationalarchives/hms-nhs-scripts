@@ -10,6 +10,60 @@ definitions:
   INT64: &INT64 !!python/name:pandas.core.arrays.integer.Int64Dtype
   DATE: &DATE !!python/name:datetime.date
 
+subjects:
+  export: 'hms-nhs-the-nautical-health-service-subjects.csv'
+  supplements:
+    #Subject ids which have classifications but do not exist in the subjects file
+    #All of these values inferred by looking at neighbouring subjects
+    #
+    #The final known page in volume 20 is p. 157, so there is no "following" page for the top 3 subjects here
+    #They could therefore be from volume 21, but as the first known page in vol. 21 is p. 1, I have placed
+    #them at the end of vol. 20.
+    60262144:
+      volume: 20
+      page: 158
+      location: supplement
+    60262145:
+      volume: 20
+      page: 159
+      location: supplement
+    60262146:
+      volume: 20
+      page: 160
+      location: supplement
+    44585952:
+      volume: 23
+      page: 204
+      location: supplement
+    44586138:
+      volume: 24
+      page: 136
+      location: supplement
+    44586661:
+      volume: 26
+      page: 57
+      location: supplement
+    44586737:
+      volume: 26
+      page: 131
+      location: supplement
+    44586811:
+      volume: 26
+      page: 202
+      location: supplement
+    44586878:
+      volume: 26
+      page: 268
+      location: supplement
+    44661091:
+      volume: 28
+      page: 57
+      location: supplement
+    44661092:
+      volume: 28
+      page: 58
+      location: supplement
+
 development_workflows:
   18109:
     name: admission number

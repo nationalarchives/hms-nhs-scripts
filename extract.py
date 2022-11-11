@@ -15,11 +15,13 @@ from collections import Counter
 from datetime import datetime, timezone
 from multiprocessing import Process
 from enum import Enum
+import subjects
 
 #globals
 args = None
 workflow_defs = None
 class Phase(Enum):
+  SUBJECTS = 'subjects'
   CONFIG = 'config'
   EXTRACT = 'extract'
   STRIP_PROCESSED = 'strip'
@@ -276,6 +278,9 @@ def main():
   with open(args.workflow_defs) as f:
     global workflow_defs
     workflow_defs = yaml.load(f, Loader = yaml.Loader)
+
+  if Phase.SUBJECTS.value in args.phase:
+    subjects.create_subjects_df(f'{args.exports}/{workflow_defs["subjects"]["export"]}', f'{args.output_dir}/subjects_metadata.csv', workflow_defs['subjects']['supplements'] if 'supplements' in workflow_defs['subjects'] else None)
 
   for w_id, w_data in workflow_defs[args.workflow_set].items():
     p_name = f'panoptes-wid-{w_id}-{w_data["name"].replace(" ", "_")}'

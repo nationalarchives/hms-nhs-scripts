@@ -15,6 +15,7 @@ import os
 import time
 import csv
 from collections import defaultdict, Counter
+from subjects import get_subjects_df
 
 #For debugging
 #pd.set_option('display.max_columns', None)
@@ -23,7 +24,6 @@ from collections import defaultdict, Counter
 
 bad = defaultdict(int) #Keys of bad are indices of rows in the final dataframe
 autoresolved = {} #Keys of autoresolved are indices of rows in the final dataframe
-subjects = None #Initialised after arg parsing
 
 #Columns to use in all cases, with the rules for reading them in
 KEYS = ['subject_id', 'task']
@@ -96,9 +96,6 @@ parser.add_argument('--row_factor',
                     help = 'Percentage of total rows to read. Repeatable across runs, for faster testing cycles.'
                    )
 args = parser.parse_args()
-subjects = pd.read_csv(f'{args.exports}/hms-nhs-the-nautical-health-service-subjects.csv',
-                         usecols   = ['subject_id', 'metadata', 'locations'],
-                         dtype = {'subject_id': int, 'metadata': str, 'locations': str})
 
 def dump_interim(pandas_thing, fnam):
   if args.dump_interims:
@@ -627,47 +624,7 @@ def main():
     dump_interim(joined, 'joined_has_transcriptionisms')
 
   #Translate subjects ids into original filenames
-  #Assumption: the metadata is invariant across all of the entries for each subject_id
-  subj_info_cols = {
-    'original': {},
-    'subject': {},
-    'volume': {},
-    'page': {},
-  }
-  joined.insert(0, 'original', '')
-  joined.insert(1, 'subject', '')
-  joined.insert(2, 'volume', '')
-  joined.insert(3, 'page', '')
-  for sid in joined.index.get_level_values('subject_id').unique():
-    metadata = subjects.query(f'subject_id == {sid}').iloc[0]['metadata']
-    fnam = json.loads(metadata)['Filename']
-    match = re.fullmatch('.*_(\d+)-(\d+)(?: \d)?\.jpg', fnam)
-    if match:
-      (vol, page) = [int(x) for x in match.groups()]
-      if   vol == 1: page -= 21
-      elif vol == 2: page -= 28
-      elif vol == 6: raise Exception('Surprisingly met volume 6')
-      else: page -= 3
-    else: raise Exception(f'"{fnam}" does not match regular expression')
-
-    #Figure out URL of page image
-    location = subjects.query(f'subject_id == {sid}').iloc[0]['locations']
-    location = json.loads(location)
-    assert len(location) == 1
-    location = location.values()
-    location = next(iter(location))
-    assert isinstance(location, str)
-
-    subj_info_cols['original'][sid] = location
-    subj_info_cols['subject'][sid] = sid
-    subj_info_cols['volume'][sid] = vol
-    subj_info_cols['page'][sid] = page
-  for level_name, value in subj_info_cols.items():
-    for sid, subj_info in value.items():
-      joined.loc[[sid], level_name] = subj_info
-
-  #Identify volume 1's subject ids, for special handling around 'port sailed out of'
-  vol_1_subj_ids = list(set(joined[joined['volume'] == 1].index.get_level_values(0)))
+  joined = get_subjects_df(f'{args.dir}/subjects_metadata.csv')[['location', 'volume', 'page']].join(joined).rename(columns = {'location': 'original'})
 
   track('* Subjects identified')
   dump_interim(joined, 'joined_subjects_identified')
