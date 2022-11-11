@@ -46,12 +46,12 @@ def create_subjects_df(exports_subj_file, cache_file, supplements_dict = None, d
   def dump_missing(base_df, gaps_message, no_gaps_message):
     vol_page_series = base_df.set_index('volume')['page']
     messages = []
-    for v in vol_page_series.index.unique():
+    for v in sorted(vol_page_series.index.unique()):
       low = vol_page_series.loc[v].min()
       high = vol_page_series.loc[v].max()
       gaps = set(range(low, high + 1)) - set(vol_page_series.loc[v])
       if gaps != set():
-        messages.append(f'Missing pages in vol {v}: ' + ', '.join([str(x) for x in sorted(gaps)]))
+        messages.append(f'Missing pages in vol {v:2}: ' + ', '.join([str(x) for x in sorted(gaps)]))
     if len(messages):
       print(gaps_message)
       print('\n'.join(messages))
