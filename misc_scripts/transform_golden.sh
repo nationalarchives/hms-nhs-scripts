@@ -1,6 +1,6 @@
-rm -rf aggregation_GOLDEN_multiversion
-cp -r aggregation_GOLDEN aggregation_GOLDEN_multiversion
-cd aggregation_GOLDEN_multiversion
+rm -rf extraction_GOLDEN_multiversion
+cp -r extraction_GOLDEN extraction_GOLDEN_multiversion
+cd extraction_GOLDEN_multiversion
 
 cp dropdown_extractor_18614{,_V3_1}.csv 
 cp dropdown_extractor_18624{,_V3_1}.csv 

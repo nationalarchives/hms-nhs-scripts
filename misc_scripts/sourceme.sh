@@ -103,12 +103,12 @@ function gen_created_per_workflow {
 
 function gen_subjects_per_workflow_from_classifications {
   for x in 1861{1,2,3,6,7,8,9} 1862{1,2,3,5}; do
-    echo  "select distinct subject_id from foo where workflow_id=$x order by subject_id" aggregation/text_extractor_${x}.csv.full
-    c-sql "select distinct subject_id from foo where workflow_id=$x order by subject_id" aggregation/text_extractor_${x}.csv.full > subject_ids_${x}_by_classifications.csv &
+    echo  "select distinct subject_id from foo where workflow_id=$x order by subject_id" extraction/text_extractor_${x}.csv.full
+    c-sql "select distinct subject_id from foo where workflow_id=$x order by subject_id" extraction/text_extractor_${x}.csv.full > subject_ids_${x}_by_classifications.csv &
   done
   for x in 186{1,2}4; do
-    echo  "select distinct subject_id from foo where workflow_id=$x order by subject_id" aggregation/dropdown_extractor_${x}.csv.full
-    c-sql "select distinct subject_id from foo where workflow_id=$x order by subject_id" aggregation/dropdown_extractor_${x}.csv.full > subject_ids_${x}_by_classifications.csv &
+    echo  "select distinct subject_id from foo where workflow_id=$x order by subject_id" extraction/dropdown_extractor_${x}.csv.full
+    c-sql "select distinct subject_id from foo where workflow_id=$x order by subject_id" extraction/dropdown_extractor_${x}.csv.full > subject_ids_${x}_by_classifications.csv &
   done
   wait
 }
@@ -138,7 +138,7 @@ function dump_reduce_logs {
 }
 
 #Compare extract.py output dirs, ignoring the two types of log that dump progress bars. Instead, sed-filter those, and diff the output of that.
-function cmp_agg {
+function cmp_extract {
   diff -qr "$1" "$2" | grep -v '^Files .* and .*/\(extract\|reduce\)_[^/]*\.log differ$'
   for logtype in extract reduce; do
     diff <(dump_${logtype}_logs "$1") <(dump_${logtype}_logs "$2")

@@ -27,7 +27,7 @@ autoresolved = {} #Keys of autoresolved are indices of rows in the final datafra
 
 #Columns to use in all cases, with the rules for reading them in
 KEYS = ['subject_id', 'task']
-#Use these converters/dtypes when reading from aggregation
+#Use these converters/dtypes when reading from extraction
 KEYS_CONVERTERS = {'task': lambda x: int(str(x)[1:])} #drop the T, so that index matches
 KEYS_DTYPES = {'subject_id': int}
 #Use these converters/dtypes when reading from a previous run (i.e. the old_views file)
@@ -50,9 +50,9 @@ parser.add_argument('--exports', '-e',
                     default = 'exports',
                     help = 'Directory of exports from the Zooniverse project (default: "exports")')
 parser.add_argument('--reduced', '-r',
-                    default = 'aggregation',
+                    default = 'extraction',
                     dest = 'dir',
-                    help = 'Directory containing data reduced by Panoptes scripts (default: "aggregation")')
+                    help = 'Directory containing data reduced by Panoptes scripts (default: "extraction")')
 parser.add_argument('--text_threshold', '-t',
                     type = float,
                     default = 0.9,
@@ -783,7 +783,7 @@ def main():
       joined_views = joined_views.append(old_views[old_views['complete']], verify_integrity = True).sort_index()
     except ValueError as e:
       print("Caught a ValueError. If this is overlapping values in the index, probably", file = sys.stderr)
-      print("means that you have rerun an aggregation for which you already had a views file.", file = sys.stderr)
+      print("means that you have rerun something where you already had a views file.", file = sys.stderr)
       raise e
   joined_views.to_csv(path_or_buf = views_file)
 

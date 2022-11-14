@@ -43,8 +43,8 @@ def parse_args():
                       default = 'exports',
                       help = 'Directory of exports from the Zooniverse project (default: exports)')
   parser.add_argument('--output_dir',
-                      default = 'aggregation',
-                      help = 'Set output dir (default: aggregation)')
+                      default = 'extraction',
+                      help = 'Set output dir (default: extraction)')
   parser.add_argument('--verbose', '-v',
                       action = 'store_true',
                       help = 'Verbose output')
@@ -55,7 +55,7 @@ def parse_args():
                       nargs = '*',
                       choices = DEFAULT_PHASES,
                       default = DEFAULT_PHASES,
-                      help = 'Run only certain phases of the extractor. This has a high risk of producing poor-quality data and is a developer-only option. Particularly note that only certain phase orderings will work, and that \'subjects\' is a "split" phase, governing two different blocks of code at different points in the sequence. This option only selects the phases to run, it does not affect phase order or the number of times that each phase is run. If all phases are specified then that is equivalent to not specifying this option at all. If this option is specified then the aggregation/ dir is expected to already exist.')
+                      help = 'Run only certain phases of the extractor. This has a high risk of producing poor-quality data and is a developer-only option. Particularly note that only certain phase orderings will work, and that \'subjects\' is a "split" phase, governing two different blocks of code at different points in the sequence. This option only selects the phases to run, it does not affect phase order or the number of times that each phase is run. If all phases are specified then that is equivalent to not specifying this option at all. If this option is specified then the extraction/ dir is expected to already exist.')
 
   global args
   args = parser.parse_args()

@@ -12,7 +12,7 @@ parser.add_argument('--subjects', help = 'File containing record of views for ea
 parser.add_argument('--first_volume', required = True, type = int, help = 'Lowest volume number to include in the output')
 parser.add_argument('--final_volume', required = True, type = int, help = 'Highest volume number to include in the output')
 parser.add_argument('--suffix', '-s', default = '.vols.csv', help = 'Suffix to put on output extractions file: the output file will have the same name as the input extractions file, with this suffix appended. Default: ".vols".')
-parser.add_argument('--subjects_cache', default = 'aggregation/subjects_metadata.csv', help = 'Location of subject metadata cache. Default: "aggregation/subjects_metadata.csv"')
+parser.add_argument('--subjects_cache', default = 'extraction/subjects_metadata.csv', help = 'Location of subject metadata cache. Default: "extraction/subjects_metadata.csv"')
 args = parser.parse_args()
 
 for extraction in args.extraction:

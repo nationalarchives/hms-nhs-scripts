@@ -3,10 +3,10 @@
 #Comparing certain extract.py outputs that should differ only by aggregator version after upgrading panoptes_aggregation
 #Note that this does not compare logs. The extractor and reducer logs are expected to be different (pretty much just a dump of a progress bar).
 #Other files should be identical
-#Example use: ./misc_scripts/cmp_aggregations.sh saved_aggregation/
+#Example use: ./misc_scripts/cmp_extractions.sh saved_extraction/
 
 refdir="$1"
-newdir="${2:-`dirname $0`/../aggregation}"
+newdir="${2:-`dirname $0`/../extraction}"
 
 for x in "$newdir"/dropdown_extractor_186*; do { 
   echo "Reference directory: ${refdir}"
