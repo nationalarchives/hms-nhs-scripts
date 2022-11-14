@@ -1,0 +1,16 @@
+Error: illegal fraction ".1" in "0.1;0.2" ("years at sea") at line 4 of input/mimsy/yas.csv.
+       Fraction must be one of: .08, .17, .25, .33, .42, .5, .58, .67, .75, .83, .92.
+Error: illegal fraction ".2" in "0.1;0.2" ("years at sea") at line 4 of input/mimsy/yas.csv.
+       Fraction must be one of: .08, .17, .25, .33, .42, .5, .58, .67, .75, .83, .92.
+Error: too many "years at sea" sub-fields in "0;1;2" at line 5 of input/mimsy/yas.csv.
+Error: bad number format "a" in "a;b" ("years at sea") at line 6 of input/mimsy/yas.csv.
+Error: bad number format "b" in "a;b" ("years at sea") at line 6 of input/mimsy/yas.csv.
+Error: "years at sea" value for "merchant" or "navy" missing in "0" at line 7 of input/mimsy/yas.csv.
+Error: bad number format "" in ";" ("years at sea") at line 8 of input/mimsy/yas.csv.
+Error: bad number format "" in ";" ("years at sea") at line 8 of input/mimsy/yas.csv.
+Error: bad number format "0.1.2" in "0.1.2;2.1.0" ("years at sea") at line 9 of input/mimsy/yas.csv.
+Error: bad number format "2.1.0" in "0.1.2;2.1.0" ("years at sea") at line 9 of input/mimsy/yas.csv.
+Warning: blank in "years at sea" at row 10 of input/mimsy/yas.csv (volume 2, page 10)
+Error: "years at sea" value for "merchant" or "navy" missing in "" at line 10 of input/mimsy/yas.csv.
+Error: bad number format "" in "0;" ("years at sea") at line 11 of input/mimsy/yas.csv.
+Error: bad number format "" in "; 0" ("years at sea") at line 12 of input/mimsy/yas.csv.

@@ -22,6 +22,20 @@ FIELDS = [
   "number of days victualled"
 ]
 
+LEGAL_FRACTIONS = [
+  '08',
+  '17',
+  '25',
+  '33',
+  '42',
+   '5',
+  '58',
+  '67',
+  '75',
+  '83',
+  '92'
+]
+
 def normalize(row):
   normalized_row = {}
   for field in FIELDS:
@@ -61,6 +75,34 @@ def normalize(row):
             normalized_row[field] = row[field]
         else:
           normalized_row[field] = ''
+      #Clean up "just fix" formatting in years_at_sea. Warn of non-standard values
+      elif field == 'years at sea':
+        input_subfields = [x.strip() for x in row[field].split(';')]
+        if len(input_subfields) > 2:
+          sys.stderr.write(f'Error: too many "{field}" sub-fields in "{row[field]}" at line {row_count + 1} of {args.input}.\n')
+          normalized_row[field] = row[field]
+        elif len(input_subfields) == 1:
+          sys.stderr.write(f'Error: "{field}" value for "merchant" or "navy" missing in "{row[field]}" at line {row_count + 1} of {args.input}.\n')
+          normalized_row[field] = row[field]
+        else:
+          output_subfields = []
+          for subfield in input_subfields:
+            try: float(subfield)
+            except ValueError:
+              sys.stderr.write(f'Error: bad number format "{subfield}" in "{row[field]}" ("{field}") at line {row_count + 1} of {args.input}.\n')
+              output_subfields.append(subfield)
+              continue
+            if '.' in subfield:
+              integer, fraction = subfield.split('.')
+              original_fraction = fraction #for error messsage
+              if fraction == '50': fraction = '5'
+              if not fraction in LEGAL_FRACTIONS:
+                sys.stderr.write(f'Error: illegal fraction ".{original_fraction}" in "{row[field]}" ("{field}") at line {row_count + 1} of {args.input}.\n')
+                sys.stderr.write(f'       Fraction must be one of: .{", .".join(LEGAL_FRACTIONS)}.\n')
+              x = f'{int(integer)}.{fraction}' #fraction is string-formatted above
+              output_subfields.append(x)
+            else: output_subfields.append(f'{int(subfield)}')
+          normalized_row[field] = '; '.join(output_subfields)
       else:
         normalized_row[field] = row[field]
 

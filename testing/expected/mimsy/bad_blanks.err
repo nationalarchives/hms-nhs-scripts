@@ -6,6 +6,7 @@ Warning: blank in "age" at row 2 of input/mimsy/bad_blanks.csv (volume 2, page 8
 Warning: blank in "place of birth" at row 2 of input/mimsy/bad_blanks.csv (volume 2, page 81)
 Warning: blank in "port sailed out of" at row 2 of input/mimsy/bad_blanks.csv (volume 2, page 81)
 Warning: blank in "years at sea" at row 2 of input/mimsy/bad_blanks.csv (volume 2, page 81)
+Error: "years at sea" value for "merchant" or "navy" missing in "" at line 2 of input/mimsy/bad_blanks.csv.
 Warning: blank in "last services" at row 2 of input/mimsy/bad_blanks.csv (volume 2, page 81)
 Warning: blank in "under what circumstances admitted (or nature of complaint)" at row 2 of input/mimsy/bad_blanks.csv (volume 2, page 81)
 Warning: blank in "date of discharge" at row 2 of input/mimsy/bad_blanks.csv (volume 2, page 81)

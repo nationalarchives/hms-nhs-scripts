@@ -1,0 +1,12 @@
+volume,page,admission number,date of entry,name,quality,age,place of birth,port sailed out of,years at sea,last services,under what circumstances admitted (or nature of complaint),date of discharge,how disposed of,number of days victualled
+2,2,1,Feb 02 1822,Bob,Boy,15,South Mimms,Dover,00;00,Nonesuch,Sleepy,Feb 03 1822,Splashed,1
+2,3,1,Feb 02 1822,Bob,Boy,15,South Mimms,Dover,10.50;09.5,Nonesuch,Sleepy,Feb 03 1822,Splashed,1
+2,4,1,Feb 02 1822,Bob,Boy,15,South Mimms,Dover,0.1;0.2,Nonesuch,Sleepy,Feb 03 1822,Splashed,1
+2,5,1,Feb 02 1822,Bob,Boy,15,South Mimms,Dover,0;1;2,Nonesuch,Sleepy,Feb 03 1822,Splashed,1
+2,6,1,Feb 02 1822,Bob,Boy,15,South Mimms,Dover,a;b,Nonesuch,Sleepy,Feb 03 1822,Splashed,1
+2,7,1,Feb 02 1822,Bob,Boy,15,South Mimms,Dover,0,Nonesuch,Sleepy,Feb 03 1822,Splashed,1
+2,8,1,Feb 02 1822,Bob,Boy,15,South Mimms,Dover,; ,Nonesuch,Sleepy,Feb 03 1822,Splashed,1
+2,9,1,Feb 02 1822,Bob,Boy,15,South Mimms,Dover,0.1.2;2.1.0,Nonesuch,Sleepy,Feb 03 1822,Splashed,1
+2,10,1,Feb 02 1822,Bob,Boy,15,South Mimms,Dover,,Nonesuch,Sleepy,Feb 03 1822,Splashed,1
+2,11,1,Feb 02 1822,Bob,Boy,15,South Mimms,Dover,0; ,Nonesuch,Sleepy,Feb 03 1822,Splashed,1
+2,12,1,Feb 02 1822,Bob,Boy,15,South Mimms,Dover,; 0,Nonesuch,Sleepy,Feb 03 1822,Splashed,1

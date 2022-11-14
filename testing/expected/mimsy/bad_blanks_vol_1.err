@@ -7,6 +7,7 @@ Warning: blank in "quality" at row 4 of input/mimsy/bad_blanks_vol_1.csv (volume
 Warning: blank in "age" at row 4 of input/mimsy/bad_blanks_vol_1.csv (volume 1, page 81)
 Warning: blank in "place of birth" at row 4 of input/mimsy/bad_blanks_vol_1.csv (volume 1, page 81)
 Warning: blank in "years at sea" at row 4 of input/mimsy/bad_blanks_vol_1.csv (volume 1, page 81)
+Error: "years at sea" value for "merchant" or "navy" missing in "" at line 4 of input/mimsy/bad_blanks_vol_1.csv.
 Warning: blank in "last services" at row 4 of input/mimsy/bad_blanks_vol_1.csv (volume 1, page 81)
 Warning: blank in "under what circumstances admitted (or nature of complaint)" at row 4 of input/mimsy/bad_blanks_vol_1.csv (volume 1, page 81)
 Warning: blank in "date of discharge" at row 4 of input/mimsy/bad_blanks_vol_1.csv (volume 1, page 81)
