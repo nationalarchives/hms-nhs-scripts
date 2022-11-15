@@ -239,7 +239,6 @@ def unstring_date(text):
   except (TypeError, ValueError): return ''
   if result.year > 9999: return text #TODO: Change to 2200
   if result.year < 1800: return text #TODO: Change to mimimum date in data set
-  if result.year > 1900: result = datetime.datetime(int(f'18{str(result.year)[2:4]}'), result.month, result.day)
   return result.strftime('%d-%m-%Y') #TODO: Change to maximum date in dataset (in phase two, this will be in the early 20th century)
 
 
