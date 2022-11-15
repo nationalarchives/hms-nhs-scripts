@@ -1,0 +1,7 @@
+/.coverage
+/output/
+/extraction/
+/exports/
+/tranches/
+/testing/output
+/__pycache__/
