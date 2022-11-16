@@ -138,13 +138,7 @@ def config_fixups(w_id, versions):
           print(re.sub('To a Ship Cured', 'To a/his Ship Cured', line), file = f, end = '')
 
 #Check that outputs are identical. Saves thinking if at least reductions and tasks are.
-#TODO: I do not compare the extraction files here, because they will certainly differ by the version number to extract.
-#      It anyway may be fine for them to differ if everything else is identical -- the extractions are per-version,
-#      but the other config files are used in operations that are per-workflow (so per-multiple-versions).
-#      Still, it would be nice to confirm that the extraction files are identical apart from version number.
-#      This is the tuple entry for those files:
-#      ('Extraction', [f'{args.output_dir}/Extractor_config_workflow_{w_id}_V{x[0]}.{x[1]}.yaml' for x in versions]),
-# FIXME: I also need to confirm that the differences in the task files do not affect the reduction script.
+# FIXME: I would like to confirm that the differences in the task files do not affect the reduction script.
 #        However, as the only difference is in a hex string used as a dictionary key, and as those dictionary keys do
 #        not appear anywhere in the extracted CSV file, hopefully I am OK. There could still be a problem if, say, the
 #        hex string is a hash of the label that is used in some way.
@@ -153,6 +147,7 @@ def config_check_identity(w_id, versions, ztype):
   for config_type, configs in (
     ('reduction',  [f'{args.output_dir}/Reducer_config_workflow_{w_id}_V{x[0]}.{x[1]}_{ztype}_extractor.yaml' for x in versions]),
     ('task label', [f'{args.output_dir}/Task_labels_workflow_{w_id}_V{x[0]}.{x[1]}.yaml' for x in versions]),
+    ('extraction', [f'{args.output_dir}/Extractor_config_workflow_{w_id}_V{x[0]}.{x[1]}.yaml' for x in versions])
   ):
     if len(configs) == 1: continue
 
@@ -160,7 +155,6 @@ def config_check_identity(w_id, versions, ztype):
     if config_type == 'reduction': simple = True
     elif config_type == 'task label':
       if workflow_defs[args.workflow_set]['workflows'][w_id]['ztype'] == workflow_defs['definitions']['TEXT_T']: simple = True
-    else: assert False #unreachable
 
     base_config = configs.pop()
     if simple:
@@ -186,6 +180,16 @@ def config_check_identity(w_id, versions, ztype):
       base_config = flatten(base_config)
       for config in configs:
         if base_config != flatten(config): bad_comparisons.append((config_type, w_id))
+        elif args.verbose: print(f'Multiple {config_type} configuration files for different versions of workflow {w_id} are identical.')
+    elif config_type == 'extraction': #It is possible that differences in extraction files are unimportant. Figure this out if it ever comes up.
+      def drop_workflow_version(config_fnam):
+        with open(config_fnam) as f:
+          config_dict = yaml.load(f, Loader = yaml.Loader)
+          del config_dict['workflow_version']
+          return yaml.dump(config_dict)
+      base_config = drop_workflow_version(base_config)
+      for config in configs:
+        if base_config != drop_workflow_version(config): bad_comparisons.append((config_type, w_id))
         elif args.verbose: print(f'Multiple {config_type} configuration files for different versions of workflow {w_id} are identical.')
     else: assert False #unreachable
 
