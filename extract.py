@@ -176,8 +176,8 @@ def config_check_identity(w_id, versions, ztype):
     if config_type == 'reduction' or \
        (config_type == 'task label' and workflow_defs[args.workflow_set]['workflows'][w_id]['ztype'] == workflow_defs['definitions']['TEXT_T']):
       for config in configs:
-        if not filecmp.cmp(base_config, config, shallow = False): bad_comparisons.append((config_type, w_id))
-        elif args.verbose: print(f'Multiple {config_type} configuration files for different versions of workflow {w_id} are identical.')
+        if not filecmp.cmp(base_config, config, shallow = False): bad_comparisons.append((config_type, w_id, config, base_config))
+        elif args.verbose: print(f'{config_type} configuration file {config} for workflow {w_id} is identical to {base_config}.')
     else:
       if config_type == 'task label': #Dropdown. Eliminate the variable hex numbers, compare the rest of the file
         assert workflow_defs[args.workflow_set]['workflows'][w_id]['ztype'] == workflow_defs['definitions']['DROP_T']
@@ -186,13 +186,13 @@ def config_check_identity(w_id, versions, ztype):
         transformer = extraction_transformer
       else: assert False #unreachable
 
-      base_config = transformer(base_config)
+      base_config_transformed = transformer(base_config)
       for config in configs:
-        if base_config != transformer(config): bad_comparisons.append((config_type, w_id))
-        elif args.verbose: print(f'Multiple {config_type} configuration files for different versions of workflow {w_id} are identical.')
+        if base_config_transformed != transformer(config): bad_comparisons.append((config_type, w_id, config, base_config))
+        elif args.verbose: print(f'{config_type} configuration file {config} for workflow {w_id} is identical to {base_config}.')
 
   if len(bad_comparisons) != 0:
-    for x in bad_comparisons: print(f'Multiple {x[0]} configuration files for different versions of workflow {x[1]} differ.', file = sys.stderr)
+    for x in bad_comparisons: print(f'{x[0]} configuration files for different versions of workflow {x[1]} differ: {x[2]} differs from base {x[3]}.', file = sys.stderr)
     print('We rely upon these being the same to allow us to concatenate the extractions and reduce them together.', file = sys.stderr)
     raise Exception
 
