@@ -3,24 +3,9 @@
 import re
 import csv
 import sys
+import yaml
 import argparse
 from datetime import datetime
-
-FIELDS = [
-  "admission number",
-  "date of entry",
-  "name",
-  "quality",
-  "age",
-  "place of birth",
-  "port sailed out of",
-  "years at sea",
-  "last services",
-  "under what circumstances admitted (or nature of complaint)",
-  "date of discharge",
-  "how disposed of",
-  "number of days victualled"
-]
 
 LEGAL_FRACTIONS = [
   '08',
@@ -130,8 +115,12 @@ def next_row():
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('input',
-                    nargs = '?',
+parser.add_argument('workflow_set',
+                    help = 'Label for set of workflows to process. See workflow.yaml. "phase1" and "phase2" are good values.')
+parser.add_argument('--workflow_defs',
+                    default = 'workflow.yaml',
+                    help = 'File defining the workflows (default: workflow.yaml)')
+parser.add_argument('--input', '-i',
                     default = 'output/joined.csv',
                     help = 'Input file (default: output/joined.csv)')
 parser.add_argument('--output', '-o',
@@ -158,6 +147,8 @@ parser.add_argument('--pages',
                     help = 'Stop after PAGES pages (for faster testing)')
 args = parser.parse_args()
 
+with open(args.workflow_defs) as f:
+  FIELDS = [x['name'] for x in yaml.load(f, yaml.Loader)[args.workflow_set]['workflows'].values()]
 FIELDS = list(filter(lambda x: x not in args.skip, FIELDS))
 if args.list:
   print('\n'.join(FIELDS))
