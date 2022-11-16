@@ -176,7 +176,14 @@ def config_check_identity(w_id, versions, ztype):
     if config_type == 'reduction' or \
        (config_type == 'task label' and workflow_defs[args.workflow_set]['workflows'][w_id]['ztype'] == workflow_defs['definitions']['TEXT_T']):
       for config in configs:
-        if not filecmp.cmp(base_config, config, shallow = False): bad_comparisons.append((config_type, w_id, config, base_config))
+        if not filecmp.cmp(base_config, config, shallow = False):
+          if config_type == 'reduction':
+            bad_comparisons.append((config_type, w_id, config, base_config))
+          elif config_type == 'task label':
+            if args.verbose:
+              print(f'{config_type} configuration file {config} for workflow {w_id} differs from {base_config}.')
+              print('  This is for information only. It is not an error as text-type task labels do not have to be consistent for data processing to work.')
+          else: assert False #unreachable
         elif args.verbose: print(f'{config_type} configuration file {config} for workflow {w_id} is identical to {base_config}.')
     else:
       if config_type == 'task label': #Dropdown. Eliminate the variable hex numbers, compare the rest of the file
