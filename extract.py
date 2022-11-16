@@ -143,6 +143,27 @@ def config_fixups(w_id, versions):
 #        not appear anywhere in the extracted CSV file, hopefully I am OK. There could still be a problem if, say, the
 #        hex string is a hash of the label that is used in some way.
 def config_check_identity(w_id, versions, ztype):
+  #Functions to transform-out parts of files that we do not want to compare
+  def dropdown_label_transformer(config_fnam):
+    with open(config_fnam) as f: config_dict = yaml.load(f, Loader = yaml.Loader)
+    for key in list(config_dict): #list-ing a dictionary gives a list of the keys
+      if key.endswith('.label'):
+        sub_dict = config_dict[key]
+        if len(sub_dict) != 1: print(f'Error: Unexpected file shape in {config}: selection options are expected to have exactly 1 label', file = sys.stderr)
+        sub_key = next(iter(sub_dict.keys()))
+        if not re.fullmatch('[a-f0-9]+', sub_key):
+          print(f'Error: Unexpected file shape in {config}: keys for labels are expected to be a hex number, got {sub_key}', file = sys.stderr)
+        sub_value = next(iter(sub_dict.values()))
+        config_dict[key] = sub_value
+    return yaml.dump(config_dict)
+
+  def extraction_transformer(config_fnam):
+    with open(config_fnam) as f:
+      config_dict = yaml.load(f, Loader = yaml.Loader)
+      del config_dict['workflow_version']
+      return yaml.dump(config_dict)
+
+  #The actual comparison code
   bad_comparisons = []
   for config_type, configs in (
     ('reduction',  [f'{args.output_dir}/Reducer_config_workflow_{w_id}_V{x[0]}.{x[1]}_{ztype}_extractor.yaml' for x in versions]),
@@ -161,37 +182,18 @@ def config_check_identity(w_id, versions, ztype):
       for config in configs:
         if not filecmp.cmp(base_config, config, shallow = False): bad_comparisons.append((config_type, w_id))
         elif args.verbose: print(f'Multiple {config_type} configuration files for different versions of workflow {w_id} are identical.')
-    elif config_type == 'task label': #Dropdown. Eliminate the variable hex numbers, compare the rest of the file
-      assert workflow_defs[args.workflow_set]['workflows'][w_id]['ztype'] == workflow_defs['definitions']['DROP_T']
+    else:
+      if config_type == 'task label': #Dropdown. Eliminate the variable hex numbers, compare the rest of the file
+        assert workflow_defs[args.workflow_set]['workflows'][w_id]['ztype'] == workflow_defs['definitions']['DROP_T']
+        transformer = dropdown_label_transformer
+      elif config_type == 'extraction': #It is possible that differences in extraction files are unimportant. Figure this out if it ever comes up.
+        transformer = extraction_transformer
+      else: assert False #unreachable
 
-      def flatten(config_fnam):
-        with open(config_fnam) as f: config_dict = yaml.load(f, Loader = yaml.Loader)
-        for key in list(config_dict): #list-ing a dictionary gives a list of the keys
-          if key.endswith('.label'):
-            sub_dict = config_dict[key]
-            if len(sub_dict) != 1: print(f'Error: Unexpected file shape in {config}: selection options are expected to have exactly 1 label', file = sys.stderr)
-            sub_key = next(iter(sub_dict.keys()))
-            if not re.fullmatch('[a-f0-9]+', sub_key):
-              print(f'Error: Unexpected file shape in {config}: keys for labels are expected to be a hex number, got {sub_key}', file = sys.stderr)
-            sub_value = next(iter(sub_dict.values()))
-            config_dict[key] = sub_value
-        return yaml.dump(config_dict)
-
-      base_config = flatten(base_config)
+      base_config = transformer(base_config)
       for config in configs:
-        if base_config != flatten(config): bad_comparisons.append((config_type, w_id))
+        if base_config != transformer(config): bad_comparisons.append((config_type, w_id))
         elif args.verbose: print(f'Multiple {config_type} configuration files for different versions of workflow {w_id} are identical.')
-    elif config_type == 'extraction': #It is possible that differences in extraction files are unimportant. Figure this out if it ever comes up.
-      def drop_workflow_version(config_fnam):
-        with open(config_fnam) as f:
-          config_dict = yaml.load(f, Loader = yaml.Loader)
-          del config_dict['workflow_version']
-          return yaml.dump(config_dict)
-      base_config = drop_workflow_version(base_config)
-      for config in configs:
-        if base_config != drop_workflow_version(config): bad_comparisons.append((config_type, w_id))
-        elif args.verbose: print(f'Multiple {config_type} configuration files for different versions of workflow {w_id} are identical.')
-    else: assert False #unreachable
 
   if len(bad_comparisons) != 0:
     for x in bad_comparisons: print(f'Multiple {x[0]} configuration files for different versions of workflow {x[1]} differ.', file = sys.stderr)
