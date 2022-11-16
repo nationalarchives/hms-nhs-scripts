@@ -212,77 +212,118 @@ phase1:
       ztype: *TEXT_T
 
 #Here we do not attempt to use version limiting at all, but rather pull in all versions and rely upon volume limiting
-#TOOD: Are we pulling in any versions that were never part of a live workflow? (they might still have test classifications)
+#TOOD: Are we pulling in any versions that were never part of a live workflow? (they might still have test classifications). What I have done here is to explicitly list all versions where the task slots have increased over phase1 (see config_file_comparisons_phase2.ods). The one exception is admission number (18611), where 3.1 is included because it has some classifications from vol 19.
+#Note that there are some cases where there are still different numbers of task slots in the extractions. I have set extract_diff_ok for these cases. I think that the consquence is just that workflows with versions with different numbers of task slots will not always produce the same number of tasks -- presumably similar to what would happen if a volunteer completed a classification early. As an added sanity check, just in case the reduction phase was using any information in the extraction configs, I re-ran it with all extraction configs removed. This did not cause any change in output.
 phase2:
   first_volume: 19
   final_volume: 34
   workflows:
     18611:
+      version:
+        - "3.1" #There are a few phase 2 classifications in 3.1
+        - "58.65"
+        - "58.132"
+      extract_diff_ok: True
       name: admission number
       export: 1-admission-number-classifications.csv
       nptype: *INT64
       ztype: *TEXT_T
     18612:
+      version:
+        - "47.30" #only 1 case
+        - "47.47"
       name: date of entry
       export: 2-date-of-entry-classifications.csv
       nptype: *DATE
       ztype: *TEXT_T
     18613:
+      version:
+        - "23.19"
+        - "23.34"
       name: name
       export: 3-name-classifications.csv
       nptype: *STR
       ztype: *TEXT_T
     18454:
+      version:
+        - "19.70"
+        - "21.70"
       name: quality
       export: 4-quality-classifications.csv
       nptype: *STR
       ztype: *TEXT_T
     18616:
+      version:
+        - "25.36"
+        - "25.51"
       name: age
       export: 5-age-classifications.csv
       nptype: *INT64
       ztype: *TEXT_T
     18344:
+      version:
+        - "26.117"
+        - "28.117"
       name: creed
       export: 6-creed-classifications.csv
       nptype: *STR
       ztype: *TEXT_T
     18617:
+      version: "22.26"
       name: place of birth/nationality
       export: 7-place-of-birth-nationality-classifications.csv
       nptype: *STR
       ztype: *TEXT_T
     18621:
+      version: "22.49"
       name: ship/ship or place of employment/last ship
       export: 8-ship-ship-or-place-of-employment-last-ship-classifications.csv
       nptype: *STR
       ztype: *TEXT_T
     18347:
+      version:
+        - "24.49"
+        - "26.49"
       name: of what port/port of registration
       export: 9-of-what-port-port-of-registration-classifications.csv
       nptype: *STR
       ztype: *TEXT_T
     18618:
+      version:
+        - "21.44"
+        - "21.45"
       name: where from
       export: 10-where-from-classifications.csv
       nptype: *STR
       ztype: *TEXT_T
     18622:
+      version:
+        - "21.55"
+        - "21.68"
       name: nature of complaint
       export: 11-nature-of-complaint-classifications.csv
       nptype: *STR
       ztype: *TEXT_T
     18623:
+      version:
+        - "29.41"
+        - "33.43" #this 1 has an extra task slot over the usual 8
+      extract_diff_ok: True
       name: date of discharge
       export: 12-date-of-discharge-classifications.csv
       nptype: *DATE
       ztype: *TEXT_T
     20285:
+      version:
+        - "22.79" #this 1 has an extra task slot over the usual 8
+        - "23.82"
+      extract_diff_ok: True
       name: how disposed of
       export: 13-how-disposed-of-classifications.csv
       nptype: *STR
       ztype: *TEXT_T
     18625:
+      version: "30.47"
       name: number of days in hospital
       export: 14-number-of-days-in-hospital-classifications.csv
       nptype: *INT64
