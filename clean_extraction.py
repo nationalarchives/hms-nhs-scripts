@@ -207,7 +207,6 @@ def unstring_number(text):
   try: float(result)
   except ValueError:
     if re.match(r'^[oO0]*$', text): return '0'
-    else: return ''
   return result
 
 def unstring_date(text):
@@ -220,7 +219,7 @@ def unstring_date(text):
   #TODO: Consider turning the character class into just 'not digit'
   #TODO: Consider trying to make a sane date string in the case that the string is duplicated (01-01-182601-01-1826)
   #TODO: Consider trying to make a sane date string if a separator is missing or some random digit
-  if not re.match(r'^\d+\s*[-/\.=]\s*\d+\s*[-/\.=]\s*\d+$', result): return ''
+  if not re.match(r'^\d+\s*[-/\.=]\s*\d+\s*[-/\.=]\s*\d+$', result): return text
 
   result = re.sub(r'\s*=\s*', '-', result)
 
@@ -236,7 +235,7 @@ def unstring_date(text):
   result = re.sub(r'^0+', '', result)
 
   try: result = dateutil.parser.parse(result, dayfirst = True)
-  except (TypeError, ValueError): return ''
+  except (TypeError, ValueError): return text
   if result.year > 9999: return text #TODO: Change to 2200
   if result.year < 1800: return text #TODO: Change to mimimum date in data set
   return result.strftime('%d-%m-%Y') #TODO: Change to maximum date in dataset (in phase two, this will be in the early 20th century)

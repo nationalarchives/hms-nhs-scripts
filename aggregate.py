@@ -313,9 +313,12 @@ def date_resolver(row, data):
 
     #Check the candidates for any with a zero-field. Pass through for manual check if this happens.
     for x in candidates:
-      parts = [int(y) for y in re.split(r'[-/\.]', x)]
+      try:
+        parts = [int(y) for y in re.split(r'[-/\.]', x)]
+      except ValueError:
+        parts = [] #force the next conditional to trip
       if len(parts) != 3 or 0 in parts:
-        flow_report('Zero-field (or bad field count)', row.name, row['data.aligned_text'])
+        flow_report('Zero-field, non-integer field or bad field count', row.name, row['data.aligned_text'])
         bad[row.name] += 1
         return pretty_candidates(row['data.aligned_text'], row['data.consensus_text'])
 
