@@ -172,13 +172,9 @@ def config_check_identity(w_id, versions, ztype):
   ):
     if len(configs) == 1: continue
 
-    simple = False
-    if config_type == 'reduction': simple = True
-    elif config_type == 'task label':
-      if workflow_defs[args.workflow_set]['workflows'][w_id]['ztype'] == workflow_defs['definitions']['TEXT_T']: simple = True
-
     base_config = configs.pop()
-    if simple:
+    if config_type == 'reduction' or \
+       (config_type == 'task label' and workflow_defs[args.workflow_set]['workflows'][w_id]['ztype'] == workflow_defs['definitions']['TEXT_T']):
       for config in configs:
         if not filecmp.cmp(base_config, config, shallow = False): bad_comparisons.append((config_type, w_id))
         elif args.verbose: print(f'Multiple {config_type} configuration files for different versions of workflow {w_id} are identical.')
