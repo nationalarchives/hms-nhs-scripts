@@ -153,17 +153,25 @@ def config_fixups(w_id, versions):
 #        not appear anywhere in the extracted CSV file, hopefully I am OK. There could still be a problem if, say, the
 #        hex string is a hash of the label that is used in some way.
 def config_check_identity(w_id, versions, ztype):
+  bad_comparisons = []
   for config_type, configs in (
     ('Reduction',  [f'{args.output_dir}/Reducer_config_workflow_{w_id}_V{x[0]}.{x[1]}_{ztype}_extractor.yaml' for x in versions]),
   ):
-    if len(configs) > 1:
-      base_config = configs.pop()
+    if len(configs) == 1: continue
+
+    simple = False
+    if config_type == 'Reduction': simple = True
+    else: assert False #unreachable
+
+    base_config = configs.pop()
+    if simple:
       for config in configs:
-        if not filecmp.cmp(base_config, config, shallow = False):
-          raise Exception(f'''{config_type} configuration files for different versions of workflow {w_id} differ.
-We rely upon these being the same to allow us to concatenate the extractions and reduce them together.''')
-        elif args.verbose:
-          print(f'{config_type} configuration files for different versions of workflow {w_id} are identical.')
+        if not filecmp.cmp(base_config, config, shallow = False): bad_comparisons.append((config_type, w_id))
+        elif args.verbose: print(f'{config_type} configuration files for different versions of workflow {w_id} are identical.')
+  if len(bad_comparisons) != 0:
+    for x in bad_comparisons: print(f'{x[0]} configuration files for different versions of workflow {x[1]} differ.', file = sys.stderr)
+    print('We rely upon these being the same to allow us to concatenate the extractions and reduce them together.', file = sys.stderr)
+    raise Exception
 
 def panoptes_extract(w_id, versions, ztype, export_csv, extraction_name):
   outputs = []
