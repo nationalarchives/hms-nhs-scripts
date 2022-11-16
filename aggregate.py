@@ -567,9 +567,7 @@ def main():
 
     #Convert dropdowns to their values
     if(data['ztype'] == DROP_T):
-      if type(data['version']) is list: #Assume that labels are the same in all versions, just use the first file.
-                                        #TODO: Add some code to confirm that the labels are the same in all versions.
-                                        #      At time of writing, extract.py will ensure this for phase 1 exports from HMS NHS.
+      if type(data['version']) is list: #Assume that labels are the same in all versions, just use the first file. extract.py checks for this.
         labelfile = f'{args.dir}/Task_labels_workflow_{wid}_V{data["version"][0]}.yaml'
       else:                             labelfile = f'{args.dir}/Task_labels_workflow_{wid}_V{data["version"]}.yaml'
       with open(labelfile) as f:
