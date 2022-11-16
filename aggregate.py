@@ -612,9 +612,10 @@ def main():
   track('* Views joined')
   dump_interim(joined_views, 'initial_joined_views')
 
-  first = removed.pop(0).to_frame()
-  first.join(removed, how='outer').to_csv(f'{args.output_dir}/incomplete_rows.csv')
-  track('* Removed fields logged')
+  if not args.unfinished:
+    first = removed.pop(0).to_frame()
+    first.join(removed, how='outer').to_csv(f'{args.output_dir}/incomplete_rows.csv')
+    track('* Removed fields logged')
 
   if not joined.index.equals(joined_views.index):
     print('Indexes of joined and joined_views are not equal. The indexes may have a different order. The following entries are in only one index:', file = sys.stderr)
