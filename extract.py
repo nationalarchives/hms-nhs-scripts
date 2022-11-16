@@ -151,14 +151,14 @@ def config_fixups(w_id, versions):
 def config_check_identity(w_id, versions, ztype):
   bad_comparisons = []
   for config_type, configs in (
-    ('Reduction',  [f'{args.output_dir}/Reducer_config_workflow_{w_id}_V{x[0]}.{x[1]}_{ztype}_extractor.yaml' for x in versions]),
-    ('Task label', [f'{args.output_dir}/Task_labels_workflow_{w_id}_V{x[0]}.{x[1]}.yaml' for x in versions]),
+    ('reduction',  [f'{args.output_dir}/Reducer_config_workflow_{w_id}_V{x[0]}.{x[1]}_{ztype}_extractor.yaml' for x in versions]),
+    ('task label', [f'{args.output_dir}/Task_labels_workflow_{w_id}_V{x[0]}.{x[1]}.yaml' for x in versions]),
   ):
     if len(configs) == 1: continue
 
     simple = False
-    if config_type == 'Reduction': simple = True
-    elif config_type == 'Task label':
+    if config_type == 'reduction': simple = True
+    elif config_type == 'task label':
       if workflow_defs[args.workflow_set]['workflows'][w_id]['ztype'] == workflow_defs['definitions']['TEXT_T']: simple = True
     else: assert False #unreachable
 
@@ -166,8 +166,8 @@ def config_check_identity(w_id, versions, ztype):
     if simple:
       for config in configs:
         if not filecmp.cmp(base_config, config, shallow = False): bad_comparisons.append((config_type, w_id))
-        elif args.verbose: print(f'{config_type} configuration files for different versions of workflow {w_id} are identical.')
-    elif config_type == 'Task label': #Dropdown. Eliminate the variable hex numbers, compare the rest of the file
+        elif args.verbose: print(f'Multiple {config_type} configuration files for different versions of workflow {w_id} are identical.')
+    elif config_type == 'task label': #Dropdown. Eliminate the variable hex numbers, compare the rest of the file
       assert workflow_defs[args.workflow_set]['workflows'][w_id]['ztype'] == workflow_defs['definitions']['DROP_T']
 
       def flatten(config_fnam):
@@ -186,11 +186,11 @@ def config_check_identity(w_id, versions, ztype):
       base_config = flatten(base_config)
       for config in configs:
         if base_config != flatten(config): bad_comparisons.append((config_type, w_id))
-        elif args.verbose: print(f'{config_type} configuration files for different versions of workflow {w_id} are identical.')
+        elif args.verbose: print(f'Multiple {config_type} configuration files for different versions of workflow {w_id} are identical.')
     else: assert False #unreachable
 
   if len(bad_comparisons) != 0:
-    for x in bad_comparisons: print(f'{x[0]} configuration files for different versions of workflow {x[1]} differ.', file = sys.stderr)
+    for x in bad_comparisons: print(f'Multiple {x[0]} configuration files for different versions of workflow {x[1]} differ.', file = sys.stderr)
     print('We rely upon these being the same to allow us to concatenate the extractions and reduce them together.', file = sys.stderr)
     raise Exception
 
