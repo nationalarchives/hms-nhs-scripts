@@ -195,7 +195,13 @@ def config_check_identity(w_id, versions, ztype):
 
       base_config_transformed = transformer(base_config)
       for config in configs:
-        if base_config_transformed != transformer(config): bad_comparisons.append((config_type, w_id, config, base_config))
+        if base_config_transformed != transformer(config):
+          tmp = workflow_defs[args.workflow_set]['workflows'][w_id]
+          if config_type == 'extraction' and 'extract_diff_ok' in tmp and tmp['extract_diff_ok']:
+            if args.verbose:
+              print(f'{config_type} configuration file {config} for workflow {w_id} differs from {base_config}.')
+              print(f'  This is for information only. It is not an error as the extract_diff_ok flag is set for workflow {w_id} in {args.workflow_defs}.')
+          else: bad_comparisons.append((config_type, w_id, config, base_config))
         elif args.verbose: print(f'{config_type} configuration file {config} for workflow {w_id} is identical to {base_config}.')
 
   if len(bad_comparisons) != 0:
