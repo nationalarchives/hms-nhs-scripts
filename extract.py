@@ -144,10 +144,6 @@ def config_fixups(w_id, versions):
 #      Still, it would be nice to confirm that the extraction files are identical apart from version number.
 #      This is the tuple entry for those files:
 #      ('Extraction', [f'{args.output_dir}/Extractor_config_workflow_{w_id}_V{x[0]}.{x[1]}.yaml' for x in versions]),
-# TODO: I do not compare the task labels here because they can contain differences that do not matter to aggregate.py.
-#       All that matters for aggregate.py is that the labels are identical which, at time of writing, they are.
-#       Still, it would be nice to confirm that the task label files are identical apart from unimportant differences.
-#      ('Task label', [f'{args.output_dir}/Task_labels_workflow_{w_id}_V{x[0]}.{x[1]}.yaml' for x in versions]),
 # FIXME: I also need to confirm that the differences in the task files do not affect the reduction script.
 #        However, as the only difference is in a hex string used as a dictionary key, and as those dictionary keys do
 #        not appear anywhere in the extracted CSV file, hopefully I am OK. There could still be a problem if, say, the
@@ -156,11 +152,14 @@ def config_check_identity(w_id, versions, ztype):
   bad_comparisons = []
   for config_type, configs in (
     ('Reduction',  [f'{args.output_dir}/Reducer_config_workflow_{w_id}_V{x[0]}.{x[1]}_{ztype}_extractor.yaml' for x in versions]),
+    ('Task label', [f'{args.output_dir}/Task_labels_workflow_{w_id}_V{x[0]}.{x[1]}.yaml' for x in versions]),
   ):
     if len(configs) == 1: continue
 
     simple = False
     if config_type == 'Reduction': simple = True
+    elif config_type == 'Task label':
+      if workflow_defs[args.workflow_set]['workflows'][w_id]['ztype'] == workflow_defs['definitions']['TEXT_T']: simple = True
     else: assert False #unreachable
 
     base_config = configs.pop()
@@ -168,6 +167,28 @@ def config_check_identity(w_id, versions, ztype):
       for config in configs:
         if not filecmp.cmp(base_config, config, shallow = False): bad_comparisons.append((config_type, w_id))
         elif args.verbose: print(f'{config_type} configuration files for different versions of workflow {w_id} are identical.')
+    elif config_type == 'Task label': #Dropdown. Eliminate the variable hex numbers, compare the rest of the file
+      assert workflow_defs[args.workflow_set]['workflows'][w_id]['ztype'] == workflow_defs['definitions']['DROP_T']
+
+      def flatten(config_fnam):
+        with open(config_fnam) as f: config_dict = yaml.load(f, Loader = yaml.Loader)
+        for key in list(config_dict): #list-ing a dictionary gives a list of the keys
+          if key.endswith('.label'):
+            sub_dict = config_dict[key]
+            if len(sub_dict) != 1: print(f'Error: Unexpected file shape in {config}: selection options are expected to have exactly 1 label', file = sys.stderr)
+            sub_key = next(iter(sub_dict.keys()))
+            if not re.fullmatch('[a-f0-9]+', sub_key):
+              print(f'Error: Unexpected file shape in {config}: keys for labels are expected to be a hex number, got {sub_key}', file = sys.stderr)
+            sub_value = next(iter(sub_dict.values()))
+            config_dict[key] = sub_value
+        return yaml.dump(config_dict)
+
+      base_config = flatten(base_config)
+      for config in configs:
+        if base_config != flatten(config): bad_comparisons.append((config_type, w_id))
+        elif args.verbose: print(f'{config_type} configuration files for different versions of workflow {w_id} are identical.')
+    else: assert False #unreachable
+
   if len(bad_comparisons) != 0:
     for x in bad_comparisons: print(f'{x[0]} configuration files for different versions of workflow {x[1]} differ.', file = sys.stderr)
     print('We rely upon these being the same to allow us to concatenate the extractions and reduce them together.', file = sys.stderr)
