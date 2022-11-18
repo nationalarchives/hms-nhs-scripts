@@ -544,7 +544,6 @@ def main():
     #Handle conflicts
     if(data['ztype'] == TEXT_T):
       df[datacol] = df.apply(text_resolver, axis = 'columns', data = data, datacol = datacol)
-      #TODO: For these kinds of strings, may well be better to treat them like dropdowns and just take two thirds identical as permitting auto-resolve
     elif(data['ztype'] == DROP_T):
       #Process classifications for output
       def drop_resolver(row):

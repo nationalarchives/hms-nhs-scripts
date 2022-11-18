@@ -94,12 +94,6 @@ def create_subjects_df(exports_subj_file, cache_file, supplements_dict = None, d
     dups = vol_page_df[vol_page_df.index.duplicated(keep = False)]
     print('Warning: Found multiple subject_ids for the following pages', file = sys.stderr)
     print(dups[['subject_id', 'location']], file = sys.stderr)
-    #raise Exception() #FIXME: Confirm that only one of each set of duplicates actually has annotations.
-    #                          I have done this by hand at the point of spotting the problem, but the script
-    #                          should be making sure.
-    #                          Need completed exports to do this, so do it at either the end of extract.py, or at the beginning of aggregate.py
-    #                          Just before reduction would be a good place -- the final extraction file tells us
-    #                          what we need to know, and reduction is costly.
 
   subjects = subjects.sort_index()
   subjects.to_csv(cache_file, index_label = 'subject_id')
