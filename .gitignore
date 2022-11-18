@@ -6,3 +6,8 @@
 /testing/output
 /__pycache__/
 /redacted/
+/golden_transcriptions/OUTPUT
+/golden_transcriptions/GOLDEN
+/golden_transcriptions/OUTPUT_*
+/golden_transcriptions/GOLDEN_*
+/golden_transcriptions/diff_*
