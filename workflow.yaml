@@ -269,7 +269,7 @@ phase2:
       nptype: *STR
       ztype: *TEXT_T
     18617:
-      version: "22.26"
+      version: "22.46"
       name: place of birth/nationality
       export: 7-place-of-birth-nationality-classifications.csv
       nptype: *STR
