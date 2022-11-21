@@ -489,7 +489,7 @@ def main():
         if not current_views.index.equals(df.index): raise Exception() #The drop above should have fixed this
         if not spares_df.isna().all(axis = None): #If any of these entries are non-null then I do not know what is happening, figure it out if it ever comes up
           raise Exception('df has non-null entries that are missing from current_views')
-        if args.verbose == 0: #This feels like a bug condition, so always warn about it
+        if args.verbose == 0: #This feels like a bug condition, so always warn about it. When I first wrote this comment I think that I thought that this might relate to unfinished data entries which I hoped would reconcile into not being problems. Now I wonder if this might also/instead have to do with cases where there are live workflow versions with different numbers of rows -- in which case I would expect to see concentrations of this warning around workflows with extract_diff_ok in workflow.yaml, probably in proportion to the number of classifications for the "less rows" version -- a snapshot of which can be seen in config_file_comparisons_phase2.ods.
           print(f'  Warning: auto-removed {len(spares)} unclassified tasks in {data["name"]}', file = sys.stderr) #I believe that these work out as cases where "No row" was not entered. See the rest of this code block.
         if args.verbose >= 1:
           print(f'  Removed {len(spares)} null tasks from {data["name"]} due to absent classifications')
