@@ -633,6 +633,22 @@ def main():
     first = nonunique_views.pop(0).to_frame()
     first.join(nonunique_views, how='outer').to_csv(f'{args.output_dir}/nonunique.csv')
 
+  def empty_cell(cell):
+    if isinstance(cell, str):
+      if cell.strip() == '': return True
+      try: cell = float(cell)
+      except ValueError: return False
+    if isinstance(cell, float): return cell == 0
+    if isinstance(cell, int): return cell == 0
+    return False
+  empty_row_mask = joined.fillna('').applymap(empty_cell).all(axis = 1)
+  for x in joined[empty_row_mask].index:
+    if x in bad: del bad[x]
+    if x in autoresolved: del autoresolved[x]
+  joined = joined.drop(joined[empty_row_mask].index) #If that has resulted in entirely empty row, drop the whole row
+  joined_views = joined_views.drop(joined_views[empty_row_mask].index) #Drop from the views as well -- we do not know which cells are unviewed and which are explicitly labelled blank, so we just need to keep reading them back in
+  track('* Entirely blank rows dropped')
+
   #Search for transcription problems
   #We can find these by looking for square brackets and for misplaced zeros
   #But square brackets will show up in every cell that was already flagged as bad

@@ -283,7 +283,6 @@ def main():
     if 'data.text' in df.columns:
       #strip out entries that mean 'empty cell'
       df['data.text'] = df['data.text'].str.replace(r'^\s*no (row|entry|file|blank)\s*$', '', regex = True, case = False)
-      df['data.text'] = df['data.text'].str.replace(r'^\s*00\s*$', '', regex = True, case = False)
 
       #workflow-specific cleanup
       df['data.text'] = df['data.text'].map(funcmap[cleanfunc])
