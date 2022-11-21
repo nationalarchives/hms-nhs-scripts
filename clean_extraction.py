@@ -281,7 +281,13 @@ def main():
       'data.aggregation_version': str
     }, skip_blank_lines = False)
     if 'data.text' in df.columns:
+      #strip out entries that mean 'empty cell'
+      df['data.text'] = df['data.text'].str.replace(r'^\s*no (row|entry|file|blank)\s*$', '', regex = True, case = False)
+      df['data.text'] = df['data.text'].str.replace(r'^\s*00\s*$', '', regex = True, case = False)
+
+      #workflow-specific cleanup
       df['data.text'] = df['data.text'].map(funcmap[cleanfunc])
+
       df.to_csv(outfile, index = False)
     elif 'data.value' in df.columns:
       shutil.copyfile(infile, outfile)
