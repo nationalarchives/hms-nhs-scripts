@@ -206,7 +206,7 @@ def unstring_number(text):
   result = strip(text)
   try: float(result)
   except ValueError:
-    if re.match(r'^[oO0]*$', text): return '0'
+    if re.match(r'^[oO0]+$', text): return '0'
     else: return ''
   return result
 
