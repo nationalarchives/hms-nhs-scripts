@@ -171,6 +171,9 @@ def pretty_candidates(candidates, best_guess = '<No best guess>'):
     else: retval.append(f'{k} @{v}')
   return '\n'.join(retval)
 
+def get_flows(workflows):
+  return [x['name'] for x in workflows[args.workflow_set]['workflows'].values()]
+
 def get_number_flows(workflows):
   return [x['name'] for x in filter(lambda y: y['nptype'] == pd.Int64Dtype, workflows[args.workflow_set]['workflows'].values())]
 
@@ -649,39 +652,6 @@ def main():
   joined_views = joined_views.drop(joined_views[empty_row_mask].index) #Drop from the views as well -- we do not know which cells are unviewed and which are explicitly labelled blank, so we just need to keep reading them back in
   track('* Entirely blank rows dropped')
 
-  #Search for transcription problems
-  #We can find these by looking for square brackets and for misplaced zeros
-  #But square brackets will show up in every cell that was already flagged as bad
-  #So we give up on counting the bad cells, and just make sure that we flag all
-  #rows that contain at least one of them
-  if not args.no_transcriptionisms:
-    #This is carefully arranged to replicate the original behaviour
-    #TODO I can probably get a proper count now, or even identify the bad columns
-    def set_bad_1(x):
-      if not x.name in bad: bad[x.name] = 1
-    def inc_bad_1(x):
-      if not x.name in bad: bad[x.name] += 1
-
-    tmp_bad = pd.Series(data = False, index = joined.index)
-    for c in joined.drop(get_number_flows(workflow), axis = 1).columns:
-      tmp_bad = tmp_bad | joined[c].str.contains('^0+$')
-    tmp_bad[tmp_bad].to_frame().apply(inc_bad_1, axis = 1)
-
-    #Note that it may be that only part of the uncertainty identifier has survived autoresolution.
-    #For this reason, we cannot use the exact same patterns as in the pre-resultion function 'uncertainty'.
-    tmp_bad = pd.Series(data = False, index = joined.index)
-    for pattern in [
-      r'[\[\]\{\}]', #Any sort of bracket (apart from round, which come up too much in correct contexts)
-      r'\.\.', #More than one '.' in succession
-      r'\?' #A question mark
-      #r'[^\d]*\.[^ \d$]', #A single dot that (a) does not appear to be part of a number and (b) does not appear to be a full stop. Did away with this one as it matches dots in abbreviations and initials -- far too noisy.
-    ]:
-      for c in joined.columns:
-        tmp_bad = tmp_bad | joined[c].str.contains(pattern)
-    tmp_bad[tmp_bad].to_frame().apply(set_bad_1, axis = 1)
-    track('* Transcriptionisms identified')
-    dump_interim(joined, 'joined_has_transcriptionisms')
-
   #Translate subjects ids into original filenames
   joined = get_subjects_df(f'{args.dir}/subjects_metadata.csv')[['location', 'volume', 'page']].join(joined).rename(columns = {'location': 'original'})
 
@@ -710,6 +680,40 @@ def main():
     joined_views.loc[vol_1_subj_ids,['complete']] = joined_views.loc[vol_1_subj_ids][workflow_columns].drop('port sailed out of', axis = 1).ge(RETIREMENT_COUNT).all(axis = 1)
   track('* Complete views identified')
   dump_interim(joined_views, 'joined_views_complete')
+
+  #Search for transcription problems
+  #We can find these by looking for square brackets and for misplaced zeros
+  #But square brackets will show up in every cell that was already flagged as bad
+  #So we give up on counting the bad cells, and just make sure that we flag all
+  #rows that contain at least one of them
+  #Note that this must happen *after* bad port removal, or we will incorrectly identify values such as '00' in bad port as meaning that there is something bad in the row
+  if not args.no_transcriptionisms:
+    #This is carefully arranged to replicate the original behaviour
+    #TODO I can probably get a proper count now, or even identify the bad columns
+    def set_bad_1(x):
+      if not x.name in bad: bad[x.name] = 1
+    def inc_bad_1(x):
+      if not x.name in bad: bad[x.name] += 1
+
+    tmp_bad = pd.Series(data = False, index = joined.index)
+    for c in set(get_flows(workflow)) - set(get_number_flows(workflow)):
+      tmp_bad = tmp_bad | joined[c].str.contains('^0+$')
+    tmp_bad[tmp_bad].to_frame().apply(inc_bad_1, axis = 1)
+
+    #Note that it may be that only part of the uncertainty identifier has survived autoresolution.
+    #For this reason, we cannot use the exact same patterns as in the pre-resultion function 'uncertainty'.
+    tmp_bad = pd.Series(data = False, index = joined.index)
+    for pattern in [
+      r'[\[\]\{\}]', #Any sort of bracket (apart from round, which come up too much in correct contexts)
+      r'\.\.', #More than one '.' in succession
+      r'\?' #A question mark
+      #r'[^\d]*\.[^ \d$]', #A single dot that (a) does not appear to be part of a number and (b) does not appear to be a full stop. Did away with this one as it matches dots in abbreviations and initials -- far too noisy.
+    ]:
+      for c in get_flows(workflow):
+        tmp_bad = tmp_bad | joined[c].str.contains(pattern)
+    tmp_bad[tmp_bad].to_frame().apply(set_bad_1, axis = 1)
+    track('* Transcriptionisms identified')
+    dump_interim(joined, 'joined_has_transcriptionisms')
 
   #Tag or remove the rows with badness
   joined.insert(len(joined.columns), 'Problems', '')
