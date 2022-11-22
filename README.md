@@ -89,6 +89,7 @@ Sometimes cells need correction because they contain text that looks like an ind
 
 The `Autoresolved` column lists fields where transcriptions disagreed and were successfully autoresolved. You can use this information to do spot checks that the resolver is performing correctly. If you find too many mistakes then you could consider reducing the aggressiveness of the reconciliation.
 
+Note that the final few rows of the final page of the final volume (at the bottom of the CSV file) are blank. You will need to manually delete the various bad admission numbers/zeroes/Missing Entry values in these cells. (There are also blank rows to be found throughout phase2, but the scripts do a better job of finding and removing these for you.)
 
 ## Generating `mimsy.txt`
 

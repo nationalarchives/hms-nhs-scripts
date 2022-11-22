@@ -108,7 +108,7 @@ Because most of the work is done in the `main` function, the square brackets als
 5.  Join the data columns into *data rows* [`main: Generating output - Data joined`]
 6.  Join the views counts into *views rows* equivalent to the *data rows* [`main: Data joined - Views joined`]
 7.  Log to `incomplete_rows.csv` all rows that had fields dropped in step 3. [`main: Views joined - Removed fields logged`]
-8.  Log to `nonunique.csv` all rows that appear to have more than one transcription by the same individual. [`main: Removed fields logged - Transcriptionisms identified`]
+8.  Log to `nonunique.csv` all rows that appear to have more than one transcription by the same individual. **Note** this is only logged for non-dropdown fields. [`main: Removed fields logged - Transcriptionisms identified`]
 9.  Check the data for patterns that indicate transcriber uncertainty. Flag any *data rows* with such data as bad. [`main: Removed fields logged - Transcriptionisms identified`, `has_transcriptionisms`]
 10. Compute the image URL, subject id, volume and page for each page of data in the *data rows*. [`main: Transcriptionsisms identified - Subjects identified`]
 11. For volume 1 only, blank out any cells in the *data rows* that had `port sailed out of`, flagging this as an autoresolution. Record all removed values in `ports_removed.csv`. (Volume 1 does not have a `port sailed out of` column.) [`main: Subjects identified - "Port sailed out of" fixed up`]
@@ -275,6 +275,8 @@ Some of the scripts in here may be more generally useful, though:
 * `sourceme.sh`: This can be sourced in a bash shell to provide various useful functions. It is still likely to be somewhat specific to my own setup, though.
 * `maxcolwidth.sh`: This exmaines `lenchecker.csv` to see if its columns are too wide for certain spreadsheets.
 * `quick_threshold_test.sh`: This runs `aggregate.py` with a range of `--text_threshold` values, reporting on the proportion of problems found at each setting. For want of a better place, its output goes in `testing/output/qtt` -- you will need to delete this directory before launching a run of the script. This script may have bit-rotted by now, but a quick once-over suggests that it may still work as intended.
+* `redact.py`: This is a recent addition and is in good shape. It strips out everything that might be considered in any way sensitive in the exports. User names, IDs and IP addresses are replaced with a consistent randomly-generated value. This value will be different from run to run. It also removes the metadata column -- hopefully that does not interfere with any of the processing that these scripts do.
+* `workflow_versions.py`: This is another recent addition that should work just fine. It dumps all versions of each workflow, with a count of the number of classifications for each version within the exports file.
 
 ## `subjects.py` ##
 
@@ -287,6 +289,37 @@ In normal usage, this script provides a function to generate a cache of subject 
 `workflow.yaml` has expanded to also provide the name of the `...-workflows.csv` file used by `panoptes_aggregation` and the `...-subjects.csv` file used by `subjects.py` to get the subject metadata. It can also provide information for any subjects that are missing from `...-subjects.csv`.
 
 In an ideal world, the scripts would be entirely generic and `workflow.yaml` (and perhaps other files) would allow us to provide data to process transcriptions from arbitrary Zooniverse projects.
+
+## Assessing Data Quality
+
+The `golden_transcriptions` directory contains some transcriptions from RMG to compare the script output against. The usual method is:
+```
+make clean all
+./differ.sh
+```
+This will produce a report on the number of differences between the golden transcriptions and the equivalent script output. In principle, this can be used to assess the quality of the script output. In practice, I think we would need more golden transcriptions to get a good estimate of the quality.
+
+Also note that we only have golden transcriptions from phase 1, so this approach cannot be used to assess phase 2 at all.
+
+We can also get a reasonably accurate count of unreconciled transcriptions across a whole tranche of data like this:
+```
+Method is crude.
+First, update the script so that a header is always output for unresolved cells, even when there is no "best guess". I've spent a while verifying that the output of this script is the same as what was uploaded to the joined tab of this spreadsheet -- I'm not thinking too clearly just now, but so far as I can tell they are identical modulo the intended change to always output that header.
+We do not count the "bad rate" in a precise way, but it turns out that every case of failed autoresolve outputs a 10-hyphen header on the second line.
+Grepping the exports directory reveals that we can construct a regexp that will find the 10-hyphen-second-line-header in the output, and not match any sequences of headers in the input: grep -o -- ',[^,-]*----------[^,]*,' exports/* | highlight -- ----------
+The output from this is:
+exports/10-where-from-classifications.csv:,""value"":""------------------"",
+exports/11-nature-of-complaint-classifications.csv:,""value"":""Pneumonic \u0026 Dis----------"",
+exports/8-ship-ship-or-place-of-employment-last-ship-classifications.csv:,""value"":""---------- F of Norway"",
+exports/8-ship-ship-or-place-of-employment-last-ship-classifications.csv:,""value"":""--------------- Steam Vessel,
+As there are only 4 matches, we can also see that these will not skew our numbers much if we mess up the regexp.
+To get the cell counts, we do
+for x in "admission number" "date of entry" "name" "quality" "age" "place of birth" "port sailed out of" "years at sea" "last services" "under what circumstances admitted (or nature of complaint)" "date of discharge" "how disposed of" "number of days victualled"; do echo csvsql --tables foo --query "'select count(\"$x\") from foo where \"$x\" regexp \"^[^\n]*\n-{10}\n\"'" output/joined.csv; done | parallel --verbose -k
+(We do not need to aggregate on a different field each time, but this is handy for matching the number with the field)
+
+For phase2, something like this should do the same kind of thing (just changes the column names):
+for x in "admission number" "date of entry" "name" "quality" "age" "creed" "place of birth/nationality" "ship/ship or place of employment/last ship" "of what port/port of registration" "where from" "nature of complaint" "date of discharge" "how disposed of" "number of days in hospital";  do echo csvsql --tables foo --query "'select count(\"$x\") from foo where \"$x\" regexp \"^[^\n]*\n-{10}\n\"'" output/joined.csv; done | parallel --verbose -k
+```
 
 ## Abandoned Things ##
 

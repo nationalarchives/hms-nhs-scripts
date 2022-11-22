@@ -40,7 +40,7 @@ This results in data for several columns of the Admissions Register. We can divi
 
 Extraction takes the original volunteer transcriptions and converts them into a form that is convenient for further processing. A lot of this is fairly uninteresting (but necessary!) transformation of the data.
 
-The most important step in extraction is cleaning, which tries to resolve common problems in the data and to put it into a standard form. Where cleaning finds a problem, we sometimes return a blank (effectively meaning that we have thrown this transcription away) and sometimes return the original, uncleaned text (meaning that we want the reducer to try its best with what has been entered): which one to choose is a bit of a judgement call and could be refined with some experimentation.
+The most important step in extraction is cleaning, which tries to resolve common problems in the data and to put it into a standard form. Where cleaning finds a problem that it cannot resolve, we return partially cleaned text, or even the original text. This allows the reducer to try to solve the problem. It also allows for tricky cases, for example if '6 weeks' is entered into the 'Age' field, we do not want to reject it just because it is not a pure number.
 
 This section describes the cleaning rules as applied to the data. Of course, the most exact description of these rules is `clean_extraction.py`, the script that performs the changes.
 
@@ -51,14 +51,13 @@ We always strip leading and trailing whitespace from all fields, before doing an
 #### All integer fields (see `clean_extraction.py:unstring_number`) ####
 
 1. If the field consists entirely of any mix of the digit `0` and the letter `O` (regardless of case) then this is converted to a `0`.
-2. If the field does not contain a number (and only a number) then the field is blanked out.
 
 #### All date fields (see `clean_extraction.py:unstring_date`) ####
 
 1. Runs of characters consisting of any mix of the digit `0` and the letter `O` (regardless of case) are replaced with a `0`.
-2. If the field is not made up of 3 numbers separated by `-`, `/`, `.` or `=` then the field is blanked out (for example `07 - 11.1834` is accepted, `7th November 1834 or 7|11|1834` are not).
+2. If the field is not made up of 3 numbers separated by `-`, `/`, `.` or `=` then we return the original text, without even step (1) applied. For example `07 - 11.1834` is accepted, `7th November 1834 or 7|11|1834` are not.
 3. If any of the three numbers are 0 then put `-` characters between them and return that (for example, `07-00-1834`). The Aggregation phase will flag this as needing a manual check.
-4. Call a Python function to try to parse the date as we now have it. This will try to treat the fields as `day-month-year`, but if this does not work then it will also try `month-day-year`. 2-digit years will be converted to dates in the 1900s or 2000s. It may accept other unusual date formats, so this rule feels a bit risky.
+4. Call a Python function to try to parse the date as we now have it. This will try to treat the fields as `day-month-year`, but if this does not work then it will also try `month-day-year`. 2-digit years will be converted to dates in the 1900s or 2000s. It may accept other unusual date formats, so this rule feels a bit risky. If this function fails then return the original text.
 5. If the year is greater than `9999`, return to the original text.
 6. If the year is lower than `1800`, return the original text.
 7. If the year is greater than `1900` (but less than `9999`), change the first two digits to `18`. This is intended to deal with dates accidentally entered as being in the 1900s or 2000s, and should also fix up any 2-digit years converted by the Python function. This rule will need to be updated for phase two, which legitimately contains dates in the 1900s.
