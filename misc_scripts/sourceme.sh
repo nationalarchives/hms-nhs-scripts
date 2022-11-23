@@ -144,7 +144,9 @@ function cmp_extract {
     diff <(dump_${logtype}_logs "$1") <(dump_${logtype}_logs "$2")
     if [ $? -eq 0 ]; then #If the extract/reduce logs are identical, tell me of anything dodgy in them
       if [ `wc -l <(dump_${logtype}_logs "$1") | tail -n1 | sed 's/^[[:blank:]]*\([[:digit:]]\+\) .*/\1/'` -ne 0 ]; then
+        echo
         echo "Dubious line(s) in {${1},${2}}/${logtype}*.log"
+        echo "Re: https://github.com/nationalarchives/hms-nhs-scripts/issues/34"
         dump_${logtype}_logs "$1"
       fi
     fi
