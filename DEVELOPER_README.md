@@ -301,25 +301,19 @@ This will produce a report on the number of differences between the golden trans
 
 Also note that we only have golden transcriptions from phase 1, so this approach cannot be used to assess phase 2 at all.
 
-We can also get a reasonably accurate count of unreconciled transcriptions across a whole tranche of data like this:
-```
-Method is crude.
-First, update the script so that a header is always output for unresolved cells, even when there is no "best guess". I've spent a while verifying that the output of this script is the same as what was uploaded to the joined tab of this spreadsheet -- I'm not thinking too clearly just now, but so far as I can tell they are identical modulo the intended change to always output that header.
-We do not count the "bad rate" in a precise way, but it turns out that every case of failed autoresolve outputs a 10-hyphen header on the second line.
-Grepping the exports directory reveals that we can construct a regexp that will find the 10-hyphen-second-line-header in the output, and not match any sequences of headers in the input: grep -o -- ',[^,-]*----------[^,]*,' exports/* | highlight -- ----------
-The output from this is:
-exports/10-where-from-classifications.csv:,""value"":""------------------"",
-exports/11-nature-of-complaint-classifications.csv:,""value"":""Pneumonic \u0026 Dis----------"",
-exports/8-ship-ship-or-place-of-employment-last-ship-classifications.csv:,""value"":""---------- F of Norway"",
-exports/8-ship-ship-or-place-of-employment-last-ship-classifications.csv:,""value"":""--------------- Steam Vessel,
-As there are only 4 matches, we can also see that these will not skew our numbers much if we mess up the regexp.
-To get the cell counts, we do
-for x in "admission number" "date of entry" "name" "quality" "age" "place of birth" "port sailed out of" "years at sea" "last services" "under what circumstances admitted (or nature of complaint)" "date of discharge" "how disposed of" "number of days victualled"; do echo csvsql --tables foo --query "'select count(\"$x\") from foo where \"$x\" regexp \"^[^\n]*\n-{10}\n\"'" output/joined.csv; done | parallel --verbose -k
-(We do not need to aggregate on a different field each time, but this is handy for matching the number with the field)
+We can also get a reasonably accurate count of unreconciled transcriptions across a whole tranche of data using the bash scripts `./golden_transcriptions/queries/phase1_unreconciled_cells.sh` and `./golden_transcriptions/queries/phase2_unreconciled_cells.sh`. These scripts output what should be a good estimate of the number of unreconciled cells in each column.
 
-For phase2, something like this should do the same kind of thing (just changes the column names):
-for x in "admission number" "date of entry" "name" "quality" "age" "creed" "place of birth/nationality" "ship/ship or place of employment/last ship" "of what port/port of registration" "where from" "nature of complaint" "date of discharge" "how disposed of" "number of days in hospital";  do echo csvsql --tables foo --query "'select count(\"$x\") from foo where \"$x\" regexp \"^[^\n]*\n-{10}\n\"'" output/joined.csv; done | parallel --verbose -k
+As hand-fixers will be working at units of rows, it may also be useful to know how many rows contain errors of different types. Relying on the same regular expression as the above bash scripts (and therefore perhaps getting a close estimate rather than the absolutely accurate value) we can do:
 ```
+for x in golden_transcriptions/queries/{phase1*,blanks*}.sql; do echo "csvsql --blanks --tables foo --query $x output/joined.csv | paste -sd ':\n'"; done | parallel --verbose -k #for phase 1
+for x in golden_transcriptions/queries/{phase2*,blanks*}.sql; do echo "csvsql --blanks --tables foo --query $x output/joined.csv | paste -sd ':\n'"; done | parallel --verbose -k #for phase 2
+```
+
+That these scripts are working can be cross-checked by totalling their output, and comparing it with the total outputs from this invocation:
+```
+csvtool namedcol Problems output/joined.csv | sed 1d | grep -v '^$' | sort | uniq -c
+```
+The totals should match.
 
 ## Abandoned Things ##
 
