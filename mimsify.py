@@ -110,8 +110,8 @@ def next_page():
       
 def next_row():
   normalized_row = normalize(row)
-  target.write('; '.join([f'{field}, {normalized_row[field]}' for field in FIELDS]))
-  target.write(';')
+  target.write(bytes(args.field_separator, 'utf-8').decode('unicode_escape').join([f'{field}, {normalized_row[field]}' for field in FIELDS]))
+  target.write(bytes(args.row_separator, 'utf-8').decode('unicode_escape'))
 
 
 parser = argparse.ArgumentParser()
@@ -145,6 +145,12 @@ parser.add_argument('--autoresolved',
 parser.add_argument('--pages',
                     type = int,
                     help = 'Stop after PAGES pages (for faster testing)')
+parser.add_argument('--field_separator',
+                    default = '; ',
+                    help = 'Separator printed at end of each field (default: ";")')
+parser.add_argument('--row_separator',
+                    default = ';',
+                    help = 'Separator printed at end of each row (default: ";")')
 args = parser.parse_args()
 
 with open(args.workflow_defs) as f:
