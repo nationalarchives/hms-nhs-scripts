@@ -25,7 +25,7 @@ The general approach is to make use of Zooniverse's own [Panoptes aggregation sc
 * Extract the data from the downloads: `./extract.py phase1`. This may take a few hours. Run as `nice ./extract.py phase1` if you don't want it to dominate your computer's resources.
 * Record information about the run of `extract.py` by committing that information to the repository. `extract.py` itself will tell you how to do this.
 * Optionally, check `extraction/postextract_*.log` to see possible cross-references in the original input data.
-* Generate `joined.csv`: `./aggregate.py -t 0.3`. This may take several minutes. `joined.csv` will appear in the `output` directory.
+* Generate `joined.csv`: `./aggregate.py -t 0.3 phase1`. This may take several minutes. `joined.csv` will appear in the `output` directory.
 * Check that `joined.csv` is safe to open in certain spreadsheet software: `./misc_scripts/maxcolwidth.sh`
 * Correct `joined.csv` by hand (see [Correcting joined.csv](#correcting-joinedcsv), below)
 * Generate `mimsy.txt`: `./mimsify.py` (see [Generating mimsy.txt](#generating-mimsytxt), below)
