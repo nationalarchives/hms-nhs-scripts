@@ -19,7 +19,7 @@ The general approach is to make use of Zooniverse's own [Panoptes aggregation sc
 * Install dependencies: `pip install -r requirements.txt`
 * Download all necessary Zooniverse project exports:
   * `hms-nhs-the-nautical-health-service-subjects.csv` (link next to `Request new subject export` button)
-  * `hms-nhs-the-nautical-health-service-workflows.csv` (link next to `Request new workflow export button)
+  * `hms-nhs-the-nautical-health-service-workflows.csv` (link next to `Request new workflow export` button)
   * Each file listed under `Request new workflow classification export` button
 * Copy the downloaded files into the new `exports/` directory.
 * Extract the data from the downloads: `./extract.py phase1`. This may take a few hours. Run as `nice ./extract.py phase1` if you don't want it to dominate your computer's resources.
