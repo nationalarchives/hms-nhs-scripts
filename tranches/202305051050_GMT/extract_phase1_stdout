@@ -1,0 +1,72 @@
+Volume  1 runs from p.   1 to p. 101
+Volume  2 runs from p.   1 to p. 195
+Volume  3 runs from p.   1 to p. 229
+Volume  4 runs from p.   2 to p. 223
+Volume  5 runs from p.   1 to p. 221
+Volume  7 runs from p.   1 to p. 233
+Volume  8 runs from p.   1 to p. 233
+Volume  9 runs from p.   1 to p. 231
+Volume 10 runs from p.   1 to p. 250
+Volume 11 runs from p.   1 to p. 221
+Volume 12 runs from p.   1 to p. 227
+Volume 13 runs from p.   1 to p. 239
+Volume 14 runs from p.   1 to p. 239
+Volume 15 runs from p.   1 to p. 241
+Volume 16 runs from p.   1 to p. 243
+Volume 17 runs from p.   1 to p. 237
+Volume 18 runs from p.   1 to p. 236
+Volume 19 runs from p.   1 to p. 234
+Volume 20 runs from p.  28 to p. 157
+Volume 21 runs from p.   1 to p. 232
+Volume 22 runs from p.   1 to p. 247
+Volume 23 runs from p.   1 to p. 251
+Volume 24 runs from p.   1 to p. 267
+Volume 25 runs from p.   1 to p. 276
+Volume 26 runs from p.   1 to p. 278
+Volume 27 runs from p.   1 to p. 279
+Volume 28 runs from p.   1 to p. 289
+Volume 29 runs from p.   1 to p. 278
+Volume 30 runs from p.   1 to p. 279
+Volume 31 runs from p.   1 to p. 291
+Volume 32 runs from p.   2 to p. 289
+Volume 33 runs from p.   1 to p. 288
+Volume 34 runs from p.   1 to p. 287
+Missing pages *before* applying supplements
+Missing pages in vol  2: 13
+Missing pages in vol 23: 204
+Missing pages in vol 24: 136
+Missing pages in vol 26: 57, 131, 202, 268
+Missing pages in vol 28: 57, 58
+
+Missing pages *after* applying supplements
+Missing pages in vol  2: 13
+
+panoptes-wid-18611-admission_number completed with exit code 0
+panoptes-wid-18612-date_of_entry completed with exit code 0
+panoptes-wid-18613-name completed with exit code 0
+panoptes-wid-18614-quality completed with exit code 0
+panoptes-wid-18616-age completed with exit code 0
+panoptes-wid-18617-place_of_birth completed with exit code 0
+panoptes-wid-18618-port_sailed_out_of completed with exit code 0
+panoptes-wid-18619-years_at_sea completed with exit code 0
+panoptes-wid-18621-last_services completed with exit code 0
+panoptes-wid-18622-under_what_circumstances_admitted_(or_nature_of_complaint) completed with exit code 0
+panoptes-wid-18623-date_of_discharge completed with exit code 0
+panoptes-wid-18624-how_disposed_of completed with exit code 0
+panoptes-wid-18625-number_of_days_victualled completed with exit code 0
+Supplementary subject 60262144 (vol. 20, p. 158) has no classifications
+Supplementary subject 60262145 (vol. 20, p. 159) has no classifications
+Supplementary subject 60262146 (vol. 20, p. 160) has no classifications
+Supplementary subject 44585952 (vol. 23, p. 204) has no classifications
+Supplementary subject 44586138 (vol. 24, p. 136) has no classifications
+Supplementary subject 44586661 (vol. 26, p.  57) has no classifications
+Supplementary subject 44586737 (vol. 26, p. 131) has no classifications
+Supplementary subject 44586811 (vol. 26, p. 202) has no classifications
+Supplementary subject 44586878 (vol. 26, p. 268) has no classifications
+Supplementary subject 44661091 (vol. 28, p.  57) has no classifications
+Supplementary subject 44661092 (vol. 28, p.  58) has no classifications
+All done, no errors
+Suggested next invocations:
+git add tranches
+git commit -m'Latest data extraction'
+./aggregate.py -r extraction -t 0.3

@@ -1,0 +1,13 @@
+origin	https://github.com/nationalarchives/hms-nhs-scripts.git (fetch)
+origin	https://github.com/nationalarchives/hms-nhs-scripts.git (push)
+origin/main a45c13acfa32d3128c54983ee03fcc0b9c44f720
+HEAD        a45c13acfa32d3128c54983ee03fcc0b9c44f720
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	extract_phase1_stderr
+	extract_phase1_stdout
+
+nothing added to commit but untracked files present (use "git add" to track)

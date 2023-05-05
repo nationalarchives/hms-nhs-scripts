@@ -1,0 +1,16 @@
+    25999 exports/1-admission-number-classifications.csv
+    16463 exports/10-where-from-classifications.csv
+    24868 exports/11-nature-of-complaint-classifications.csv
+    25506 exports/12-date-of-discharge-classifications.csv
+    25634 exports/14-number-of-days-in-hospital-classifications.csv
+    25968 exports/2-date-of-entry-classifications.csv
+    25573 exports/3-name-classifications.csv
+    25780 exports/5-age-classifications.csv
+    25609 exports/7-place-of-birth-nationality-classifications.csv
+    17096 exports/8-ship-ship-or-place-of-employment-last-ship-classifications.csv
+    86049 exports/hms-nhs-the-nautical-health-service-subjects.csv
+     2783 exports/hms-nhs-the-nautical-health-service-workflows.csv
+    12151 exports/how-disposed-of-dd-classifications.csv
+    13182 exports/quality-dd-classifications.csv
+    12761 exports/years-at-sea-classifications.csv
+   365422 total
