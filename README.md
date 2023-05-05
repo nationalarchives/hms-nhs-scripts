@@ -15,7 +15,7 @@ The general approach is to make use of Zooniverse's own [Panoptes aggregation sc
 ## Example Use ##
 
 * Clone this repository: `git clone https://github.com/nationalarchives/hms-nhs-scripts.git`
-* Enter the scripts dir and create working directories: `cd hms-nhs-scripts; mkdir exports extraction`
+* Enter the scripts dir and create `exports` directory: `cd hms-nhs-scripts; mkdir exports`
 * Install dependencies: `pip install -r requirements.txt`
 * Download all necessary Zooniverse project exports: the workflow classifications, plus `hms-nhs-the-nautical-health-service-subjects.csv` and `hms-nhs-the-nautical-health-service-workflows.csv`
 * Copy the downloaded files into the new `exports/` directory.
