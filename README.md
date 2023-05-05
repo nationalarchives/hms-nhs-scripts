@@ -28,7 +28,7 @@ The general approach is to make use of Zooniverse's own [Panoptes aggregation sc
 * Generate `joined.csv`: `./aggregate.py -t 0.3 phase1`. This may take several minutes. `joined.csv` will appear in the `output` directory.
 * Check that `joined.csv` is safe to open in certain spreadsheet software: `./misc_scripts/maxcolwidth.sh`
 * Correct `joined.csv` by hand (see [Correcting joined.csv](#correcting-joinedcsv), below)
-* Generate `mimsy.txt`: `./mimsify.py` (see [Generating mimsy.txt](#generating-mimsytxt), below)
+* Generate `mimsy.txt`: `./mimsify.py phase1` (see [Generating mimsy.txt](#generating-mimsytxt), below)
 
 <details>
 <summary>
