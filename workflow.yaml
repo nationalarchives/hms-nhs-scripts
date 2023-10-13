@@ -21,6 +21,19 @@ subjects:
     #The final known page in volume 20 is p. 157, so there is no "following" page for the top 3 subjects here
     #They could therefore be from volume 21, but as the first known page in vol. 21 is p. 1, I have placed
     #them at the end of vol. 20.
+    #
+    #Page 1 of volume 2 could almost equally well be a late page of volume 1. I've chosen to make it page 1 of
+    #volume 2 because (a) page 1 is obviously missing, while there is no guarantee that there is a page 81 of vol 1
+    #and (b) there are a few missing subject ids here, and 44290143 happens to be one lower than the subject id for
+    #vol 2 p. 2
+    44290143:
+      volume: 2
+      page: 1
+      location: supplement
+    60262183:
+      volume: 20
+      page: 54
+      location: supplement
     60262144:
       volume: 20
       page: 158
