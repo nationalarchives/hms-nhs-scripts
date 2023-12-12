@@ -93,7 +93,7 @@ def create_subjects_df(exports_subj_file, cache_file, supplements_dict = None, d
   if not vol_page_df.index.is_unique:
     dups = vol_page_df[vol_page_df.index.duplicated(keep = False)]
     print('Warning: Found multiple subject_ids for the following pages', file = sys.stderr)
-    print(dups[['subject_id', 'location']], file = sys.stderr)
+    print(dups[['subject_id', 'location']].to_string(), file = sys.stderr)
 
   subjects = subjects.sort_index()
   subjects.to_csv(cache_file, index_label = 'subject_id')

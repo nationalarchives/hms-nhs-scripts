@@ -535,11 +535,15 @@ def main():
     if args.verbose >= 1:
       overcount = df.loc[current_views[current_views > RETIREMENT_COUNT].index]
       print(f'  Completed rows: {len(df.index)} (of which {len(overcount.index)} overcounted)')
-      if args.verbose >= 3 and not overcount.empty: print(overcount)
+      if args.verbose >= 3 and not overcount.empty:
+        if args.dump_interims: dump_interim(overcount, f'overcount_{data["name"]}')
+        else: print(overcount.to_string())
       if args.unfinished:
         undercount = df.loc[current_views[current_views < RETIREMENT_COUNT].index]
         print(f'  Undercounted rows: {len(undercount.index)}')
-        if args.verbose >= 3 and not undercount.empty: print(undercount)
+        if args.verbose >= 3 and not undercount.empty:
+          if args.dump_interims: dump_interim(undercount, f'undercount_{data["name"]}')
+          else: print(undercount.to_string())
 
     #Handle conflicts
     if(data['ztype'] == TEXT_T):
