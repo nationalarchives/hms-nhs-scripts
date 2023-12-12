@@ -1,0 +1,260 @@
+Volume  1 runs from p.   1 to p. 101
+Volume  2 runs from p.   2 to p. 195
+Volume  3 runs from p.   1 to p. 229
+Volume  4 runs from p.   2 to p. 223
+Volume  5 runs from p.   1 to p. 221
+Volume  7 runs from p.   1 to p. 233
+Volume  8 runs from p.   1 to p. 233
+Volume  9 runs from p.   1 to p. 231
+Volume 10 runs from p.   1 to p. 250
+Volume 11 runs from p.   1 to p. 221
+Volume 12 runs from p.   1 to p. 227
+Volume 13 runs from p.   1 to p. 239
+Volume 14 runs from p.   1 to p. 239
+Volume 15 runs from p.   1 to p. 241
+Volume 16 runs from p.   1 to p. 243
+Volume 17 runs from p.   1 to p. 237
+Volume 18 runs from p.   1 to p. 236
+Volume 19 runs from p.   1 to p. 234
+Volume 20 runs from p.  28 to p. 157
+Volume 21 runs from p.   1 to p. 232
+Volume 22 runs from p.   1 to p. 247
+Volume 23 runs from p.   1 to p. 251
+Volume 24 runs from p.   1 to p. 267
+Volume 25 runs from p.   1 to p. 276
+Volume 26 runs from p.   1 to p. 278
+Volume 27 runs from p.   1 to p. 279
+Volume 28 runs from p.   1 to p. 289
+Volume 29 runs from p.   1 to p. 278
+Volume 30 runs from p.   1 to p. 279
+Volume 31 runs from p.   1 to p. 291
+Volume 32 runs from p.   2 to p. 289
+Volume 33 runs from p.   1 to p. 288
+Volume 34 runs from p.   1 to p. 287
+Missing pages *before* applying supplements
+Missing pages in vol  2: 13
+Missing pages in vol 20: 54
+Missing pages in vol 23: 204
+Missing pages in vol 24: 136
+Missing pages in vol 26: 57, 131, 202, 268
+Missing pages in vol 28: 57, 58
+
+Missing pages *after* applying supplements
+Missing pages in vol  2: 13
+
+Launched panoptes-wid-18611-admission_number as pid 1829
+Launched panoptes-wid-18612-date_of_entry as pid 1830
+Launched panoptes-wid-18613-name as pid 1832
+Launched panoptes-wid-18454-quality as pid 1834
+Launched panoptes-wid-18616-age as pid 1836
+Launched panoptes-wid-18344-creed as pid 1838
+Launched panoptes-wid-18617-place_of_birth/nationality as pid 1840
+Launched panoptes-wid-18621-ship/ship_or_place_of_employment/last_ship as pid 1842
+Launched panoptes-wid-18347-of_what_port/port_of_registration as pid 1843
+Launched panoptes-wid-18618-where_from as pid 1845
+Launched panoptes-wid-18622-nature_of_complaint as pid 1846
+Launched panoptes-wid-18623-date_of_discharge as pid 1848
+Launched panoptes-wid-20285-how_disposed_of as pid 1849
+extraction/config_18618_V21.44.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 18618 -v 21.44 -d extraction
+extraction/config_18618_V21.45.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 18618 -v 21.45 -d extraction
+reduction configuration file extraction/Reducer_config_workflow_18618_V21.44_text_extractor.yaml for workflow 18618 is identical to extraction/Reducer_config_workflow_18618_V21.45_text_extractor.yaml.
+task label configuration file extraction/Task_labels_workflow_18618_V21.44.yaml for workflow 18618 differs from extraction/Task_labels_workflow_18618_V21.45.yaml.
+  This is for information only. It is not an error as text-type task labels do not have to be consistent for data processing to work.
+extraction configuration file extraction/Extractor_config_workflow_18618_V21.44.yaml for workflow 18618 is identical to extraction/Extractor_config_workflow_18618_V21.45.yaml.
+extraction/extract_18618_V21.44.log: panoptes_aggregation extract exports/10-where-from-classifications.csv extraction/Extractor_config_workflow_18618_V21.44.yaml -d extraction -o 18618_V21_44
+extraction/extract_18618_V21.45.log: panoptes_aggregation extract exports/10-where-from-classifications.csv extraction/Extractor_config_workflow_18618_V21.45.yaml -d extraction -o 18618_V21_45
+extraction/strip_identity_tranform_test_18618.log: ./strip_processed.py -t tranches/empty_views.csv extraction/text_extractor_18618.full.csv --no_sort
+extraction/strip_seen_18618.log: ./strip_processed.py -t tranches/views.csv extraction/text_extractor_18618.full.csv
+extraction/pick_volumes_18618.log: ./pick_volumes.py extraction/text_extractor_18618.stripped.csv --first_volume 19 --final_volume 34 --subjects_cache extraction/subjects_metadata.csv
+extraction/postextract_18618.log: ./clean_extraction.py extraction/text_extractor_18618.vols.csv 18618
+extraction/reduce_18618.log: panoptes_aggregation reduce -F all -d extraction -o 18618 extraction/text_extractor_18618.csv extraction/Reducer_config_workflow_18618_V21.44_text_extractor.yaml
+extraction/config_18344_V26.117.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 18344 -v 26.117 -d extraction
+extraction/config_18344_V28.117.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 18344 -v 28.117 -d extraction
+reduction configuration file extraction/Reducer_config_workflow_18344_V26.117_text_extractor.yaml for workflow 18344 is identical to extraction/Reducer_config_workflow_18344_V28.117_text_extractor.yaml.
+task label configuration file extraction/Task_labels_workflow_18344_V26.117.yaml for workflow 18344 is identical to extraction/Task_labels_workflow_18344_V28.117.yaml.
+extraction configuration file extraction/Extractor_config_workflow_18344_V26.117.yaml for workflow 18344 is identical to extraction/Extractor_config_workflow_18344_V28.117.yaml.
+extraction/extract_18344_V26.117.log: panoptes_aggregation extract exports/6-creed-classifications.csv extraction/Extractor_config_workflow_18344_V26.117.yaml -d extraction -o 18344_V26_117
+extraction/extract_18344_V28.117.log: panoptes_aggregation extract exports/6-creed-classifications.csv extraction/Extractor_config_workflow_18344_V28.117.yaml -d extraction -o 18344_V28_117
+extraction/strip_identity_tranform_test_18344.log: ./strip_processed.py -t tranches/empty_views.csv extraction/text_extractor_18344.full.csv --no_sort
+extraction/strip_seen_18344.log: ./strip_processed.py -t tranches/views.csv extraction/text_extractor_18344.full.csv
+extraction/pick_volumes_18344.log: ./pick_volumes.py extraction/text_extractor_18344.stripped.csv --first_volume 19 --final_volume 34 --subjects_cache extraction/subjects_metadata.csv
+extraction/postextract_18344.log: ./clean_extraction.py extraction/text_extractor_18344.vols.csv 18344
+extraction/reduce_18344.log: panoptes_aggregation reduce -F all -d extraction -o 18344 extraction/text_extractor_18344.csv extraction/Reducer_config_workflow_18344_V26.117_text_extractor.yaml
+extraction/config_18347_V24.49.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 18347 -v 24.49 -d extraction
+extraction/config_18347_V26.49.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 18347 -v 26.49 -d extraction
+reduction configuration file extraction/Reducer_config_workflow_18347_V24.49_text_extractor.yaml for workflow 18347 is identical to extraction/Reducer_config_workflow_18347_V26.49_text_extractor.yaml.
+task label configuration file extraction/Task_labels_workflow_18347_V24.49.yaml for workflow 18347 is identical to extraction/Task_labels_workflow_18347_V26.49.yaml.
+extraction configuration file extraction/Extractor_config_workflow_18347_V24.49.yaml for workflow 18347 is identical to extraction/Extractor_config_workflow_18347_V26.49.yaml.
+extraction/extract_18347_V24.49.log: panoptes_aggregation extract exports/9-of-what-port-port-of-registration-classifications.csv extraction/Extractor_config_workflow_18347_V24.49.yaml -d extraction -o 18347_V24_49
+extraction/extract_18347_V26.49.log: panoptes_aggregation extract exports/9-of-what-port-port-of-registration-classifications.csv extraction/Extractor_config_workflow_18347_V26.49.yaml -d extraction -o 18347_V26_49
+extraction/strip_identity_tranform_test_18347.log: ./strip_processed.py -t tranches/empty_views.csv extraction/text_extractor_18347.full.csv --no_sort
+extraction/strip_seen_18347.log: ./strip_processed.py -t tranches/views.csv extraction/text_extractor_18347.full.csv
+extraction/pick_volumes_18347.log: ./pick_volumes.py extraction/text_extractor_18347.stripped.csv --first_volume 19 --final_volume 34 --subjects_cache extraction/subjects_metadata.csv
+extraction/postextract_18347.log: ./clean_extraction.py extraction/text_extractor_18347.vols.csv 18347
+extraction/reduce_18347.log: panoptes_aggregation reduce -F all -d extraction -o 18347 extraction/text_extractor_18347.csv extraction/Reducer_config_workflow_18347_V24.49_text_extractor.yaml
+extraction/config_18454_V19.70.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 18454 -v 19.70 -d extraction
+extraction/config_18454_V21.70.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 18454 -v 21.70 -d extraction
+reduction configuration file extraction/Reducer_config_workflow_18454_V19.70_text_extractor.yaml for workflow 18454 is identical to extraction/Reducer_config_workflow_18454_V21.70_text_extractor.yaml.
+task label configuration file extraction/Task_labels_workflow_18454_V19.70.yaml for workflow 18454 is identical to extraction/Task_labels_workflow_18454_V21.70.yaml.
+extraction configuration file extraction/Extractor_config_workflow_18454_V19.70.yaml for workflow 18454 is identical to extraction/Extractor_config_workflow_18454_V21.70.yaml.
+extraction/extract_18454_V19.70.log: panoptes_aggregation extract exports/4-quality-classifications.csv extraction/Extractor_config_workflow_18454_V19.70.yaml -d extraction -o 18454_V19_70
+extraction/extract_18454_V21.70.log: panoptes_aggregation extract exports/4-quality-classifications.csv extraction/Extractor_config_workflow_18454_V21.70.yaml -d extraction -o 18454_V21_70
+extraction/strip_identity_tranform_test_18454.log: ./strip_processed.py -t tranches/empty_views.csv extraction/text_extractor_18454.full.csv --no_sort
+extraction/strip_seen_18454.log: ./strip_processed.py -t tranches/views.csv extraction/text_extractor_18454.full.csv
+extraction/pick_volumes_18454.log: ./pick_volumes.py extraction/text_extractor_18454.stripped.csv --first_volume 19 --final_volume 34 --subjects_cache extraction/subjects_metadata.csv
+extraction/postextract_18454.log: ./clean_extraction.py extraction/text_extractor_18454.vols.csv 18454
+extraction/reduce_18454.log: panoptes_aggregation reduce -F all -d extraction -o 18454 extraction/text_extractor_18454.csv extraction/Reducer_config_workflow_18454_V19.70_text_extractor.yaml
+extraction/config_18616_V25.36.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 18616 -v 25.36 -d extraction
+extraction/config_18616_V25.51.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 18616 -v 25.51 -d extraction
+reduction configuration file extraction/Reducer_config_workflow_18616_V25.36_text_extractor.yaml for workflow 18616 is identical to extraction/Reducer_config_workflow_18616_V25.51_text_extractor.yaml.
+task label configuration file extraction/Task_labels_workflow_18616_V25.36.yaml for workflow 18616 differs from extraction/Task_labels_workflow_18616_V25.51.yaml.
+  This is for information only. It is not an error as text-type task labels do not have to be consistent for data processing to work.
+extraction configuration file extraction/Extractor_config_workflow_18616_V25.36.yaml for workflow 18616 is identical to extraction/Extractor_config_workflow_18616_V25.51.yaml.
+extraction/extract_18616_V25.36.log: panoptes_aggregation extract exports/5-age-classifications.csv extraction/Extractor_config_workflow_18616_V25.36.yaml -d extraction -o 18616_V25_36
+extraction/extract_18616_V25.51.log: panoptes_aggregation extract exports/5-age-classifications.csv extraction/Extractor_config_workflow_18616_V25.51.yaml -d extraction -o 18616_V25_51
+extraction/strip_identity_tranform_test_18616.log: ./strip_processed.py -t tranches/empty_views.csv extraction/text_extractor_18616.full.csv --no_sort
+extraction/strip_seen_18616.log: ./strip_processed.py -t tranches/views.csv extraction/text_extractor_18616.full.csv
+extraction/pick_volumes_18616.log: ./pick_volumes.py extraction/text_extractor_18616.stripped.csv --first_volume 19 --final_volume 34 --subjects_cache extraction/subjects_metadata.csv
+extraction/postextract_18616.log: ./clean_extraction.py extraction/text_extractor_18616.vols.csv 18616
+extraction/reduce_18616.log: panoptes_aggregation reduce -F all -d extraction -o 18616 extraction/text_extractor_18616.csv extraction/Reducer_config_workflow_18616_V25.36_text_extractor.yaml
+extraction/config_18625_V30.47.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 18625 -v 30.47 -d extraction
+extraction/extract_18625_V30.47.log: panoptes_aggregation extract exports/14-number-of-days-in-hospital-classifications.csv extraction/Extractor_config_workflow_18625_V30.47.yaml -d extraction -o 18625_V30_47
+extraction/strip_identity_tranform_test_18625.log: ./strip_processed.py -t tranches/empty_views.csv extraction/text_extractor_18625.full.csv --no_sort
+extraction/strip_seen_18625.log: ./strip_processed.py -t tranches/views.csv extraction/text_extractor_18625.full.csv
+extraction/pick_volumes_18625.log: ./pick_volumes.py extraction/text_extractor_18625.stripped.csv --first_volume 19 --final_volume 34 --subjects_cache extraction/subjects_metadata.csv
+extraction/postextract_18625.log: ./clean_extraction.py extraction/text_extractor_18625.vols.csv 18625
+extraction/reduce_18625.log: panoptes_aggregation reduce -F all -d extraction -o 18625 extraction/text_extractor_18625.csv extraction/Reducer_config_workflow_18625_V30.47_text_extractor.yaml
+extraction/config_18617_V22.46.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 18617 -v 22.46 -d extraction
+extraction/extract_18617_V22.46.log: panoptes_aggregation extract exports/7-place-of-birth-nationality-classifications.csv extraction/Extractor_config_workflow_18617_V22.46.yaml -d extraction -o 18617_V22_46
+extraction/strip_identity_tranform_test_18617.log: ./strip_processed.py -t tranches/empty_views.csv extraction/text_extractor_18617.full.csv --no_sort
+extraction/strip_seen_18617.log: ./strip_processed.py -t tranches/views.csv extraction/text_extractor_18617.full.csv
+extraction/pick_volumes_18617.log: ./pick_volumes.py extraction/text_extractor_18617.stripped.csv --first_volume 19 --final_volume 34 --subjects_cache extraction/subjects_metadata.csv
+extraction/postextract_18617.log: ./clean_extraction.py extraction/text_extractor_18617.vols.csv 18617
+extraction/reduce_18617.log: panoptes_aggregation reduce -F all -d extraction -o 18617 extraction/text_extractor_18617.csv extraction/Reducer_config_workflow_18617_V22.46_text_extractor.yaml
+extraction/config_18612_V47.30.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 18612 -v 47.30 -d extraction
+extraction/config_18612_V47.47.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 18612 -v 47.47 -d extraction
+reduction configuration file extraction/Reducer_config_workflow_18612_V47.30_text_extractor.yaml for workflow 18612 is identical to extraction/Reducer_config_workflow_18612_V47.47_text_extractor.yaml.
+task label configuration file extraction/Task_labels_workflow_18612_V47.30.yaml for workflow 18612 differs from extraction/Task_labels_workflow_18612_V47.47.yaml.
+  This is for information only. It is not an error as text-type task labels do not have to be consistent for data processing to work.
+extraction configuration file extraction/Extractor_config_workflow_18612_V47.30.yaml for workflow 18612 is identical to extraction/Extractor_config_workflow_18612_V47.47.yaml.
+extraction/extract_18612_V47.30.log: panoptes_aggregation extract exports/2-date-of-entry-classifications.csv extraction/Extractor_config_workflow_18612_V47.30.yaml -d extraction -o 18612_V47_30
+extraction/extract_18612_V47.47.log: panoptes_aggregation extract exports/2-date-of-entry-classifications.csv extraction/Extractor_config_workflow_18612_V47.47.yaml -d extraction -o 18612_V47_47
+extraction/strip_identity_tranform_test_18612.log: ./strip_processed.py -t tranches/empty_views.csv extraction/text_extractor_18612.full.csv --no_sort
+extraction/strip_seen_18612.log: ./strip_processed.py -t tranches/views.csv extraction/text_extractor_18612.full.csv
+extraction/pick_volumes_18612.log: ./pick_volumes.py extraction/text_extractor_18612.stripped.csv --first_volume 19 --final_volume 34 --subjects_cache extraction/subjects_metadata.csv
+extraction/postextract_18612.log: ./clean_extraction.py extraction/text_extractor_18612.vols.csv 18612
+extraction/reduce_18612.log: panoptes_aggregation reduce -F all -d extraction -o 18612 extraction/text_extractor_18612.csv extraction/Reducer_config_workflow_18612_V47.30_text_extractor.yaml
+extraction/config_18621_V22.49.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 18621 -v 22.49 -d extraction
+extraction/extract_18621_V22.49.log: panoptes_aggregation extract exports/8-ship-ship-or-place-of-employment-last-ship-classifications.csv extraction/Extractor_config_workflow_18621_V22.49.yaml -d extraction -o 18621_V22_49
+extraction/strip_identity_tranform_test_18621.log: ./strip_processed.py -t tranches/empty_views.csv extraction/text_extractor_18621.full.csv --no_sort
+extraction/strip_seen_18621.log: ./strip_processed.py -t tranches/views.csv extraction/text_extractor_18621.full.csv
+extraction/pick_volumes_18621.log: ./pick_volumes.py extraction/text_extractor_18621.stripped.csv --first_volume 19 --final_volume 34 --subjects_cache extraction/subjects_metadata.csv
+extraction/postextract_18621.log: ./clean_extraction.py extraction/text_extractor_18621.vols.csv 18621
+extraction/reduce_18621.log: panoptes_aggregation reduce -F all -d extraction -o 18621 extraction/text_extractor_18621.csv extraction/Reducer_config_workflow_18621_V22.49_text_extractor.yaml
+extraction/config_18611_V3.1.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 18611 -v 3.1 -d extraction
+extraction/config_18611_V58.65.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 18611 -v 58.65 -d extraction
+extraction/config_18611_V58.132.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 18611 -v 58.132 -d extraction
+reduction configuration file extraction/Reducer_config_workflow_18611_V3.1_text_extractor.yaml for workflow 18611 is identical to extraction/Reducer_config_workflow_18611_V58.132_text_extractor.yaml.
+reduction configuration file extraction/Reducer_config_workflow_18611_V58.65_text_extractor.yaml for workflow 18611 is identical to extraction/Reducer_config_workflow_18611_V58.132_text_extractor.yaml.
+task label configuration file extraction/Task_labels_workflow_18611_V3.1.yaml for workflow 18611 differs from extraction/Task_labels_workflow_18611_V58.132.yaml.
+  This is for information only. It is not an error as text-type task labels do not have to be consistent for data processing to work.
+task label configuration file extraction/Task_labels_workflow_18611_V58.65.yaml for workflow 18611 differs from extraction/Task_labels_workflow_18611_V58.132.yaml.
+  This is for information only. It is not an error as text-type task labels do not have to be consistent for data processing to work.
+extraction configuration file extraction/Extractor_config_workflow_18611_V3.1.yaml for workflow 18611 differs from extraction/Extractor_config_workflow_18611_V58.132.yaml.
+  This is for information only. It is not an error as the extract_diff_ok flag is set for workflow 18611 in workflow.yaml.
+extraction configuration file extraction/Extractor_config_workflow_18611_V58.65.yaml for workflow 18611 is identical to extraction/Extractor_config_workflow_18611_V58.132.yaml.
+extraction/extract_18611_V3.1.log: panoptes_aggregation extract exports/1-admission-number-classifications.csv extraction/Extractor_config_workflow_18611_V3.1.yaml -d extraction -o 18611_V3_1
+extraction/extract_18611_V58.65.log: panoptes_aggregation extract exports/1-admission-number-classifications.csv extraction/Extractor_config_workflow_18611_V58.65.yaml -d extraction -o 18611_V58_65
+extraction/extract_18611_V58.132.log: panoptes_aggregation extract exports/1-admission-number-classifications.csv extraction/Extractor_config_workflow_18611_V58.132.yaml -d extraction -o 18611_V58_132
+extraction/strip_identity_tranform_test_18611.log: ./strip_processed.py -t tranches/empty_views.csv extraction/text_extractor_18611.full.csv --no_sort
+extraction/strip_seen_18611.log: ./strip_processed.py -t tranches/views.csv extraction/text_extractor_18611.full.csv
+extraction/pick_volumes_18611.log: ./pick_volumes.py extraction/text_extractor_18611.stripped.csv --first_volume 19 --final_volume 34 --subjects_cache extraction/subjects_metadata.csv
+extraction/postextract_18611.log: ./clean_extraction.py extraction/text_extractor_18611.vols.csv 18611
+extraction/reduce_18611.log: panoptes_aggregation reduce -F all -d extraction -o 18611 extraction/text_extractor_18611.csv extraction/Reducer_config_workflow_18611_V3.1_text_extractor.yaml
+extraction/config_18622_V21.55.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 18622 -v 21.55 -d extraction
+extraction/config_18622_V21.68.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 18622 -v 21.68 -d extraction
+reduction configuration file extraction/Reducer_config_workflow_18622_V21.55_text_extractor.yaml for workflow 18622 is identical to extraction/Reducer_config_workflow_18622_V21.68_text_extractor.yaml.
+task label configuration file extraction/Task_labels_workflow_18622_V21.55.yaml for workflow 18622 differs from extraction/Task_labels_workflow_18622_V21.68.yaml.
+  This is for information only. It is not an error as text-type task labels do not have to be consistent for data processing to work.
+extraction configuration file extraction/Extractor_config_workflow_18622_V21.55.yaml for workflow 18622 is identical to extraction/Extractor_config_workflow_18622_V21.68.yaml.
+extraction/extract_18622_V21.55.log: panoptes_aggregation extract exports/11-nature-of-complaint-classifications.csv extraction/Extractor_config_workflow_18622_V21.55.yaml -d extraction -o 18622_V21_55
+extraction/extract_18622_V21.68.log: panoptes_aggregation extract exports/11-nature-of-complaint-classifications.csv extraction/Extractor_config_workflow_18622_V21.68.yaml -d extraction -o 18622_V21_68
+extraction/strip_identity_tranform_test_18622.log: ./strip_processed.py -t tranches/empty_views.csv extraction/text_extractor_18622.full.csv --no_sort
+extraction/strip_seen_18622.log: ./strip_processed.py -t tranches/views.csv extraction/text_extractor_18622.full.csv
+extraction/pick_volumes_18622.log: ./pick_volumes.py extraction/text_extractor_18622.stripped.csv --first_volume 19 --final_volume 34 --subjects_cache extraction/subjects_metadata.csv
+extraction/postextract_18622.log: ./clean_extraction.py extraction/text_extractor_18622.vols.csv 18622
+extraction/reduce_18622.log: panoptes_aggregation reduce -F all -d extraction -o 18622 extraction/text_extractor_18622.csv extraction/Reducer_config_workflow_18622_V21.55_text_extractor.yaml
+extraction/config_18623_V29.41.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 18623 -v 29.41 -d extraction
+extraction/config_18623_V33.43.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 18623 -v 33.43 -d extraction
+reduction configuration file extraction/Reducer_config_workflow_18623_V29.41_text_extractor.yaml for workflow 18623 is identical to extraction/Reducer_config_workflow_18623_V33.43_text_extractor.yaml.
+task label configuration file extraction/Task_labels_workflow_18623_V29.41.yaml for workflow 18623 differs from extraction/Task_labels_workflow_18623_V33.43.yaml.
+  This is for information only. It is not an error as text-type task labels do not have to be consistent for data processing to work.
+extraction configuration file extraction/Extractor_config_workflow_18623_V29.41.yaml for workflow 18623 differs from extraction/Extractor_config_workflow_18623_V33.43.yaml.
+  This is for information only. It is not an error as the extract_diff_ok flag is set for workflow 18623 in workflow.yaml.
+extraction/extract_18623_V29.41.log: panoptes_aggregation extract exports/12-date-of-discharge-classifications.csv extraction/Extractor_config_workflow_18623_V29.41.yaml -d extraction -o 18623_V29_41
+extraction/extract_18623_V33.43.log: panoptes_aggregation extract exports/12-date-of-discharge-classifications.csv extraction/Extractor_config_workflow_18623_V33.43.yaml -d extraction -o 18623_V33_43
+extraction/strip_identity_tranform_test_18623.log: ./strip_processed.py -t tranches/empty_views.csv extraction/text_extractor_18623.full.csv --no_sort
+extraction/strip_seen_18623.log: ./strip_processed.py -t tranches/views.csv extraction/text_extractor_18623.full.csv
+extraction/pick_volumes_18623.log: ./pick_volumes.py extraction/text_extractor_18623.stripped.csv --first_volume 19 --final_volume 34 --subjects_cache extraction/subjects_metadata.csv
+extraction/postextract_18623.log: ./clean_extraction.py extraction/text_extractor_18623.vols.csv 18623
+extraction/reduce_18623.log: panoptes_aggregation reduce -F all -d extraction -o 18623 extraction/text_extractor_18623.csv extraction/Reducer_config_workflow_18623_V29.41_text_extractor.yaml
+extraction/config_18613_V23.19.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 18613 -v 23.19 -d extraction
+extraction/config_18613_V23.34.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 18613 -v 23.34 -d extraction
+reduction configuration file extraction/Reducer_config_workflow_18613_V23.19_text_extractor.yaml for workflow 18613 is identical to extraction/Reducer_config_workflow_18613_V23.34_text_extractor.yaml.
+task label configuration file extraction/Task_labels_workflow_18613_V23.19.yaml for workflow 18613 differs from extraction/Task_labels_workflow_18613_V23.34.yaml.
+  This is for information only. It is not an error as text-type task labels do not have to be consistent for data processing to work.
+extraction configuration file extraction/Extractor_config_workflow_18613_V23.19.yaml for workflow 18613 is identical to extraction/Extractor_config_workflow_18613_V23.34.yaml.
+extraction/extract_18613_V23.19.log: panoptes_aggregation extract exports/3-name-classifications.csv extraction/Extractor_config_workflow_18613_V23.19.yaml -d extraction -o 18613_V23_19
+extraction/extract_18613_V23.34.log: panoptes_aggregation extract exports/3-name-classifications.csv extraction/Extractor_config_workflow_18613_V23.34.yaml -d extraction -o 18613_V23_34
+extraction/strip_identity_tranform_test_18613.log: ./strip_processed.py -t tranches/empty_views.csv extraction/text_extractor_18613.full.csv --no_sort
+extraction/strip_seen_18613.log: ./strip_processed.py -t tranches/views.csv extraction/text_extractor_18613.full.csv
+extraction/pick_volumes_18613.log: ./pick_volumes.py extraction/text_extractor_18613.stripped.csv --first_volume 19 --final_volume 34 --subjects_cache extraction/subjects_metadata.csv
+extraction/postextract_18613.log: ./clean_extraction.py extraction/text_extractor_18613.vols.csv 18613
+extraction/reduce_18613.log: panoptes_aggregation reduce -F all -d extraction -o 18613 extraction/text_extractor_18613.csv extraction/Reducer_config_workflow_18613_V23.19_text_extractor.yaml
+extraction/config_20285_V22.79.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 20285 -v 22.79 -d extraction
+extraction/config_20285_V23.82.log: panoptes_aggregation config exports/hms-nhs-the-nautical-health-service-workflows.csv 20285 -v 23.82 -d extraction
+reduction configuration file extraction/Reducer_config_workflow_20285_V22.79_text_extractor.yaml for workflow 20285 is identical to extraction/Reducer_config_workflow_20285_V23.82_text_extractor.yaml.
+task label configuration file extraction/Task_labels_workflow_20285_V22.79.yaml for workflow 20285 differs from extraction/Task_labels_workflow_20285_V23.82.yaml.
+  This is for information only. It is not an error as text-type task labels do not have to be consistent for data processing to work.
+extraction configuration file extraction/Extractor_config_workflow_20285_V22.79.yaml for workflow 20285 differs from extraction/Extractor_config_workflow_20285_V23.82.yaml.
+  This is for information only. It is not an error as the extract_diff_ok flag is set for workflow 20285 in workflow.yaml.
+extraction/extract_20285_V22.79.log: panoptes_aggregation extract exports/13-how-disposed-of-classifications.csv extraction/Extractor_config_workflow_20285_V22.79.yaml -d extraction -o 20285_V22_79
+extraction/extract_20285_V23.82.log: panoptes_aggregation extract exports/13-how-disposed-of-classifications.csv extraction/Extractor_config_workflow_20285_V23.82.yaml -d extraction -o 20285_V23_82
+extraction/strip_identity_tranform_test_20285.log: ./strip_processed.py -t tranches/empty_views.csv extraction/text_extractor_20285.full.csv --no_sort
+extraction/strip_seen_20285.log: ./strip_processed.py -t tranches/views.csv extraction/text_extractor_20285.full.csv
+extraction/pick_volumes_20285.log: ./pick_volumes.py extraction/text_extractor_20285.stripped.csv --first_volume 19 --final_volume 34 --subjects_cache extraction/subjects_metadata.csv
+extraction/postextract_20285.log: ./clean_extraction.py extraction/text_extractor_20285.vols.csv 20285
+extraction/reduce_20285.log: panoptes_aggregation reduce -F all -d extraction -o 20285 extraction/text_extractor_20285.csv extraction/Reducer_config_workflow_20285_V22.79_text_extractor.yaml
+Launched panoptes-wid-18625-number_of_days_in_hospital as pid 1851
+panoptes-wid-18611-admission_number completed with exit code 0
+panoptes-wid-18612-date_of_entry completed with exit code 0
+panoptes-wid-18613-name completed with exit code 0
+panoptes-wid-18454-quality completed with exit code 0
+panoptes-wid-18616-age completed with exit code 0
+panoptes-wid-18344-creed completed with exit code 0
+panoptes-wid-18617-place_of_birth/nationality completed with exit code 0
+panoptes-wid-18621-ship/ship_or_place_of_employment/last_ship completed with exit code 0
+panoptes-wid-18347-of_what_port/port_of_registration completed with exit code 0
+panoptes-wid-18618-where_from completed with exit code 0
+panoptes-wid-18622-nature_of_complaint completed with exit code 0
+panoptes-wid-18623-date_of_discharge completed with exit code 0
+panoptes-wid-20285-how_disposed_of completed with exit code 0
+panoptes-wid-18625-number_of_days_in_hospital completed with exit code 0
+Supplementary subject 44290143 (vol.  2, p.   1) has no classifications
+Supplementary subject 60262183 (vol. 20, p.  54) has at least one classification
+Supplementary subject 60262144 (vol. 20, p. 158) has at least one classification
+Supplementary subject 60262145 (vol. 20, p. 159) has at least one classification
+Supplementary subject 60262146 (vol. 20, p. 160) has at least one classification
+Supplementary subject 44585952 (vol. 23, p. 204) has at least one classification
+Supplementary subject 44586138 (vol. 24, p. 136) has at least one classification
+Supplementary subject 44586661 (vol. 26, p.  57) has at least one classification
+Supplementary subject 44586737 (vol. 26, p. 131) has at least one classification
+Supplementary subject 44586811 (vol. 26, p. 202) has at least one classification
+Supplementary subject 44586878 (vol. 26, p. 268) has at least one classification
+Supplementary subject 44661091 (vol. 28, p.  57) has at least one classification
+Supplementary subject 44661092 (vol. 28, p.  58) has at least one classification
+All done, no errors
+Suggested next invocations:
+git add tranches
+git commit -m'Latest data extraction'
+./aggregate.py -r extraction -t 0.3
