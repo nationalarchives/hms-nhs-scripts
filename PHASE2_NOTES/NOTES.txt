@@ -1,0 +1,96 @@
+# Notes on the generation of phase 2 data
+
+Followed 'Example Use' steps at https://github.com/nationalarchives/hms-nhs-scripts#readme as at commit d3e0c6b86305e060feae14adc8e4fd3341ec66f1, with the following modifications:
+
+Third bullet (install dependencies) – created a virtualenv (named hms-nhs_phase_2) and installed the requirements in there using `pip install -r requirements_all.txt`. Python version was 3.10.12. Operating system was a WSL installation of Ubuntu 22.04.3 LTS.
+
+Fourth bullet (download Zooniverse project exports) -- only downloaded the workflow classification export listed for phase2 in workflow.yaml (plus hms-nhs-the-nautical-health-service-subjects.csv and hms-nhs-the-nautical-health-service-workflows.csv). Downloads were initially requested a couple of months ago, after conclusion of the project, so should be stable.
+
+Fifth bullet (copy downloaded files to exports/ directory) -- Downloads were moved into an additional pristine_exports/ directory, as well as into the usual exports/ directly. Contents of pristine_exports/ made read only to be available for comparison. All known accidental pastes (see Appendix, below) were removed from copies in the exports/ directory. A backup of this work was made in depasted_exports/.
+
+Sixth bullet (Extract the data from the downloads) -- Ran as `nice ./extract.py -v phase2 > extract.STDOUT 2> extract.STDERR`. Output copied into depasted_extraction/. depasted_extraction/, its contents, and the files extract.STDOUT and extract.STDERR all made read-only. extract.STD* also copied into depasted_extraction, then moved into extraction/.
+
+Seventh bullet (record information about the run of extract.py) – Copied logs of the stdout and stderr of extract.py into tranches/202310181040_GMT/ before git add (`cp extraction/extract.STDERR tranches/202312121043_GMT/extract_phase2_stderr; cp extraction/extract.STDOUT tranches/202312121043_GMT/extract_phase2_stdout`). The git add created commit b34caea8e46efba6ea57fe9f41dc4b8ca25fa93f.
+
+Ninth bullet (generate joined.csv) – Ran `./aggregate.py -t 0.3 phase2 --dump_interims --unfinished -v 9  > aggregate_phase2_stdout 2> aggregate_phase2_stderr`. Some data cells do not have enough transcriptions, and I think all pages may have some missing rows -- presumably due to rows being absent in the original pages. Hence --unfinished is needed to get the output from the transcriptions. --dumo_interims and -v 9 just give us maximum visibility of any potential problems. aggregate_phase2_std* moved into output/. output/ copied to (now read-only) depasted_output/.
+At a later stage, I modified aggregate.py to provide a full list of overcounted and undercounted fields. I generated this into a temporary directory, then copied this new information into output/interims/. As these files only give subject ids (not volume and page references) I also copied extraction/subjects_metadata.csv into output/ so that it is available for lookups. I cloned the new output directory into edited_output/, so that I still have a reference copy. None of this changed any of the existing data in output/.
+
+Skipped remaining bullets -- maxcolwidth.sh would need some hacks to work and is relatively low value, remaining steps are for someone else to do at a later time.
+
+
+## Post-run checks: extraction/
+
+Generally not reporting on irrelevant information from the logs here, e.g. we do not expect any classifications for volumes not included in phase2 so reports that some "supplementary" page in vol 2 has no classifications are not relevant.
+
+* Confirmed that the duplicate subject ids in extract.STDERR do refer to identical page images (see PHASE2_NOTES/multiple_subj_check)
+* Occasionally we have a "supplementary" id where we cannot find the original subject for some reason
+** In these cases, the volume and page numbers might be incorrect: these would be worth checking in joined.csv
+** The supplementary subjects are:
+subject_id,volume,page,location
+44290143,2,1,supplement #This one can be ignored as vol 2 is not included in phase 2
+44585952,23,204,supplement
+44586138,24,136,supplement
+44586661,26,57,supplement
+44586737,26,131,supplement
+44586811,26,202,supplement
+44586878,26,268,supplement
+44661091,28,57,supplement
+44661092,28,58,supplement
+60262144,20,158,supplement
+60262145,20,159,supplement
+60262146,20,160,supplement
+60262183,20,54,supplement
+* The reduce_*.log files contain some SyntaxWarnings. I assume that these come from the Zooniverse scripts so I am not addressing them, but do feel free to query with Zooniverse. I don't like that they are there, but they may well be benign.
+* The pick_volumes_*.log files show that some fields do not have transcriptions for some volumes
+** Hopefully this is just due to changes in what the clerks were recording, but just in case:
+*** There are no 'creed' transcriptions before volume 23
+*** There are no 'of what port' transcriptions for volume 34
+*** There are no 'where from' transcriptions after volume 25
+
+
+## Post-run checks: output/
+
+* The following columns contain undercounted fields (i.e. fields based on less than 3 transcriptions):
+** date of entry (132)
+** quality (231)
+** creed (429)
+** place of birth (132)
+** port (429)
+** where from (132)
+** date of discarge (529) (I believe that this is always task T41)
+** how disposed (264) (I believe that this is always task T40)
+** days in hospital (198)
+*** Undercounted fields can be checked by looking in output/interim/undercount*.
+*** The subject id given here can be looked up in output/subjects_metadata.csv
+* All columns contain thousands of overcounted fields (i.e. fields based on more than 3 transcriptions)
+** Overcounted fields can be checked by looking in output/interim/overcount*, resolving subject id as described for the undercount case, above.
+** However, these are probably less concerning than undercounted fields.
+* The following columns have dropped some "null" fields
+** date of discharge (75) (Always task T41)
+** how disposed (3,874) (Always task T40)
+*** I think that this is caused by a task existing in one version of the workflow and being removed in another.
+*** I hope that the relevant field is always empty -- there is a check in the code (aggregate.py line 493) that appears to make sure of this
+*** It has been a long time since I wrote the code, though -- if I had more time I'd prove that the check does what I think
+*** It also looks (by inspection of the relevant extraction/text_extraction_*.full.csv files) like the relevant task is always blank, 00 or a variation on NO ROW.
+*** The only "real" entry is one case of "Relieved", but checking the relevant page shows that this is an incorrect transcription -- the page does not have a row for T40.
+*** So I think it is fine that we are dropping these fields.
+
+
+## Appendix: Checks for accidental pastes.
+
+Diff'd each file after copying as a check against copy errors. Used a text editor to remove the previously known case from line 10,404 of 11-nature-of-complaint-classifications.csv. Again diff'd to make sure that I had removed only what I intended to. Also chmod'd all the files to be neither readable nor executable (chmod a-wx exports/*).
+
+Did some further checks for additional accidental pastes and found a few. Methods:
+
+1) `for x in text_extractor_*; do echo "$x"; csvtool namedcol data.text "$x" | awk '{ print length, ":", $0 }' | grep -v '^[^:]\{1,2\} : '; done > ../LENCHECK`
+  * This one was run after an initial extraction, hence run in the extraction/ directory. It finds all post-extraction lines with length of at least a 3 digit number. This discovered three accidental pastes, which were then removed from the exports/ file where they originated.
+
+2) for x in *; do echo; echo; echo "$x"; cat "$x" | tr , '\n' | sed 's/[[:blank:]]*\\n[[:blank:]]*/\\n/' | sed 's/\(\\n\)*""$/<chop>""/' | sed 's/""value"":""\(\\n\)\+/""value"":""<squash>/' | grep '\\n' | grep '^""value"":'; echo; echo DONE; read; clear; done
+  * This one runs direct on the exports, chopping up the file into lines to just get the "value" fields from the embedded JSON -- this works because newlines in the embedded JSON are rendered as a literal "\n". It is trying to find entries with paragraphs. This produced a lot of false positives -- I just scrolled the output and relied on my eyes spotting anomalies, so it is possible that I missed something. This method was not very efficient and only found one true positive (someone's email signature).
+
+3) for x in *; do echo $x; cat "$x" | tr , '\n' | grep '^""value"":' | tr -s '[:blank:]' | sed 's/\(\\n\)\+/\\n/g' | awk 'length > 90 { print length, ":", $0 }'; echo DONE; read; clear; done
+  * Again in the exports directory, because this is really the right place to check (before exporting has broken long entries into separate lines that are potentially each very short). Now the limit is 90 -- fairly arbitrary, just based on this producing under 500 lines to check. Did not find any new mistakes. Note that this method would have found the email signature as well as the other entries -- the mail sig was around 200 characters.
+
+Obviously all of this is quite ad hoc and gives absolutely no guarantee that all accidental pastes have been found. I could go further, e.g. looking for a sensible threshold figure for each file, given that the expected input length is quite different in different workflows. But I think it is at least reasonable due dilligence, given time constraints.
+
+For the record, that means we have discovered a total of 5 accidental pastes in a bajillion entries.

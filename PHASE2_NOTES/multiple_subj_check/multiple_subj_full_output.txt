@@ -1,0 +1,26 @@
+Warning: Found multiple subject_ids for the following pages
+             subject_id                                                                                            location
+volume page
+1      1       44121904  https://panoptes-uploads.zooniverse.org/subject_location/2f659bab-05eb-4d8c-8c14-ac32f9373aee.jpeg
+       1       47224962  https://panoptes-uploads.zooniverse.org/subject_location/2c6e221d-7ff1-46ff-9821-7a66e4f0314e.jpeg
+       2       44121906  https://panoptes-uploads.zooniverse.org/subject_location/5b05e3b4-cd05-4837-93c9-4d37a3466804.jpeg
+       2       47224963  https://panoptes-uploads.zooniverse.org/subject_location/d3a62d38-a9bc-4643-8613-e84b91639335.jpeg
+       3       44121907  https://panoptes-uploads.zooniverse.org/subject_location/9eaa33b9-2a5b-4755-b798-4557f3ec7f79.jpeg
+       3       47224964  https://panoptes-uploads.zooniverse.org/subject_location/f5452d47-7ac1-45bf-8235-543079063e8d.jpeg
+       4       44121908  https://panoptes-uploads.zooniverse.org/subject_location/f5e0ab94-3e1d-4f4d-a4ba-b06332f356e2.jpeg
+       4       47224965  https://panoptes-uploads.zooniverse.org/subject_location/9ae13cdd-73ee-47c8-bb38-47b4809be8f0.jpeg
+       5       44121910  https://panoptes-uploads.zooniverse.org/subject_location/38bf4b96-2954-4f2e-9ef4-4e303c6ee611.jpeg
+       5       47224966  https://panoptes-uploads.zooniverse.org/subject_location/70ec8df7-0cb7-4fe9-a6c8-98ffba7eec62.jpeg
+       6       44121912  https://panoptes-uploads.zooniverse.org/subject_location/6182c052-81e3-4fc3-a8e0-cde2a8ddd6b5.jpeg
+       6       47224967  https://panoptes-uploads.zooniverse.org/subject_location/c2b6fb05-d7e5-4512-8848-72b90f7fb69e.jpeg
+       7       44121914  https://panoptes-uploads.zooniverse.org/subject_location/ceeae41e-68f9-4097-a970-40767d2fc2cc.jpeg
+       7       47224968  https://panoptes-uploads.zooniverse.org/subject_location/f6da0c32-32c7-45c0-bca9-dd65db722ad9.jpeg
+       8       44121915  https://panoptes-uploads.zooniverse.org/subject_location/d4750781-c4e7-4f30-968c-eb52748266ed.jpeg
+       8       47224969  https://panoptes-uploads.zooniverse.org/subject_location/65898205-ae86-4bd1-94ad-d2f8661441bf.jpeg
+       9       44121918  https://panoptes-uploads.zooniverse.org/subject_location/369d1c2a-d6eb-43a8-be1f-d690ac45f852.jpeg
+       9       47224959  https://panoptes-uploads.zooniverse.org/subject_location/1738d959-27c4-4811-885d-356d91ffe378.jpeg
+       10      44121920  https://panoptes-uploads.zooniverse.org/subject_location/a4e77f49-a22e-472e-8364-b075b370a87b.jpeg
+       10      47224960  https://panoptes-uploads.zooniverse.org/subject_location/d1c35af6-f0a2-49ea-b8c0-d85494976051.jpeg
+       11      44121922  https://panoptes-uploads.zooniverse.org/subject_location/ebc1a86b-6529-4286-a7a2-39ffe649690b.jpeg
+       11      47224961  https://panoptes-uploads.zooniverse.org/subject_location/dd416953-91d8-42fa-b41c-8d766f8b4c78.jpeg
+
