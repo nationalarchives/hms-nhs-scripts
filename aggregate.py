@@ -697,7 +697,7 @@ def main():
     def set_bad_1(x):
       if not x.name in bad: bad[x.name] = 1
     def inc_bad_1(x):
-      if not x.name in bad: bad[x.name] += 1
+      if not x.name in bad: bad[x.name] += 1 #TODO: Bug? Won't matter if we are postprocessing to find badness.
 
     tmp_bad = pd.Series(data = False, index = joined.index)
     for c in set(get_flows(workflow)) - set(get_number_flows(workflow)):
